@@ -1,15 +1,15 @@
 
 # Samarbejdskontrakt For 3. Semester Projekt
-| Navn | Studienummer |
-| ----: | ----------: |
-| Johan Høffner| 202409238 |
-| Line Nystrup Klemensen | 202407497 |
-| Nicolai Broholm Hansen| 202409080 |
-| Frederik Vagn Lorenzen | 202406665 |
-| Daniel Jenrich Svendsen | 202408416 |
-| Mikkel Kristiansen | 202301563 |
-| Kasper Ørtoft Rasmussen | 202207121 |
-| Christopher Frank Jørgensen| 202300791 |
+| Navn | Studienummer | initialer |
+| ----: | ----------: | -----: |
+| Johan Høffner| 202409238 | JH |
+| Line Nystrup Klemensen | 202407497 | LK |
+| Nicolai Broholm Hansen| 202409080 | NH |
+| Frederik Vagn Lorenzen | 202406665 | FL |
+| Daniel Jenrich Svendsen | 202408416 | DS |
+| Mikkel Kristiansen | 202301563 | MK |
+| Kasper Ørtoft Rasmussen | 202207121 | KR |
+| Christopher Frank Jørgensen| 202300791 | CJ |
 
 ## Formål ved samarbejdet
 
@@ -27,30 +27,34 @@ Alt skal have et review af en anden fra gruppen som ikke var med til at lave det
 ### Ansvarsområder
 
 
-#### Kontaktperson
-rolle er at lave møderne, kontakte vejlederen
+#### Kontaktperson - CJ
+rolle er at lave møderne, kontakte vejlederen, finde et sted at holde mødet. Holde kalenderen opdateret
 
 
-#### Mødeleder
+#### Mødeleder - FL
+Agenda for mødet, ordstyrer for mødet, laver agenda/dagsorden til næste møde. 
 
 
-#### Ordstyrer
+#### Referant - JH
 
-#### Referant
 
-#### Scrummaster
+#### Scrummaster - LK
 Scrummaster
 
-Assistant to the scrum master
+#### Assistant to the Scrummaster - KR
 
-#### Kalender
+#### Git master - NH
+Overholder branch strategi
+
+
+#### Intern HR - DS
+
 
 
 ## Omgangstone
 
-Tone i gruppen:
+### Tone i gruppen
 Vi holder tingene casual og snakker som til dagligt
-
 Vi forpligter os til at behandle hinanden med respekt og venlighed. Diskussioner og feedback skal være konstruktive og ske i en positiv og støttende tone. Der er ingen dumme spørgsmål og intet i vejen med at spørge om hjælp.
 
 ## Afbud
@@ -63,7 +67,14 @@ I specielle tilfælde såsom akut sygdom, eller uforudsete hændelser er det oka
 ## Kommunikation
 Klar kommunikation er nødvendig for godt gruppearbejde og derfor har gruppen oprettet en Discord  hvor der nemt kan kommes i kontakt med andre gruppemedlemmer. Det forventes at hvert gruppemedlem regelmæssigt tjekker discorden og giver svar hurtigst muligt for at hjælpe hinanden.    
 
-Det er vigtigt at medlemmerne i gruppen ikke er bange for at stille spørgsmål og dertil findes der ikke dumme spørgsmål. Det er meget vigtigt at alle holder en god tone når medlemmer snakker sammen og der ikke sker personlige angreb efter andre.   
+Det er vigtigt at medlemmerne i gruppen ikke er bange for at stille spørgsmål og dertil findes der ikke dumme spørgsmål. Det er meget vigtigt at alle holder en god tone når medlemmer snakker sammen og der ikke sker personlige angreb efter andre.
+
+
+### Møder
+Efter vejledermøder holder vi scrummøder som udgangspunkt bliver dette om tirsdagen 
+
+### Projektarbejde
+Vi holder projektarbejde i starten da vi skal blive enige om tingene fra start da der er vigtige beslutninger
 
 ## Beslutningsproces
 
