@@ -20,12 +20,15 @@
 ## Ansvar
 
 ## Omgangstone
+Vi forpligter os til at behandle hinanden med respekt og venlighed. Diskussioner og feedback skal være konstruktive og ske i en positiv og støttende tone. Der er ingen dumme spørgsmål og intet i vejen med at spørge om hjælp.
 
 ## Afbud
 
 ## Organisering og Møder
 
 ## Beslutningsproces
+
+## kode etik
 
 ## Uenigheder
 
