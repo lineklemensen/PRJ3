@@ -82,17 +82,22 @@ Vi holder projektarbejde i starten da vi skal blive enige om tingene fra start d
 
 ## Beslutningsproces
 Beslutninger i gruppen træffes ved konsensus. Hvis enighed ikke kan opnås, stemmer vi, og flertallet afgør beslutningen. 
+Beslutninger der vedrører arbejdet træffes ved fysisk og discord fremmøde til et møde. Er man ikke til mødet, har man ikke stemmeret.
 
-Beslutninger der vedrører arbejdet træffes ved fysisk og discord fremmøde til et møde. Er man ikke til mødet, har man ikke stemmeret. 
+Meget vigtige beslutninger bliver taget ved at stemme inde i discordens stemmekanel, hvis fremmøde er umuligt til mødet og god grund er givet i god tid. 
 
 
 ## kode etik
 
+Skriver NH og JH senere
+
 ## Uenigheder
+Ved uenigheder i gruppen vil vi forsøge at løse konflikten internt gennem dialog. Hvis dette ikke lykkes, vil vi inddrage en vejleder for at hjælpe med at finde en løsning, Intern HR vil være hovedansvarlig på dette. 
 
 ## Kontraktbrud
 Hvis et medlem gentagne gange ikke lever op til sine forpligtelser uden gyldig grund, vil gruppen tage dette op til diskussion. Ved alvorlige eller gentagne kontraktbrud kan det blive nødvendigt at kontakte underviseren eller en vejleder for videre handling. 
 
-## Bøder
+## Kageordning
+KR vil stå for kagen og alle bidrager med penge til dette formål
 
 ## Vejleder/kontaktperson
