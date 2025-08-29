@@ -81,8 +81,10 @@ Efter vejledermøder holder vi scrummøder som udgangspunkt bliver dette om tirs
 Vi holder projektarbejde i starten da vi skal blive enige om tingene fra start da der er vigtige beslutninger
 
 ## Beslutningsproces
+Beslutninger i gruppen træffes ved konsensus. Hvis enighed ikke kan opnås, stemmer vi, og flertallet afgør beslutningen. 
 
-Beslutningsprocessen bliver 
+Beslutninger der vedrører arbejdet træffes ved fysisk og discord fremmøde til et møde. Er man ikke til mødet, har man ikke stemmeret. 
+
 
 ## kode etik
 
