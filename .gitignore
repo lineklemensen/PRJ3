@@ -1,0 +1,11 @@
+# Ignore common cache folders
+**/.vs
+**/.idea
+**/cmake-build-debug
+
+# Ignore common output file
+*.o
+*.exe
+
+# PlantUML svg's
+*.svg
