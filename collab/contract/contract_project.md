@@ -95,7 +95,7 @@ Skriver NH og JH senere
 Ved uenigheder i gruppen vil vi forsøge at løse konflikten internt gennem dialog. Hvis dette ikke lykkes, vil vi inddrage en vejleder for at hjælpe med at finde en løsning, Intern HR vil være hovedansvarlig på dette. 
 
 ## Kontraktbrud
-Hvis et medlem gentagne gange ikke lever op til sine forpligtelser uden gyldig grund, vil gruppen tage dette op til diskussion. Ved alvorlige eller gentagne kontraktbrud kan det blive nødvendigt at kontakte underviseren eller en vejleder for videre handling. 
+Hvis et medlem gentagne gange ikke lever op til sine forpligtelser uden gyldig grund, vil gruppen tage dette op til diskussion. Ved alvorlige eller gentagne kontraktbrud kan det blive nødvendigt at kontakte underviseren eller en vejleder for videre handling. Intern HR står således for dette
 
 ## Kageordning
 KR vil stå for kagen og alle bidrager med penge til dette formål
