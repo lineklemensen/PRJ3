@@ -1,5 +1,5 @@
 
-## Samarbejdskontrakt For 3. Semester Projekt
+# Samarbejdskontrakt For 3. Semester Projekt
 | Navn | Studienummer |
 | ----: | ----------: |
 | Johan Høffner| 202409238 |
@@ -19,10 +19,32 @@
 
 ## Ansvar
 Hvert medlem er ansvarligt for at udføre sine tildelte opgaver og bidrage aktivt til projektets samlede fremdrift.
-
 Alle gruppemedlemmer skal stå til ansvar for deres respektive underopgaver, og sikre at de udføres korrekt.  
-
 Det er vigtigt at, hvis man har brug for hjælp at der søges hjælp fra gruppemedlemmer og hvis problemet er for stort, hjælp i form af projektvejleder. 
+
+Alt skal have et review af en anden fra gruppen som ikke var med til at lave det. Personen/personer der reviewer bliver også kontaktperson for pågældende opgave hvis opgaven ikke kan fuldføres eller problemer opstår
+
+### Ansvarsområder
+
+
+#### Kontaktperson
+rolle er at lave møderne, kontakte vejlederen
+
+
+#### Mødeleder
+
+
+#### Ordstyrer
+
+#### Referant
+
+#### Scrummaster
+Scrummaster
+
+Assistant to the scrum master
+
+#### Kalender
+
 
 ## Omgangstone
 
@@ -44,6 +66,8 @@ Klar kommunikation er nødvendig for godt gruppearbejde og derfor har gruppen op
 Det er vigtigt at medlemmerne i gruppen ikke er bange for at stille spørgsmål og dertil findes der ikke dumme spørgsmål. Det er meget vigtigt at alle holder en god tone når medlemmer snakker sammen og der ikke sker personlige angreb efter andre.   
 
 ## Beslutningsproces
+
+Beslutningsprocessen bliver 
 
 ## kode etik
 
