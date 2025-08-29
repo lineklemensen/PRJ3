@@ -14,6 +14,8 @@
 ## Formål ved samarbejdet
 
 ## Ambitionsniveau
+Vi vil bestræbe os på at lave et ordenligt og udarbejdet produkt
+med tilhørende dybdegående, velformuleret og struktureret rapport
 
 ## Omfang
 
@@ -36,19 +38,21 @@ Agenda for mødet, ordstyrer for mødet, laver agenda/dagsorden til næste møde
 
 
 #### Referant - JH
+Skriver referat til møder, holde strukturen i referat mappen
 
 
 #### Scrummaster - LK
-Scrummaster
+Scrummasterens opgave er at sørge for at alle har noget at lave/ alle laver noget. Der er en kontakt person pr opgave. priotering af sprint opgaver
 
 #### Assistant to the Scrummaster - KR
+Assistant to the Scrum Master, hjælper med check-ups på opgaver og sørger for at opgaver bliver uddigeret rigtigt, samt taskboarded på github er korrekt opdateret
 
 #### Git master - NH
-Overholder branch strategi
+Overholder branch strategi samt opsætningen. ansvar for korrekt navngiving af filer samt vigtige variabler. Overholder kode etik
 
 
 #### Intern HR - DS
-
+Konflikløsning og håndtering. Safe person. Sikkerhedsrepræsentant. I tilfælde af interne problemer vi ikke løser internt tager Intern HR kotankt til vejleder angående problemet
 
 
 ## Omgangstone
