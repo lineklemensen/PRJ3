@@ -20,3 +20,14 @@ tænkt eksempel- sygehus, varelevering
 Hvad er vores RPI's job
 En i bilen
 en i hjem, med database, leveringspoints og route-data
+
+
+
+
+Mødetider:
+
+Man møder tiden
+så kl 10 betyder kl 10
+betyder 10:15 betyder kl 10:15
+
+alle i gruppen er enige
