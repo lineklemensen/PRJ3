@@ -8,8 +8,15 @@ Spil
 Dropbox
 Smart home - dashboard, central
 Drink bestillings mixer
-
-
-
 overachieving:
 fysisk skat mellem 2 skatbræt der holder sig opdateret
+
+
+Hvad vi tager med til vejleder som umiddelbare ide:
+
+Selvkørende leveringsfartøj
+A-B-C-D route og aflever produkt (etik)
+tænkt eksempel- sygehus, varelevering
+Hvad er vores RPI's job
+En i bilen
+en i hjem, med database, leveringspoints og route-data
