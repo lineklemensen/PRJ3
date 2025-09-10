@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Render pdf",
+            "command": "pandoc",
+            "args": [
+                "${relativeFile}",
+                "--pdf-engine=pdflatex",
+                "-V",
+                "geometry:margin=0.8in",
+                "--table-caption-position=below",
+                "--figure-caption-position=below",
+                "--resource-path",
+                ".${/}docs${/}${fileBasenameNoExtension}",
+                "-o",
+                ".${/}${fileBasenameNoExtension}.pdf"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        }
+    ]
+}
