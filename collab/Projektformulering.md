@@ -32,3 +32,4 @@ The cars would each have a computer that lets them path-find to their designated
 
 One facet of the issue we want to excemplify is the need to keep proper security when delivering the orders, as they will be delivering various medicines, some of which fall under prescription drugs. Because of this the cars will wait for a nurse who'll have to authenticate before being able to access the medicine, this prevents unauthorized people from accessing or patients potentially self-medicating.
 
+Nurses having to keep track who, where and what medicine to administer only adds to the amount of stress nurses experience and deal with, on top of their already hectic worklife. Relieving them of this will hopefully lead to less mistakes in treatment from distributing medicine, and thereby also a better all around experience for the patients.
