@@ -9,3 +9,6 @@
 
 # PlantUML svg's
 *.svg
+
+# Pandoc render pdfs
+**/*.pdf
