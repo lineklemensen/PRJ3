@@ -1,0 +1,3 @@
+{
+    "pandoc.pdfOptString": "--pdf-engine=pdflatex -V geometry:margin=0.8in --table-caption-position=below --figure-caption-position=below"
+}
