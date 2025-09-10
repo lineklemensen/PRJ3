@@ -16,11 +16,15 @@ The vehicle will contain a User Interface, where nurses, with a passcode, can un
 
 
 
-
 ## The problem
 
 In hospitals nurses often have to administer medicine to many different patients, which can be in rooms that are far apart from eachother on a floor. This leads to a lot of time being wasted entirely on walking back and forth between rooms and the dispensary.
 Hospitals across denmark have for a while had a labor shortage of nurses, which is why we decided to choose that as our primary focus when designing the system.
+
+Danish hospitals has for the past many years been defined by strikes and many loud and public discussions between employers and the nursing staffs trade union. Through these, the public has become increasingly aware of the often lacking, and sometimes appaling, work-environments, with poor pay, large amounts of overtime and understaffing. 
+One part of the day-to-day tasks that nurses engage in, is transportation of medicine. If a patient is in need of a specific medication, but the given ward has run out of said medication, a nurse will typically be forced to walk a rather large distance to a depot and back. This causes a period of downtime, in which that staff will not be able to perform their regular, life-saving duties. 
+With this project, we aim to drastically reduce this downtime, by constructing a small vehicle to conduct this transport, instead of staff. The vehicle will be able to semi-autonomously drive from the medicine depot, to the designated destination, only requiring staff to load and unload the vehicle, increasing time spent doing actual nursing work, to ease the problem, caused by understaffing.
+
 
 ## The solution
 
