@@ -1,3 +1,5 @@
+# Project Concept
+
 Danish hospitals has for the past many years been defined by strikes and many loud and public discussions between employers and the nursing staffs trade union. Through these, the public has become increasingly aware of the often lacking, and sometimes appaling, work-environments, with poor pay, large amounts of overtime and understaffing. 
 
 One part of the day-to-day tasks that nurses engage in, is transportation of medicine. If a patient is in need of a specific medication, but the given ward has run out of said medication, a nurse will typically be forced to walk a rather large distance to a depot and back. This causes a period of downtime, in which that staff will not be able to perform their regular, life-saving duties. 
@@ -11,19 +13,3 @@ The vehicle will contain a User Interface, where nurses, with a passcode, keycar
 As the vehicle will be transporting rather sensitive cargo, such as prescribtion drugs, security is one of the largest concerns. Because of this, the storage unit on the vehicle will be secure, to not allow patients forcing it open, and/or requiring a certain level of access from staff. 
 
 Throughtout the project, we plan to communicate with actual hospitals and nursing staff, to gather a more detailed picture of the different needs and requirements, such a vehicle would need to accomodate in the real world, especially Sygehus Lillebælt and Kolding Sygehus, that earlier this year, have been part of tests using similar vehicles. 
-
-
-
-
-
-## The solution
-
-What we had in mind was a small autonomous car that would be able to hold a "package" of medicine which it would be able to deliver to the appropriate drop-off points.
-
-The car will receive the "orders" from a central point which would be responsible for keeping track of all the orders needing to be executed. This allows having multiple cars run in parallel each being able to deliver to seperate locations.
-
-The cars would each have a computer that lets them path-find to their designated drop-off points, in our prototype this is realised as a Raspberry Pi 5 (RPi). Upon arrival they await a nurse to pick up the package, allowing the car to return to the central pick-up point again to proceed to the next order.
-
-One facet of the issue we want to excemplify is the need to keep proper security when delivering the orders, as they will be delivering various medicines, some of which fall under prescription drugs. Because of this the cars will wait for a nurse who'll have to authenticate before being able to access the medicine, this prevents unauthorized people from accessing or patients potentially self-medicating.
-
-Nurses having to keep track who, where and what medicine to administer only adds to the amount of stress nurses experience and deal with, on top of their already hectic worklife. Relieving them of this will hopefully lead to less mistakes in treatment from distributing medicine, and thereby also a better all around experience for the patients.
