@@ -11,15 +11,17 @@
                 "geometry:margin=0.8in",
                 "--table-caption-position=below",
                 "--figure-caption-position=below",
-                "--resource-path",
-                ".${/}docs${/}${fileBasenameNoExtension}",
+                "--resource-path=.${/}docs${/}${fileBasenameNoExtension}",
                 "-o",
-                ".${/}${fileBasenameNoExtension}.pdf"
+                ".${/}${relativeFileDirname}${/}${fileBasenameNoExtension}.pdf"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "problemMatcher": []
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "silent"
+            }
         }
     ]
 }
