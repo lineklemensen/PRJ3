@@ -4,6 +4,8 @@ Aftalt scrummøde efter vejledermøde
 
 Sprint møde hver anden uge, scrum møde de uger uden sprint møde
 
+Backlog opstart
+
 ## 2 ugers plan:
 
 Projektformulering
@@ -14,7 +16,8 @@ Use Cases
 Moscow/Furps
 
 # Spørgsmålet til Jenny:
-User stories
+User stories eller Use Cases
 Overordende ide hvad vi kan nå, forventningsafstemning
+
 
 
