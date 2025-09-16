@@ -16,4 +16,4 @@ Throughtout the project, we plan to communicate with actual hospitals and nursin
 Nurses having to keep track who, where and what medicine to administer only adds to the amount of stress nurses experience and deal with, on top of their already hectic worklife. Relieving them of this will hopefully lead to less mistakes in treatment from distributing medicine, and thereby also a better all around experience for the patients.
 Throughtout the project, we plan to communicate with actual hospitals and nursing staff, to gather a more detailed picture of the different needs and requirements, such a vehicle would need to accomodate in the real world, especially Sygehus Lillebælt and Kolding Sygehus, that earlier this year, have been part of tests using similar vehicles. 
 
-![Project sketch](./docs/diagrams/projectConcept/projectConcept.png)
+![Project sketch](<../docs/diagrams/out/Project Concept/Project concept.svg>)
