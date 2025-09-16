@@ -7,8 +7,5 @@
 *.o
 *.exe
 
-# PlantUML svg's
-*.svg
-
 # Pandoc render pdfs
 **/*.pdf

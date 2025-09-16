@@ -1,0 +1,27 @@
+@startuml Project concept
+mainframe **Rich image\t**
+
+'Alternative fomatting
+'left to right direction
+'skinparam linetype ortho
+
+component Server as srv
+component Car as car
+component MicroController as mc
+component "Medicine storage" as meds
+component "User interface" as ui
+actor "User (nurse)" as usr
+actor "Nurse 2" as nurse2
+actor Patient as pat
+
+car --> ui
+ui --> car
+nurse2 -l-> ui : Receives medicine
+nurse2 -d-> pat : Administers medicine
+mc -r-> car : Controls
+meds -u-> usr : Receives medicine
+usr -r-> ui : Fills with medicine
+srv -d-> mc : gives delivery location
+mc -u-> srv : notifies completion
+
+@enduml
