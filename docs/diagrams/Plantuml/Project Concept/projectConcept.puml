@@ -4,10 +4,12 @@ mainframe **Rich image\t**
 'Alternative fomatting
 'left to right direction
 'skinparam linetype ortho
+skinparam maxmessagesize 50
+skinparam MinClassWidth 50
 
 component Server as srv
 component Car as car
-component MicroController as mc
+component "Car controller" as carCon
 component "Medicine storage" as meds
 component "User interface" as ui
 actor "User (nurse)" as usr
@@ -18,10 +20,10 @@ car --> ui
 ui --> car
 nurse2 -l-> ui : Receives medicine
 nurse2 -d-> pat : Administers medicine
-mc -r-> car : Controls
+carCon -r-> car : Controls
 meds -u-> usr : Receives medicine
 usr -r-> ui : Fills with medicine
-srv -d-> mc : gives delivery location
-mc -u-> srv : notifies completion
+srv -d-> carCon : gives delivery location
+carCon -u-> srv : notifies completion
 
 @enduml
