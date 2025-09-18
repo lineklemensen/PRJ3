@@ -7,23 +7,32 @@ mainframe **Rich image\t**
 skinparam maxmessagesize 50
 skinparam MinClassWidth 50
 
-component Server as srv
-component Car as car
+component "Server" as srv
+component "Car" as car
 component "Car controller" as carCon
 component "Medicine storage" as meds
 component "User interface" as ui
 actor "User (nurse)" as usr
 actor "Nurse 2" as nurse2
-actor Patient as pat
+actor "Patient" as pat
+component "New patient" as pat2
 
-car --> ui
-ui --> car
-nurse2 -l-> ui : Receives medicine
-nurse2 -d-> pat : Administers medicine
-carCon -r-> car : Controls
-meds -u-> usr : Receives medicine
-usr -r-> ui : Fills with medicine
-srv -d-> carCon : gives delivery location
-carCon -u-> srv : notifies completion
+
+car -l-> nurse2 : Collects medicine
+carCon -u-> srv : Notifies order completion
+carCon -d-> car : Controls
+meds -d-> usr : Receives medicine
+nurse2 -r-> car : Authenticates
+nurse2 -u-> pat : Administers medicine
+srv -d-> carCon : Gives delivery location
+srv -d-> meds : Executes order
+ui -l-> usr : Notifies fail/success
+ui -u-> srv : Create order
+usr -l-> car : Fills with medicine
+usr -r-> ui : Orders medicine
+carCon --> carCon : Pathfinds
+pat2 -r-> srv : Arrives/Registers new location
+srv --> srv : Update locations
+srv --> carCon : Syncronises location map
 
 @enduml
