@@ -12,6 +12,9 @@
                 "--table-caption-position=below",
                 "--figure-caption-position=below",
                 "--resource-path=.${/}docs${/}${fileBasenameNoExtension}",
+                "-M link-citations=true",
+                "--citeproc",
+                "--bibliography=./docs/report/bibliography.bib",
                 "-o",
                 ".${/}${relativeFileDirname}${/}${fileBasenameNoExtension}.pdf"
             ],
