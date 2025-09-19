@@ -6,7 +6,7 @@ One part of the day-to-day tasks that nurses engage in, is transportation of med
 
 With this project, we aim to drastically reduce this downtime, by constructing a small vehicle to conduct this transport, instead of staff. The vehicle will be able to semi-autonomously drive from the medicine depot, to the designated destination, only requiring staff to load and unload the vehicle, increasing time spent doing actual nursing work, to ease the problem, caused by understaffing.
 
-The vehicle will be controlled by a Raspberry Pi microcontroller, which, through communication with a dedicated Linux server, will receive driving instructions. These instructions will be used as parameters in a specially designed algortithm, that the car uses to determine its path. This also allows for expansion, as multiple vehicles can connect to the same server, making deliveries to multiple different wards at the same time possible.
+The vehicle will be controlled by a Raspberry Pi microcontroller, which, through communication with a dedicated Linux server running on a separate Raspberry Pi, will receive driving instructions. These instructions will be used as parameters in a pathfinding designed algortithm, that the car uses to determine its path. This also allows for expansion, as multiple vehicles can connect to the same server concurrently, making deliveries to multiple different wards at the same time possible.
 
 The vehicle will contain a User Interface, where nurses, with a passcode, keycard, etc., can unlock a storage unit on the vehicle, load it with medicine requested by other nursing staff, and define a destination for the vehicle. Upon arrival, the staff who requested said medicine, can unlock the storage unit and receive the medicine, after which the vehicle will return to its route, or its designated home.
 
@@ -16,4 +16,6 @@ Throughtout the project, we plan to communicate with actual hospitals and nursin
 Nurses having to keep track who, where and what medicine to administer only adds to the amount of stress nurses experience and deal with, on top of their already hectic worklife. Relieving them of this will hopefully lead to less mistakes in treatment from distributing medicine, and thereby also a better all around experience for the patients.
 Throughtout the project, we plan to communicate with actual hospitals and nursing staff, to gather a more detailed picture of the different needs and requirements, such a vehicle would need to accomodate in the real world, especially Sygehus Lillebælt and Kolding Sygehus, that earlier this year, have been part of tests using similar vehicles. 
 
-![Project sketch](<../docs/diagrams/out/Project Concept/Project concept.svg>)
+
+
+![Project sketch](<docs/diagrams/out/Project Concept/Project concept.png>){width=480px}
