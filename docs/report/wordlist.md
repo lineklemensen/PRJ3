@@ -12,3 +12,4 @@
 | UI       | User Interface                |
 | Use Case |                               |
 | Wi-Fi    | Wireless network              |
+| A*       | A-star pathfinding algorithm  |
