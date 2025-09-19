@@ -1,0 +1,6 @@
+## Teknisk analyse
+
+
+### Pathfinding algorithm
+
+|||
