@@ -4,8 +4,8 @@
 ### The self driving delivering robot (DDR)
 #### The DDR must have [x] length and [x] width with [x] weight in the form of a regtangular box with wheels
 
-### The operation central (OC)
-#### The OC must have [x] length and [x] width with [x] weight in the form of a box that can stand by itself on the floor or table. 
+### Concurrent central processer (CCP)
+#### The CCP must have [x] length and [x] width with [x] weight in the form of a box that can stand by itself on the floor or table. 
 
 
 
@@ -20,18 +20,41 @@
 ##### Since we are using pincode to get the material and load the material, the grid is in the form of a square with [x] length and size, where the buttons size are [x]
 
 #### User Interface
+##### Cannot be writing as of today 18-09-2025 look back later
+
 #### Documentation
+##### There will be a guide printet and placed near the charging station of the DDR. Where it will be described how to load the DDR and how to retrieve from the DDR
 
 
 ### Metrics
-#### Max numbers of errors made by users for a specific task over a time period
-#### Time to learn a certain functionality
+#### A novice user should make no more than 2 errors when retrieving the material from the DDR and shouldnt take more than 2 minutes to complete the retrieve task. Time to learn to use the retrieve function of the DDR should be learned within 10 minutes of showing.
+
+#### A novice user should make no more than 2 errors when loading the material on the DDR and shouldnt take more than 5 minutes to complete the loading task. Time to learn to use the load function of the DDR should be learned within 15 minutes of showing.
 
 ## Reliability
-### the delivering system should operate atleast 8 hours a day, like a typecial workshift
+### Reliability
+#### There should be a MTBF at [x] hours
+### Availability
+#### <img width="440" height="87" alt="image" src="https://github.com/user-attachments/assets/cb2dcfc2-b72f-45de-82fd-a009d3087a7f" />
+#### Kig ISE slides, lektion 5, slide 8
+
+### Maintainability
+#### There should be a MTTR at 15 minutes
 
 ## Performance
+### Response time
+### Start-up time
+### Capacity and efficiency constraints
 
 ## Supportability
+### Compatibility
+### Installability
+### Localizability
+### Maintainability
 
+
+## Legal and Ethical
+### Technology trade off
+### Test
+### Reuse
 
