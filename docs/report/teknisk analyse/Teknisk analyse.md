@@ -1,8 +1,8 @@
-## Technical analysis
+# Technical analysis
 We decided to rate with a score from 1 to 5, where a higher score is better.
 
 \newpage
-### Pathfinding algorithm
+## Pathfinding algorithm
 
 |                       | Dijkstra | A*  | A* /w multithreading |
 | --------------------- | -------- | --- | -------------------- |
@@ -17,16 +17,17 @@ We have found 3 pathfinding algorithms to compare, Dijkstra's algorithm, A* algo
 The attributes we want to prioritize are speed and processing complexity, as our goal is to be able to find a path quickly but do not want to consume all the resources of the RPi. So a balance between the two are important.
 Developer cost is also an important factor as we want to be able to actually get a finished and working pathfinding implementation, since if developer cost is too high we might not be able to finish it in time.
 
-##### Speed
+### Speed
 When we are talking about speed we are mostly concerned with convergence speed, and in that aspect there is a clear winner amongst our choices, A* with multithreading.
 
-##### Processing complexity
+### Processing complexity
 Although A* with multithreading is the fastest, it is also the most complex to implement, as we need to be careful that a thread does not attempt to search the same space another thread has already cleared. Here Dijkstra and normal A* have the advantage as everything occurs on the same thread, and each new node is only traversed once.
 
-##### Memory impact
+### Memory impact
 The amount of memory each algorithm consumes is largely negligible but does scale primarily with graph/map size, when considering this, Dijkstra is the worst of the three since worst case the amount of nodes it has to check scales quadratically with the distance to the goal. Of course multithreaded A* versus its single-threaded counterpart does add some memory overhead, however it isn't enough to cost any points.
 
-##### Developer cost
+### Developer cost 
+
 Since the algorithms are related it means that we would be able to implement them from the simplest to most complex without needing to incur the full developer cost. As a result of this we have the capability to decide if we have time to attempt the better/faster iterations depending on the amount of ongoing work.
 
 With all of the listed points in mind, our primary goal is to at least get a fully working A* algorithm implemented, with multithreading as a bonus if time is available.
