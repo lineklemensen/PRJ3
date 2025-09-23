@@ -6,12 +6,11 @@
             "command": "pandoc",
             "args": [
                 "${relativeFile}",
-                "--pdf-engine=pdflatex",
-                "-V",
-                "geometry:margin=0.8in",
-                "--table-caption-position=below",
-                "--figure-caption-position=below",
                 "--resource-path=.${/}docs${/}${fileBasenameNoExtension}",
+                "--metadata-file=./defaults.YAML",
+                "--citeproc",
+                "--bibliography=./docs/report/bibliography.bib",
+                "--csl=ieee.csl",
                 "-o",
                 ".${/}${relativeFileDirname}${/}${fileBasenameNoExtension}.pdf"
             ],

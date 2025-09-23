@@ -1,0 +1,9 @@
+---
+pdf-engine: pdflatex
+link-citations: true
+table-caption-position: below
+figure-caption-position: below
+geometry:
+  - margin=0.8in
+---
+
