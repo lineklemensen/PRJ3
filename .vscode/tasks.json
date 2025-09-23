@@ -10,6 +10,7 @@
                 "--metadata-file=./defaults.YAML",
                 "--citeproc",
                 "--bibliography=./docs/report/bibliography.bib",
+                "--csl=ieee.csl",
                 "-o",
                 ".${/}${relativeFileDirname}${/}${fileBasenameNoExtension}.pdf"
             ],
