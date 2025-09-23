@@ -15,6 +15,7 @@
                 "-M link-citations=true",
                 "--citeproc",
                 "--bibliography=./docs/report/bibliography.bib",
+                "--csl=ieee.csl",
                 "-o",
                 ".${/}${relativeFileDirname}${/}${fileBasenameNoExtension}.pdf"
             ],
