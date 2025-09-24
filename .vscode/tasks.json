@@ -8,6 +8,8 @@
                 "${relativeFile}",
                 "--resource-path=.${/}docs${/}${fileBasenameNoExtension}",
                 "--metadata-file=./defaults.YAML",
+                "--table-caption-position=below",
+                "--figure-caption-position=below",
                 "--citeproc",
                 "--bibliography=./docs/report/bibliography.bib",
                 "--csl=ieee.csl",
