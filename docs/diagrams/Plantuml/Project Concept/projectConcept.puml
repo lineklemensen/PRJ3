@@ -6,6 +6,7 @@ mainframe **Rich image\t**
 'skinparam linetype ortho
 skinparam maxmessagesize 50
 skinparam MinClassWidth 50
+'skinparam Padding 12
 
 component "Server" as srv
 component "Car" as car
@@ -22,17 +23,19 @@ car -l-> nurse2 : Collects medicine
 carCon -u-> srv : Notifies order completion
 carCon -d-> car : Controls
 meds -d-> usr : Receives medicine
-nurse2 -r-> car : Authenticates
+nurse2 ---> car : Authenticates
 nurse2 -u-> pat : Administers medicine
 srv -d-> carCon : Gives delivery location
 srv -d-> meds : Executes order
-ui -l-> usr : Notifies fail/success
+ui -d-> usr : Notifies fail/success
 ui -u-> srv : Create order
 usr -l-> car : Fills with medicine
-usr -r-> ui : Orders medicine
+usr -u-> ui : Orders medicine
 carCon --> carCon : Pathfinds
-pat2 -r-> srv : Arrives/Registers new location
-srv --> srv : Update locations
+pat2 -d-> srv : Arrives/Registers new location
+srv -u-> srv : Update locations
 srv --> carCon : Syncronises location map
 
+' Keeps the right mainframe edge off the box
+ui -[hidden]-> ui
 @enduml
