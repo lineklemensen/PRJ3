@@ -46,7 +46,7 @@ With all of the listed points in mind, our primary goal is to at least get a ful
 : Analysis of methods for tracking the cars position
 
 We have found three different strategies for tracking the cars
-position. These are dead reckoning, line following and GPS.
+position. These are dead reckoning[@dead-reckoning-wikipedia], line following [@line-following-robot-arduino] and GPS[@GPS-wikipedia].
 Dead reckoning is way to calculate the current position of of a 
 moving object by using a previously determined position and 
 incorporating the speed, direction and elapsed time. For line 
@@ -130,3 +130,5 @@ In conclusion we have decided to use dead reckoning since it has
 the highest precision is simple enough to implement and the biggest
 downside can be dealt with by not having the car drive too long 
 distances.
+
+# References #
