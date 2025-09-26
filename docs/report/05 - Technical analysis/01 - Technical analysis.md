@@ -145,6 +145,59 @@ distances.
 
 \newpage
 
+## Motor speed control
+
+|            |  PID  | Linear interpolation |
+| :--------- | :---: | :------------------: |
+| Smoothness |   5   |          2           |
+| Precision  |   4   |          4           |
+
+There are two different kind of motor speed control we have chosen to look into for this project. Those we have picked to are Proportional-integral-derivative controller, PID control for short[@PID-Wikipedia] and Linear interpolation[@LinInt-Wikipedia].
+
+### Similarities
+
+Since both PID control and interpolation have many similarities, because their purpose aligns with a good degree of control and speed changes, we will start with the likeness of the two.
+
+They both deal with speed transition, where PID tries to bring the actual speed of the object to act as smoothly to the target as possible, by adjusting the input throughout the travel.
+Whereas interpolation on the other hand creates a smooth ramp from one point to another.
+
+Both have a goal of avoiding sudden jumps in speed, where PID control will naturally dampen if it overshoots and it is well tuned and Linear interpolation prevents step changes by gradually ramping throughout.
+For stability reason and cost reduction, they try to improve the life spans of the motor and mechanical safety by smoothing out motor control and not doing sudden changes in the speed which stresses the gears, belts etc.
+
+### Differences
+
+Even with lots of similarities they complete the task very differently. PID control is a control method with a closed loop where the motor speed will be adjusted based on the error between the actual speed and target speed using proportional integral and derivative terms. 
+
+#### Pros
+
+PID compensates for the load changes since it is always changing its parameters, which also makes the driving smooth and that we can accurately track the speed. 
+PID works with high precision to a degree that it is industrial-grade.
+
+#### Cons
+
+One of the big issues with PID control is it that it can be very time consuming with regards to properly tuning and computation time.
+
+Secondly Linear interpolation. It is a feedforward method where the motor speed reference is ramping up or down linearly over time between two set points given, usually from start to a given target, although at the "corners" of the ramp.
+
+#### Pros
+Very simple to implement, so wont be as time consuming as PID control.
+
+Linear interpolation avoids mechanical shocks and tear by preventing sudden jumps in speed.
+
+It makes the motion of the vehicle predictable.
+
+#### Cons
+It is an open-loop, which means it does not correct for load changes and resistance increases, which may lead to the actual speed may lag behind its target.
+Using linear interpolation makes it so there is no guarantee of the precise speed giving unless the motor is loaded exactly like it is tuned.
+Overall limited adaptability.
+
+### Conclusion
+
+Even though that PID control is the harder to implement option, more time consuming and requires fine tuning. For this giving project it is a better option that linear interpolation, because linear interpolation might provide with an easier implementation and ease of use, but the drawbacks with its tuning and adaptability makes it so that PID control is the better option for this project.
+In conclusion we are going to use PID control for motor speed control for this project. 
+
+\newpage
+
 ## Network Protocol
 
 | Network Protocol |  TCP  |  UDP  |
@@ -167,6 +220,8 @@ UDP stands for User Datagram protocol, and is a connection-less protocol. This m
 
 For our project though, we do not require a low-latency protocol, and data loss could be catastrophic to the routing/functioning of the car. In conclusion, we have decided to use TCP, since the drawbacks of higher latency are relatively small, compared to the potentially huge issues we could encounter using UDP. 
 
+
+\newpage
 
 ## Programming language
 

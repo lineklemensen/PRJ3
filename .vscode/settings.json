@@ -8,6 +8,8 @@
     "plantuml.diagramsRoot": "docs/diagrams/Plantuml",
     "cSpell.words": [
         "Datagram",
+        "feedforward",
+        "newpage",
         "pathfinding"
     ]
 }
