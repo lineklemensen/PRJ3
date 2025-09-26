@@ -48,6 +48,20 @@ The team made a collaboration agreement [<!-- Indsæt reference til bilag: Samar
 
 ## External Risks
 
+
+
+
+\stepcounter{risk}\label{risk:team-availability}
+**Risk ID:**  \therisk\
+**Description:**  Avalability of team members.  
+Members of rhe team can be unavailable due to illness, personal and private circumstances, etc. The academic deadlines can cause unavailability as well, especially since memebers of the team are working in different groups across courses. 
+**Probability:**  
+
+**Impact:**  
+**Risk Score:**  
+**Mitigation Strategy:**  
+**Contingency Plan:**
+
 <!-- BRAINSTORM -->
 Learning curve for the semester, we don't have all necessary knowledge yet.
 
