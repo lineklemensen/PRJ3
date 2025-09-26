@@ -1,0 +1,15 @@
+@startuml Actor-Context-Diagram
+mainframe **Actor-Context Diagram\t**
+skinparam MinClassWidth 100
+
+left to right direction
+actor "Nurse" as fc
+actor "Dispensary nurse" as fc2
+actor "Server" as fc3
+
+rectangle car
+
+fc --> car
+car <-- fc2
+car <-- fc3
+@enduml
