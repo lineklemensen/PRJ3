@@ -197,6 +197,7 @@ If multiple deadlines happen close to each other, the team members will be other
 \stepcounter{risk}\label{risk:scrum-experience}
 **Risk ID:**  \therisk\
 **Description:** SCRUM experience.  
+The experience with uding SCRUM as a mofel for project management is limited amongst the team. This can cause 
 **Probability:**  
 **Consequence:**  
 **Risk Score:**  
