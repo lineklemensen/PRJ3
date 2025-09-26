@@ -6,12 +6,12 @@ We decided to rate with a score from 1 to 5, where a higher score is better.
 
 ## Pathfinding algorithm
 
-|                       | Dijkstra | A*  | A* /w multithreading |
-| --------------------- | -------- | --- | -------------------- |
-| Speed                 | 1        | 3   | 5                    |
-| Processing complexity | 4        | 3   | 1                    |
-| Memory impact         | 1        | 2   | 2                    |
-| Developer cost        | 1        | 2   | 4                    |
+|                       | Dijkstra |  A*   | A* /w multithreading |
+| :-------------------- | :------: | :---: | :------------------: |
+| Speed                 |    1     |   3   |          5           |
+| Processing complexity |    4     |   3   |          1           |
+| Memory impact         |    1     |   2   |          2           |
+| Developer cost        |    1     |   2   |          4           |
 : Analysis of pathfinding algorithms
 
 We have found 3 pathfinding algorithms to compare, Dijkstra's algorithm[@Dijkstra-Wikipedia], A\* algorithm[@AStar-Wikipedia], and A\* using multithreading to improve convergence speed. Overall the algorithms are pretty similar in the sense that they each provide improvement on their predecessor, however at the cost of being more complex in both implementation and execution. Dijkstra's algorithm is the simplest conceptually as it simply naively traverses every possible path until it finds its goal. A\* improves on this by adding a heuristic element that helps push/weight it towards its goal so it is less encouraged to search wasted routes, however the value of this heuristic function hinges on its quality, as a bad one can hurt the algorithm over the naive approach of Dijkstra. The last option is to use A\* with multithreading to speed up convergence rate, however this would also add extra overhead to developer time, as with anything multithreading, it can be hard to debug issues.
@@ -170,11 +170,11 @@ For our project though, we do not require a low-latency protocol, and data loss 
 
 ## Programming language
 
-|                      | C   | C++ |
-| -------------------- | --- | --- |
-| Object oriented      | No* | Yes |
-| Library availability | 3   | 5   |
-| Developer knowledge  | 1   | 3   |
+|                      |   C   |  C++  |
+| :------------------- | :---: | :---: |
+| Object oriented      |  No*  |  Yes  |
+| Library availability |   3   |   5   |
+| Developer knowledge  |   1   |   3   |
 : Analysis of programming languages
 
 For this project we are required to have the combined code be at least 90% C or C++.
