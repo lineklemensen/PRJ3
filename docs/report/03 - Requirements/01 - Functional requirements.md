@@ -94,23 +94,53 @@ If the car has less than 25% battery left it finishes its path and returns. When
 \begin{table}[h]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
-    \textbf{Name:} & Use case 1 - Create order\\ 
+    \textbf{Name:} & Use case 4 - The car low on battery \\ 
     \hline
-    \textbf{Goal:} & The user wants to create a order\\ 
+    \textbf{Goal:} & When the cars battery gets below 25\% remaining battery, it finishes and returns to home base and sends a message to the server \\ 
     \hline
-    \textbf{Initialization:} & The user opens the UI\\  
+    \textbf{Initialization:} & Battery life drops below 25\% \\  
     \hline
-    \textbf{Actors:} & User - primary\\  
+    \textbf{Actors:} & Car - primary, Server, Nuse - secondary \\  
     \hline
     \textbf{Concurrent instances:} & 1 \\  
     \hline
-    \textbf{Precondition:} & The system is running and functional\\
+    \textbf{Precondition:} & The car is on route either back or to target home with more than 25\% battery remaining. Then the battery life is becoming less that 25\% \\
     \hline
-    \textbf{Postcondition:} & A order has been created\\
+    \textbf{Postcondition:} & The car is back at home base and have notified the system that it needs to be recharged \\
     \hline
-    \textbf{Main scenario:} & 1. \\
+    \textbf{Main scenario:} & 
+    1. The system detects that the cars battery is below 25\% \newline
+    Extensions: 1a, 2a, 3a, 4a \newline \newline
+    2. The car completes its current route \newline
+    Extensions: 1a, 2a, 3a, 4a \newline \newline
+    3. After finishing its current route, the car autonomously returns to home base \newline 
+    Extensions: 1a, 2a, 3a, 4a \newline \newline
+    4. The car sends "Low Battery, percentage is : [car \%]" status message to the server \newline
+    Extensions: 1a, 2a, 3a \newline \newline
+    5. The server receives the message and sends a message to the nurses to go charge the car \newline
+    Extensions: 1a, 2a, 3a \newline \newline
+    6. The nurse charges the car \newline
+
+    7. The car is charging\\
     \hline
-    \textbf{Extensions/Exceptions:} & a\\
+    \textbf{Extensions/Exceptions:} &
+     1a: communication fails with the server, the car displays the low battery alert locally with a red led, resumes at main point 6  \newline
+     \newline
+     2a: if the battery gets to 5\% another message wil be send to the server "critically low battery" resume at same point as before \newline
+     \newline
+     3a: if battery gets to 1\% another message will be send to the server "Battery too low shutting down, location :xx", then a different version of point 5 will be executed, instead of the message of "the car needs charging" its going to be "The car needs charging, i didnt make it to home base, its at :xx".
+     \newline
+     \newline
+     4a: If the car calculated it won't be able to return to home base or get to the next room, it will stand still at the current room and send the message to the server "Can't continue driving, standing at :xx". resume at main point 5, with edit to the message: The car needs charging, it cant make it back, it stands in room :xx"
+     \newline
+     \newline
+
+     1b: The car gets physically blocked or interrupted on its route, sends an obstruction alert to the server
+     \newline
+     \newline
+     2b: The nurse havn't startet the charging of the car, the car alerts the system again "not charging yet" and system sends reminder to the nurse "remember to charge car"
+     
+      \\
     \hline
 \end{tabularx}
     \caption{Use case 1}
