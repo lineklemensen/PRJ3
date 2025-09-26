@@ -135,22 +135,22 @@ distances.
 
 ## Motor control speed
 
-There are two different kind of motor control speed we have chosen to look into for this project. Those we have picked to are Proportional-intergral-derivative controller, PID control for short [@https://en.wikipedia.org/wiki/Proportional%E2%80%93integral%E2%80%93derivative_controller]
+There are two different kind of motor control speed we have chosen to look into for this project. Those we have picked to are Proportional-integral-derivative controller, PID control for short [@https://en.wikipedia.org/wiki/Proportional%E2%80%93integral%E2%80%93derivative_controller]
 and Linear interpolation [@https://en.wikipedia.org/wiki/Linear_interpolation].
 
 ### Similarities:
-Since both PID control and interpolation have mane simlarities because of their purpose alines with good control quality and motor speed changes will we start witht the alikeness of the 2.
+Since both PID control and interpolation have mane similarities because of their purpose alines with good control quality and motor speed changes will we start with the alikeness of the 2.
 
-They both deal with speed transition, where PID tires to bring the actual speed of the object to act as smoothly to the target as possible by adjusting the input thoughout the travel
+They both deal with speed transition, where PID tires to bring the actual speed of the object to act as smoothly to the target as possible by adjusting the input throughout the travel
 Where interpolation on the other hand creates a smooth ramp from one point to another.
 
-Both aswell try to avoid sudden jumps in speed, Where PID control will naturally dampen if it overshoot and it is well tuned and Linear interpolation prevents step changes by gradually ramping thoughout.
-For stability reason and cost reduction, they try to improve the life spans of the motor and mechanical safte by smoothing out motor control and not doing sudden changes in the speed which stresses the gears, belts etc.
+Both as well try to avoid sudden jumps in speed, Where PID control will naturally dampen if it overshoot and it is well tuned and Linear interpolation prevents step changes by gradually ramping throughout.
+For stability reason and cost reduction, they try to improve the life spans of the motor and mechanical safety by smoothing out motor control and not doing sudden changes in the speed which stresses the gears, belts etc.
 
 ### Differences:
 Even with lots of similarities they complete the task very differently.
 
-Starting with PID control, what is it? PID control is a control method with a closed loop where the motor speed will be adjusted based on the error between the actual speed and target speed using proportional intergral and derivative terms. 
+Starting with PID control, what is it? PID control is a control method with a closed loop where the motor speed will be adjusted based on the error between the actual speed and target speed using proportional integral and derivative terms. 
 
 #### Pros
 PID compensates for the load changes since it keeps on changing the whole time, which also makes the driving smooth and that we can accurately track the speed
@@ -161,7 +161,7 @@ PID works really precise to such a degree that it is industrial-grade.
 One of the big issues with PID control is it that it is really time consuming in the regard it needs to be properly tuning and needs a lot of computing
 
 
-Secondly Linear interpolation. It is a feedforward method where the motor speed reference is ramping up or down linearly over time between two setpoints given, usually from start to a giving target
+Secondly Linear interpolation. It is a feedforward method where the motor speed reference is ramping up or down linearly over time between two set points given, usually from start to a giving target
 
 #### Pros
 It is very simple to implement, so wont be as time consuming as PID control.
@@ -171,8 +171,8 @@ Linear interpolation avoids mechanical shocks and tear by preventing sudden jump
 It makes the motion of the vehicle predictable 
 
 #### Cons
-Its an open-loop, which means it does not correct for load changes and resistance increaseas, which may lead to the actual speed may lag behind its target.
-Using linear interpolation makes it so there is no guarantee of the precise speed giving unless the mtoro is loaded exactly like it is tuned.
+Its an open-loop, which means it does not correct for load changes and resistance increases, which may lead to the actual speed may lag behind its target.
+Using linear interpolation makes it so there is no guarantee of the precise speed giving unless the motor is loaded exactly like it is tuned.
 Overall limited adaptability.
 
 
