@@ -32,10 +32,12 @@ The quality of the final product can be affected as well.
 
 \stepcounter{risk}\label{risk:sw-skills}
 **Risk ID:**  \therisk\
-**Description:** Lack of skills regarding challanging parts of the project. 
-pathfinding, deadreckoning, PID regulering.
+**Description:** Software challenges in difficult parts of the project. 
+Concepts such as pathfinding, deadreckoning, and PID regulation are new to the team. 
 **Probability:**  
-**Consequence:**  
+There is a high probability that the team encounters challenges in the development process, especially for these three aspects of the project. 
+**Consequence:**  5
+If one of these parts of the project are unfinished at the end of the project, the final product will have major flaws, and it will greatly impact the acceptance test for the prject. The final product might end up unfinished as a direct result of this. 
 **Risk Score:**  
 **Mitigation Strategy:**  
 **Contingency Plan:**
