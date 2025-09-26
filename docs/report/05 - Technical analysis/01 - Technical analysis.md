@@ -181,3 +181,27 @@ Overall limited adaptability.
 Even though that PID control is the harder to implement option, more time consuming and requires fine tuning. For this giving project it is a better option that linear interpolation, because linear interpolation might provide with an easier implementation and ease of use, but the drawbacks with its tuning and adaptability makes it so that PID control is the better option for this project.
 In conclusion we are going to use PID control for motor speed control for this project. 
 
+## Network Protocol
+
+| Network Protocol |  TCP  |  UDP  |
+| :--------------- | :---: | :---: |
+| Latency          | High  |  Low  |
+| Reliable         |  Yes  |  No   |
+| Synchronized     |  Yes  |  No   |
+| Ordered          |  Yes  |  No   |
+
+
+### TCP
+
+TCP stands for Transmission Control Protocol, and is a connection-oriented protocol. It is a slower protocol than UDP, since it establishes a synchronized connection, ensuring ordered delivery of data and no loss of data or packages. TCP is used for browsing the web, sending emails and files, and other such systems that don’t require low latency or cannot afford data loss.
+
+TCP ensures a reliable connection, which is preferable for our project, since data loss could cause unpredictable behavior of our system, and the higher latency doesn’t negatively impact the system in any significant way.
+
+### UDP
+
+UDP stands for User Datagram protocol, and is a connection-less protocol. This means the connection will be a lot faster, at the cost of reliability, since there is no way to acknowledge successful transfer of data. UDP is commonly used for streaming and online video games, that benefit greatly from the reduced latency, and don’t have big drawbacks as a result the data loss that may occur using UDP. 
+
+For our project though, we do not require a low-latency protocol, and data loss could be catastrophic to the routing/functioning of the car. In conclusion, we have decided to use TCP, since the drawbacks of higher latency are relatively small, compared to the potentially huge issues we could encounter using UDP. 
+
+
+\newpage
