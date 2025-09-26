@@ -11,3 +11,108 @@ The car drives to the first patients room, here it stop and notifies that its re
 
 Use Case 4 Low battery warning (should)
 If the car has less than 25% battery left it finishes its path and returns. When it has returned it sends a message to the server that its running out of battery. It then indicates this to the nurse and the nurse put it to charge.
+
+
+\begin{table}[h]
+\begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
+    \hline
+    \textbf{Name:} & Use case 1 - Create order\\ 
+    \hline
+    \textbf{Goal:} & The user wants to create a order\\ 
+    \hline
+    \textbf{Initialization:} & The user opens the UI\\  
+    \hline
+    \textbf{Actors:} & User - primary\\  
+    \hline
+    \textbf{Concurrent instances:} & 1 \\  
+    \hline
+    \textbf{Precondition:} & The system is running and functional\\
+    \hline
+    \textbf{Postcondition:} & A order has been created\\
+    \hline
+    \textbf{Main scenario:} & 1. \\
+    \hline
+    \textbf{Extensions/Exceptions:} & a\\
+    \hline
+\end{tabularx}
+    \caption{Use case 1}
+    \label{tab:usecase1}
+\end{table}
+
+\begin{table}[h]
+\begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
+    \hline
+    \textbf{Name:} & Use case 1 - Create order\\ 
+    \hline
+    \textbf{Goal:} & The user wants to create a order\\ 
+    \hline
+    \textbf{Initialization:} & The user opens the UI\\  
+    \hline
+    \textbf{Actors:} & User - primary\\  
+    \hline
+    \textbf{Concurrent instances:} & 1 \\  
+    \hline
+    \textbf{Precondition:} & The system is running and functional\\
+    \hline
+    \textbf{Postcondition:} & A order has been created\\
+    \hline
+    \textbf{Main scenario:} & 1. \\
+    \hline
+    \textbf{Extensions/Exceptions:} & a\\
+    \hline
+\end{tabularx}
+    \caption{Use case 1}
+    \label{tab:usecase1}
+\end{table}
+
+\begin{table}[h]
+\begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
+    \hline
+    \textbf{Name:} & Use case 1 - Create order\\ 
+    \hline
+    \textbf{Goal:} & The user wants to create a order\\ 
+    \hline
+    \textbf{Initialization:} & The user opens the UI\\  
+    \hline
+    \textbf{Actors:} & User - primary\\  
+    \hline
+    \textbf{Concurrent instances:} & 1 \\  
+    \hline
+    \textbf{Precondition:} & The system is running and functional\\
+    \hline
+    \textbf{Postcondition:} & A order has been created\\
+    \hline
+    \textbf{Main scenario:} & 1. \\
+    \hline
+    \textbf{Extensions/Exceptions:} & a\\
+    \hline
+\end{tabularx}
+    \caption{Use case 1}
+    \label{tab:usecase1}
+\end{table}
+
+\begin{table}[h]
+\begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
+    \hline
+    \textbf{Name:} & Use case 1 - Create order\\ 
+    \hline
+    \textbf{Goal:} & The user wants to create a order\\ 
+    \hline
+    \textbf{Initialization:} & The user opens the UI\\  
+    \hline
+    \textbf{Actors:} & User - primary\\  
+    \hline
+    \textbf{Concurrent instances:} & 1 \\  
+    \hline
+    \textbf{Precondition:} & The system is running and functional\\
+    \hline
+    \textbf{Postcondition:} & A order has been created\\
+    \hline
+    \textbf{Main scenario:} & 1. \\
+    \hline
+    \textbf{Extensions/Exceptions:} & a\\
+    \hline
+\end{tabularx}
+    \caption{Use case 1}
+    \label{tab:usecase1}
+\end{table}
