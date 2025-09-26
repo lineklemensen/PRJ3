@@ -197,16 +197,19 @@ If multiple deadlines happen close to each other, the team members will be other
 \stepcounter{risk}\label{risk:scrum-experience}
 **Risk ID:**  \therisk\
 **Description:** SCRUM experience.  
-The experience with uding SCRUM as a mofel for project management is limited amongst the team. This can cause 
-**Probability:**  
-**Consequence:**  
-**Risk Score:**  
+The experience with uding SCRUM as a mofel for project management is limited amongst the team. 
+**Probability:**  2
+It is very likely that unnecessary time are being spent on learning the SCRUM model, and the process of sprints. However, the process will be repeated several times during the project.  Therefore, the team will likely build routines, which can gradually decrease the time spent on project management.  
+**Consequence:**  3
+Planning of sprints and task delegation can take up more time than necessary, since members of the team lack experience woth the model.  
+**Risk Score:**  6
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
 \stepcounter{risk}\label{risk:time-management}
 **Risk ID:**  \therisk\
 **Description:** Time management.  
+As mentioned in other risk items, the team will encounter several unfamiliar challenges during the project. 
 **Probability:**  
 **Consequence:**  
 **Risk Score:**  
