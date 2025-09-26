@@ -112,17 +112,21 @@ Members of rhe team can be unavailable due to illness, personal and private circ
 \stepcounter{risk}\label{risk:drop}
 **Risk ID:**  \therisk\
 **Description:**  Complete or partial loss of team members.  
-Members of the team can get severely ill, or drop out completely.
-**Probability:**  
-**Consequence:**  
-**Risk Score:**  
+Members of the team can get severely ill, or drop out completely.  
+**Probability:**  1  
+Complete loss of team members is not likely, especially considering that this is a 3. semester project. However, there is a risk that a team member can get severely ill, resulting in a lot of sick days, or even partial leave.   
+**Consequence:**  5  
+If a team member is suddenly on part time, or drops out completely, the team needs to compensate for the lost member. The work this member could have contributed are missing, and the rest of the team is required to contribute extra to the project in order to reach the goals set in the beginning of the project.  
+**Risk Score:**  5  
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
 \stepcounter{risk}\label{risk:skill-gap}
 **Risk ID:**  \therisk\
-**Description:**  Skill gap amongst team members, as well as in comparison to our level of ambition.
+**Description:**  Skill gap amongst team members, as well as in comparison to the ambition levels.  
+If the collective knowledge in the team is insufficient to reach the goal set, and meet the level of ambition agreed upon in the collaboration agreement [], a skill gap occours. 
 **Probability:**  
+Since the concept of the project was developed in the beginning of the semester, the basic idea of the project was made before the team had any experience with some of the concepts involved in the project. <!--ref til Rx pathfinding>
 **Consequence:**  
 **Risk Score:**  
 **Mitigation Strategy:**  
