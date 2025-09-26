@@ -28,12 +28,12 @@ If the car has less than 25% battery left it finishes its path and returns. When
     \hline
     \textbf{Precondition:} & The system is running and functional\\
     \hline
-    \textbf{Postcondition:} & A order has been created\\
+    \textbf{Postcondition:} & A order has been created in the system\\
     \hline
     \textbf{Main scenario:} & 1. The user opens the UI \par
     2. A message saying "Choose the rooms for this order" and a list of all rooms appear on the UI \par
     3. The user chooses the rooms they want \par
-    [Exception 1a: The user does not choose any rooms] \par
+    [Extension 1a: The user does not choose any rooms] \par
     4. The user clicks finish order \par
     5. A confirmation message saying "This is your chosen rooms" and a list of the rooms chosen appears \par
     6. The user clicks "Confirm" \par
@@ -41,11 +41,11 @@ If the car has less than 25% battery left it finishes its path and returns. When
     7. The order gets added to the server \par 
     \\
     \hline
-    \textbf{Extensions/Exceptions:} & [Exception 1a: The user does not choose any rooms] \par
+    \textbf{Extensions/Exceptions:} & [Extension 1: The user does not choose any rooms] \par
     \hspace{1cm} 1. The user clicks finish order \par
     \hspace{1cm} 2. An error message saying "You did not choose any rooms for this \par \hspace{1cm} order" appears \par
     \hspace{1cm} 3. Return to point 2 \par
-    [Extension 2a: The user clicks "Deny"] \par
+    [Extension 2: The user clicks "Deny"] \par
     \hspace{1cm} 1. Return to point 2
     \\
     \hline
