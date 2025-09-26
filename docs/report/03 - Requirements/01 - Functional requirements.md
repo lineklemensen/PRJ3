@@ -68,21 +68,21 @@ If the car has less than 25% battery left it finishes its path and returns. When
 \begin{table}[h]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
-    \textbf{Name:} & Use case 1 - Create order\\ 
+    \textbf{Name:} & Use case 3 - Deliver order and return\\ 
     \hline
-    \textbf{Goal:} & The user wants to create a order\\ 
+    \textbf{Goal:} & The car deliver its packages and returns to homebase\\ 
     \hline
-    \textbf{Initialization:} & The user opens the UI\\  
+    \textbf{Initialization:} & The button has been pressed\\  
     \hline
-    \textbf{Actors:} & User - primary\\  
+    \textbf{Actors:} & Nurse - primary, dispensary nurse\\  
     \hline
     \textbf{Concurrent instances:} & 1 \\  
     \hline
-    \textbf{Precondition:} & The system is running and functional\\
+    \textbf{Precondition:} & Use case 2 has been resolved succesfully\\
     \hline
-    \textbf{Postcondition:} & A order has been created\\
+    \textbf{Postcondition:} & The car has returned to homebase after delivering all packages\\
     \hline
-    \textbf{Main scenario:} & 1. \\
+    \textbf{Main scenario:} & 1. The dispensary nurse presses the button \\ & 2. The car follows the path to the first room and waits \\ & 3. A nurse takes the given patients medicin, closes the box and presses the button \\ & 4. The car drives to the next room and repeats step 2 and 3 untill it reaches the last room\\ & 5. The car drives back to homebase after having had the button pressed in the last room\\
     \hline
     \textbf{Extensions/Exceptions:} & a\\
     \hline
