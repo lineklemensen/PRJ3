@@ -33,11 +33,11 @@ If the car has less than 25% battery left it finishes its path and returns. When
     \textbf{Main scenario:} & 1. The user opens the UI \par
     2. A message saying "Choose the rooms for this order" and a list of all rooms appear on the UI \par
     3. The user chooses the rooms they want \par
-    [Extension 1a: The user does not choose any rooms] \par
+    \hspace{1cm} [Extension 1a: The user does not choose any rooms] \par
     4. The user clicks finish order \par
     5. A confirmation message saying "This is your chosen rooms" and a list of the rooms chosen appears \par
     6. The user clicks "Confirm" \par
-    [Extension 2a: The user clicks "Deny"] \par
+    \hspace{1cm} [Extension 2a: The user clicks "Deny"] \par
     7. The order gets added to the server \par
     \\
     \hline
