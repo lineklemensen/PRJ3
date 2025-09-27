@@ -68,21 +68,23 @@ Another failure could be defective wiring, which can be solved. The process of f
 
 \refstepcounter{risk}\label{risk:proper-components}
 **Risk ID:** \therisk\
-**Description:** Lack of knowledge to choose proper components.  
-**Probability:**  1  
-Basic knowledge of hardware was subjects of the previous semesters, so the team should be able to choose proper components, or research subjects necessary to choose the proper components for the project.  
-**Consequence:**  
-
-**Risk Score:**  
+**Description:** Lack of knowledge to choose proper components.   
+**Probability:**  1   
+Basic knowledge of hardware was subjects of the previous semesters, so the team should be able to choose proper components, or research subjects necessary to choose the proper components for the project.    
+**Consequence:**  5  
+The ability to meet the requirements for the project can be affected if components are not chosen carefully.    
+**Risk Score:**  5  
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
 \refstepcounter{risk}\label{risk:vc-break}
 **Risk ID:**  \therisk\
 **Description:** Version control breakdown.  
-**Probability:**  
-**Consequence:**  
-**Risk Score:**  
+**Probability:**  4  
+The team have some knowledge of version control through a course on a previous semester. The experience with using it for projects on a larger scale varies amongst the team members.  
+**Consequence:**  4  
+The risk of a complete breakdown of the version control is improbable. A server breakdown is unlikely, but can happen, in which case there is a risk of a few commits being lost. Recovering lost commits can be time consuming. A bigger risk is the teams limited experience with using version control on a project shared with other team members. Building routines, protecting the work, etc. can be time consuming in the beginning of the project, but will improve as the project moves forward.  
+**Risk Score:**  16   
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
