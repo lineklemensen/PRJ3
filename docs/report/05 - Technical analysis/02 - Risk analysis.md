@@ -20,13 +20,13 @@ The probability and consequence of each risk item will be grated 1 to 5, where 1
 **Description:**  Technological learning curve.  
 The project is based on knowledge and technological skills the team will get during the semester. The learning curve might not be as expected, resulting in a potential lack of important knowledge.  
 **Probability:**  3  
-Due to the limited time frame and other academic deadlines [ risk number for academic deadlines ], team members might be otherwise occupied, and therefore not gain required knowledge as expected. Furthermore, other academic deadlines can cause team members to prioritize mandatory assignments, which can affect the quality of the knowledge gained, as well as steepen the learning curve.  
+Due to the limited time frame and other academic deadlines [ \ref{risk:academic-deadlines} ], team members might be otherwise occupied, and therefore not gain required knowledge as expected. Furthermore, other academic deadlines can cause team members to prioritize mandatory assignments, which can affect the quality of the knowledge gained, as well as steepen the learning curve.  
 The team consists of eight people, which all contribute to the project. Not all team members need to know everything. The collective knowledge of the team can affect the project. The probability that no team member acquired the necessary knowledge, or have time to research the subject is low however.   
 **Consequence:**  4  
 Lack of knowledge can cause severe delays, since time will then be used to gain the knowledge required to accomplish a task.  
-The quality of the final product can be affected as well.
+The quality of the final product can be affected as well.  
 **Risk Score:**  12  
-**Mitigation Strategy:**  Lack of time due to <!--academic deadlines --> cannot be prevented. However, the team can minimize the issue by different project management strategies, allowing a small group of team members to research subjects. The best way to prevent the issue is to treat research as tasks to do for the project. This is implemented on the project board on GitHub. <!-- Omformuler og/eller henvis til metode og proces afsnit -->  
+**Mitigation Strategy:**  Lack of time due to academic deadlines [\ref{risk:academic-deadlines}] cannot be prevented. However, the team can minimize the issue by different project management strategies, allowing a small group of team members to research subjects. The best way to prevent the issue is to treat research as tasks to do for the project. This is implemented on the project board on GitHub. <!-- Omformuler og/eller henvis til metode og proces afsnit -->  
 **Contingency Plan:**
 
 \refstepcounter{risk}\label{risk:sw-skills}
@@ -88,22 +88,22 @@ If one of these parts of the project are unfinished at the end of the project, t
 
 ## Team and Resources
 \refstepcounter{risk}\label{risk:internal-conflicts}
-**Risk ID:**  \therisk\
+**Risk ID:** \therisk\
 **Description:**  Internal conflicts.  
 **Probability:**  4  
-Since the team consists of eight people, all dedicated to the project, the probablity of conflicts are quite high. Furthermore, personal conflicts can occour, which will have the same consequence as professional conflicts.  
+Since the team consists of eight people, all dedicated to the project, the probability of conflicts are quite high. Furthermore, personal conflicts can occur, which will have the same consequence as professional conflicts.  
 **Consequence:**  5  
-Any time spend on conflicts will result in less time for working on the project. The timeline can be greatly impacted by this, which can interfere with the qualitive of the final product. 
+Any time spend on conflicts will result in less time for working on the project. The timeline can be greatly impacted by this, which can interfere with the quality of the final product. 
 Furthermore, personal conflicts can create a bad work environment. Motivation and ambition level can drop amongst the team members, which can cause work to be slower and of less quality.  
 **Risk Score:**  20  
 **Mitigation Strategy:**  Conflicts can be prevented by proper and clear communication, to avoid any misunderstandings.  
 The team made a collaboration agreement [<!-- Indsæt reference til bilag: Samarbejdskontract -->] adressing the issue.    
-**Contingency Plan:**  All team members have an assigned role, which they are responsible for. One role is Internal HR. If conflicts occour, and cannot be solved by the involved parties, the Internal HR is tasked with solving the conflict, or seek help from external sources. More details in the collaboration agreement. <!-- Indsæt reference til bilag: Samarbejdskontract -->
+**Contingency Plan:**  All team members have an assigned role, which they are responsible for. One role is Internal HR. If conflicts occour, and cannot be solved by the involved parties, the Internal HR is tasked with solving the conflict, or seek help from external sources. More details in the collaboration agreement. <!-- Indsæt reference til bilag: Samarbejdskontract -->  
 
 \refstepcounter{risk}\label{risk:team-availability}
 **Risk ID:**  \therisk\
 **Description:**  Avalability of team members.  
-Members of rhe team can be unavailable due to illness, personal and private circumstances, etc. The academic deadlines can cause unavailability as well, especially since members of the team are working in different groups across courses. 
+Members of rhe team can be unavailable due to illness, personal and private circumstances, etc. The academic deadlines can cause unavailability as well, especially since members of the team are working in different groups across courses.  
 **Probability:**  
 **Consequence:**  
 **Risk Score:**  
@@ -125,9 +125,9 @@ If a team member is suddenly on part time, or drops out completely, the team nee
 \refstepcounter{risk}\label{risk:skill-gap}
 **Risk ID:**  \therisk\
 **Description:**  Skill gap amongst team members, as well as in comparison to the ambition levels.  
-If the collective knowledge in the team is insufficient to reach the goal set, and meet the level of ambition agreed upon in the collaboration agreement [], a skill gap occours. 
+If the collective knowledge in the team is insufficient to reach the goal set, and meet the level of ambition agreed upon in the collaboration agreement [], a skill gap occurs.   
 **Probability:**  
-Since the concept of the project was developed in the beginning of the semester, the basic idea of the project was made before the team had any experience with some of the concepts involved in the project. <!--ref til Rx pathfinding>
+Since the concept of the project was developed in the beginning of the semester, the basic idea of the project was made before the team had any experience with some of the concepts involved in the project. <!--ref til Rx pathfinding -->  
 **Consequence:**  
 **Risk Score:**  
 **Mitigation Strategy:**  
@@ -140,7 +140,7 @@ Since the concept of the project was developed in the beginning of the semester,
 **Consequence:**  
 **Risk Score:**  
 **Mitigation Strategy:**  
-**Contingency Plan:**
+**Contingency Plan:**    
 
 ## Project Management
 \refstepcounter{risk}\label{risk:requirement-changes}
@@ -179,7 +179,7 @@ Deadlines and assignments in other courses can affect the availability of team m
 **Probability:**  4  
 Deacline conflicts are very likely to happen. The semester is a bit more heavy on deadlines and assignments than the previous semesters, and team members are required to adjust to this.  
 **Consequence:**  4  
-If multiple deadlines happen close to each other, the team members will be otherwise occupied, resulting in less work on the project. The amount of hours that each team member can contribute per week might vary. An average hours per week estimate was made in the collaboration agreement. <!--bilag -->
+If multiple deadlines happen close to each other, the team members will be otherwise occupied, resulting in less work on the project. The amount of hours that each team member can contribute per week might vary. An average hours per week estimate was made in the collaboration agreement. <!--bilag -->  
 **Risk Score:**  16  
 **Mitigation Strategy:**  
 **Contingency Plan:**
@@ -226,7 +226,7 @@ As mentioned in other risk items, the team will encounter several unfamiliar cha
 
 \refstepcounter{risk}\label{risk:finance}
 **Risk ID:**  \therisk\
-**Description:** Financial challanges.
+**Description:** Financial challenges.
 **Probability:**  
 **Consequence:**  
 **Risk Score:**  
