@@ -22,7 +22,7 @@ If the car has less than 25% battery left it finishes its path and returns. When
     \hline
     \textbf{Initialization:} & The user opens the UI \\
     \hline
-    \textbf{Actors:} & User - primary \\
+    \textbf{Actors:} & \textbf{Primary:} User\\
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
@@ -63,7 +63,7 @@ If the car has less than 25% battery left it finishes its path and returns. When
     \hline
     \textbf{Initialization:} & The server has received an order \\
     \hline
-    \textbf{Actors:} & dispensary nurse - secondary \\
+    \textbf{Actors:} & \textbf{Primary:} Dispensary nurse \\
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
@@ -108,7 +108,8 @@ If the car has less than 25% battery left it finishes its path and returns. When
     \hline
     \textbf{Initialization:} & The button has been pressed \\
     \hline
-    \textbf{Actors:} & Nurse - primary, dispensary nurse \\
+    \textbf{Actors:} & \textbf{Primary:} Nurse \newline
+                        \textbf{Secondary:} Dispensary nurse \\
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
@@ -162,7 +163,8 @@ If the car has less than 25% battery left it finishes its path and returns. When
     \hline
     \textbf{Initialization:} & Battery life drops below 25\% \\
     \hline
-    \textbf{Actors:} & Car - primary, Server, Nurse - secondary \\
+    \textbf{Actors:} & \textbf{Primary:} Car \newline
+                        \textbf{Secondary:} Server, Nurse \\
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
