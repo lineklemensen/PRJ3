@@ -150,8 +150,8 @@ If the car has less than 25% battery left it finishes its path and returns. When
     & \hspace{1cm} 2. send message to server "Hardware failure"\\
     \hline
 \end{tabularx}
-    \caption{Use case 1}
-    \label{tab:usecase1}
+    \caption{Use case 3}
+    \label{tab:usecase3}
 \end{table}
 
 \begin{table}[h]
@@ -204,6 +204,6 @@ If the car has less than 25% battery left it finishes its path and returns. When
      2b: The nurse had not started the charging of the car, the car alerts the system again "not charging yet" and system sends reminder to the nurse "remember to charge car" \\
     \hline
 \end{tabularx}
-    \caption{Use case 1}
-    \label{tab:usecase1}
+    \caption{Use case 4}
+    \label{tab:usecase4}
 \end{table}
