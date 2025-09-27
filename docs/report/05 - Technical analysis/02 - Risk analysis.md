@@ -16,11 +16,11 @@ The probability and consequence of each risk item will be grated 1 to 5, where 1
 
 ## Technical Risks
 \refstepcounter{risk}\label{risk:tech-learning-curve}
-**Risk ID:**  \therisk\
+**Risk ID:** \therisk\
 **Description:**  Technological learning curve.  
 The project is based on knowledge and technological skills the team will get during the semester. The learning curve might not be as expected, resulting in a potential lack of important knowledge.  
 **Probability:**  3  
-Due to the limited time frame and other academic deadlines [ \ref{risk:academic-deadlines} ], team members might be otherwise occupied, and therefore not gain required knowledge as expected. Furthermore, other academic deadlines can cause team members to prioritize mandatory assignments, which can affect the quality of the knowledge gained, as well as steepen the learning curve.  
+Due to the limited time frame and other academic deadlines [\ref{risk:academic-deadlines}], team members might be otherwise occupied, and therefore not gain required knowledge as expected. Furthermore, other academic deadlines can cause team members to prioritize mandatory assignments, which can affect the quality of the knowledge gained, as well as steepen the learning curve.  
 The team consists of eight people, which all contribute to the project. Not all team members need to know everything. The collective knowledge of the team can affect the project. The probability that no team member acquired the necessary knowledge, or have time to research the subject is low however.   
 **Consequence:**  4  
 Lack of knowledge can cause severe delays, since time will then be used to gain the knowledge required to accomplish a task.  
@@ -30,40 +30,49 @@ The quality of the final product can be affected as well.
 **Contingency Plan:**
 
 \refstepcounter{risk}\label{risk:sw-skills}
-**Risk ID:**  \therisk\
-**Description:** Software challenges in difficult parts of the project. 
-Concepts such as pathfinding, deadreckoning, and PID regulation are new to the team. 
-**Probability:**  
-There is a high probability that the team encounters challenges in the development process, especially for these three aspects of the project. 
+**Risk ID:** \therisk\
+**Description:** Software challenges in difficult parts of the project.  
+Concepts such as pathfinding, deadreckoning, and PID regulation are new to the team.  
+**Probability:**  5  
+There is a high probability that the team encounters challenges in the development process, especially for these three aspects of the project.  
 **Consequence:**  5
-If one of these parts of the project are unfinished at the end of the project, the final product will have major flaws, and it will greatly impact the acceptance test for the prject. The final product might end up unfinished as a direct result of this. 
-**Risk Score:**  
+If one of these parts of the project are unfinished at the end of the project, the final product will have major flaws, and it will greatly impact the acceptance test for the prject. The final product might end up unfinished as a direct result of this.  
+**Risk Score:**  25  
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
 \refstepcounter{risk}\label{risk:integrate-components}
-**Risk ID:**  \therisk\
-**Description:**  Integration challenges between components.  
-**Probability:**  
-**Consequence:**  
-**Risk Score:**  
+**Risk ID:** \therisk\
+**Description:** Integration challenges between components.   
+This risk applies to both hardware and software components. The project will likely be split into smaller, more manageable parts, and assigned as tasks to members of the team during the project.  
+**Probability:**  5  
+Integration challenges are very common, especially considering that different team members will be in charge of different components.  
+**Consequence:**  2  
+Usually these kinds of challenges are fixed at some point, though it can be a time consuming process.  
+**Risk Score:**  10  
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
 \refstepcounter{risk}\label{risk:hw-fail}
-**Risk ID:**  \therisk\
-**Description:**  Hardware failures.  
-**Probability:**  
-**Consequence:**  
-**Risk Score:**  
+**Risk ID:** \therisk\
+**Description:** Hardware failures.  
+Any failures in hardware components, or in modules containing several components, is a risk for the project.  
+**Probability:**  3  
+Different kinds of hardware failures are common, just like they are for software. The project is however iterative, and so most problems will likely be fixed.  
+**Consequence:**  3  
+The consequences depends on the kind of failure. The worst case scenario is a broken component, which cannot be replaced within the time frame. However, this is not likely.  
+Another failure could be defective wiring, which can be solved. The process of finding and fixing the error could be time consuming.  
+**Risk Score:**  9  
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
 \refstepcounter{risk}\label{risk:proper-components}
-**Risk ID:**  \therisk\
-**Description:**  Lack of knowledge to choose proper components.
-**Probability:**  
+**Risk ID:** \therisk\
+**Description:** Lack of knowledge to choose proper components.  
+**Probability:**  1  
+Basic knowledge of hardware was subjects of the previous semesters, so the team should be able to choose proper components, or research subjects necessary to choose the proper components for the project.  
 **Consequence:**  
+
 **Risk Score:**  
 **Mitigation Strategy:**  
 **Contingency Plan:**
