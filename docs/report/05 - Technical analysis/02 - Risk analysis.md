@@ -1,6 +1,5 @@
 \newcounter{risk}
 \renewcommand{\therisk}{R\arabic{risk}}
-\newcommand{\riskref}[1]{\ref{#1}}
 
 
 # Risk analysis
@@ -16,7 +15,7 @@ so the risk score will reflect the impact the risk item can have on the project.
 The probability and consequence of each risk item will be grated 1 to 5, where 1 is unlikely or low consequence, and 5 is very likely or a high consequence.
 
 ## Technical Risks
-\stepcounter{risk}\label{risk:tech-learning-curve}
+\refstepcounter{risk}\label{risk:tech-learning-curve}
 **Risk ID:**  \therisk\
 **Description:**  Technological learning curve.  
 The project is based on knowledge and technological skills the team will get during the semester. The learning curve might not be as expected, resulting in a potential lack of important knowledge.  
@@ -30,7 +29,7 @@ The quality of the final product can be affected as well.
 **Mitigation Strategy:**  Lack of time due to <!--academic deadlines --> cannot be prevented. However, the team can minimize the issue by different project management strategies, allowing a small group of team members to research subjects. The best way to prevent the issue is to treat research as tasks to do for the project. This is implemented on the project board on GitHub. <!-- Omformuler og/eller henvis til metode og proces afsnit -->  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:sw-skills}
+\refstepcounter{risk}\label{risk:sw-skills}
 **Risk ID:**  \therisk\
 **Description:** Software challenges in difficult parts of the project. 
 Concepts such as pathfinding, deadreckoning, and PID regulation are new to the team. 
@@ -42,7 +41,7 @@ If one of these parts of the project are unfinished at the end of the project, t
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:integrate-components}
+\refstepcounter{risk}\label{risk:integrate-components}
 **Risk ID:**  \therisk\
 **Description:**  Integration challenges between components.  
 **Probability:**  
@@ -51,7 +50,7 @@ If one of these parts of the project are unfinished at the end of the project, t
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:hw-fail}
+\refstepcounter{risk}\label{risk:hw-fail}
 **Risk ID:**  \therisk\
 **Description:**  Hardware failures.  
 **Probability:**  
@@ -60,7 +59,7 @@ If one of these parts of the project are unfinished at the end of the project, t
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:proper-components}
+\refstepcounter{risk}\label{risk:proper-components}
 **Risk ID:**  \therisk\
 **Description:**  Lack of knowledge to choose proper components.
 **Probability:**  
@@ -69,7 +68,7 @@ If one of these parts of the project are unfinished at the end of the project, t
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:vc-break}
+\refstepcounter{risk}\label{risk:vc-break}
 **Risk ID:**  \therisk\
 **Description:** Version control breakdown.  
 **Probability:**  
@@ -78,7 +77,7 @@ If one of these parts of the project are unfinished at the end of the project, t
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:ph}
+\refstepcounter{risk}\label{risk:ph}
 **Risk ID:**  \therisk\
 **Description:** Lack of knowledge or skills necessary to assemble the frame for the vehicle.
 **Probability:**  
@@ -88,7 +87,7 @@ If one of these parts of the project are unfinished at the end of the project, t
 **Contingency Plan:**
 
 ## Team and Resources
-\stepcounter{risk}\label{risk:internal-conflicts}
+\refstepcounter{risk}\label{risk:internal-conflicts}
 **Risk ID:**  \therisk\
 **Description:**  Internal conflicts.  
 **Probability:**  4  
@@ -101,7 +100,7 @@ Furthermore, personal conflicts can create a bad work environment. Motivation an
 The team made a collaboration agreement [<!-- Indsæt reference til bilag: Samarbejdskontract -->] adressing the issue.    
 **Contingency Plan:**  All team members have an assigned role, which they are responsible for. One role is Internal HR. If conflicts occour, and cannot be solved by the involved parties, the Internal HR is tasked with solving the conflict, or seek help from external sources. More details in the collaboration agreement. <!-- Indsæt reference til bilag: Samarbejdskontract -->
 
-\stepcounter{risk}\label{risk:team-availability}
+\refstepcounter{risk}\label{risk:team-availability}
 **Risk ID:**  \therisk\
 **Description:**  Avalability of team members.  
 Members of rhe team can be unavailable due to illness, personal and private circumstances, etc. The academic deadlines can cause unavailability as well, especially since members of the team are working in different groups across courses. 
@@ -111,7 +110,7 @@ Members of rhe team can be unavailable due to illness, personal and private circ
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:drop}
+\refstepcounter{risk}\label{risk:drop}
 **Risk ID:**  \therisk\
 **Description:**  Complete or partial loss of team members.  
 Members of the team can get severely ill, or drop out completely.  
@@ -123,7 +122,7 @@ If a team member is suddenly on part time, or drops out completely, the team nee
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:skill-gap}
+\refstepcounter{risk}\label{risk:skill-gap}
 **Risk ID:**  \therisk\
 **Description:**  Skill gap amongst team members, as well as in comparison to the ambition levels.  
 If the collective knowledge in the team is insufficient to reach the goal set, and meet the level of ambition agreed upon in the collaboration agreement [], a skill gap occours. 
@@ -134,7 +133,7 @@ Since the concept of the project was developed in the beginning of the semester,
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:work-ethics}
+\refstepcounter{risk}\label{risk:work-ethics}
 **Risk ID:**  \therisk\
 **Description:** Work ethics.  
 **Probability:**  
@@ -144,7 +143,7 @@ Since the concept of the project was developed in the beginning of the semester,
 **Contingency Plan:**
 
 ## Project Management
-\stepcounter{risk}\label{risk:requirement-changes}
+\refstepcounter{risk}\label{risk:requirement-changes}
 **Risk ID:**  \therisk\
 **Description:**  Requirement changes.  
 Changes can happen due to lack of knowledge in the beginning of the project, as well as changes to the timeline, test and evaluation of the product at the end of iterations, etc.    
@@ -154,7 +153,7 @@ Changes can happen due to lack of knowledge in the beginning of the project, as 
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:dependency-delays}
+\refstepcounter{risk}\label{risk:dependency-delays}
 **Risk ID:**  \therisk\
 **Description:** Dependency delays
 **Probability:**  
@@ -163,7 +162,7 @@ Changes can happen due to lack of knowledge in the beginning of the project, as 
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:scope}
+\refstepcounter{risk}\label{risk:scope}
 **Risk ID:**  \therisk\
 **Description:** Initial scope of the project might not match a realistic time frame.
 **Probability:**  
@@ -173,7 +172,7 @@ Changes can happen due to lack of knowledge in the beginning of the project, as 
 **Contingency Plan:**
 
 ## External Risks
-\stepcounter{risk}\label{risk:academic-deadlines}
+\refstepcounter{risk}\label{risk:academic-deadlines}
 **Risk ID:**  \therisk\
 **Description:**  Academic Deadlines.  
 Deadlines and assignments in other courses can affect the availability of team members.  
@@ -185,7 +184,7 @@ If multiple deadlines happen close to each other, the team members will be other
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:ext-availability}
+\refstepcounter{risk}\label{risk:ext-availability}
 **Risk ID:**  \therisk\
 **Description:** Availability of supervisor and other external helpers.
 **Probability:**  
@@ -194,7 +193,7 @@ If multiple deadlines happen close to each other, the team members will be other
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:scrum-experience}
+\refstepcounter{risk}\label{risk:scrum-experience}
 **Risk ID:**  \therisk\
 **Description:** SCRUM experience.  
 The experience with uding SCRUM as a mofel for project management is limited amongst the team. 
@@ -206,7 +205,7 @@ Planning of sprints and task delegation can take up more time than necessary, si
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:time-management}
+\refstepcounter{risk}\label{risk:time-management}
 **Risk ID:**  \therisk\
 **Description:** Time management.  
 As mentioned in other risk items, the team will encounter several unfamiliar challenges during the project. 
@@ -216,7 +215,7 @@ As mentioned in other risk items, the team will encounter several unfamiliar cha
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:external-conflicts}
+\refstepcounter{risk}\label{risk:external-conflicts}
 **Risk ID:**  \therisk\
 **Description:** External conflicts.  
 **Probability:**  
@@ -225,7 +224,7 @@ As mentioned in other risk items, the team will encounter several unfamiliar cha
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:finance}
+\refstepcounter{risk}\label{risk:finance}
 **Risk ID:**  \therisk\
 **Description:** Financial challanges.
 **Probability:**  
@@ -234,7 +233,7 @@ As mentioned in other risk items, the team will encounter several unfamiliar cha
 **Mitigation Strategy:**  
 **Contingency Plan:**
 
-\stepcounter{risk}\label{risk:ph}
+\refstepcounter{risk}\label{risk:ph}
 **Risk ID:**  \therisk\
 **Description:**  
 **Probability:**  
