@@ -168,7 +168,7 @@ If the car has less than 25% battery left it finishes its path and returns. When
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
-    \textbf{Precondition:} & The car is en route either back or to target home with more than 25\% battery remaining. Then the battery life is becoming less that 25\% \\
+    \textbf{Precondition:} & The car is en route to its next target with more than 25\% battery remaining. Then the battery life is becoming less that 25\% \\
     \hline
     \textbf{Postcondition:} & The car is back at home base and has notified the system that it needs to be recharged \\
     \hline
