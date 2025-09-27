@@ -1,4 +1,5 @@
-# Non functional requirements
+
+# Nonfunctional requirements
 
 1. Functionality
 
@@ -7,6 +8,7 @@
 1.2 The server must be a standalone unit (box form) that can operate on a floor or table.
 
 1.3 The system must include obstacle detection and safe path navigation to avoid collisions.
+
 
 2. Usability
 
@@ -18,18 +20,16 @@
 
 2.2 Accessibility
 
-2.2.2 The user interface must use text >=14 pt, high contrast colors and be readable in the daylight.
+2.2.2 The user interface must use text $\geq$ 14pt, high contrast colors and be readable in the daylight.
 
 2.2.3 An alternative access method such as NFC card could be supported
 
 
-
 2.3 Documentation
 
-2.3.1  A short user guide (≤2 pages, printed and digital) must be available near the charging station, explaining loading, unloading, and charging.
+2.3.1  A short user guide ($\leq$ 2 pages, printed and digital) must be available near the charging station, explaining loading, unloading, and charging.
 
 2.3.2 The user guide could include troubleshooting with the 5 most common scenarios. 
-
 
 2.4  Metrics
 
@@ -37,7 +37,7 @@
 
 2.4.2 A novice user should make no more than 2 errors when loading the material on the car and shouldnt take more than 5 minutes to complete the loading task. Time to learn to use the load function of the car should be learned within 15 minutes of showing.
 
-2.4.3 Time to learn retrieval from the car must be <= 10minutes, time to learn the loading must be <= 15minutes
+2.4.3 Time to learn retrieval from the car must be $\leq$ 10minutes, time to learn the loading must be $\leq$ 15minutes
 
 3. Reliability
 
@@ -47,7 +47,7 @@
 
 3.2 Maintainability
 
-3.2.1 Simple maintenance tasks (restart, battery swap, reconnection) must take ≤15 minutes.
+3.2.1 Simple maintenance tasks (restart, battery swap, reconnection) must take $\leq$ 15 minutes.
 
 3.2.2 Software updates to the system must not take more than 30minutes of downtime
 
