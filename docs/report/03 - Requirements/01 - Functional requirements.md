@@ -13,7 +13,7 @@ Use Case 4 Low battery warning (should)
 If the car has less than 25% battery left it finishes its path and returns. When it has returned it sends a message to the server that it is running out of battery. It then indicates this to the nurse and the nurse plugs it in to start charging.
 
 
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
     \textbf{Name:} & Use case 1 - Create order \\
@@ -54,7 +54,7 @@ If the car has less than 25% battery left it finishes its path and returns. When
     \label{tab:usecase1}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
     \textbf{Name:} & Use case 2 - Prepare and send orders \\
@@ -99,7 +99,7 @@ If the car has less than 25% battery left it finishes its path and returns. When
     \label{tab:usecase2}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
     \textbf{Name:} & Use case 3 - Deliver order and return \\
@@ -154,7 +154,7 @@ If the car has less than 25% battery left it finishes its path and returns. When
     \label{tab:usecase3}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
     \textbf{Name:} & Use case 4 - The car is low on battery \\
@@ -207,3 +207,5 @@ If the car has less than 25% battery left it finishes its path and returns. When
     \caption{Use case 4}
     \label{tab:usecase4}
 \end{table}
+
+\newpage
