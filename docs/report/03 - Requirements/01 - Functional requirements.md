@@ -16,19 +16,19 @@ If the car has less than 25% battery left it finishes its path and returns. When
 \begin{table}[h]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
-    \textbf{Name:} & Use case 1 - Create order\\
+    \textbf{Name:} & Use case 1 - Create order \\
     \hline
-    \textbf{Goal:} & The user wants to create a order\\
+    \textbf{Goal:} & The user wants to create a order \\
     \hline
-    \textbf{Initialization:} & The user opens the UI\\
+    \textbf{Initialization:} & The user opens the UI \\
     \hline
-    \textbf{Actors:} & User - primary\\
+    \textbf{Actors:} & User - primary \\
     \hline
-    \textbf{Concurrent instances:} & 1\\
+    \textbf{Concurrent instances:} & 1 \\
     \hline
-    \textbf{Precondition:} & The system is running and functional\\
+    \textbf{Precondition:} & The system is running and functional \\
     \hline
-    \textbf{Postcondition:} & A order has been created in the system\\
+    \textbf{Postcondition:} & A order has been created in the system \\
     \hline
     \textbf{Main scenario:} & 1. The user opens the UI \par
     2. A message saying "Choose the rooms for this order" and a list of all rooms appear on the UI \par
@@ -57,17 +57,17 @@ If the car has less than 25% battery left it finishes its path and returns. When
 \begin{table}[h]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
-    \textbf{Name:} & Use case 2 - Prepare and send orders\\
+    \textbf{Name:} & Use case 2 - Prepare and send orders \\
     \hline
     \textbf{Goal:} & The car is loaded with medicine and ready to drive \\
     \hline
-    \textbf{Initialization:} & The server has received an order\\
+    \textbf{Initialization:} & The server has received an order \\
     \hline
-    \textbf{Actors:} & dispensary nurse - secondary\\
+    \textbf{Actors:} & dispensary nurse - secondary \\
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
-    \textbf{Precondition:} & An order has been made\\
+    \textbf{Precondition:} & An order has been made \\
     \hline
     \textbf{Postcondition:} & The car receives the information and gets loaded with medicine by a nurse \\
     \hline
@@ -102,19 +102,19 @@ If the car has less than 25% battery left it finishes its path and returns. When
 \begin{table}[h]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
-    \textbf{Name:} & Use case 3 - Deliver order and return\\
+    \textbf{Name:} & Use case 3 - Deliver order and return \\
     \hline
-    \textbf{Goal:} & The car deliver its packages and returns to homebase\\
+    \textbf{Goal:} & The car deliver its packages and returns to homebase \\
     \hline
-    \textbf{Initialization:} & The button has been pressed\\
+    \textbf{Initialization:} & The button has been pressed \\
     \hline
-    \textbf{Actors:} & Nurse - primary, dispensary nurse\\
+    \textbf{Actors:} & Nurse - primary, dispensary nurse \\
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
-    \textbf{Precondition:} & Use case 2 has been resolved successfully\\
+    \textbf{Precondition:} & Use case 2 has been resolved successfully \\
     \hline
-    \textbf{Postcondition:} & The car has returned to homebase after delivering all packages\\
+    \textbf{Postcondition:} & The car has returned to homebase after delivering all packages \\
     \hline
     \textbf{Main scenario:} & 1. The dispensary nurse presses the button \\
     & \hspace{1cm} [Exception 3b: The car has a hardware malfunction]\\
@@ -130,22 +130,22 @@ If the car has less than 25% battery left it finishes its path and returns. When
     & \hspace{1cm} [Exception 1b: The car runs out of battery]\\
     & \hspace{1cm} [Exception 2b: The car is physically interrupted]\\
     & \hspace{1cm} [Exception 3b: The car has a hardware malfunction]\\
-    & 7. The car drives to homebase if the given room was the last in route\\
+    & 7. The car drives to homebase if the given room was the last in route \\
     \hline
     \textbf{Extensions/Exceptions:}
     & [Extension 1a: The car goes idle] \\
-    & \hspace{1cm} 1. The car stops in the room\\
-    & \hspace{1cm} 2. The car goes to idle until button is pressed\\
+    & \hspace{1cm} 1. The car stops in the room \\
+    & \hspace{1cm} 2. The car goes to idle until button is pressed \\
     & [Exception 1b: The car runs out of battery] \\
-    & \hspace{1cm} 1. The car is driving with low battery\\
-    & \hspace{1cm} 2. The car runs out of battery\\
-    & \hspace{1cm} 3. See use case 4\\
+    & \hspace{1cm} 1. The car is driving with low battery \\
+    & \hspace{1cm} 2. The car runs out of battery \\
+    & \hspace{1cm} 3. See use case 4 \\
     & [Exception 2b: The car is physically interrupted]\\
-    & \hspace{1cm} 1. The car is driving\\
-    & \hspace{1cm} 2. The car gets blocked by something\\
+    & \hspace{1cm} 1. The car is driving \\
+    & \hspace{1cm} 2. The car gets blocked by something \\
     & \hspace{1cm} 3. Send message to server "Path interrupted"\\
     & [Exception 3b: The cars has a hardware malfunction]\\
-    & \hspace{1cm} 1. The cars hardware malfunctions\\
+    & \hspace{1cm} 1. The cars hardware malfunctions \\
     & \hspace{1cm} 2. send message to server "Hardware failure"\\
     \hline
 \end{tabularx}
@@ -166,9 +166,9 @@ If the car has less than 25% battery left it finishes its path and returns. When
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
-    \textbf{Precondition:} & The car is en route to homebase or a patient with more than 25\% battery remaining. Then the battery life is becoming less that 25\% \\
+    \textbf{Precondition:} & The car is en route either back or to target home with more than 25\% battery remaining. Then the battery life is becoming less that 25\% \\
     \hline
-    \textbf{Postcondition:} & The car is back at home base and have notified the system that it needs to be recharged \\
+    \textbf{Postcondition:} & The car is back at home base and has notified the system that it needs to be recharged \\
     \hline
     \textbf{Main scenario:} &
     1. The system detects that the cars battery is below 25\% \newline
@@ -183,26 +183,23 @@ If the car has less than 25% battery left it finishes its path and returns. When
     Extensions: 1a, 2a, 3a \newline \newline
     6. The nurse charges the car \newline
 
-    7. The car is charging\\
+    7. The car is charging \\
     \hline
     \textbf{Extensions/Exceptions:} &
      1a: communication fails with the server, the car displays the low battery alert locally with a red led, resumes at main point 6  \newline
      \newline
-     2a: if the battery gets to 5\% another message wil be send to the server "critically low battery" resume at same point as before \newline
+     2a: if the battery gets to 5\% another message wil be sent to the server "critically low battery" resume at same point as before \newline
      \newline
-     3a: if battery gets to 1\% another message will be send to the server "Battery too low shutting down, location :xx", then a different version of point 5 will be executed, instead of the message of "the car needs charging" its going to be "The car needs charging, i did not make it to home base, its at :xx".
+     3a: if battery gets to 1\% another message will be sent to the server "Battery too low shutting down, location :xx", then a different version of point 5 will be executed, instead of the message of "the car needs charging" its going to be "The car needs charging, i did not make it to home base, its at :xx".
      \newline
      \newline
      4a: If the car calculated it won't be able to return to home base or get to the next room, it will stand still at the current room and send the message to the server "Can't continue driving, standing at :xx". resume at main point 5, with edit to the message: The car needs charging, it cant make it back, it stands in room :xx"
      \newline
      \newline
-
      1b: The car gets physically blocked or interrupted on its route, sends an obstruction alert to the server
      \newline
      \newline
-     2b: The nurse had not started the charging of the car, the car alerts the system again "not charging yet" and system sends reminder to the nurse "remember to charge car"
-
-      \\
+     2b: The nurse had not started the charging of the car, the car alerts the system again "not charging yet" and system sends reminder to the nurse "remember to charge car" \\
     \hline
 \end{tabularx}
     \caption{Use case 1}
