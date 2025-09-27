@@ -14,9 +14,9 @@
 
 2.1  Operability
 
-2.1.1 The system must allow loading by pressing a button, placing the material inside it and hten close the compartment.
+2.1.1 The system must allow loading by pressing a button, placing the material inside it and then close the compartment.
 
-2.1.2 The system must allow unloading by entering once pincode, retrieving the said material and closing the compartment, then it will resume operation after the press on the start button again
+2.1.2 The system must allow unloading by entering a code, retrieving the said material and closing the compartment, then it will resume operation after the press on the start button again
 
 2.2 Accessibility
 
@@ -33,9 +33,9 @@
 
 2.4  Metrics
 
-2.4.1 A novice user should make no more than 2 errors when retrieving the material from the car and shouldnt take more than 2 minutes to complete the retrieve task. Time to learn to use the retrieve function of the car should be learned within 10 minutes of showing.
+2.4.1 A novice user should make no more than 2 errors when retrieving the material from the car and should not take more than 2 minutes to complete the retrieve task. Time to learn to use the retrieve function of the car should be learned within 10 minutes of showing.
 
-2.4.2 A novice user should make no more than 2 errors when loading the material on the car and shouldnt take more than 5 minutes to complete the loading task. Time to learn to use the load function of the car should be learned within 15 minutes of showing.
+2.4.2 A novice user should make no more than 2 errors when loading the material on the car and should not take more than 5 minutes to complete the loading task. Time to learn to use the load function of the car should be learned within 15 minutes of showing.
 
 2.4.3 Time to learn retrieval from the car must be $\leq$ 10minutes, time to learn the loading must be $\leq$ 15minutes
 
@@ -56,12 +56,12 @@
 
 3.3.1 The car  must stop safely if it loses connection with the central processor or encounters a critical error.
 
-3.3.2 The system must notify the server and displau an error code when a fault occurs.
+3.3.2 The system must notify the server and display an error code when a fault occurs.
 
 
 4.  Performance
 
-4.1  User input (button press, pincode) must be acknowledged within 1 second.
+4.1  User input (button press, code) must be acknowledged within 1 second.
 
 4.2 The car must be ready for operation within 30 seconds of power-on.
 
@@ -85,7 +85,7 @@
 
 6.3 The logs could be stored for up to 30 days or manually deleted.
 
-6.4 The system could support remote retrival of logs.
+6.4 The system could support remote retrieval of logs.
 
 7. Scalability
 
