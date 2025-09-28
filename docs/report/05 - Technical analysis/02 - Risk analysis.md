@@ -92,6 +92,7 @@ The risk of a complete breakdown of the version control is improbable. A server 
 **Risk ID:**  \therisk\
 **Description:** Lack of knowledge or skills necessary to assemble the frame for the vehicle.
 **Probability:**  
+Designing and assembling the frame of the car is not within the scope of the education. Any knowledge and experience required should be sought through external sources.  
 **Consequence:**  
 **Risk Score:**  
 **Mitigation Strategy:**  
