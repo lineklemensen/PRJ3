@@ -12,7 +12,14 @@ $$
 
 so the risk score will reflect the impact the risk item can have on the project.  
 
-The probability and consequence of each risk item will be grated 1 to 5, where 1 is unlikely or low consequence, and 5 is very likely or a high consequence.
+The probability and consequence of each risk item will be grated 1 to 5, where 1 is unlikely or low consequence, and 5 is very likely or a high consequence.  
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{docs\report\05 - Technical analysis\risk-matrix.png}
+\caption{Risk Matrix}
+\label{fig:risk-matrix}
+\end{figure}  
 
 ## Technical Risks
 \refstepcounter{risk}\label{risk:tech-learning-curve}
