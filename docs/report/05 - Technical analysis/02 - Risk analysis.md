@@ -14,12 +14,14 @@ so the risk score will reflect the impact the risk item can have on the project.
 
 The probability and consequence of each risk item will be grated 1 to 5, where 1 is unlikely or low consequence, and 5 is very likely or a high consequence.  
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.5\textwidth]{docs\report\05 - Technical analysis\risk-matrix.png}
-\caption{Risk Matrix}
-\label{fig:risk-matrix}
-\end{figure}  
+<!-- Indsæt figur, virker stadig ikke -->
+
+The risk score will be used to prioritize the risk items, and to determine which risks need a mitigation strategy, and a contingency plan.  
+Generally, the following actions will be taken based on the risk score:   
+
+- **Low (1-9):** No immediate actions are taken.  
+- **Medium (10-17):** A mitigation strategy is developed, in order to prevent the risk.  
+- **High (18-25):** A mitigation strategy, as well as a contingency plan is developed. This way, there's a plan in place if the risk should occur.  
 
 ## Technical Risks
 \refstepcounter{risk}\label{risk:tech-learning-curve}
@@ -34,7 +36,6 @@ Lack of knowledge can cause severe delays, since time will then be used to gain 
 The quality of the final product can be affected as well.  
 **Risk Score:**  12  
 **Mitigation Strategy:**  Lack of time due to academic deadlines [\ref{risk:academic-deadlines}] cannot be prevented. However, the team can minimize the issue by different project management strategies, allowing a small group of team members to research subjects. The best way to prevent the issue is to treat research as tasks to do for the project. This is implemented on the project board on GitHub. <!-- Omformuler og/eller henvis til metode og proces afsnit -->  
-**Contingency Plan:**
 
 \refstepcounter{risk}\label{risk:sw-skills}
 **Risk ID:** \therisk\
@@ -43,10 +44,10 @@ Concepts such as pathfinding, deadreckoning, and PID regulation are new to the t
 **Probability:**  5  
 There is a high probability that the team encounters challenges in the development process, especially for these three aspects of the project.  
 **Consequence:**  5
-If one of these parts of the project are unfinished at the end of the project, the final product will have major flaws, and it will greatly impact the acceptance test for the prject. The final product might end up unfinished as a direct result of this.  
+If one of these parts of the project are unfinished at the end of the project, the final product will have major flaws, and it will greatly impact the acceptance test for the project. The final product might end up unfinished as a direct result of this.  
 **Risk Score:**  25  
-**Mitigation Strategy:**  
-**Contingency Plan:**
+**Mitigation Strategy:** The issue cannot be prevented, but it is possible to prevent the timeline for the project to be critically affected. Extra time can be allocated to research and development of these important and challenging parts of the project. The project board on GitHub contain all tasks for the project. The scrum master [ see roles in collaboration agreement ] should be aware of this risk, and allocate time accordingly, as well as delegate tasks to team members with relevant knowledge.  
+**Contingency Plan:** If the timeline is affected despite of the mitigation strategy, the team needs to prioritize the remaining tasks in the project. Furthermore, team members not working on these areas can provide support by handling less time consuming tasks.   
 
 \refstepcounter{risk}\label{risk:integrate-components}
 **Risk ID:** \therisk\
@@ -57,8 +58,7 @@ Integration challenges are very common, especially considering that different te
 **Consequence:**  2  
 Usually these kinds of challenges are fixed at some point, though it can be a time consuming process.  
 **Risk Score:**  10  
-**Mitigation Strategy:**  
-**Contingency Plan:**
+**Mitigation Strategy:** Enough time needs to be allocated to integrating submodules. Proper project management is important.  
 
 \refstepcounter{risk}\label{risk:hw-fail}
 **Risk ID:** \therisk\
@@ -70,8 +70,6 @@ Different kinds of hardware failures are common, just like they are for software
 The consequences depends on the kind of failure. The worst case scenario is a broken component, which cannot be replaced within the time frame. However, this is not likely.  
 Another failure could be defective wiring, which can be solved. The process of finding and fixing the error could be time consuming.  
 **Risk Score:**  9  
-**Mitigation Strategy:**  
-**Contingency Plan:**
 
 \refstepcounter{risk}\label{risk:proper-components}
 **Risk ID:** \therisk\
@@ -81,12 +79,10 @@ Basic knowledge of hardware was subjects of the previous semesters, so the team 
 **Consequence:**  5  
 The ability to meet the requirements for the project can be affected if components are not chosen carefully.    
 **Risk Score:**  5  
-**Mitigation Strategy:**  
-**Contingency Plan:**
 
 \refstepcounter{risk}\label{risk:vc-break}
 **Risk ID:**  \therisk\
-**Description:** Version control breakdown.  
+**Description:** Version control breakdown.   
 **Probability:**  4  
 The team have some knowledge of version control through a course on a previous semester. The experience with using it for projects on a larger scale varies amongst the team members.  
 **Consequence:**  4  
