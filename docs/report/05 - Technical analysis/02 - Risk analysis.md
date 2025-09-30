@@ -16,12 +16,8 @@ The probability and consequence of each risk item will be grated 1 to 5, where 1
 
 The risk score will be used to prioritize the risk items, and to determine which risks need a mitigation strategy, and a contingency plan.  
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{docs/diagrams/out/technical analysis/risk-matrix.png}
-    \caption{Risk matrix, showing the risk score based on probability and consequence \cite{haspod-2024} .}
-    \label{fig:risk-matrix}
-\end{figure}
+![Risk matrix, showing the risk score based on probability and consequence [@haspod-2024]](docs/diagrams/out/technical analysis/risk-matrix.png)
+{width=400px}
 
 Generally, the following actions will be taken based on the risk score:   
 
