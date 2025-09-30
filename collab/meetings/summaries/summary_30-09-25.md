@@ -8,6 +8,6 @@ Vi mangler en use case med at bilen kan starte
 Use cases skal være uafhængige  
 Tilføj hvor mange rum bilen maks kan køre rundt til, til use casen  
 Der skal laves stm hvis vi kun bruger en knap til systemet
-
+JMK giver library næste uge  
 
 
