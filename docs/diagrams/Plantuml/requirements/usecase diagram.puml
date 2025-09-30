@@ -1,0 +1,26 @@
+@startuml UC diagram
+left to right direction
+mainframe **Use-Case diagram**\t
+
+actor Nurse as n
+actor "Dispensary nurse" as dn
+actor "Car battery status" as cbs
+
+rectangle "Use cases" {
+    usecase "UC1: Start" as UC1
+    usecase "UC2: Idle" as UC2
+    usecase "UC3: Create order" as UC3
+    usecase "UC4: Deliver" as UC4
+    usecase "UC5: Return" as UC5
+}
+
+n --> UC1
+n --> UC3
+
+UC2 <-- dn
+UC3 <-- dn
+UC4 <-- dn
+
+
+
+@enduml
