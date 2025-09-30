@@ -1,7 +1,7 @@
 \newcounter{risk}
 \renewcommand{\therisk}{R\arabic{risk}}
 
-asda
+
 # Risk analysis
 The risk analysis will contain all predictable risks, which can cause the project to be delayed, unfinished, or lack the expected quality. 
 
