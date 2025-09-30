@@ -13,6 +13,27 @@ Use Case 4 Low battery warning (should)
 If the car has less than 25% battery left it finishes its path and returns. When it has returned it sends a message to the server that it is running out of battery. It then indicates this to the nurse and the nurse plugs it in to start charging.
 
 
+
+### Use Case 1 Start
+
+
+### Use Case 2 Idle
+
+
+### Use Case 3 Create order
+
+
+### Use Case 4 Deliver order
+
+
+### Use Case 5 Return
+
+
+### Use Case 6 Shutdown
+
+
+
+
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
@@ -31,14 +52,16 @@ If the car has less than 25% battery left it finishes its path and returns. When
     \textbf{Postcondition:} & A order has been created in the system \\
     \hline
     \textbf{Main scenario:} & 1. The dispensary nurse opens the UI \par
-    2. A message saying "Choose the rooms for this order" and a list of all rooms appear on the UI \par
-    3. The dispensary nurse chooses the rooms they want \par
-    [Extension 1a: The dispensary nurse does not choose any rooms] \par
-    4. The dispensary nurse clicks finish order \par
-    5. A confirmation message saying "This is your chosen rooms" and a list of the rooms chosen appears \par
-    6. The dispensary nurse clicks "Confirm" \par
-    [Extension 2a: The dispensary nurse clicks "Deny"] \par
-    7. The order gets added to the server \par 
+    1. A message saying "Choose the rooms for this order" and a list of all rooms appear on the UI \par
+    2. The dispensary nurse chooses the rooms they want up to a maximum of 3 \par
+    [Extension 1: The dispensary nurse does not choose any rooms] \par
+    3. The dispensary nurse clicks finish order \par
+    4. A confirmation message saying "This is your chosen rooms" and a list of the rooms chosen appears \par
+    5. The dispensary nurse clicks "Confirm" \par
+    [Extension 2: The dispensary nurse clicks "Deny"] \par
+    6. The order gets sent to the server \par 
+    7. The server receives the order \par
+    8. 
     \\
     \hline
     \textbf{Extensions/Exceptions:} & [Extension 1: The dispensary nurse does not choose any rooms] \par
