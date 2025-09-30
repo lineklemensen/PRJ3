@@ -1,19 +1,5 @@
 # Functional requirements
 
-Use Case 1 Create order (must)
-A nurse makes an order by selecting the rooms that need medicine. The system sends a confirmation of success or failure.
-
-Use Case 2 Prepare and send orders (must)
-The server processes the order and sends the necessary information to the car. The car indicates it has received a order and found a path. The nurse loads the medicine in the car and presses the start button.
-
-Use Case 3 Deliver order and return (must)
-The car drives to the first patients room, here it must stop and notify that it is ready to be unloaded. A nurse takes the medicine and presses the start button. If there are more rooms left in the path the car goes there and the cycle repeats until it has finished its path. Then it returns to the start location.
-
-Use Case 4 Low battery warning (should)
-If the car has less than 25% battery left it finishes its path and returns. When it has returned it sends a message to the server that it is running out of battery. It then indicates this to the nurse and the nurse plugs it in to start charging.
-
-
-
 ### Use Case 1 Start
 Pre: Car is turned off
 
@@ -58,7 +44,7 @@ lots of expections....
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
-    \textbf{Name:} & Use case 1 - Create order \\
+    \textbf{Name:} & Use case 3 - Create order \\
     \hline
     \textbf{Goal:} & The user wants to create a order \\
     \hline
@@ -70,26 +56,33 @@ lots of expections....
     \hline
     \textbf{Precondition:} & The system is running and functional \\
     \hline
-    \textbf{Postcondition:} & A order has been created in the system \\
+    \textbf{Postcondition:} & A order has been created and sent to the car, the car has finished pathfinding calculations. \\
     \hline
     \textbf{Main scenario:} & 1. The dispensary nurse opens the UI \par
-    1. A message saying "Choose the rooms for this order" and a list of all rooms appear on the UI \par
-    2. The dispensary nurse chooses the rooms they want up to a maximum of 3 \par
+    2. A message saying "Choose the rooms for this order" and a list of all rooms appear on the UI \par
+    3. The dispensary nurse chooses the rooms they want up to a maximum of 3 \par
     [Extension 1: The dispensary nurse does not choose any rooms] \par
-    3. The dispensary nurse clicks finish order \par
-    4. A confirmation message saying "This is your chosen rooms" and a list of the rooms chosen appears \par
-    5. The dispensary nurse clicks "Confirm" \par
-    [Extension 2: The dispensary nurse clicks "Deny"] \par
-    6. The order gets sent to the server \par 
-    7. The server receives the order \par
-    8. 
+    [Extension 2: The dispensary nurse chooses more than 3 rooms]
+    4. The dispensary nurse clicks finish order \par
+    5. A confirmation message saying "This is your chosen rooms" and a list of the rooms chosen appears \par
+    6. The dispensary nurse clicks "Confirm" \par
+    [Extension 3: The dispensary nurse clicks "Deny"] \par
+    7. The order gets sent to the server \par 
+    8. The server receives the order \par
+    9. The server saves the order in a text file \par
+    10. The server sends the order to the car \par
+    11. The car receives the order \par
+    12. The car does its pathfinding calculations \par
+    13. The cars green LED lights up \par 
     \\
     \hline
     \textbf{Extensions/Exceptions:} & [Extension 1: The dispensary nurse does not choose any rooms] \par
     \hspace{1cm} 1. The dispensary nurse clicks finish order \par
     \hspace{1cm} 2. An error message saying "You did not choose any rooms for this \par \hspace{1cm} order" appears \par
     \hspace{1cm} 3. Return to point 2 \par
-    [Extension 2: The dispensary nurse clicks "Deny"] \par
+    [Extension 2: The dispensary nurse chooses more than 3 rooms] \par
+    \hspace{1cm} 1. 
+    [Extension 3: The dispensary nurse clicks "Deny"] \par
     \hspace{1cm} 1. Return to point 2
     \\
     \hline
