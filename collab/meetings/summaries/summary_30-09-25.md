@@ -9,5 +9,7 @@ Use cases skal være uafhængige
 Tilføj hvor mange rum bilen maks kan køre rundt til, til use casen  
 Der skal laves stm hvis vi kun bruger en knap til systemet  
 JMK giver library næste uge  
+Nye drafts til use cases til næste uges vejledermøde  
+
 
 
