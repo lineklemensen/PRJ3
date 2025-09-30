@@ -14,9 +14,15 @@ so the risk score will reflect the impact the risk item can have on the project.
 
 The probability and consequence of each risk item will be grated 1 to 5, where 1 is unlikely or low consequence, and 5 is very likely or a high consequence.  
 
-<!-- Indsæt figur, virker stadig ikke -->
-
 The risk score will be used to prioritize the risk items, and to determine which risks need a mitigation strategy, and a contingency plan.  
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{docs/diagrams/out/technical analysis/risk-matrix.png}
+    \caption{Risk matrix, showing the risk score based on probability and consequence \cite{haspod-2024} .}
+    \label{fig:risk-matrix}
+\end{figure}
+
 Generally, the following actions will be taken based on the risk score:   
 
 - **Low (1-9):** No immediate actions are taken.  
@@ -26,9 +32,9 @@ Generally, the following actions will be taken based on the risk score:
 ## Technical Risks
 \refstepcounter{risk}\label{risk:tech-learning-curve}
 **Risk ID:** \therisk\
-**Description:**  Technological learning curve.  
+**Description:** Technological learning curve.  
 The project is based on knowledge and technological skills the team will get during the semester. The learning curve might not be as expected, resulting in a potential lack of important knowledge.  
-**Probability:**  3  
+**Probability:** 3  
 Due to the limited time frame and other academic deadlines [\ref{risk:academic-deadlines}], team members might be otherwise occupied, and therefore not gain required knowledge as expected. Furthermore, other academic deadlines can cause team members to prioritize mandatory assignments, which can affect the quality of the knowledge gained, as well as steepen the learning curve.  
 The team consists of eight people, which all contribute to the project. Not all team members need to know everything. The collective knowledge of the team can affect the project. The probability that no team member acquired the necessary knowledge, or have time to research the subject is low however.   
 **Consequence:**  4  
@@ -170,8 +176,10 @@ Late changes in requirements can severely impact the project.
 
 \refstepcounter{risk}\label{risk:dependency-delays}
 **Risk ID:**  \therisk\
-**Description:** Dependency delays  
+**Description:** Dependency delays.  
+Delays can occur if a team member is waiting for another team member to finish a task, before they can start their own task.  
 **Probability:**  
+Some dependency delays are likely to happen, however, the probability of severe delays is low.  
 **Consequence:**  
 **Risk Score:**  
 **Mitigation Strategy:**  
@@ -259,4 +267,5 @@ This includes conflicting schedules and resources, which
 **Risk Score:**  
 **Mitigation Strategy:**  
 **Contingency Plan:**
+
 \newpage
