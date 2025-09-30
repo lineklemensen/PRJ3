@@ -42,7 +42,7 @@ The quality of the final product can be affected as well.
 \refstepcounter{risk}\label{risk:sw-skills}
 **Risk ID:** \therisk\
 **Description:** Software challenges in difficult parts of the project.  
-Concepts such as pathfinding, deadreckoning, and PID regulation are new to the team.  
+Concepts such as pathfinding, dead reckoning, and PID regulation are new to the team.  
 **Probability:**  5  
 There is a high probability that the team encounters challenges in the development process, especially for these three aspects of the project.  
 **Consequence:**  5
@@ -95,8 +95,8 @@ The risk of a complete breakdown of the version control is improbable. A server 
 
 \refstepcounter{risk}\label{risk:ph}
 **Risk ID:**  \therisk\
-**Description:** Lack of knowledge or skills necessary to assemble the frame for the vehicle.
-**Probability:** 4   
+**Description:** Lack of knowledge or skills necessary to assemble the frame for the vehicle.  
+**Probability:** 4    
 Designing and assembling the frame of the car is not within the scope of the education. Any knowledge and experience required should be sought through external sources.  
 **Consequence:** 2  
 If a frame is not properly designed and assembled, the final product will still be a prototype and a proof of concept. Even though it might not meet the teams level of ambition, the project can still be a success.   
@@ -105,24 +105,24 @@ If a frame is not properly designed and assembled, the final product will still 
 ## Team and Resources
 \refstepcounter{risk}\label{risk:internal-conflicts}
 **Risk ID:** \therisk\
-**Description:**  Internal conflicts.  
-**Probability:**  4  
+**Description:** Internal conflicts.  
+**Probability:** 4  
 Since the team consists of eight people, all dedicated to the project, the probability of conflicts are quite high. Furthermore, personal conflicts can occur, which will have the same consequence as professional conflicts.  
-**Consequence:**  5  
+**Consequence:** 5  
 Any time spend on conflicts will result in less time for working on the project. The timeline can be greatly impacted by this, which can interfere with the quality of the final product. 
 Furthermore, personal conflicts can create a bad work environment. Motivation and ambition level can drop amongst the team members, which can cause work to be slower and of less quality.  
-**Risk Score:**  20  
+**Risk Score:** 20  
 **Mitigation Strategy:**  Conflicts can be prevented by proper and clear communication, to avoid any misunderstandings.  
-The team made a collaboration agreement [<!-- Indsæt reference til bilag: Samarbejdskontract -->] adressing the issue.    
-**Contingency Plan:**  All team members have an assigned role, which they are responsible for. One role is Internal HR. If conflicts occour, and cannot be solved by the involved parties, the Internal HR is tasked with solving the conflict, or seek help from external sources. More details in the collaboration agreement. <!-- Indsæt reference til bilag: Samarbejdskontract -->  
+The team made a collaboration agreement [<!-- Indsæt reference til bilag: Samarbejdskontract -->] addressing the issue.    
+**Contingency Plan:**  All team members have an assigned role, which they are responsible for. One role is Internal HR. If conflicts occur, and cannot be solved by the involved parties, the Internal HR is tasked with solving the conflict, or seek help from external sources. More details in the collaboration agreement. <!-- Indsæt reference til bilag: Samarbejdskontract -->  
 
 \refstepcounter{risk}\label{risk:team-availability}
-**Risk ID:**  \therisk\
-**Description:**  Availability of team members.  
+**Risk ID:** \therisk\
+**Description:** Availability of team members.  
 Members of rhe team can be unavailable due to illness, personal and private circumstances, etc. The academic deadlines [\ref{risk:academic-deadlines}] can cause unavailability as well, especially since members of the team are working in different groups across courses.  
 **Probability:** 3   
 It is likely that availability will vary throughout the semester. However, the probability that all team members are unavailable at the same time is low.  
-**Consequence:**  3
+**Consequence:** 3
 Unavailable team members can cause delays, and a bigger workload for the remaining team members. However, if proper communication is maintained, the impact can be minimized.  
 **Risk Score:** 9   
 
@@ -132,7 +132,7 @@ Unavailable team members can cause delays, and a bigger workload for the remaini
 Members of the team can get severely ill, or drop out completely.  
 **Probability:** 1   
 Complete loss of team members is not likely, especially considering that this is a 3. semester project. However, there is a risk that a team member can get severely ill, resulting in a lot of sick days, or even partial leave.   
-**Consequence:**  5  
+**Consequence:** 5   
 If a team member is suddenly on part time, or drops out completely, the team needs to compensate for the lost member. The work this member could have contributed are missing, and the rest of the team is required to contribute extra to the project in order to reach the goals set in the beginning of the project.  
 **Risk Score:** 5   
 
@@ -141,8 +141,8 @@ If a team member is suddenly on part time, or drops out completely, the team nee
 **Description:** Skill gap amongst team members, as well as in comparison to the ambition levels.  
 If the collective knowledge in the team is insufficient to reach the goal set, and meet the level of ambition agreed upon in the collaboration agreement [], a skill gap occurs.   
 **Probability:** 2  
-Since the concept of the project was developed in the beginning of the semester, the basic idea of the project was made before the team had any experience with some of the concepts involved in the project. <!--ref til Rx pathfinding -->  
-**Consequence:**  3
+Since the concept of the project was developed in the beginning of the semester, the basic idea of the project was made before the team had any experience with some of the concepts involved in the project [\ref{risk:sw-skills}].  
+**Consequence:**  3  
 If the collective knowledge is insufficient, the quality of the final product can be affected. The timeline can be affected as well, since time will be used to research subjects necessary to gain the knowledge required. However, if there is a skill gap between the team and the ambition level, the goals can be adjusted.  
 **Risk Score:** 6  
 
@@ -152,10 +152,10 @@ If the collective knowledge is insufficient, the quality of the final product ca
 The members of the team can have different work ethics and level of ambition. The collective level of ambition was discussed and agreed upon in the collaboration agreement [<!-- Indsæt reference til bilag: Samarbejdskontract -->].   
 **Probability:** 3  
 A completely uniform level of ambition and work ethics is not likely. However, the team is in close communication, and the collaboration agreement should help minimize the issue.  
-**Consequence:** 4 
+**Consequence:** 4  
 The consequence depends on the severity of the issue. If the team developes a tendency to push the timeline for the project, or procrastinate important tasks, the quality of the final product can be affected. Furthermore, the timeline can be affected as well.  
 **Risk Score:** 12   
-**Mitigation Strategy:** The team needs to maintain proper communication, and adress the issue if it should occur. The collaboration agreement [<!-- Indsæt reference til bilag: Samarbejdskontract -->] adresses the issue, and all team members have signed it. Furthermore, the role of Internal HR is assigned to a team member, who is responsible for handling such issues.   
+**Mitigation Strategy:** The team needs to maintain proper communication, and address the issue if it should occur. The collaboration agreement [<!-- Indsæt reference til bilag: Samarbejdskontract -->] addresses the issue, and all team members have signed it. Furthermore, the role of Internal HR is assigned to a team member, who is responsible for handling such issues.   
 
 ## Project Management
 \refstepcounter{risk}\label{risk:requirement-changes}
@@ -174,43 +174,47 @@ Late changes in requirements can severely impact the project.
 **Risk ID:**  \therisk\
 **Description:** Dependency delays.  
 Delays can occur if a team member is waiting for another team member to finish a task, before they can start their own task.  
-**Probability:**  
-Some dependency delays are likely to happen, however, the probability of severe delays is low.  
-**Consequence:**  
-**Risk Score:**  
-**Mitigation Strategy:**  
-**Contingency Plan:**
+**Probability:** 4   
+Some dependency delays are likely to happen, however, the probability of severe delays is low.    
+**Consequence:** 3  
+If severe delays should happen, the timeline for the project can be affected. Otherwise, delays can be minimized and managed with proper project management.  
+**Risk Score:** 12   
+**Mitigation Strategy:** Communicating the state of tasks on a regular basis is important. It is important that issues on the project board includes dependencies to other issues, and that the team members communicate with each other if they are blocked on a task.   
 
 \refstepcounter{risk}\label{risk:scope}
-**Risk ID:**  \therisk\
+**Risk ID:** \therisk\
 **Description:** Initial scope of the project might not match a realistic time frame.  
-**Probability:**  
-**Consequence:**  
-**Risk Score:**  
-**Mitigation Strategy:**  
-**Contingency Plan:**
+**Probability:** 4  
+The ambition level in the team is quite high, and the time frame is limited. The scope of the project might need to be adjusted.  
+**Consequence:** 3 
+If the scope is too ambitious, the timeline for the project can be affected. The quality of the final product can be affected as well, if the team is unable to finish all tasks in time.   
+**Risk Score:** 12   
+**Mitigation Strategy:** The timeline should be implemented as a focus point on the agenda for the scrum meetings. The scrum master should be aware of this risk, and allocate time accordingly, as well as delegate tasks to team members with relevant knowledge.   
 
 ## External Risks
 \refstepcounter{risk}\label{risk:academic-deadlines}
-**Risk ID:**  \therisk\
-**Description:**  Academic Deadlines.  
+**Risk ID:** \therisk\
+**Description:** Academic Deadlines.  
 Deadlines and assignments in other courses can affect the availability of team members.  
 **Probability:**  4  
-Deacline conflicts are very likely to happen. The semester is a bit more heavy on deadlines and assignments than the previous semesters, and team members are required to adjust to this.  
+Deadline conflicts are very likely to happen. The semester is a bit more heavy on deadlines and assignments than the previous semesters, and team members are required to adjust to this.  
 **Consequence:**  4  
-If multiple deadlines happen close to each other, the team members will be otherwise occupied, resulting in less work on the project. The amount of hours that each team member can contribute per week might vary. An average hours per week estimate was made in the collaboration agreement. <!--bilag -->  
-**Risk Score:**  16  
-**Mitigation Strategy:**  
-**Contingency Plan:**
+If multiple deadlines happen close to each other, the team members will be otherwise occupied, resulting in less work on the project. The amount of hours that each team member can contribute per week might vary. An average hours per week estimate was made in the collaboration agreement. <!--bilag -->    
+**Risk Score:** 16  
+**Mitigation Strategy:** The team has a shared calendar for the project, and a team member is responsible for maintaining it [ref bilag samarbejdskontrakt]. In most of the other courses, members of the team are working in groups with other team members. Therefore, the team members can delegate tasks with respect to the academic deadlines.    
 
 \refstepcounter{risk}\label{risk:ext-availability}
 **Risk ID:**  \therisk\
 **Description:** Availability of supervisor and other external helpers.  
-**Probability:**  
-**Consequence:**  
-**Risk Score:**  
-**Mitigation Strategy:**  
-**Contingency Plan:**
+**Probability:** 4   
+The supervisor appointed to the team can be unavailable due to illness, personal and private circumstances, etc. Furthermore, the supervisor are appointed to several teams, and therefore might not be available when the team needs help.   
+External helpers and resources can have conflicting schedules as well.   
+**Consequence:** 5    
+If the supervisor or external helpers are unavailable at critical times, the timeline for the project can be affected, and important questions can go unanswered. Since the the project involves multiple new concepts [\ref{risk:sw-skills}], unanswered questions can severely impact the project.  
+**Risk Score:** 20   
+**Mitigation Strategy:** Deadlines and questions should be communicated to relevant external helpers in a timely manner, in order to avoid any conflicts, resulting in a critical impact on the project.  
+In order to avoid the timeline to be critically affected, work on the project can be done in parallel where possible. This is best accomplished by clearly separating the product into modules, and by continuously working on the report, as well as supportive and administrative tasks. This way, less time is wasted when the team is awaiting answers.   
+**Contingency Plan:** If the timeline is affected, the team needs to reprioritize the remaining tasks in the project. The project is iterative, so the team can help the issue by making a prototype meeting the basic requirements, and then improve on the existing prototype.  
 
 \refstepcounter{risk}\label{risk:scrum-experience}
 **Risk ID:**  \therisk\
@@ -221,47 +225,38 @@ It is very likely that unnecessary time are being spent on learning the SCRUM mo
 **Consequence:**  3
 Planning of sprints and task delegation can take up more time than necessary, since members of the team lack experience with the model.  
 **Risk Score:**  6   
-**Mitigation Strategy:**  
-**Contingency Plan:**
 
 \refstepcounter{risk}\label{risk:time-management}
 **Risk ID:**  \therisk\
 **Description:** Time management.  
-As mentioned in other risk items, the team will encounter several unfamiliar challenges during the project. 
+As mentioned in other risk items, the team will encounter several unfamiliar challenges during the project.  
 **Probability:**  4  
-There is a high probability of encountering new or unexpected tasks and challenges during the project, which can take up a lot of time. Time that could have been spent on development.  
-**Consequence:**  5  
+There is a high probability of encountering new or unexpected tasks and challenges during the project, which can take up a lot of time. Time that could have been spent on development.   
+**Consequence:**  4   
 If the team is unable to effectively manage the available time, it will impact the project, and can affect the quality of the final product, as well as impair the teams ability to meet important deadlines.  
-**Risk Score:**  20  
-**Mitigation Strategy:**  
-**Contingency Plan:**
+**Risk Score:**  16   
+**Mitigation Strategy:** The team has a shared calendar for the project, as well as a clear timeline. The timeline is related to the issues on the project, and is found on the GitHub project board. The timeline and current state of the project is therefore clearly visible to all team members. The scrum master is responsible for maintaining the timeline, and allocating time accordingly, as well as delegate tasks to team members with relevant knowledge.   
 
 \refstepcounter{risk}\label{risk:external-conflicts}
-**Risk ID:**  \therisk\
+**Risk ID:** \therisk\
 **Description:** External conflicts.  
-This includes conflicting schedules and resources, which   
-**Probability:**  
-**Consequence:**  
-**Risk Score:**  
-**Mitigation Strategy:**  
-**Contingency Plan:**
+This includes conflicting schedules and resources, which can impact the project timeline and deliverables.  
+**Probability:** 4  
+Conflicting schedules and resources are likely to happen, especially if the team is relying on multiple external resources [\ref{risk:ext-availability}].  
+**Consequence:** 2  
+Even though external conflicts can cause delays and force a change of strategy, the project is relying primarily on the team members involved. Therefore, the consequence is not likely to be severe.  
+**Risk Score:** 8  
 
 \refstepcounter{risk}\label{risk:finance}
 **Risk ID:**  \therisk\
 **Description:** Financial challenges.  
-**Probability:**  
-**Consequence:**  
-**Risk Score:**  
-**Mitigation Strategy:**  
-**Contingency Plan:**
+The project is primarily based on resources and components provided by Aarhus University. However, some components or additional items might need to be purchased externally.  
+**Probability:** 2  
+There is a low probability of financial challenges, since the project is primarily based on resources and components provided by Aarhus University.  
+**Consequence:** 5   
+If the team decides to purchase additional items, not provided by AU, the team members will need to cover the costs themselves. This can affect the ambition level of the project, as well as the quality of the final product.  
+**Risk Score:** 10    
+**Mitigation Strategy:** Should the team decide to purchase additional items, a budget should be made, and all team members should agree on it. The budget should be as low as possible, in order to minimize the risk of financial challenges.   
 
-\refstepcounter{risk}\label{risk:ph}
-**Risk ID:**  \therisk\
-**Description:**  
-**Probability:**  
-**Consequence:**  
-**Risk Score:**  
-**Mitigation Strategy:**  
-**Contingency Plan:**
 
 \newpage
