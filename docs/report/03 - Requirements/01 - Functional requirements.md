@@ -46,7 +46,7 @@ lots of expections....
     \hline
     \textbf{Name:} & Use case 3 - Create order \\
     \hline
-    \textbf{Goal:} & The user wants to create a order \\
+    \textbf{Goal:} & The user wants to create an order \\
     \hline
     \textbf{Initialization:} & The user opens the UI \\
     \hline
@@ -56,13 +56,13 @@ lots of expections....
     \hline
     \textbf{Precondition:} & The system is running and functional \\
     \hline
-    \textbf{Postcondition:} & A order has been created and sent to the car, the car has finished pathfinding calculations. \\
+    \textbf{Postcondition:} & An order has been created and sent to the car, the car has finished pathfinding calculations. \\
     \hline
     \textbf{Main scenario:} & 1. The dispensary nurse opens the UI \par
     2. A message saying "Choose the rooms for this order" and a list of all rooms appear on the UI \par
     3. The dispensary nurse chooses the rooms they want up to a maximum of 3 \par
     [Extension 1: The dispensary nurse does not choose any rooms] \par
-    [Extension 2: The dispensary nurse chooses more than 3 rooms]
+    [Extension 2: The dispensary nurse chooses more than 3 rooms] \par
     4. The dispensary nurse clicks finish order \par
     5. A confirmation message saying "This is your chosen rooms" and a list of the rooms chosen appears \par
     6. The dispensary nurse clicks "Confirm" \par
