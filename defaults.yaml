@@ -3,5 +3,8 @@ pdf-engine: pdflatex
 link-citations: true
 geometry:
   - margin=0.8in
+header-includes:
+  - \usepackage{tabularx}
+  - \usepackage{float}
 ---
 
