@@ -1,65 +1,39 @@
 # Functional requirements
 
-# Actor-Context Diagram
+## Actor-Context Diagram
 
-# Actor Description
-
-
-<table>
-  <tr>
-    <th>Actor name</th>
-    <td>User</td>
-  </tr>
-  <tr>
-    <th>Alternative reference</th>
-    <td>Pharmaceutical Nurse</td>
-  </tr>
-  <tr>
-    <th> Actor Type</th>
-    <td>Primary</td>
-  </tr>
-  <tr>
-    <th>Description</th>
-    <td>Reads what medecin is needed from GUI and packs it into the medecin box on the car and then press a start button</td>
-  </tr>
-</table>
-
-<table>
-  <tr>
-    <th>Actor name</th>
-    <td>Patient Nurse</td>
-  </tr>
-  <tr>
-    <th>Alternative reference</th>
-    <td> Dispensaries Nurse </td>
-  </tr>
-  <tr>
-    <th> Actor Type</th>
-    <td>Secondary</td>
-  </tr>
-  <tr>
-    <th>Description</th>
-    <td>Nurse opens and empties medecin box on the car, once the medecin box is empty the nurse closes the box and presses a return button</td>
-  </tr>
-</table>
+## Actor Description
 
 
-<table>
-  <tr>
-    <th>Actor name</th>
-    <td>Server</td>
-  </tr>
-  <tr>
-    <th>Alternative reference</th>
-    <td>Database</td>
-  </tr>
-  <tr>
-    <th> Actor Type </th>
-    <td>Secondary</td>
-  </tr>
-  <tr>
-    <th>Description</th>
-    <td>Receives a order request from the GUI to create an order of medecin, and then sends that order to the medecin storage</td>
-  </tr>
-</table>
 
+
+
+\begin{tabularx}{0.8\textwidth}[H] { 
+  | >{\raggedright\arraybackslash}X 
+  | >{\raggedright\arraybackslash}X | }
+ \hline
+ \textbf{Actor name} & User \\
+ \hline
+ \textbf{Alternative reference} & Pharmaceutical Nurse  \\
+\hline
+\textbf{Actor type} & Primary  \\
+ \hline
+ \textbf{Description} & Reads what medecin is needed from GUI and packs it into the medecin box on the car and then press a start button \\
+\hline
+\end{tabularx}
+
+\begin{tabularx}{0.8\textwidth}[H] { 
+  | >{\raggedright\arraybackslash}X 
+  | >{\raggedright\arraybackslash}X | }
+ \hline
+ \textbf{Actor name} & Patient nurse \\
+ \hline
+ \textbf{Alternative reference} & Dispensaries Nurse \\
+\hline
+\textbf{Actor type} & Secondary  \\
+ \hline
+ \textbf{Description} & Nurse opens and empties medecin box on the car, once the medecin box is empty the nurse closes the box and presses a return button \\
+\hline
+\end{tabularx}
+
+\newpage
