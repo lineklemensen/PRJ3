@@ -245,4 +245,69 @@ lots of expections....
     \label{tab:usecase4}
 \end{table}
 
+
+### Use Case 5 Shutdown
+pre: the car is powered on
+
+Initializing: the power off button is pressed:
+
+what to do: sends shutdown message to server, power off
+
+lots of expections....
+
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
+    \hline
+    \textbf{Name:} & Use case 5 - Shutdown of car \\
+    \hline
+    \textbf{Goal:} & The car is shutdown successfully \\
+    \hline
+    \textbf{Initialization:} & The dispensary nurse presses the "power off" button on the car \\
+    \hline
+    \textbf{Actors:} & \textbf{Primary:} The dispensary nurse \\
+    \hline
+    \textbf{Concurrent instances:} & 1 \\
+    \hline
+    \textbf{Precondition:} & The car is powered on, connected to the server and at home base \\
+    \hline
+    \textbf{Postcondition:} & The car is powered off, the server is updated with the shutdown status of the car, the car is rinsed of pathfinding routes. \\
+    \hline
+    \textbf{Main scenario:} &
+    1. The dispensary nurse presses the power off button \par
+    2. The car sends a shutdown request to the server \par
+    [Extension 1: The server is unreachable] \par
+    3. The server acknowledges and updates the car status to "inactive" \par
+    [Extension 2: The car is mid-delivery] \par
+    4. The car stops any driving instructions and locks the storage compartment if open \par
+    [Extension 3: The storage unit is not closed] \par
+    5. The car saves logs (last position, task status) \par
+    6. The car powers off safely \par
+    [Extension 4: Emergency stop or power failure] \\
+     \\
+    \hline
+    \textbf{Extensions/Exceptions:} &
+    [Extension 1: The server is unreachable] \par
+    \hspace{1cm} 1. The car performs a local safe shutdown \par
+    \hspace{1cm} 2. Logs are stored for next restart \par
+    \hspace{1cm} 3. Use case ends \par
+    [Extension 2: The car is mid-delivery] \par
+    \hspace{1cm} 1. The car requests confirmation from the nurse before shutdown \par
+    \hspace{1cm} 2. If confirmed, delivery is aborted safely \par
+    \hspace{1cm} 3. If not confirmed, shutdown is canceled \par
+    [Extension 3: The storage unit is not closed] \par
+    \hspace{1cm} 1. The car pauses shutdown until the storage unit is securely locked \par
+    \hspace{1cm} 2. Return to point 4 in main scenario \par
+    [Extension 4: Emergency stop or power failure] \par
+    \hspace{1cm} 1. The car immediately cuts motor power \par
+    \hspace{1cm} 2. Logs the event locally \par
+    \hspace{1cm} 3. Use case ends \\
+    \hline
+    \hline
+\end{tabularx}
+    \caption{Use case 5}
+    \label{tab:usecase5}
+\end{table}
+
 \newpage
