@@ -16,14 +16,13 @@ The probability and consequence of each risk item will be grated 1 to 5, where 1
 
 The risk score will be used to prioritize the risk items, and to determine which risks need a mitigation strategy, and a contingency plan.  
 
-![Risk matrix, showing the risk score based on probability and consequence [@haspod-2024]](docs/diagrams/out/technical analysis/risk-matrix.png)
-{width=400px}
+![Risk matrix, showing the risk score based on probability and consequence [@haspod-2024]](docs/diagrams/out/technical analysis/risk-matrix.png){width=400px}
 
 Generally, the following actions will be taken based on the risk score:   
 
-- **Low (1-9):** No immediate actions are taken.  
-- **Medium (10-17):** A mitigation strategy is developed, in order to prevent the risk.  
-- **High (18-25):** A mitigation strategy, as well as a contingency plan is developed. This way, there's a plan in place if the risk should occur.  
+- **Low (1-9):** No immediate actions are taken.
+- **Medium (10-17):** A mitigation strategy is developed, in order to prevent the risk.
+- **High (18-25):** A mitigation strategy, as well as a contingency plan is developed. This way, there's a plan in place if the risk should occur.
 
 ## Technical Risks
 \refstepcounter{risk}\label{risk:tech-learning-curve}
