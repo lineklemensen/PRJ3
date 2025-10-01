@@ -6,17 +6,35 @@
             "command": "pandoc",
             "args": [
                 "${relativeFile}",
-                "--pdf-engine=pdflatex",
-                "-V",
-                "geometry:margin=0.8in",
+                "--resource-path=.${/}docs${/}${fileBasenameNoExtension}",
+                "--metadata-file=./defaults.YAML",
                 "--table-caption-position=below",
                 "--figure-caption-position=below",
-                "--resource-path=.${/}docs${/}${fileBasenameNoExtension}",
+                "--citeproc",
+                "--bibliography=./docs/report/bibliography.bib",
+                "--csl=ieee.csl",
                 "-o",
                 ".${/}${relativeFileDirname}${/}${fileBasenameNoExtension}.pdf"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "silent"
+            }
+        },
+        {
+            "label": "Render full pdf",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "$files = Get-childItem -Path \\\"${workspaceFolder}/docs/report/\\\" -Recurse -File -Filter \\\"*.md\\\" | ForEach-Object { $_.FullName }; pandoc @files --lua-filter=./scripts/char-count.lua --resource-path=${workspaceFolder}/docs/ --metadata-file=${workspaceFolder}/defaults.YAML --citeproc --bibliography=${workspaceFolder}/docs/report/bibliography.bib --csl=${workspaceFolder}/ieee.csl -o \\\"${workspaceFolder}/PRJ3 - Rapport.pdf\\\"",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/docs/report/"
             },
             "problemMatcher": [],
             "presentation": {
