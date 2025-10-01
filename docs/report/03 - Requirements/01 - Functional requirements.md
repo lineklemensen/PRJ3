@@ -72,28 +72,38 @@ lots of expections....
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
-    \textbf{Name:} & Use case 1 - Start\\
+    \textbf{Name:} & Use case 1 - Start \\
     \hline
-    \textbf{Goal:} & Turning the car on and initializing the software\\
+    \textbf{Goal:} & The car is on and ready \\
     \hline
-    \textbf{Initialization:} & The power button is pressed\\
+    \textbf{Initialization:} & Dispensary nurse clicks the on/off button on the car \\
     \hline
-    \textbf{Actors:} & Dispensary nurse - primary\\  
+    \textbf{Actors:} & \textbf{Primary:} Dispensary nurse\\  
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
-    \textbf{Precondition:} & The car is turned off\\
+    \textbf{Precondition:} & Car is turned off \\
     \hline
-    \textbf{Postcondition:} & The car is turned on and initialized\\
+    \textbf{Postcondition:} & Car has connection to the server and a home base location is set \\
     \hline
-    \textbf{Main scenario:} & 
-    \\
+    \textbf{Main scenario:} & 1. Dispensary nurse clicks the on/off button \par
+    \hspace{1cm} [Exception 1: No power on battary] \par 
+    2. Red LED turns on and holds a constant light to signal the car in powered \par
+    3. Car establish connection to the server \par 
+    \hspace{1cm} [Exception 2: Connection to server fails] \par 
+    4. Path finding sets the cars current location as home base \par
+    \hspace{1cm} [Exception 3: Set home base location fails] \\
     \hline
-    \textbf{Extensions/Exceptions:} & 
+    \textbf{Extensions/Exceptions:} & [Exception 1: No battery power] \par
+    \hspace{1cm} 1. The red LED does not turn on. \par
+    [Exception 2: Connection to the server fails] \par
+    \hspace{1cm} 1. Red LED starts to blink, to signal that something is wrong. \par
+    [Exception 3: Set home base location fails] \par
+    \hspace{1cm} 1. Red LED starts to blink to signal that something is wrong.
     \\
     \hline
 \end{tabularx}
-    \caption{Use case 1 - Create order}
+    \caption{Use case 1 - Start}
     \label{tab:usecase1}
 \end{table}
 
