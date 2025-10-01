@@ -1,6 +1,9 @@
 \newcounter{risk}
 \renewcommand{\therisk}{R\arabic{risk}}
 
+\setlength{\extrarowheight}{3pt}
+\renewcommand{\arraystretch}{1.2}
+
 
 # Risk analysis
 The risk analysis will contain all predictable risks, which can cause the project to be delayed, unfinished, or lack the expected quality. 
@@ -24,6 +27,66 @@ Generally, the following actions will be taken based on the risk score:
 - **Medium (10-17):** A mitigation strategy is developed, in order to prevent the risk.
 - **High (18-25):** A mitigation strategy, as well as a contingency plan is developed. This way, there's a plan in place if the risk should occur.
 
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{1.5cm}|X|>{\centering\arraybackslash}p{1.2cm}|>{\centering\arraybackslash}p{1.2cm}|>{\centering\arraybackslash}p{1.2cm}|}
+    \hline
+    \multicolumn{5}{|c|}{\textbf{Technological Risks}} \\
+    \hline
+    \textbf{Risk ID} & \textbf{Description} & \textbf{Prob.} & \textbf{Cons.} & \textbf{Score} \\
+    \hline
+    \ref{risk:tech-learning-curve} & Technological learning curve & 3 & 3 & 9  \\
+    \hline
+    \ref{risk:sw-skills} & Software challenges in difficult parts of the project & 4 & 5 & 20 \\
+    \hline
+    \ref{risk:integrate-components} & Integration challenges between components & 3 & 2 & 6 \\
+    \hline
+    \ref{risk:hw-fail} & Hardware failures & 3 & 3 & 9 \\
+    \hline
+    \ref{risk:proper-components} & Lack of knowledge to choose proper components & 1 & 3 & 3 \\
+    \hline
+    \ref{risk:vc-break} & Version control breakdown & 3 & 3 & 9 \\
+    \hline
+    \ref{risk:ph} & Lack of knowledge or skills necessary to assemble the frame for the vehicle & 4 & 2 & 8 \\
+    \hline
+    \multicolumn{5}{|c|}{\textbf{Team and Resources}} \\
+    \hline
+    \textbf{Risk ID} & \textbf{Description} & \textbf{Prob.} & \textbf{Cons.} & \textbf{Score} \\
+    \hline
+    \ref{risk:internal-conflicts} & Internal conflicts & 2 & 5 & 10 \\
+    \hline
+    \ref{risk:team-availability} & Availability of team members & 3 & 3 & 9 \\
+    \hline
+    \ref{risk:drop} & Complete or partial loss of team members & 1 & 5 & 5 \\
+    \hline
+    \ref{risk:skill-gap} & Skill gap amongst team members, as well as in comparison to the ambition levels & 2 & 3 & 6 \\
+    \hline
+    \ref{risk:work-ethics} & Work ethics & 3 & 4 & 12 \\
+    \hline
+    \multicolumn{5}{|c|}{\textbf{Project Management}} \\
+    \hline
+    \textbf{Risk ID} & \textbf{Description} & \textbf{Prob.} & \textbf{Cons.} & \textbf{Score} \\
+    \hline
+    \ref{risk:requirement-changes} & Requirement changes & 3 & 4 & 12 \\
+    \hline
+    \ref{risk:dependency-delays} & Dependency delays & 4 & 4 & 16 \\
+    \hline
+    \ref{risk:scope} & Initial scope of the project might not match a realistic time frame & 4 & 3 & 12 \\
+    \hline
+    \ref{risk:scrum-experience} & SCRUM experience & 2 & 3 & 6 \\
+    \hline
+    \ref{risk:time-management} & Time management & 4 & 4 & 16 \\
+    \hline
+    \multicolumn{5}{|c|}{\textbf{External Risks}} \\
+    \hline
+    \ref{risk:academic-deadlines} & Academic Deadlines & 4 & 4 & 16 \\
+    \hline
+    \ref{risk:ext-availability} & Availability of supervisor and other external helpers & 3 & 5 & 15 \\
+    \hline
+    \ref{risk:external-conflicts} & External conflicts & 2 & 4 & 8 \\
+    \hline
+    \ref{risk:finance} & Financial issues & 2 & 5 & 10 \\
+    \hline
+\end{tabularx}
+
 \newpage
 ## Technical Risks
 \refstepcounter{risk}\label{risk:tech-learning-curve}
@@ -45,7 +108,7 @@ The quality of the final product can be affected as well.
 Concepts such as pathfinding, dead reckoning, and PID regulation are new to the team.  
 **Probability:** 4  
 There is a high probability that the team encounters challenges in the development process, especially for these three aspects of the project.  
-**Consequence:** 5
+**Consequence:** 5   
 If one of these parts of the project are unfinished at the end of the project, the final product will have major flaws, and it will greatly impact the acceptance tests for the project. The final product might end up unfinished as a direct result of this.  
 **Risk Score:** 20    
 **Mitigation Strategy:** The issue cannot be prevented, but it is possible to prevent the timeline for the project to be critically affected. Extra time can be allocated to research and development of these important and challenging parts of the project. The project board on GitHub contain all tasks for the project. The scrum master [ see roles in collaboration agreement ] should be aware of this risk, and allocate time accordingly, as well as delegate tasks to team members with relevant knowledge.  
@@ -176,22 +239,43 @@ Late changes in requirements can severely impact the project.
 Delays can occur if a team member is waiting for another team member to finish a task, before they can start their own task.  
 **Probability:** 4   
 Some dependency delays are likely to happen, however, the probability of severe delays is low.    
-**Consequence:** 4  
+**Consequence:** 4    
 If severe delays should happen, the timeline for the project can be affected. Otherwise, delays can be minimized and managed with proper project management.  
 **Risk Score:** 16   
 **Mitigation Strategy:** Communicating the state of tasks on a regular basis is important. It is important that issues on the project board includes dependencies to other issues, and that the team members communicate with each other if they are blocked on a task.   
 
 \refstepcounter{risk}\label{risk:scope}
 **Risk ID:** \therisk\
-**Description:** Initial scope of the project might not match a realistic time frame.  
-**Probability:** 4  
+**Description:** Initial scope of the project might not match a realistic time frame.    
+**Probability:** 4    
 The ambition level in the team is quite high, and the time frame is limited. The scope of the project might need to be adjusted.  
-**Consequence:** 3 
+**Consequence:** 3   
 If the scope is too ambitious, the timeline for the project can be affected. The quality of the final product can be affected as well, if the team is unable to finish all tasks in time.   
 **Risk Score:** 12   
-**Mitigation Strategy:** The timeline should be implemented as a focus point on the agenda for the scrum meetings. The scrum master should be aware of this risk, and allocate time accordingly, as well as delegate tasks to team members with relevant knowledge.   
+**Mitigation Strategy:** The timeline should be implemented as a focus point on the agenda for the scrum meetings. The scrum master should be aware of this risk, and allocate time accordingly, as well as delegate tasks to team members with relevant knowledge.     
 
-## External Risks
+\refstepcounter{risk}\label{risk:scrum-experience}
+**Risk ID:**  \therisk\
+**Description:** SCRUM experience.  
+The experience with using SCRUM as a model for project management is limited amongst the team.   
+**Probability:** 2   
+It is very likely that unnecessary time are being spent on learning the SCRUM model, and the process of sprints. However, the process will be repeated several times during the project.  Therefore, the team will likely build routines, which can gradually decrease the time spent on project management.  
+**Consequence:** 3     
+Planning of sprints and task delegation can take up more time than necessary, since members of the team lack experience with the model.  
+**Risk Score:** 6     
+
+\refstepcounter{risk}\label{risk:time-management}
+**Risk ID:** \therisk\
+**Description:** Time management.  
+As mentioned in other risk items, the team will encounter several unfamiliar challenges during the project.  
+**Probability:**  4  
+There is a high probability of encountering new or unexpected tasks and challenges during the project, which can take up a lot of time. Time that could have been spent on development.   
+**Consequence:**  4   
+If the team is unable to effectively manage the available time, it will impact the project, and can affect the quality of the final product, as well as impair the teams ability to meet important deadlines.  
+**Risk Score:** 16   
+**Mitigation Strategy:** The team has a shared calendar for the project, as well as a clear timeline. The timeline is related to the issues on the project, and is found on the GitHub project board. The timeline and current state of the project is therefore clearly visible to all team members. The scrum master is responsible for maintaining the timeline, and allocating time accordingly, as well as delegate tasks to team members with relevant knowledge.   
+
+## External Risks    
 \refstepcounter{risk}\label{risk:academic-deadlines}
 **Risk ID:** \therisk\
 **Description:** Academic Deadlines.  
@@ -215,27 +299,6 @@ If the supervisor or external helpers are unavailable at critical times, the tim
 **Mitigation Strategy:** Deadlines and questions should be communicated to relevant external helpers in a timely manner, in order to avoid any conflicts, resulting in a critical impact on the project.  
 In order to avoid the timeline to be critically affected, work on the project can be done in parallel where possible. This is best accomplished by clearly separating the product into modules, and by continuously working on the report, as well as supportive and administrative tasks. This way, less time is wasted when the team is awaiting answers.   
 **Contingency Plan:** If the timeline is affected, the team needs to reprioritize the remaining tasks in the project. The project is iterative, so the team can help the issue by making a prototype meeting the basic requirements, and then improve on the existing prototype.  
-
-\refstepcounter{risk}\label{risk:scrum-experience}
-**Risk ID:**  \therisk\
-**Description:** SCRUM experience.  
-The experience with using SCRUM as a model for project management is limited amongst the team.   
-**Probability:** 2
-It is very likely that unnecessary time are being spent on learning the SCRUM model, and the process of sprints. However, the process will be repeated several times during the project.  Therefore, the team will likely build routines, which can gradually decrease the time spent on project management.  
-**Consequence:** 3
-Planning of sprints and task delegation can take up more time than necessary, since members of the team lack experience with the model.  
-**Risk Score:** 6   
-
-\refstepcounter{risk}\label{risk:time-management}
-**Risk ID:** \therisk\
-**Description:** Time management.  
-As mentioned in other risk items, the team will encounter several unfamiliar challenges during the project.  
-**Probability:**  4  
-There is a high probability of encountering new or unexpected tasks and challenges during the project, which can take up a lot of time. Time that could have been spent on development.   
-**Consequence:**  4   
-If the team is unable to effectively manage the available time, it will impact the project, and can affect the quality of the final product, as well as impair the teams ability to meet important deadlines.  
-**Risk Score:** 16   
-**Mitigation Strategy:** The team has a shared calendar for the project, as well as a clear timeline. The timeline is related to the issues on the project, and is found on the GitHub project board. The timeline and current state of the project is therefore clearly visible to all team members. The scrum master is responsible for maintaining the timeline, and allocating time accordingly, as well as delegate tasks to team members with relevant knowledge.   
 
 \refstepcounter{risk}\label{risk:external-conflicts}
 **Risk ID:** \therisk\
