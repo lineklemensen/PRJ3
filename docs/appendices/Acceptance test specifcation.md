@@ -3,21 +3,21 @@
 \begin{table}[h]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
-    \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 1 - Create order } \\ 
+    \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 1 - Start } \\ 
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{Main scenario}\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The system is running and functional} \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{Car is turned off} \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the UI  & A message saying "Choose the rooms for this order" and a list of all rooms appear on the UI & & \\
+    \textbf{1} & Press the on/off button & The red LED on the car turns on & & \\
     \hline
-    \textbf{2} & Choose room 1, 3, 4 and 6 then press finish order & A confirmation message saying "This is your chosen rooms" and a list of the rooms 1, 3, 4 and 6 appears & & \\
+    \textbf{2} & Car connects to server & A conformation is send to the server: "connection to server succesful" & & \\
     \hline
-    \textbf{3} & Click confirm & The UI returns to the order creation site & & \\
+    \textbf{3} & Car sets home base location & A conformation is send to the server: "Home base location is set" & & \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 1}
