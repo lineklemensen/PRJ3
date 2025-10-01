@@ -12,7 +12,7 @@ $$
 
 so the risk score will reflect the impact the risk item can have on the project.  
 
-The probability and consequence of each risk item will be grated 1 to 5, where 1 is unlikely or low consequence, and 5 is very likely or a high consequence.  
+The probability and consequence of each risk item will be graded 1 to 5, where 1 is unlikely to occur or low consequence, and 5 is very likely to occur or a high consequence.  
 
 The risk score will be used to prioritize the risk items, and to determine which risks need a mitigation strategy, and a contingency plan.  
 
@@ -24,6 +24,7 @@ Generally, the following actions will be taken based on the risk score:
 - **Medium (10-17):** A mitigation strategy is developed, in order to prevent the risk.
 - **High (18-25):** A mitigation strategy, as well as a contingency plan is developed. This way, there's a plan in place if the risk should occur.
 
+\newpage
 ## Technical Risks
 \refstepcounter{risk}\label{risk:tech-learning-curve}
 **Risk ID:** \therisk\
@@ -45,7 +46,7 @@ Concepts such as pathfinding, dead reckoning, and PID regulation are new to the 
 **Probability:**  5  
 There is a high probability that the team encounters challenges in the development process, especially for these three aspects of the project.  
 **Consequence:**  5
-If one of these parts of the project are unfinished at the end of the project, the final product will have major flaws, and it will greatly impact the acceptance test for the project. The final product might end up unfinished as a direct result of this.  
+If one of these parts of the project are unfinished at the end of the project, the final product will have major flaws, and it will greatly impact the acceptance tests for the project. The final product might end up unfinished as a direct result of this.  
 **Risk Score:**  25  
 **Mitigation Strategy:** The issue cannot be prevented, but it is possible to prevent the timeline for the project to be critically affected. Extra time can be allocated to research and development of these important and challenging parts of the project. The project board on GitHub contain all tasks for the project. The scrum master [ see roles in collaboration agreement ] should be aware of this risk, and allocate time accordingly, as well as delegate tasks to team members with relevant knowledge.  
 **Contingency Plan:** If the timeline is affected despite of the mitigation strategy, the team needs to prioritize the remaining tasks in the project. Furthermore, team members not working on these areas can provide support by handling less time consuming tasks.   
