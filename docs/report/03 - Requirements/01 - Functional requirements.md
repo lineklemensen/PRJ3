@@ -39,6 +39,92 @@ what to do: sends shutdown message to server, power off
 lots of expections....
 
 
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
+    \hline
+    \textbf{Name:} & Use Case 4 - Deliver order and return \\
+    \hline
+    \textbf{Goal:} & \\
+    \hline
+    \textbf{Initialization:} & \\
+    \hline
+    \textbf{Actors:} & \\  
+    \hline
+    \textbf{Concurrent instances:} & 1 \\
+    \hline
+    \textbf{Precondition:} & \\
+    \hline
+    \textbf{Postcondition:} & \\
+    \hline
+    \textbf{Main scenario:} & 
+    \\
+    \hline
+    \textbf{Extensions/Exceptions:} & 
+    \\
+    \hline
+\end{tabularx}
+    \caption{Use case 1 - Create order}
+    \label{tab:usecase1}
+\end{table}
+
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
+    \hline
+    \textbf{Name:} & Use case 1 - Start\\
+    \hline
+    \textbf{Goal:} & Turning the car on and initializing the software\\
+    \hline
+    \textbf{Initialization:} & The power button is pressed\\
+    \hline
+    \textbf{Actors:} & Dispensary nurse - primary\\  
+    \hline
+    \textbf{Concurrent instances:} & 1 \\
+    \hline
+    \textbf{Precondition:} & The car is turned off\\
+    \hline
+    \textbf{Postcondition:} & The car is turned on and initialized\\
+    \hline
+    \textbf{Main scenario:} & 
+    \\
+    \hline
+    \textbf{Extensions/Exceptions:} & 
+    \\
+    \hline
+\end{tabularx}
+    \caption{Use case 1 - Create order}
+    \label{tab:usecase1}
+\end{table}
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
+    \hline
+    \textbf{Name:} & Use Case 2 - Idle \\
+    \hline
+    \textbf{Goal:} & \\
+    \hline
+    \textbf{Initialization:} & \\
+    \hline
+    \textbf{Actors:} & \\  
+    \hline
+    \textbf{Concurrent instances:} & 1 \\
+    \hline
+    \textbf{Precondition:} & \\
+    \hline
+    \textbf{Postcondition:} & \\
+    \hline
+    \textbf{Main scenario:} & 
+    \\
+    \hline
+    \textbf{Extensions/Exceptions:} & 
+    \\
+    \hline
+\end{tabularx}
+    \caption{Use case 1 - Create order}
+    \label{tab:usecase1}
+\end{table}
 
 
 \begin{table}[H]
@@ -59,21 +145,21 @@ lots of expections....
     \textbf{Postcondition:} & An order has been created and sent to the car, the car has finished pathfinding calculations. \\
     \hline
     \textbf{Main scenario:} & 1. The dispensary nurse opens the UI \par
-    2. A message saying "Choose the rooms for this order" and a list of all rooms appear on the UI \par
-    3. The dispensary nurse chooses the rooms they want up to a maximum of 3 \par
+    1. A message saying "Choose the rooms for this order" and a list of all rooms appear on the UI \par
+    2. The dispensary nurse chooses the rooms they want up to a maximum of 3 \par
     [Extension 1: The dispensary nurse does not choose any rooms] \par
     [Extension 2: The dispensary nurse chooses more than 3 rooms] \par
-    4. The dispensary nurse clicks finish order \par
-    5. A confirmation message saying "This is your chosen rooms" and a list of the rooms chosen appears \par
-    6. The dispensary nurse clicks "Confirm" \par
+    3. The dispensary nurse clicks finish order \par
+    4. A confirmation message saying "This is your chosen rooms" and a list of the rooms chosen appears \par
+    5. The dispensary nurse clicks "Confirm" \par
     [Extension 3: The dispensary nurse clicks "Deny"] \par
-    7. The order gets sent to the server \par 
-    8. The server receives the order \par
-    9. The server saves the order in a text file \par
-    10. The server sends the order to the car \par
-    11. The car receives the order \par
-    12. The car does its pathfinding calculations \par
-    13. The cars green LED lights up \par 
+    6. The order gets sent to the server \par 
+    7. The server receives the order \par
+    8. The server saves the order in a text file \par
+    9.  The server sends the order to the car \par
+    10. The car receives the order \par
+    11. The car does its pathfinding calculations \par
+    12. The cars green LED lights up \par 
     \\
     \hline
     \textbf{Extensions/Exceptions:} & [Extension 1: The dispensary nurse does not choose any rooms] \par
