@@ -154,37 +154,50 @@ lots of expections....
     \hline
     \textbf{Postcondition:} & An order has been created and sent to the car, the car has finished pathfinding calculations. \\
     \hline
-    \textbf{Main scenario:} & 1. The dispensary nurse opens the UI \par
-    1. A message saying "Choose the rooms for this order" and a list of all rooms appear on the UI \par
-    2. The dispensary nurse chooses the rooms they want up to a maximum of 3 \par
-    [Extension 1: The dispensary nurse does not choose any rooms] \par
-    [Extension 2: The dispensary nurse chooses more than 3 rooms] \par
-    3. The dispensary nurse clicks finish order \par
-    4. A confirmation message saying "This is your chosen rooms" and a list of the rooms chosen appears \par
-    5. The dispensary nurse clicks "Confirm" \par
-    [Extension 3: The dispensary nurse clicks "Deny"] \par
-    6. The order gets sent to the server \par 
-    7. The server receives the order \par
-    8. The server saves the order in a text file \par
-    9.  The server sends the order to the car \par
-    10. The car receives the order \par
-    11. The car does its pathfinding calculations \par
-    12. The cars green LED lights up \par 
+    \textbf{Main scenario:} & 
+    1. The dispensary nurse opens the UI \par
+    2. A message saying "Choose the rooms for this order" and a list of all the 3 rooms appear on the UI\par
+    3. Finish and cancel options appear \par
+    4. The dispensary nurse chooses up to 3 rooms to add to the order \par
+    5. The dispensary nurse clicks finish order \par
+    [Extension 1: The dispensary nurse selects the cancel option] \par
+    [Extension 2: No rooms were selected] \par
+    6. A confirmation message saying "This is your chosen rooms" and a list of the rooms chosen appears \par
+    7. Confirm and deny options appear \par
+    8. The dispensary nurse selects the "Confirm" option \par
+    [Extension 3: The dispensary nurse selects the "Deny" option] \par
+    9. The order gets sent to the server \par 
+    10. The server receives the order \par
+    11. The server saves the order in a text file \par
+    12.  The server sends the order to the car \par
+    [Extension 4: There is no car available] \par
+    13. The car receives the order \par
+    14. The car does its pathfinding calculations \par
+    15. The cars green LED lights up \par 
+    16. The UI clears \par
+    17. A message saying "A order has been succesfully made" \par
+    18. Wait 5 seconds \par
+    19. The UI closes \par
     \\
     \hline
-    \textbf{Extensions/Exceptions:} & [Extension 1: The dispensary nurse does not choose any rooms] \par
-    \hspace{1cm} 1. The dispensary nurse clicks finish order \par
-    \hspace{1cm} 2. An error message saying "You did not choose any rooms for this \par \hspace{1cm} order" appears \par
-    \hspace{1cm} 3. Return to point 2 \par
-    [Extension 2: The dispensary nurse chooses more than 3 rooms] \par
-    \hspace{1cm} 1. 
-    [Extension 3: The dispensary nurse clicks "Deny"] \par
-    \hspace{1cm} 1. Return to point 2
+    \textbf{Extensions/Exceptions:} & 
+    [Extension 1: The dispensary nurse selects the cancel option] \par
+    \hspace{1cm} 1. Deselect all rooms \par
+    \hspace{1cm} 2. Return to point 2 in the main scenario \par
+    [Extension 2: No rooms were selected] \par
+    \hspace{1cm} 1. An error message saying "You did not choose any rooms for this \par \hspace{1cm} order" appears \par
+    \hspace{1cm} 2. Return to point 2 \par
+    [Extension 3: The dispensary nurse selects the "Deny" option] \par
+    \hspace{1cm} 1. Deselect all rooms \par
+    \hspace{1cm} 2. Return to point 2 in the main scenario \par
+    [Extension 4: There is no car available] \par
+    \hspace{1cm} 1. Wait for car available notification \par
+    \hspace{1cm} 2. Return to point 9 in main scenario
     \\
     \hline
 \end{tabularx}
-    \caption{Use case 1 - Create order}
-    \label{tab:usecase1}
+    \caption{Use case 3 - Create order}
+    \label{tab:usecase3}
 \end{table}
 
 \begin{table}[H]
@@ -192,41 +205,47 @@ lots of expections....
     \hline
     \textbf{Name:} & Use case 4 - Deliver and return \\
     \hline
-    \textbf{Goal:} & The delivered drove the given route  \\
+    \textbf{Goal:} & The car completes the delivery route  \\
     \hline
     \textbf{Initialization:} & Press of the start button \\
     \hline
-    \textbf{Actors:} & \textbf The dispensary nurse - primary \\
+    \textbf{Actors:} & The dispensary nurse - primary \par
+    Nurse - secondary\\
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
-    \textbf{Precondition:} & The pathfinding has been done \\
+    \textbf{Precondition:} & The pathfinding calculations has been done and the green LED is turned on\\
     \hline
-    \textbf{Postcondition:} & The car have driven the given route and is back at home base \\
+    \textbf{Postcondition:} & The car has driven the given route and is back at homebase \\
     \hline
     \textbf{Main scenario:} &
-    1. The dispensary nurse presses the start button. \par
-    2. The car waits 1 second. \par
-    3. The car begins to drive. \par
-    4. The car drives. \par
-    5. The car arrives at the first point. \par
-    6. The car stops at the first point. \par
-    7. The car goes idle. \par
-    8. The nurse removes. \par
-    9. 
-
-
+    1. The dispensary nurse presses the start button \par
+    2. The green LED turns off \par
+    3. The car waits 1 second \par
+    4. The car starts driving \par
+    5. The car arrives at the next location and stops \par
+    6. The green LED lights up \par
+    7. The CPU enters waiting \par
+    8. The nurse presses the button \par
+    9. The green LED turns off \par
+    10. The car checks that there are no more locations other than homebase left \par
+    [Extension 1: There are more locations remaining other than homebase] \par
+    11. The car waits 1 second \par
+    12. The car starts driving \par
+    13. The car arrives and stops at the homebase \par
+    14. The car sends the server a notification that it has arrived at the homebase \par
+    15. The CPU enters waiting \par
      \\
     \hline
     \textbf{Extensions/Exceptions:} &
-    
+    [Extension 1: There are more locations remaining other than homebase] \par
+    \hspace{1cm} 1. Return to point 2 in main scenario
      \\
     \hline
 \end{tabularx}
     \caption{Use case 5}
     \label{tab:usecase5}
 \end{table}
-
 
 
 
