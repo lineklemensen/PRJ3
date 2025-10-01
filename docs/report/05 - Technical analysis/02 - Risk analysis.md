@@ -27,6 +27,8 @@ Generally, the following actions will be taken based on the risk score:
 - **Medium (10-17):** A mitigation strategy is developed, in order to prevent the risk.
 - **High (18-25):** A mitigation strategy, as well as a contingency plan is developed. This way, there's a plan in place if the risk should occur.
 
+However, in some cases, a mitigation strategy and contingency plan can be developed for low and medium risks as well, depending on the nature of the risk.
+
 \begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{1.5cm}|X|>{\centering\arraybackslash}p{1.2cm}|>{\centering\arraybackslash}p{1.2cm}|>{\centering\arraybackslash}p{1.2cm}|}
     \hline
     \multicolumn{5}{|c|}{\textbf{Technological Risks}} \\
