@@ -350,9 +350,9 @@ lots of expections....
     \hline
     \textbf{Goal:} & The car is shutdown successfully \\
     \hline
-    \textbf{Initialization:} & The dispensary nurse presses the "power off" button on the car \\
+    \textbf{Initialization:} & The dispensary nurse presses the power button on the car \\
     \hline
-    \textbf{Actors:} & \textbf{Primary:} The dispensary nurse \\
+    \textbf{Actors:} & \textbf The dispensary nurse - primary \\
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
@@ -361,35 +361,30 @@ lots of expections....
     \textbf{Postcondition:} & The car is powered off, the server is updated with the shutdown status of the car, the car is rinsed of pathfinding routes. \\
     \hline
     \textbf{Main scenario:} &
-    1. The dispensary nurse presses the power off button \par
-    2. The car sends a shutdown request to the server \par
+    1. The dispensary nurse presses the power button \par
+    2. The car sends a shutdown message to the server \par
     [Extension 1: The server is unreachable] \par
     3. The server acknowledges and updates the car status to "inactive" \par
     [Extension 2: The car is mid-delivery] \par
-    4. The car stops any driving instructions and locks the storage compartment if open \par
-    [Extension 3: The storage unit is not closed] \par
-    5. The car saves logs (last position, task status) \par
-    6. The car powers off safely \par
-    [Extension 4: Emergency stop or power failure] \\
+    4. The car stops any driving instructions \par
+    5. The car powers off safely \par
+    [Extension 4: Emergency stop or power failure]
      \\
     \hline
     \textbf{Extensions/Exceptions:} &
     [Extension 1: The server is unreachable] \par
-    \hspace{1cm} 1. The car performs a local safe shutdown \par
-    \hspace{1cm} 2. Logs are stored for next restart \par
+    \hspace{1cm} 1. The car tries to send a message again.  \par
+    \hspace{1cm} 2. Then the car shuts off. \par
     \hspace{1cm} 3. Use case ends \par
     [Extension 2: The car is mid-delivery] \par
-    \hspace{1cm} 1. The car requests confirmation from the nurse before shutdown \par
-    \hspace{1cm} 2. If confirmed, delivery is aborted safely \par
-    \hspace{1cm} 3. If not confirmed, shutdown is canceled \par
-    [Extension 3: The storage unit is not closed] \par
-    \hspace{1cm} 1. The car pauses shutdown until the storage unit is securely locked \par
-    \hspace{1cm} 2. Return to point 4 in main scenario \par
-    [Extension 4: Emergency stop or power failure] \par
+    \hspace{1cm} 1. The car stops \par
+    \hspace{1cm} 2. The red LED lights up \par
+    \hspace{1cm} 3. If the button is pressed again, the shuts off and does point 2.
+    \hspace{1cm} 4. If not confirmed, shutdown is canceled \par
+    [Extension 3: Emergency stop or power failure] \par
     \hspace{1cm} 1. The car immediately cuts motor power \par
-    \hspace{1cm} 2. Logs the event locally \par
+    \hspace{1cm} 2. Sends message to server if possible \par
     \hspace{1cm} 3. Use case ends \\
-    \hline
     \hline
 \end{tabularx}
     \caption{Use case 5}
