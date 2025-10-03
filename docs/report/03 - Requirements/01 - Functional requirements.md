@@ -63,8 +63,8 @@ lots of expections....
     \\
     \hline
 \end{tabularx}
-    \caption{Use case 1 - Create order}
-    \label{tab:usecase1}
+    \caption{Use Case  - }
+    \label{tab:usecase}
 \end{table}
 
 
@@ -72,7 +72,7 @@ lots of expections....
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
-    \textbf{Name:} & Use case 1 - Start \\
+    \textbf{Name:} & Use Case 1 - Start \\
     \hline
     \textbf{Goal:} & The car is on and ready \\
     \hline
@@ -129,7 +129,7 @@ lots of expections....
     \hline
     \textbf{Main scenario:} & 
     1. The dispensary nurse opens the UI \par
-    2. A message saying "Choose the rooms for this order" and a list of all the 3 rooms appear on the UI\par
+    2. A message saying "Choose the rooms for this order" and a list of all the 3 rooms appear on the UI \par
     3. Finish and cancel options appear \par
     4. The dispensary nurse chooses up to 3 rooms to add to the order \par
     5. The dispensary nurse clicks finish order \par
