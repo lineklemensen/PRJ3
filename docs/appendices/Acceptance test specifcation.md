@@ -7,7 +7,7 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{Main scenario}\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The system is running and functional} \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{Car is turned off} \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
