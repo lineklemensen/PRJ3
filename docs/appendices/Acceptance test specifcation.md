@@ -1,5 +1,35 @@
 # Acceptance test specification
 
+## Use Case 1 - Start
+
+\begin{table}[h] 
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |} 
+    \hline 
+    \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 1 - Start } \\
+    \hline 
+    \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{Main scenario} \\
+    \hline 
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{Car is turned off} \\ 
+    \hline 
+    \multicolumn{5}{|c|}{} \\ 
+    \hline \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\ 
+    \hline 
+    \textbf{1} & Press the on/off button & The red LED on the car turns on & & \\ 
+    \hline 
+    \textbf{2} & Car connects to server & A conformation is sent to the server: "connection to server successful" & & \\ 
+    \hline 
+    \textbf{3} & Car sets home base location & A conformation is sent to the server: "Home base location is set" & & \\ 
+    \hline 
+\end{tabularx} 
+\caption{Acceptance test - Use Case 1} 
+\label{tab:at-usecase1} 
+\end{table}
+
+
+
+\newpage
+## Use Case 2 - create order
+
 \begin{table}[h]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -67,6 +97,7 @@
 \end{table}
 
 
+
 \begin{table}[h]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -90,6 +121,8 @@
 \caption{Acceptance test - Use Case 2 - extension 2}
 \label{tab:at-usecase2ex2}
 \end{table}
+
+
 
 \begin{table}[h]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
@@ -116,6 +149,7 @@
 \caption{Accepttest - Use Case 2 - extension 3}
 \label{tab:at-usecase2ex3}
 \end{table}
+
 
 
 \begin{table}[h]
@@ -163,6 +197,57 @@
 \caption{Accepttest - Use Case 2 - extension 4}
 \label{tab:at-usecase2ex4}
 \end{table}
+
+
+
+\newpage
+## Use Case 3 - Deliver order and return
+
+\begin{table}[h]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 2 - Create order } \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{Extension 4: There is no car available}\\  
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The system is running and functional, and there is no car idle at the homebase} \\
+    \hline
+    \multicolumn{5}{|c|}{}\\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{ (OK/FAIL)}\\
+    \hline
+    \textbf{1} &  & & & \\
+    \hline 
+\end{tabularx}
+\caption{Accepttest - Use Case 1}
+\label{tab:at-usecase1a}
+\end{table}
+
+
+
+\newpage
+## Use Case 4 - Shutdown
+
+\begin{table}[h]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 2 - Create order } \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{Extension 4: There is no car available}\\  
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The system is running and functional, and there is no car idle at the homebase} \\
+    \hline
+    \multicolumn{5}{|c|}{}\\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{ (OK/FAIL)}\\
+    \hline
+    \textbf{1} &  & & & \\
+    \hline 
+\end{tabularx}
+\caption{Accepttest - Use Case 1}
+\label{tab:at-usecase1a}
+\end{table}
+
 
 
 \begin{table}[h]
