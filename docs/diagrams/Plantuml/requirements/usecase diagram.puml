@@ -1,4 +1,4 @@
-@startuml UC diagram
+@startuml
 left to right direction
 mainframe **Use-Case diagram**\t
 
@@ -7,17 +7,15 @@ actor "Dispensary nurse" as dn
 
 rectangle "Use cases" {
     usecase "UC1: Start" as UC1
-    usecase "UC2: Idle" as UC2
-    usecase "UC3: Create order" as UC3
-    usecase "UC4: Deliver" as UC4
-    usecase "UC5: Return" as UC5
+    usecase "UC2: Create order" as UC2
+    usecase "UC3: Deliver and return" as UC3
+    usecase "UC4: Shutdown of car" as UC4    
 }
 
-n --> UC1
-n --> UC3
+dn --> UC1
+dn --> UC2
+dn --> UC3
+dn --> UC4
 
-UC2 <-- dn
-UC3 <-- dn
-UC4 <-- dn
-
+UC3 <-- n
 @enduml
