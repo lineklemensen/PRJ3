@@ -6,10 +6,10 @@ actor Nurse as n
 actor "Dispensary nurse" as dn
 
 rectangle "Use cases" {
-    usecase "UC1: Start" as UC1
-    usecase "UC2: Create order" as UC2
+    usecase "UC4: Shutdown of car" as UC4
     usecase "UC3: Deliver and return" as UC3
-    usecase "UC4: Shutdown of car" as UC4    
+    usecase "UC2: Create order" as UC2
+    usecase "UC1: Start" as UC1  
 }
 
 dn --> UC1
