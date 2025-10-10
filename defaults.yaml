@@ -3,7 +3,11 @@ pdf-engine: pdflatex
 link-citations: true
 geometry:
   - margin=0.8in
+numbersections: true
 header-includes:
+  - \usepackage{graphicx}
   - \usepackage{tabularx}
+  - \usepackage{float}
 ---
+
 
