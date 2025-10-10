@@ -6,7 +6,7 @@
             "command": "pandoc",
             "args": [
                 "${relativeFile}",
-                "--resource-path=.${/}docs${/}${fileBasenameNoExtension}",
+                "--resource-path=./${workspaceFolder}",
                 "--metadata-file=./defaults.YAML",
                 "--table-caption-position=below",
                 "--figure-caption-position=below",
@@ -31,7 +31,7 @@
             "args": [
                 "-NoProfile",
                 "-Command",
-                "$files = Get-childItem -Path \\\"${workspaceFolder}/docs/report/\\\" -Recurse -File -Filter \\\"*.md\\\" | ForEach-Object { $_.FullName }; pandoc @files --resource-path=${workspaceFolder}/docs/ --metadata-file=${workspaceFolder}/defaults.YAML --citeproc --bibliography=${workspaceFolder}/docs/report/bibliography.bib --csl=${workspaceFolder}/ieee.csl -o \\\"${workspaceFolder}/PRJ3 - Rapport.pdf\\\"",
+                "$files = Get-childItem -Path \\\"${workspaceFolder}/docs/report/\\\" -Recurse -File -Filter \\\"*.md\\\" | ForEach-Object { $_.FullName }; pandoc @files --lua-filter=./scripts/char-count.lua --resource-path=${workspaceFolder}/docs/ --metadata-file=${workspaceFolder}/defaults.YAML --citeproc --bibliography=${workspaceFolder}/docs/report/bibliography.bib --csl=${workspaceFolder}/ieee.csl -o \\\"${workspaceFolder}/PRJ3 - Rapport.pdf\\\"",
             ],
             "options": {
                 "cwd": "${workspaceFolder}/docs/report/"
