@@ -1,0 +1,81 @@
+@startuml bdd
+
+mainframe **bdd\t**
+skinparam {
+    Linetype multi
+    'Linetype ortho
+}
+
+object "**Server (RPi 1)**" as srv <<block>> {
+    in Vcc : 5V
+    in GND : 0V
+    in/out HttpRequest : HTTP
+    in keyboardState : {unsure}
+}
+object "**Terminal UI**" as ui <<block>> {
+    in keyboardInput : Press
+    out keyboardState : {unsure}
+}
+
+object "**Car**" as car <<block>>{
+    \t\t\t\t\t\t
+}
+
+object "**Car controller (RPi 2)**" as carCon <<block>> {
+    in Vcc : 5V
+    in GND : 0V
+    in/out HttpRequest : HTTP
+    in EncoderSignal : 0-5V?
+    in powerBtnSignal . bool
+    in startBtnSignal . bool
+}
+
+
+object "**Button**" as btn <<block>> {
+    in btnPress: Press
+    out btnSignal: bool
+}
+
+object "**LED**" as led <<block>> {
+    in ledOn : 0-2.3V
+}
+
+object "**HBridge**" as HBridge <<block>> {
+    in Vcc : 5V
+    in GND : 0V
+}
+
+object "**Motor**" as Motor <<block>> {
+    in Vcc : 5V
+    in GND : 0V
+    out EncoderSignal : 0-5V?
+}
+
+object "**Car battery**" as bat <<block>> {
+    out BatteryOut : 7.2V
+    out GND : 0V
+}
+
+object "**Voltage converter**" as VCon <<block>> {
+    in BatteryOut : 7.2V
+    out Vcc : 5V
+}
+
+car *-- carCon
+car *-- "startButton" btn 
+car *-- "powerButton" btn 
+car *-r- "redLed" led
+car *-r- "greenLed" led
+car *-- VCon
+
+srv *-d- ui
+srv -r-> carCon
+
+carCon -l-> srv 
+carCon *-- HBridge
+HBridge *-- "leftMotor" Motor
+HBridge *-- "rightMotor" Motor
+VCon *-- bat
+
+
+@enduml
