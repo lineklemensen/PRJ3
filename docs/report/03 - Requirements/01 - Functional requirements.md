@@ -166,20 +166,19 @@ lots of expections....
     \textbf{Postcondition:} & An order has been created and sent to the car, the car has finished pathfinding calculations. \\
     \hline
     \textbf{Main scenario:} & 
-    1. The dispensary nurse opens the UI \par
-    2. A message saying "Choose the rooms for this order" and a list of all the 3 rooms appear on the UI \par
-    3. Finish and cancel options appear \par
-    4. The dispensary nurse chooses up to 3 rooms to add to the order \par
-    5. The dispensary nurse clicks finish order \par
-    \hspace{0.5cm} [Extension 1: The dispensary nurse selects the cancel option] \par
-    \hspace{0.5cm} [Extension 2: No rooms were selected] \par
-    6. A confirmation message saying "This is your chosen rooms" and a list of the rooms chosen appears \par
-    7. Confirm and deny options appear \par
-    8. The dispensary nurse selects the "Confirm" option \par
-    \hspace{0.5cm} [Extension 3: The dispensary nurse selects the "Deny" option] \par
-    9. The order gets sent to the server \par 
-    10. The server receives the order \par
-    11. The server saves the order in a text file \par
+    1. The dispensary nurse opens the UI on the computer \par
+    2. On the screen a message saying "Choose the rooms for this order" and a list of all the 3 rooms appear on the UI. Underneath a message saying "Change selection via the Up and Down arrow keys. Hit the Enter key to add highlighted room to order." \par
+    3. On the screen a Finish option and Cancel option appears. \par
+    4. The dispensary nurse selects up to 3 rooms to add to the order via the Up, Down and Enter keys.  \par
+    5. The dispensary nurse selects the Finish option and hits the Enter key \par
+    \hspace{0.5cm} [Extension 1: The dispensary nurse selects the Cancel option, and hits the Enter key] \par
+    \hspace{0.5cm} [Extension 2: No rooms were included in the order] \par
+    6. A confirmation message saying "These are your chosen rooms:" and a list of the rooms chosen appears on the screen. \par
+    7. Confirm and Deny options appear on the screen. \par
+    8. The dispensary nurse selects the Confirm option and hits Enter key. \par
+    \hspace{0.5cm} [Extension 3: The dispensary nurse selects the Deny option, and hits the Enter key] \par
+    9.  The order gets sent to the server \par 
+    10. The server saves the order in a text file \par
     12.  The server sends the order to the car \par
     \hspace{0.5cm} [Extension 4: There is no car available] \par
     13. The car receives the order \par
@@ -192,13 +191,13 @@ lots of expections....
     \\
     \hline
     \textbf{Extensions/Exceptions:} & 
-    [Extension 1: The dispensary nurse selects the cancel option] \par
+    [Extension 1: The dispensary nurse selects the Cancel option and hits the Enter key] \par
     \hspace{0.5cm} 1. Deselect all rooms \par
     \hspace{0.5cm} 2. Return to point 2 in the main scenario \par
-    [Extension 2: No rooms were selected] \par
+    [Extension 2: No rooms were included in the order] \par
     \hspace{0.5cm} 1. An error message saying "You did not choose any rooms for this \par \hspace{0.5cm} order" appears \par
     \hspace{0.5cm} 2. Return to point 2 \par
-    [Extension 3: The dispensary nurse selects the "Deny" option] \par
+    [Extension 3: The dispensary nurse selects the Deny option, and hits the Enter key] \par
     \hspace{0.5cm} 1. Deselect all rooms \par
     \hspace{0.5cm} 2. Return to point 2 in the main scenario \par
     [Extension 4: There is no car available] \par
