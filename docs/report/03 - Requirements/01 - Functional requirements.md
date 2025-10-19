@@ -177,17 +177,16 @@ lots of expections....
     7. Confirm and Deny options appear on the screen. \par
     8. The dispensary nurse selects the Confirm option and hits Enter key. \par
     \hspace{0.5cm} [Extension 3: The dispensary nurse selects the Deny option, and hits the Enter key] \par
-    9.  The order gets sent to the server \par 
-    10. The server saves the order in a text file \par
-    12.  The server sends the order to the car \par
-    \hspace{0.5cm} [Extension 4: There is no car available] \par
-    13. The car receives the order \par
-    14. The car does its pathfinding calculations \par
-    15. The cars green LED lights up \par 
-    16. The UI clears \par
-    17. A message saying "A order has been succesfully made" \par
-    18. Wait 5 seconds \par
-    19. The UI closes \par
+    9.  The order gets sent to the server. \par 
+    10. The server saves the order to a log file. \par
+    11. The server receives a notification from a car that it is ready to receive an order. \par
+    12. The server sends the oldest received order to the car. \par
+    13. The car receives the order and performs its pathfinding calculations \par
+    14. The cars' green LED lights up \par 
+    15. The UI on the screen clears. \par
+    16. A message saying "The order has been succesfully made" is printed on the screen. \par
+    17. Wait 5 seconds \par
+    18. The UI closes \par
     \\
     \hline
     \textbf{Extensions/Exceptions:} & 
