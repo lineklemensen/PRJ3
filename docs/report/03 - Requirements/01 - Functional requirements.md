@@ -151,9 +151,9 @@ lots of expections....
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
-    \textbf{Name:} & Use Case 2 - Create order \\
+    \textbf{Name:} & Use Case 2 - Create route (rooms to visit) \\
     \hline
-    \textbf{Goal:} & The user wants to create an order \\
+    \textbf{Goal:} & The user wants to create an route \\
     \hline
     \textbf{Initialization:} & The user opens the UI \\
     \hline
@@ -163,30 +163,29 @@ lots of expections....
     \hline
     \textbf{Precondition:} & The system is running and functional \\
     \hline
-    \textbf{Postcondition:} & An order has been created and sent to the car, the car has finished pathfinding calculations. \\
+    \textbf{Postcondition:} & An route has been created and sent to the car, the car has finished pathfinding calculations. \\
     \hline
     \textbf{Main scenario:} & 
     1. The dispensary nurse opens the UI on the computer \par
-    2. On the screen a message saying "Choose the rooms for this order" and a list of all the 3 rooms appear on the UI. Underneath a message saying "Change selection via the Up and Down arrow keys. Hit the Enter key to add highlighted room to order." \par
+    2. On the screen a message saying "Choose the rooms for this route" and a list of all the 3 rooms appear on the UI. Underneath a message saying "Change selection via the Up and Down arrow keys. Hit the Enter key to add highlighted room to route." \par
     3. On the screen a Finish option and Cancel option appears. \par
-    4. The dispensary nurse selects up to 3 rooms to add to the order via the Up, Down and Enter keys.  \par
-    5. The dispensary nurse selects the Finish option and hits the Enter key \par
+    4. The dispensary nurse selects rooms (up to 3) via the Up/Down keys and confirms with Enter key on the Finish option.  \par
     \hspace{0.5cm} [Extension 1: The dispensary nurse selects the Cancel option, and hits the Enter key] \par
-    \hspace{0.5cm} [Extension 2: No rooms were included in the order] \par
-    6. A confirmation message saying "These are your chosen rooms:" and a list of the rooms chosen appears on the screen. \par
-    7. Confirm and Deny options appear on the screen. \par
-    8. The dispensary nurse selects the Confirm option and hits Enter key. \par
+    \hspace{0.5cm} [Extension 2: No rooms were included in the route] \par
+    5. Screen shows confirmation message "These are your chosen rooms:" followed by the rooms chosen. \par
+    6. Confirm and Deny options appear on the screen. \par
+    7. The dispensary nurse selects the Confirm option and hits Enter key. \par
     \hspace{0.5cm} [Extension 3: The dispensary nurse selects the Deny option, and hits the Enter key] \par
-    9.  The order gets sent to the server. \par 
-    10. The server saves the order to a log file. \par
-    11. The server receives a notification from a car that it is ready to receive an order. \par
-    12. The server sends the oldest received order to the car. \par
-    13. The car receives the order and performs its pathfinding calculations \par
-    14. The cars' green LED lights up \par 
-    15. The UI on the screen clears. \par
-    16. A message saying "The order has been succesfully made" is printed on the screen. \par
-    17. Wait 5 seconds \par
-    18. The UI closes \par
+    8.  The route gets sent to the server. \par 
+    9.  The server saves the route to a log file. \par
+    10. The server receives a notification from a car that it is ready to receive an route. \par
+    11. The server sends the oldest received route to the car. \par
+    12. The car receives the route and performs its pathfinding calculations \par
+    13. The cars' green LED lights up \par 
+    14. The UI on the screen clears. \par
+    15. A message saying "The route has been succesfully made" is printed on the screen. \par
+    16. Wait 5 seconds \par
+    17. The UI closes \par
     \\
     \hline
     \textbf{Extensions/Exceptions:} & 
@@ -212,7 +211,7 @@ lots of expections....
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
-    \textbf{Name:} & Use Case 3 - Deliver and return \\
+    \textbf{Name:} & Use Case 3 - Complete delivery route \\
     \hline
     \textbf{Goal:} & The car completes the delivery route  \\
     \hline
