@@ -3,7 +3,8 @@ Referat:
 Referant: Mikkel Kristiasen
 Dato: 21-10-2025
 
-Meget detaljeret tidsplan for de næste 6 uger.
+detaljeret tidsplan for de næste 6 uger.
+Generalt system arkitektur 
 
 Use-Case 3:
 Navn ligner 2 use-case i 1 så den skal ændres.
@@ -25,3 +26,7 @@ Der skal ikke vises hvordan de forskellige komponenter komunukere med hinanden d
 
 Bil:
 State mangement for knappen "Start" på bilen, der skal tænkes over hvordan bilen holder styr på initial klik når den kører fra home-base og fra når der bliver klikket ved rumende langs ruten.
+
+
+
+
