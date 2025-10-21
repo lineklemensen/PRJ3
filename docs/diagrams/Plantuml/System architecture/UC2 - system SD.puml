@@ -1,5 +1,8 @@
-@startuml UC2 - Create order
+@startuml SystemSD UC2 - Create order
+
+mainframe **SD** UC2 - Create order
 hide footbox
+
 skinparam {
     MaxMessageSize 120
 }
