@@ -277,7 +277,7 @@ We decided to rate with a score from 1 to 5, where a higher score is better.
 
 /newpage
 
-## Motor — Devantech EMG49
+## Driving hardware
 
 ### Single or dual motor
 
@@ -298,7 +298,8 @@ The **dual-motor** approach, using one motor per wheel, enables **differential s
 The selected motor is the **DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot**, a 6 V DC motor with an integrated **1:34 gearbox** and **dual Hall-effect encoder** providing **341.2 counts per revolution**.  
 It offers strong torque, precise control, and reliable feedback, making it ideal for accurate robotic motion.
 
-### Technical Specifications
+### Motor - DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot
+####  Technical Specifications
 
 | Specification                 | Value     |
 | :---------------------------- | :-------- |
@@ -312,19 +313,19 @@ It offers strong torque, precise control, and reliable feedback, making it ideal
 | Gear ratio                    | 1:34      |
 
 
-### Performance
+#### Performance
 
 Using two DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot motors improves **torque**, **traction**, and **precision** through encoder feedback.  
 It allows for closed-loop control, enabling stable and accurate motion.  
 The trade-offs include higher **power consumption**, **component cost**, and **slightly increased complexity**, but the performance benefits justify these.
 
-### Conclusion
+#### Conclusion
 
 The **dual DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot motor setup** was selected for the vehicle.  
 This configuration provides superior control, torque, and precision—key for a responsive and accurate robotic platform.  
 While it increases power demands, the benefits to mobility and control performance make it the optimal choice.
 
-## H-Bridge / Motor Driver
+### H-Bridge / Motor Driver
 
 | Characteristic                    | L9110 | Monster Moto Shield (VNH2SP30) |
 | :-------------------------------- | :---: | :----------------------------: |
@@ -340,7 +341,7 @@ While it increases power demands, the benefits to mobility and control performan
 We compared two motor driver modules for the vehicle: the **L9110 Dual H-Bridge Driver** and the **Monster Moto Shield (VNH2SP30)**.  
 Both are commonly used in robotics, but they differ significantly in power capability, voltage range, and overall robustness.
 
-### Technical Overview
+#### Technical Overview
 
 **L9110**  
 The L9110 is a compact, low-cost H-bridge driver supporting **2.5–12 V** and delivering around **0.8 A continuous** per channel (up to 2 A peak).  
@@ -350,13 +351,13 @@ It is simple to use and ideal for small DC motors or lightweight robots. However
 The Monster Moto Shield, built around two **VNH2SP30 full-bridge drivers**, can supply **14 A continuous** and **30 A peak** current per channel with a voltage range of **5.5–16 V**.  
 It includes thermal shutdown, undervoltage, and current sensing protections, making it well-suited for larger robotic platforms and heavy-duty DC motors.
 
-### Evaluation
+#### Evaluation
 
 The **L9110** is sufficient for small robots, but our selected **Devantech EMG49 motor** can draw up to **13 A** at stall, far exceeding its capacity.  
 In contrast, the **Monster Moto Shield** easily supports that current while offering protection and monitoring features.  
 Its downsides are **higher cost**, **larger size**, and **slightly more complex wiring**, but these trade-offs are acceptable given its performance.
 
-### Conclusion
+#### Conclusion
 
 The **Monster Moto Shield** was chosen for this project because of its **high current handling**, **robust protection features**, and **compatibility** with the EMG49 motor.  
 The **L9110** was rejected due to its low power limit, despite being more affordable and easier to implement.
@@ -364,7 +365,7 @@ The **L9110** was rejected due to its low power limit, despite being more afford
 
 \newpage
 
-## Summary
+## Final decision
 
 | Component                   | Selected Option                                       | Key Advantages                                              | Trade-offs                               |
 | :-------------------------- | :---------------------------------------------------- | :---------------------------------------------------------- | :--------------------------------------- |
@@ -372,7 +373,6 @@ The **L9110** was rejected due to its low power limit, despite being more afford
 | **H-Bridge / Motor Driver** | Monster Moto Shield (VNH2SP30)                        | High current handling, protection, and dual-channel control | Larger size, higher cost                 |
 | **Motor**                   | DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot | High torque, encoder feedback, precise control              | Higher power consumption, increased cost |
 
-### Final Decision
 
 The **DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot** motors combined with the **Monster Moto Shield** form a reliable and scalable drive solution.  
 This pairing supports precise closed-loop control with encoder feedback and provides the robustness required for high-load operation.  
