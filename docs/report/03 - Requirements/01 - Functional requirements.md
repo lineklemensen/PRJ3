@@ -114,7 +114,7 @@ lots of expections....
     \hline
     \textbf{Name:} & Use Case 1 - Start \\
     \hline
-    \textbf{Goal:} & The car is on and ready \\
+    \textbf{Goal:} & The car is on and ready to request a route.\\
     \hline
     \textbf{Initialization:} & Dispensary nurse clicks the on/off button on the car \\
     \hline
@@ -124,15 +124,15 @@ lots of expections....
     \hline
     \textbf{Precondition:} & Car is turned off \\
     \hline
-    \textbf{Postcondition:} & Car has connection to the server and a home base location is set \\
+    \textbf{Postcondition:} & The car is turned on, and is connected to the network. \\
     \hline
     \textbf{Main scenario:} & 
     1. Dispensary nurse clicks the on/off button \par
     \hspace{0.5cm} [Exception 1: No power on battary] \par 
-    1. Red LED turns on and holds a constant light to signal the car in powered \par
-    2. Car establish connection to the server \par 
-    \hspace{0.5cm} [Exception 2: Connection to server fails] \par 
-    3. Path finding sets the cars current location as home base \par
+    2. Red LED turns on and holds a constant light to signal the car in powered \par
+    3. Car establish connection to the network \par 
+    \hspace{0.5cm} [Exception 2: Connection to network fails] \par 
+    4. Path finding sets the cars current location as home base \par
     \hspace{0.5cm} [Exception 3: Set home base location fails] \\
     \hline
     \textbf{Extensions/Exceptions:} & [Exception 1: No battery power] \par
