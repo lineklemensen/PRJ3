@@ -38,6 +38,8 @@
 
 \newpage
 
+![Use case diagram](docs\diagrams\out\requirements\usecase diagram.png){width=440}
+
 ### Use Case 1 Start
 Pre: Car is turned off
 
