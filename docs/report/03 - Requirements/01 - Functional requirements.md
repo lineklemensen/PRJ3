@@ -49,10 +49,10 @@ what to do: car powers on, establish connection to server, sets this current loc
 
 pre: UC 1 has been completed or UC5
 
-what to do: Car sends a message to the server that it is on/return, puts cpu in standby/waiting mode. Then waits for new order from the system
+what to do: Car sends a message to the server that it is on/return, puts cpu in standby/waiting mode. Then waits for new route from the system
 
 
-### Use Case 3 Create order
+### Use Case 3 Create route
 
 pre: the car is idle
 
@@ -150,7 +150,7 @@ lots of expections....
     \hline
     \textbf{Name:} & Use Case 2 - Create route \\
     \hline
-    \textbf{Goal:} & The dispensary nurse creates a route. \\
+    \textbf{Goal:} & A route is created. \\
     \hline
     \textbf{Initialization:} & The dispensary nurse opens the UI. \\
     \hline
@@ -158,42 +158,47 @@ lots of expections....
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
-    \textbf{Precondition:} & The system is running and functional \\
+    \textbf{Precondition:} & The system is running and functional.\\
     \hline
-    \textbf{Postcondition:} & An route has been created and sent to the car, the car has finished pathfinding calculations. \\
+    \textbf{Postcondition:} & A route has been created and sent to the car. \par
+    The car has finished pathfinding calculations. \\
     \hline
     \textbf{Main scenario:} & 
     1. The dispensary nurse opens the UI on the computer \par
-    2. On the screen a message saying "Choose the rooms for this route" and a list of all the 3 rooms appear on the UI. Underneath a message saying "Change selection via the Up and Down arrow keys. Hit the Enter key to add highlighted room to route." \par
-    3. On the screen a Finish option and Cancel option appears. \par
-    4. The dispensary nurse selects rooms (up to 3) via the Up/Down keys and confirms with Enter key on the Finish option.  \par
-    \hspace{0.5cm} [Extension 1: The dispensary nurse selects the Cancel option, and hits the Enter key] \par
-    \hspace{0.5cm} [Extension 2: No rooms were included in the route] \par
-    5. Screen shows confirmation message "These are your chosen rooms:" followed by the rooms chosen. \par
-    6. Confirm and Deny options appear on the screen. \par
-    7. The dispensary nurse selects the Confirm option and hits Enter key. \par
-    \hspace{0.5cm} [Extension 3: The dispensary nurse selects the Deny option, and hits the Enter key] \par
-    8.  The route gets sent to the server. \par 
-    9.  The server saves the route to a log file. \par
-    10. The UI on the screen clears. \par
-    11. A message saying "The route has been succesfully made" is printed on the screen. \par
-    12. Wait 5 seconds \par
-    13. The UI closes \par
+    2. The screen displays a message: "Choose the rooms for this route". \par  
+    A list of 3 rooms appear on the UI. \par 
+    The screen displays instructions for selecting rooms. \par
+    4. A "Finish" and "Cancel" option appears. \par
+    5. The dispensary nurse selects up to 3 rooms, then chooses the "Finish" option.  \par
+    \hspace{0.5cm} [Extension 1: The dispensary nurse selects the "Cancel" option] \par
+    \hspace{0.5cm} [Extension 2: No rooms were selected] \par
+    6. The screen displays a confirmation message: "These are your chosen rooms:". \par
+    A list of selected rooms is displayed. \par
+    7. "Confirm" and "Deny" options appear on the screen. \par
+    8. The dispensary nurse selects the "Confirm" option. \par
+    \hspace{0.5cm} [Extension 3: The dispensary nurse selects the "Deny" option] \par
+    9.  The route gets sent to the server. \par 
+    10. The server saves the route to a log file. \par
+    11. The UI on the screen clears. \par
+    12. The screen displays: "The route has been successfully made". \par
+    13. Wait 5 seconds \par
+    14. The UI closes \par
     \\
     \hline
     \textbf{Extensions/Exceptions:} & 
-    [Extension 1: The dispensary nurse selects the Cancel option and hits the Enter key] \par
-    \hspace{0.5cm} 1. Deselect all rooms \par
+    [Extension 1: The dispensary nurse selects the "Cancel" option] \par
+    \hspace{0.5cm} 1. Deselect all rooms. \par
+    \hspace{0.5cm} 2. Return to point 2 in the main scenario. \par
+    [Extension 2: No rooms were selected] \par
+    \hspace{0.5cm} 1. An error message appears on the screen: "You did not choose \par 
+    \hspace{1cm} any rooms for this route". \par
     \hspace{0.5cm} 2. Return to point 2 in the main scenario \par
-    [Extension 2: No rooms were included in the order] \par
-    \hspace{0.5cm} 1. An error message saying "You did not choose any rooms for this \par \hspace{0.5cm} order" appears \par
-    \hspace{0.5cm} 2. Return to point 2 \par
-    [Extension 3: The dispensary nurse selects the Deny option, and hits the Enter key] \par
-    \hspace{0.5cm} 1. Deselect all rooms \par
-    \hspace{0.5cm} 2. Return to point 2 in the main scenario \\
+    [Extension 3: The dispensary nurse selects the "Deny" option] \par
+    \hspace{0.5cm} 1. Deselect all rooms. \par
+    \hspace{0.5cm} 2. Return to point 2 in the main scenario. \\
     \hline
 \end{tabularx}
-    \caption{Use Case 2 - Create order}
+    \caption{Use Case 2 - Create route}
     \label{tab:usecase2}
 \end{table}
 
@@ -205,39 +210,39 @@ lots of expections....
     \hline
     \textbf{Goal:} & The car completes the delivery route  \\
     \hline
-    \textbf{Initialization:} & Press of the start button \\
+    \textbf{Initialization:} & The "Power" button is pressed. \\
     \hline
-    \textbf{Actors:} & The dispensary nurse - primary \par
-    Nurse - secondary\\
+    \textbf{Actors:} & \textbf{Primary:} The dispensary nurse \par
+    \textbf{Secondary:} Nurse \\
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
-    \textbf{Precondition:} & The car is idle in the homebase\\
+    \textbf{Precondition:} & The car is idle in the homebase.\\
     \hline
-    \textbf{Postcondition:} & The car has driven the given route and is back at homebase \\
+    \textbf{Postcondition:} & The car has completed the route and is back at the homebase.\\
     \hline
     \textbf{Main scenario:} &
-    1. A request is sent to the server to fetch route \par
+    1. The car sends a request to the server to fetch route. \par
     \hspace{0.5cm} [Exception 1: No available routes] \par 
     \hspace{0.5cm} [Exception 2: Network Error] \par 
     2. The server sends the oldest received route to the car. \par
-    3. Oldest route on the server is deleted \par
-    4. The car receives the route and performs its pathfinding calculations \par
-    5. The green LED is turned on \par
-    6. Action button is pressed \par
-    7. The green LED turns off \par
-    8. The car waits 5 seconds \par
-    9. The car starts driving \par
-    10. The car arrives at the next location in the route and stops \par
-    11. The green LED lights up \par
-    12. The car enters idle mode \par
-    13. Action button is pressed \par
-    14. The green LED turns off \par
-    \hspace{0.5cm} [Extension 3: There are more locations remaining other than homebase in the route] \par
-    15. The car waits 5 seconds \par
-    16. The car starts driving \par
-    17. The car arrives and stops at the homebase \par
-    18. The car enters idle mode \par
+    3. The route is deleted from the server. \par
+    4. The car receives the route and performs pathfinding calculations \par
+    5. The green LED turns on. \par
+    6. The "Action" button is pressed. \par
+    7. The green LED turns off. \par
+    8. The car waits 5 seconds. \par
+    9. The car starts driving. \par
+    10. The car arrives at the next location in the route, then stops. \par
+    11. The green LED turns on. \par
+    12. The car enters idle mode. \par
+    13. The "Action" button is pressed. \par
+    14. The green LED turns off. \par
+    \hspace{0.5cm} [Extension 3: Remaining locations in the route (excl. homebase)] \par
+    15. The car waits 5 seconds. \par
+    16. The car starts driving. \par
+    17. The car arrives and stops at the homebase. \par
+    18. The car enters idle mode. \par
      \\
     \hline
     \textbf{Extensions/Exceptions:} &
@@ -253,12 +258,12 @@ lots of expections....
     \hspace{0.5cm} 3. Red LED stops to blink \par    
     \hspace{0.5cm} 4. The car enters idle mode \par
 
-    [Extension 3: There are more locations remaining other than homebase in the route] \par
-    \hspace{0.5cm} 1. Return to point 4 in main scenario
+    [Extension 3: Remaining locations in the route (excl. homebase)] \par
+    \hspace{0.5cm} 1. Return to point 4 in the main scenario.
      \\
     \hline
 \end{tabularx}
-    \caption{Use Case 3}
+    \caption{Use Case 3 - Complete delivery route}
     \label{tab:usecase3}
 \end{table}
 
@@ -271,13 +276,13 @@ lots of expections....
     \hline
     \textbf{Goal:} & The car is shutdown successfully \\
     \hline
-    \textbf{Initialization:} & Power button is pressed \\
+    \textbf{Initialization:} & The "Power" button is pressed. \\
     \hline
-    \textbf{Actors:} & \textbf The dispensary nurse - primary \\
+    \textbf{Actors:} & \textbf{Primary:} Dispensary nurse \\
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
-    \textbf{Precondition:} & The car is powered on, connected to the server and at home base \\
+    \textbf{Precondition:} & The car is powered on, connected to the network, and is at the homebase \\
     \hline
     \textbf{Postcondition:} & The car is powered off \\
     \hline
