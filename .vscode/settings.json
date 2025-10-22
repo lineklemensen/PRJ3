@@ -10,6 +10,9 @@
         "Datagram",
         "feedforward",
         "newpage",
-        "pathfinding"
+        "pathfinding",
+        "refstepcounter",
+        "reprioritize",
+        "therisk",
     ]
 }
