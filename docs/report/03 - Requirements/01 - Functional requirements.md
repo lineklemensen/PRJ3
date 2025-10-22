@@ -115,28 +115,28 @@ lots of expections....
     \hline
     \textbf{Goal:} & The car is on and ready to request a route.\\
     \hline
-    \textbf{Initialization:} & Dispensary nurse clicks the on/off button on the car \\
+    \textbf{Initialization:} & The dispensary nurse clicks the Power button on the car. \\
     \hline
     \textbf{Actors:} & \textbf{Primary:} Dispensary nurse\\  
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
-    \textbf{Precondition:} & Car is turned off \\
+    \textbf{Precondition:} & The car is turned off. \\
     \hline
     \textbf{Postcondition:} & The car is turned on, and is connected to the network. \\
     \hline
     \textbf{Main scenario:} & 
-    1. Car is positioned on the homebase. \par
-    2. Dispensary nurse clicks the on/off button \par
-    \hspace{0.5cm} [Exception 1: No power on battery] \par 
-    3. Car establishes connection to the network \par 
+    1. The car is positioned on the homebase. \par
+    2. The Power button on the car is pressed. \par
+    \hspace{0.5cm} [Exception 1: No power on the battery] \par 
+    3. The car establishes a connection to the network. \par 
     \hspace{0.5cm} [Exception 2: Connection to network fails] \par
     4. Red LED turns on \\
     \hline
     \textbf{Extensions/Exceptions:} & [Exception 1: No battery power] \par
     \hspace{0.5cm} 1. The red LED does not turn on. \par
     [Exception 2: Connection to network fails] \par
-    \hspace{0.5cm} 1. Red LED starts to blink \\
+    \hspace{0.5cm} 1. Red LED starts to blink. \\
     \hline
 \end{tabularx}
 \caption{Use Case 1 - Start}
@@ -148,13 +148,13 @@ lots of expections....
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
-    \textbf{Name:} & Use Case 2 - Create route (rooms to visit) \\
+    \textbf{Name:} & Use Case 2 - Create route \\
     \hline
-    \textbf{Goal:} & The user wants to create an route \\
+    \textbf{Goal:} & The dispensary nurse creates a route. \\
     \hline
-    \textbf{Initialization:} & The user opens the UI \\
+    \textbf{Initialization:} & The dispensary nurse opens the UI. \\
     \hline
-    \textbf{Actors:} & Dispensary nurse - primary\\  
+    \textbf{Actors:} & \textbf{Primary:} Dispensary nurse\\  
     \hline
     \textbf{Concurrent instances:} & 1 \\
     \hline
