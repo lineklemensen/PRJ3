@@ -217,28 +217,43 @@ lots of expections....
     \textbf{Postcondition:} & The car has driven the given route and is back at homebase \\
     \hline
     \textbf{Main scenario:} &
-    
-    1. The green LED is turned on indicating that pathfinding has been completed \par
-    2. The dispensary nurse presses the start button \par
-    3. The green LED turns off \par
-    4. The car waits 5 seconds \par
-    5. The car starts driving \par
-    6. The car arrives at the next location and stops \par
-    7. The green LED lights up \par
-    8. The car enters idle mode \par
-    9. The nurse presses the button \par
-    10. The green LED turns off \par
-    11. The car checks that there are no more locations other than homebase left \par
-    \hspace{0.5cm} [Extension 2: There are more locations remaining other than homebase] \par
-    12. The car waits 5 seconds \par
-    13. The car starts driving \par
-    14. The car arrives and stops at the homebase \par
-    15. The car sends the server a notification that it has arrived at the homebase \par
-    16. The car enters idle mode \par
+    1. A request is sent to the server to fetch route \par
+    \hspace{0.5cm} [Exception 1: No available routes] \par 
+    \hspace{0.5cm} [Exception 2: Network Error] \par 
+    2. The server sends the oldest received route to the car. \par
+    3. Oldest route on the server is deleted \par
+    4. The car receives the route and performs its pathfinding calculations \par
+    5. The green LED is turned on \par
+    6. Action button is pressed \par
+    7. The green LED turns off \par
+    8. The car waits 5 seconds \par
+    9. The car starts driving \par
+    10. The car arrives at the next location in the route and stops \par
+    11. The green LED lights up \par
+    12. The car enters idle mode \par
+    13. Action button is pressed \par
+    14. The green LED turns off \par
+    \hspace{0.5cm} [Extension 3: There are more locations remaining other than homebase in the route] \par
+    15. The car waits 5 seconds \par
+    16. The car starts driving \par
+    17. The car arrives and stops at the homebase \par
+    18. The car enters idle mode \par
      \\
     \hline
     \textbf{Extensions/Exceptions:} &
-    [Extension 2: There are more locations remaining other than homebase] \par
+    [Exception 1: No available routes] \par 
+    \hspace{0.5cm} 1. The green LED starts blinking \par
+    \hspace{0.5cm} 2. The car waits 5 seconds \par
+    \hspace{0.5cm} 3. The green LED stops blinking \par
+    \hspace{0.5cm} 4. The car enters idle mode \par
+
+    [Exception 2: Network Error] \par 
+    \hspace{0.5cm} 1. Red LED starts to blink \par
+    \hspace{0.5cm} 2. The car waits 15 seconds \par
+    \hspace{0.5cm} 3. Red LED stops to blink \par    
+    \hspace{0.5cm} 4. The car enters idle mode \par
+
+    [Extension 3: There are more locations remaining other than homebase in the route] \par
     \hspace{0.5cm} 1. Return to point 4 in main scenario
      \\
     \hline
@@ -256,7 +271,7 @@ lots of expections....
     \hline
     \textbf{Goal:} & The car is shutdown successfully \\
     \hline
-    \textbf{Initialization:} & The dispensary nurse presses the power button on the car \\
+    \textbf{Initialization:} & Power button is pressed \\
     \hline
     \textbf{Actors:} & \textbf The dispensary nurse - primary \\
     \hline
@@ -264,33 +279,14 @@ lots of expections....
     \hline
     \textbf{Precondition:} & The car is powered on, connected to the server and at home base \\
     \hline
-    \textbf{Postcondition:} & The car is powered off, the server is updated with the shutdown status of the car, the car is rinsed of pathfinding routes. \\
+    \textbf{Postcondition:} & The car is powered off \\
     \hline
     \textbf{Main scenario:} &
-    1. The dispensary nurse presses the power button \par
-    2. The car sends a shutdown message to the server \par
-    \hspace{0.5cm}  [Extension 1: The server is unreachable] \par
-    3. The server acknowledges and updates the car status to "inactive" \par
-    \hspace{0.5cm}  [Extension 2: The car is mid-delivery] \par
-    4. The car stops any driving instructions \par
-    5. The car powers off safely \par
-    \hspace{0.5cm} [Extension 4: Emergency stop or power failure]
+    1. The car stops any driving instructions \par
+    2. The car powers off safely \par
      \\
     \hline
-    \textbf{Extensions/Exceptions:} &
-    [Extension 1: The server is unreachable] \par
-    \hspace{0.5cm} 1. The car tries to send a message again.  \par
-    \hspace{0.5cm} 2. Then the car shuts off. \par
-    \hspace{0.5cm} 3. Use Case ends \par
-    [Extension 2: The car is mid-delivery] \par
-    \hspace{0.5cm} 1. The car stops \par
-    \hspace{0.5cm} 2. The red LED lights up \par
-    \hspace{0.5cm} 3. If the button is pressed again, the shuts off and does point 2.
-    \hspace{0.5cm} 4. If not confirmed, shutdown is canceled \par
-    [Extension 3: Emergency stop or power failure] \par
-    \hspace{0.5cm} 1. The car immediately cuts motor power \par
-    \hspace{0.5cm} 2. Sends message to server if possible \par
-    \hspace{0.5cm} 3. Use Case ends \\
+    \textbf{Extensions/Exceptions:} & \\
     \hline
 \end{tabularx}
     \caption{Use Case 4}
