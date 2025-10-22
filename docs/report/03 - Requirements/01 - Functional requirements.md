@@ -108,7 +108,6 @@ lots of expections....
 \end{table}
 
 
-
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
     \hline
@@ -127,25 +126,21 @@ lots of expections....
     \textbf{Postcondition:} & The car is turned on, and is connected to the network. \\
     \hline
     \textbf{Main scenario:} & 
-    1. Dispensary nurse clicks the on/off button \par
-    \hspace{0.5cm} [Exception 1: No power on battary] \par 
-    2. Red LED turns on and holds a constant light to signal the car in powered \par
-    3. Car establish connection to the network \par 
-    \hspace{0.5cm} [Exception 2: Connection to network fails] \par 
-    4. Path finding sets the cars current location as home base \par
-    \hspace{0.5cm} [Exception 3: Set home base location fails] \\
+    1. Car is positioned on the homebase. \par
+    2. Dispensary nurse clicks the on/off button \par
+    \hspace{0.5cm} [Exception 1: No power on battery] \par 
+    3. Car establishes connection to the network \par 
+    \hspace{0.5cm} [Exception 2: Connection to network fails] \par
+    4. Red LED turns on \\
     \hline
     \textbf{Extensions/Exceptions:} & [Exception 1: No battery power] \par
     \hspace{0.5cm} 1. The red LED does not turn on. \par
-    [Exception 2: Connection to the server fails] \par
-    \hspace{0.5cm} 1. Red LED starts to blink, to signal that something is wrong. \par
-    [Exception 3: Set home base location fails] \par
-    \hspace{0.5cm} 1. Red LED starts to blink to signal that something is wrong.
-    \\
+    [Exception 2: Connection to network fails] \par
+    \hspace{0.5cm} 1. Red LED starts to blink \\
     \hline
 \end{tabularx}
-    \caption{Use Case 1 - Start}
-    \label{tab:usecase1}
+\caption{Use Case 1 - Start}
+\label{tab:usecase1}
 \end{table}
 
 
@@ -180,14 +175,10 @@ lots of expections....
     \hspace{0.5cm} [Extension 3: The dispensary nurse selects the Deny option, and hits the Enter key] \par
     8.  The route gets sent to the server. \par 
     9.  The server saves the route to a log file. \par
-    10. The server receives a notification from a car that it is ready to receive an route. \par
-    11. The server sends the oldest received route to the car. \par
-    12. The car receives the route and performs its pathfinding calculations \par
-    13. The cars' green LED lights up \par 
-    14. The UI on the screen clears. \par
-    15. A message saying "The route has been succesfully made" is printed on the screen. \par
-    16. Wait 5 seconds \par
-    17. The UI closes \par
+    10. The UI on the screen clears. \par
+    11. A message saying "The route has been succesfully made" is printed on the screen. \par
+    12. Wait 5 seconds \par
+    13. The UI closes \par
     \\
     \hline
     \textbf{Extensions/Exceptions:} & 
@@ -199,16 +190,13 @@ lots of expections....
     \hspace{0.5cm} 2. Return to point 2 \par
     [Extension 3: The dispensary nurse selects the Deny option, and hits the Enter key] \par
     \hspace{0.5cm} 1. Deselect all rooms \par
-    \hspace{0.5cm} 2. Return to point 2 in the main scenario \par
-    [Extension 4: There is no car available] \par
-    \hspace{0.5cm} 1. Wait for car available notification \par
-    \hspace{0.5cm} 2. Return to point 9 in main scenario
-    \\
+    \hspace{0.5cm} 2. Return to point 2 in the main scenario \\
     \hline
 \end{tabularx}
     \caption{Use Case 2 - Create order}
     \label{tab:usecase2}
 \end{table}
+
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
@@ -229,7 +217,7 @@ lots of expections....
     \textbf{Postcondition:} & The car has driven the given route and is back at homebase \\
     \hline
     \textbf{Main scenario:} &
-    \hspace{0.5cm} [Extension 1: Pathfinding has not been completed] \par
+    
     1. The green LED is turned on indicating that pathfinding has been completed \par
     2. The dispensary nurse presses the start button \par
     3. The green LED turns off \par
@@ -250,10 +238,6 @@ lots of expections....
      \\
     \hline
     \textbf{Extensions/Exceptions:} &
-    [Extension 1: Pathfinding has not been completed] \par
-    \hspace{0.5cm} 1. The green LED is not turned  \par
-    \hspace{0.5cm} 2. The dispensary nurse presses the start button \par
-    \hspace{0.5cm} 3. End the Use Case \par
     [Extension 2: There are more locations remaining other than homebase] \par
     \hspace{0.5cm} 1. Return to point 4 in main scenario
      \\
