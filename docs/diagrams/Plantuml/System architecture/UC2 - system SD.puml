@@ -1,42 +1,53 @@
-@startuml SystemSD UC2 - Create order
-
-mainframe **SD** UC2 - Create order
+@startuml SystemSD UC2 - Create route
+!pragma teoz true
+mainframe **SD** UC2 - Create route
 hide footbox
 
 skinparam {
     MaxMessageSize 120
 }
 
-
 actor "Dispensary nurse" as dn
 
 participant "**Terminal UI**" as ui
 participant "**Server (RPi 1)**" as srv
-participant "**Car**" as car
-participant "**Car controller (RPi 2)**" as carCon
-'participant "**HBridge**" as HBridge
-'participant "**Motor**" as Motor
 
-dn -> ui++ : Open UI
-ui --> dn : Show UI
+srv++
+dn ->> ui++ : Open UI
+ui -> ui : Show UI
 
 loop 1 to 3 times
-    dn -> ui : Add rooms to order
+    dn ->> ui : Select room to add
+    opt Room is already selected
+        ui -> ui : Deselect room
+    end
+    ui -> ui : Show updated selection
 end
 
-dn -> ui : Navigate to finish button and hit Enter key
-ui --> dn :  Show confirmation popup
-dn -> ui : Hit confirm via Enter key
+opt Cancel option selected
+    ui -> ui : Close UI
+end
 
-ui -> srv++ : Send order information to server
-ui --> dn : Order completion message appears
+dn ->> ui : Navigate to finish button and hit Enter key
+
+opt No rooms added to route
+    ui -> ui : Show "No rooms selected" msg
+
+end
+
+ui -> ui :  Show confirmation popup
+alt Confirm option
+    ui ->> srv : Send route information to server
+    ui -> ui : route completion message appears
+    & srv -> srv : Save route information to log file
+
+else Deny option
+    ui -> ui : Deselect all rooms
+end
+dn ->> ui : Press Enter key
+
+ui -> ui : Close ui
+|||
 ui--
-
-srv -> srv++-- : Save order information to log file
-car++
-car -> srv : Notify ready to receive order
-srv --> car : Send oldest order information
-car -> carCon++ : Perform pathfinding
-carCon -> carCon++-- : Turn on green light
 
 @enduml
