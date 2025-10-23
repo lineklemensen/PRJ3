@@ -1,0 +1,43 @@
+@startuml System STM
+
+skinparam Linetype ortho
+
+mainframe **System STM\t**
+
+state Off
+state Idle
+state Driving
+state Pathfinding
+state c1 <<choice>>
+
+Off : entry / Init, Power button pressed
+Off : do / /'Potentially wait for power button pressed'/
+Off : exit / Power button pressed
+
+Idle : entry / Power button pressed, Pathfinding finished, Arrival at next location
+Idle : do / Await action button pressed
+Idle : exit / Action button pressed
+
+Driving : entry / Action button pressed [Rooms available on route]
+Driving : do / Perform driving instructions towards next room on route
+Driving : exit / Arrival at next location
+
+Pathfinding : entry / Action button pressed [Pathfinding not done]
+Pathfinding : do / Perform pathfinding calculations for given route
+Pathfinding : exit / Pathfinding finished
+
+[*] -r-> Off
+
+Off -d-> Idle
+Idle -u-> Off
+
+Idle -r-> c1 
+c1 -u-> Driving : [Rooms available on route]
+c1 -d-> Pathfinding : [Pathfinding not done]
+
+Pathfinding --> Idle
+Driving --> Idle
+
+
+
+@enduml
