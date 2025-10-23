@@ -1,0 +1,19 @@
+@startuml SystemSD UC4 - Shutdown of car
+!pragma teoz true
+mainframe **SD**  UC4 - Shutdown of car
+hide footbox
+
+skinparam {
+    MaxMessageSize 120
+}
+
+actor "Dispensary nurse" as dn
+participant "**Car (RPi 2)**" as car
+
+car++
+dn ->> car : Power button is pressed
+car -> car : The car stops any driving instructions
+car -> car : The car powers off safely
+
+
+@enduml
