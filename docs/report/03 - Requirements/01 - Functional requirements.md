@@ -181,8 +181,9 @@ lots of expections....
     10. The server saves the route to a log file. \par
     11. The UI on the screen clears. \par
     12. The screen displays: "The route has been successfully made". \par
-    13. Wait 5 seconds \par
-    14. The UI closes \par
+    13. The screen display: "Press Enter key to close the UI." \par
+    14. Enter key is pressed \par
+    15. The UI closes \par
     \\
     \hline
     \textbf{Extensions/Exceptions:} & 
