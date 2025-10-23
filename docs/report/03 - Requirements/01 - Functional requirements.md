@@ -170,13 +170,14 @@ lots of expections....
     The screen displays instructions for selecting rooms. \par
     4. A "Finish" and "Cancel" option appears. \par
     5. The dispensary nurse selects up to 3 rooms \par
-    \hspace{0.5cm} [Extension 1: The dispensary nurse selects the "Cancel" option] \par
+    \hspace{0.5cm} [Exception 1: The dispensary nurse selects the "Cancel" option] \par
+    \hspace{0.5cm} [Extension 1: Room is already added] \par
     6. "Finish" option is selected.  \par
     \hspace{0.5cm} [Extension 2: No rooms were selected] \par
     7. The screen displays a confirmation message: "These are your chosen rooms:". \par
     A list of selected rooms is displayed. \par
     8. "Confirm" and "Deny" options appear on the screen. \par
-    9. The dispensary nurse selects the "Confirm" option. \par
+    9.  The dispensary nurse selects the "Confirm" option. \par
     \hspace{0.5cm} [Extension 3: The dispensary nurse selects the "Deny" option] \par
     10. The route gets sent to the server. \par 
     11. The server saves the route to a log file. \par
@@ -188,9 +189,11 @@ lots of expections....
     \\
     \hline
     \textbf{Extensions/Exceptions:} & 
-    [Extension 1: The dispensary nurse selects the "Cancel" option] \par
+    [Exception 1: The dispensary nurse selects the "Cancel" option] \par
     \hspace{0.5cm} 1. Deselect all rooms. \par
-    \hspace{0.5cm} 2. Return to point 2 in the main scenario. \par
+    \hspace{0.5cm} 2. Close UI \par
+    [Extension 1: Room is already added] \par
+    \hspace{0.5cm} 1. Room is removed from selection \par 
     [Extension 2: No rooms were selected] \par
     \hspace{0.5cm} 1. An error message appears on the screen: "You did not choose \par 
     \hspace{1cm} any rooms for this route". \par
