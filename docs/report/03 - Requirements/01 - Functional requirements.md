@@ -169,21 +169,22 @@ lots of expections....
     A list of 3 rooms appear on the UI. \par 
     The screen displays instructions for selecting rooms. \par
     4. A "Finish" and "Cancel" option appears. \par
-    5. The dispensary nurse selects up to 3 rooms, then chooses the "Finish" option.  \par
+    5. The dispensary nurse selects up to 3 rooms \par
     \hspace{0.5cm} [Extension 1: The dispensary nurse selects the "Cancel" option] \par
+    6. "Finish" option is selected.  \par
     \hspace{0.5cm} [Extension 2: No rooms were selected] \par
-    6. The screen displays a confirmation message: "These are your chosen rooms:". \par
+    7. The screen displays a confirmation message: "These are your chosen rooms:". \par
     A list of selected rooms is displayed. \par
-    7. "Confirm" and "Deny" options appear on the screen. \par
-    8. The dispensary nurse selects the "Confirm" option. \par
+    8. "Confirm" and "Deny" options appear on the screen. \par
+    9. The dispensary nurse selects the "Confirm" option. \par
     \hspace{0.5cm} [Extension 3: The dispensary nurse selects the "Deny" option] \par
-    9.  The route gets sent to the server. \par 
-    10. The server saves the route to a log file. \par
-    11. The UI on the screen clears. \par
-    12. The screen displays: "The route has been successfully made". \par
-    13. The screen display: "Press Enter key to close the UI." \par
-    14. Enter key is pressed \par
-    15. The UI closes \par
+    10. The route gets sent to the server. \par 
+    11. The server saves the route to a log file. \par
+    12. The UI on the screen clears. \par
+    13. The screen displays: "The route has been successfully made". \par
+    14. The screen display: "Press Enter key to close the UI." \par
+    15. Enter key is pressed \par
+    16. The UI closes \par
     \\
     \hline
     \textbf{Extensions/Exceptions:} & 
