@@ -4,7 +4,7 @@
 1. The car must be designed as a compact rectangular box with wheels, optimized for navigation and load carrying.
 2. The server must be a standalone unit.
 3. The car won't have obstacle detection and safe path navigation to avoid collisions.
-4. The car must make a request to the server for route every 30 seconds(?)
+
 
 ## Usability
 1. Operability
@@ -26,6 +26,8 @@
     1. The car must be equipped with 2 buttons, labelled 'Action' and 'Power'.
     2. The server must be accessed using a terminal UI on a local PC.
     3. The User Interface must use text $\geq$ 14pt, high contrast colors and be readable in the daylight.
+    4. The car must be equipped with two LEDs of different colors(green and red), indicating whether it is ready for delivery, among other things.
+    5. The car could have a speaker, letting the car indicate that its ready for delivery, waiting for pickup, etc.  auditorily.
    
 5. Metrics
 
@@ -50,6 +52,7 @@
 1. User input (button press, code) must be acknowledged within 1 second.(?)
 2. The car must be ready for operation within 30 seconds of power-on.
 3. The car must have a minium range of x(?) km per charge.
+4. The car must make a request to the server for route every 30 seconds(?)
 
 ## Supportability
 1. The car could log deliveries, failed attempts, and system errors for debugging and evaluation.
