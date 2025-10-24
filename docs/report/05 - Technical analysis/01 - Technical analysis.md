@@ -266,20 +266,20 @@ We decided to rate with a score from 1 to 5, where a higher score is better.
 Two batteries were considered: **7,2V/3000mAh NiMH battery** and **9,6V/2000mAh NiMH battery**. There are two determining factors when deciding which battery to use. **First runtime**(Watt-hours): Higher runtime provides the vehicle with longer time before recharging. **Second overcurrent:** Risk of overcurrent incresses when a battery has higher voltage than a component which can cause overheating.
 
 |                   | 7.2V battery | 9.6V battery |
-| :---------------- | :------: | :------: |
-| Capacity (mAh)    |    5     |    3     |
-| Weight            |    3     |    4     |
-| Voltage stability |    5     |    3     |
-| Recharge time     |    4     |    5     |
-| Price             |    5     |    5     |
-| Developer cost    |    5     |    5     |
+| :---------------- | :----------: | :----------: |
+| Capacity (mAh)    |      5       |      3       |
+| Weight            |      3       |      4       |
+| Voltage stability |      5       |      3       |
+| Recharge time     |      4       |      5       |
+| Price             |      5       |      5       |
+| Developer cost    |      5       |      5       |
 : Analysis of battery types for the car
 
 
 ### Conclusion
 The **7,2V/3000mAh NiMH battery** is chosen since it satisfies the criteria the most in both runtime and overcurrent. 
 
-/newpage
+\newpage
 
 ## Driving hardware
 
@@ -301,19 +301,19 @@ The **dual-motor** approach, using one motor per wheel, enables **differential s
 
 We decided to go with dual motor instead single, since the demands that our project requires fits better with the benefits and easy of use. noteworthy dual is way better and easier to make if we need good and reliable stearing.
 
-Then the selected motor is the **DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot**, a 6 V DC motor with an integrated **1:34 gearbox** and **dual Hall-effect encoder** providing **341.2 counts per revolution**.  
+Then the selected motor is the **DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot**, a 6V DC motor with an integrated **1:34 gearbox** and **dual Hall-effect encoder** providing **341.2 counts per revolution**.  
 It offers strong torque, precise control, and reliable feedback, making it ideal for accurate robotic motion.
 
 ### Motor - DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot
 ####  Technical Specifications
 
-| Specification                 | DC 6 V    | DC 24 V  |
+| Specification                 | DC 6V     | DC 24V   |
 | :---------------------------- | :-------- | :------- |
-| Rated voltage                 | 6 V       | 24 V     |
+| Rated voltage                 | 6V        | 24V      |
 | Rated torque                  | 10 kg·cm  | 16 kg·cm |
 | Rated speed                   | 210 rpm   | 122 rpm  |
-| No-load current               | 0.13 A    | 500 mA   |
-| Stall current                 | 3.2 A     | 13 A     |
+| No-load current               | 0.13A     | 500 mA   |
+| Stall current                 | 3.2A      | 13A      |
 | Stall power                   | 19.2 W    | 312 W    |
 | Encoder counts per revolution | 341.2 PPR | 980 PPR  |
 | Gear ratio                    | 1:34      | 49:1     |
@@ -321,16 +321,16 @@ It offers strong torque, precise control, and reliable feedback, making it ideal
 
 #### Performance
 
-The 24 V motor delivers greater torque and higher encoder resolution, making it well-suited for heavy-duty applications requiring precise positioning and load handling. However, these advantages come at the cost of significantly higher current draw, greater heat generation, and the need for more robust power electronics. In the context of this lightweight robotic platform, this level of performance is unnecessary and excessive — effectively overkill for the intended requirements.
+The 24V motor delivers greater torque and higher encoder resolution, making it well-suited for heavy-duty applications requiring precise positioning and load handling. However, these advantages come at the cost of significantly higher current draw, greater heat generation, and the need for more robust power electronics. In the context of this lightweight robotic platform, this level of performance is unnecessary and excessive — effectively overkill for the intended requirements.
 
-The 6 V motor, on the other hand, provides adequate torque, faster rotational speed, and lower power consumption, aligning perfectly with the selected 7.2 V NiMH battery. It offers a strong balance between performance and efficiency, allowing for stable closed-loop control through encoder feedback without straining the power system.
+The 6V motor, on the other hand, provides adequate torque, faster rotational speed, and lower power consumption, aligning perfectly with the selected 7.2V NiMH battery. It offers a strong balance between performance and efficiency, allowing for stable closed-loop control through encoder feedback without straining the power system.
 
 #### Conclusion
 
-The 6 V DC Geared Motor w/Encoder – 210 RPM 10 Kg·cm DFrobot was chosen as the final drive motor.
-Although the 24 V variant provides superior torque and encoder precision, it is overkill for this application, leading to unnecessary power consumption, thermal load, and cost.
+The 6V DC Geared Motor w/Encoder – 210 RPM 10 Kg·cm DFrobot was chosen as the final drive motor.
+Although the 24V variant provides superior torque and encoder precision, it is overkill for this application, leading to unnecessary power consumption, thermal load, and cost.
 
-The 6 V dual-motor configuration offers the optimal combination of control accuracy, maneuverability, and energy efficiency, while maintaining compatibility with the vehicle’s battery and overall power design.
+The 6V dual-motor configuration offers the optimal combination of control accuracy, maneuverability, and energy efficiency, while maintaining compatibility with the vehicle’s battery and overall power design.
 This setup ensures reliable, responsive, and well-balanced performance, making it the most practical and efficient solution for the project.
 
 ### H-Bridge / Motor Driver
@@ -352,16 +352,16 @@ Both are commonly used in robotics, but they differ significantly in power capab
 #### Technical Overview
 
 **L9110**  
-The L9110 is a compact, low-cost H-bridge driver supporting **2.5–12 V** and delivering around **0.8 A continuous** per channel (up to 2 A peak).  
+The L9110 is a compact, low-cost H-bridge driver supporting **2.5–12 V** and delivering around **0.8A continuous** per channel (up to 2A peak).  
 It is simple to use and ideal for small DC motors or lightweight robots. However, it lacks safety features such as overcurrent and thermal protection, making it unsuitable for high-power applications.
 
 **Monster Moto Shield (VNH2SP30)**  
-The Monster Moto Shield, built around two **VNH2SP30 full-bridge drivers**, can supply **14 A continuous** and **30 A peak** current per channel with a voltage range of **5.5–16 V**.  
+The Monster Moto Shield, built around two **VNH2SP30 full-bridge drivers**, can supply **14A continuous** and **30A peak** current per channel with a voltage range of **5.5–16 V**.  
 It includes thermal shutdown, undervoltage, and current sensing protections, making it well-suited for larger robotic platforms and heavy-duty DC motors.
 
 #### Evaluation
 
-The **L9110** is sufficient for small robots, but our selected **Devantech EMG49 motor** can draw up to **13 A** at stall, far exceeding its capacity.  
+The **L9110** is sufficient for small robots, but our selected **Devantech EMG49 motor** can draw up to **13A** at stall, far exceeding its capacity.  
 In contrast, the **Monster Moto Shield** easily supports that current while offering protection and monitoring features.  
 Its downsides are **higher cost**, **larger size**, and **slightly more complex wiring**, but these trade-offs are acceptable given its performance.
 
