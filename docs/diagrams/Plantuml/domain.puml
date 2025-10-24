@@ -41,20 +41,20 @@ object Server {
 
 actor "Dispensary Nurse" as dn
 
-Car -u-> HB : Starts\nfrom
-n -r-> Car : Operates
+Car "1"-u->"1" HB : Starts\nfrom
+n "*"-r->"1" Car : Operates
 
-Car -r-> Route : Calculates/\nFollows
-Route -d-> Loc : Consists of
+Car "1"-r->"1" Route : Calculates/\nFollows
+Route "*"-d->"*" Loc : Consists of
 
-Car <-d- dn : Operates
-dn -r-> Loc : Selects
-UI -r-> Loc : Displays
+Car "1" <-d- "1" dn : Operates
+dn "1" -r-> "1..*" Loc : Selects
+UI "1" -r-> "*" Loc : Displays
 
-dn -d-> UI : Uses
-Server <-r-> Car : Requests/\nResponds
+dn "1" -d-> "1" UI : Uses
+Server "1" <-r-> "1" Car : Requests/\nResponds
 (Server, Car) . Loc
-UI -r-> Server : Sends
+UI "1" -r-> "1" Server : Requests/\nResponds
 (UI, Server) . Loc
 
 
