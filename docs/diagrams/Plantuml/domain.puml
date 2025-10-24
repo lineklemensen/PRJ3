@@ -1,0 +1,56 @@
+@startuml
+
+allow_mixing
+
+skinparam {
+    LineType ortho
+}
+
+object Car {
+    Battery
+    .. Buttons ..
+    "Power-button"
+    "Action-button"
+    .. Indicators ..
+    "Red LED"
+    "Green LED"
+    .. Modes ..
+    "Idle mode"
+    "Shutdown mode"
+}
+
+object UI {
+    Instructions
+    "Navigation options"
+    Confirmation
+}
+
+object Route
+
+object Server
+
+object "Homebase" as HB
+object "Network" as Net
+object "Locations" as Loc
+
+actor "Dispensary Nurse" as dn
+actor "Nurse" as n
+
+Car -- HB : Starts from
+Car -- Net : Connects to
+dn -- UI : Uses
+Route -- Server : Sent to
+Car -- Server : Requests
+Server -- Car : Responds 
+Car -- Loc : Receives
+Car -- Route : Calculates
+dn -- Car : Operates
+n -- Car : Operates
+Car -- Route : Follows
+Route -- Loc : Consists of
+UI -- Loc : Displays
+dn -- Loc : Selects
+
+
+
+@enduml
