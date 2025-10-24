@@ -86,7 +86,46 @@
 \hline
 \end{tabularx}
 ### Internal Block Diagram
-
+\begin{tabularx}{0.8\textwidth}[H] { | X | X | X | X | X | }
+\hline
+\textbf{Signal name} & \textbf{Function} & \textbf{Area} & \textbf{Physical ports} & \textbf{Comments}\\
+\hline
+BPower & Gives power to the buttons & 5.0V & 2 GPIO & 2 GPIO pins is collective for the two buttons\\
+\hline
+MPower & Gives power to the DC motors & 6.0V & 2 GND, 2 VCC & This is the collective of the 2 motors physical ports\\
+\hline
+PiCPower & Gives power to RPiCar & 5.0V & USB C & \\
+\hline
+RLPower & Gives power to the Red LED & 0V - 5.0V & GPIO pins & 0 too 5V since the LED is either turned on or turned off\\ 
+\hline
+GLPower & Gives power to the Green LED & 0V - 5.0V & GPIO pins & 0 too 5V since the LED is either turned on or turned off\\
+\hline
+MCMD & Sends PWM Signal to the motors to determine the speed of the car & 5.0V & 2 PWM pins & There is a PWM pin for each MCMD\\
+\hline
+EncoderA & Sends high or low signal to count encoder signal & 5.0V & 2 GPIO Pins & There is a GPIO pin for each encoder A\\
+\hline
+EncoderB & Sends high or low signal to count encoder signal & 5.0V & 2 GPIO pins & There is a GPIO pin for each encoder B\\
+\hline
+DirA & Determins if the motor goes forward, reverse or brakes & 5.0V & 2 GPIO pins & There is a GPIO pin for each DirA\\
+\hline
+DirB & Determins if the motor goes forward, reverse or brakes & 5.0V & 2 GPIO pins & There is a GPIO pin for each DirB\\
+\hline
+Torque & The amount of force release & & & \\
+\hline
+BPress & The press of the buttons & & & The physical press of one of the two buttons\\
+\hline
+ASignal & The signal given after the action button is pressed & 0V - 5.0V & & 0 too 5V since the button is either pressed or it is not\\
+\hline
+PSignal & The signal given after the action button is pressed & 0V - 5.0V & & 0 too 5V since the button is either pressed or it is not\\
+\hline
+RLSignal & RLSignal is the red light that is released into surroundings & & &\\
+\hline
+GLSignal & GLSignal is the green light that is released into surroundings & & &\\
+\hline
+DataTransfer & The HTTP data that gets transfered from the server to the car through wifi & & &\\
+\hline
+Net & The wifi that is used to connect server, car and computer & & Ethernet & \\
+\end{tabularx}
 ### Interfaces
 
 ## Software architecture
