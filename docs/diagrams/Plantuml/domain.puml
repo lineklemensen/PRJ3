@@ -6,6 +6,9 @@ skinparam {
     LineType ortho
 }
 
+actor "Nurse" as n
+
+object "Homebase" as HB
 object Car {
     Battery
     .. Buttons ..
@@ -25,31 +28,34 @@ object UI {
     Confirmation
 }
 
+object "Locations" as Loc {
+    Coordinates
+}
 object Route
 
-object Server
 
-object "Homebase" as HB
-object "Network" as Net
-object "Locations" as Loc
+object Server {
+    log
+}
+
 
 actor "Dispensary Nurse" as dn
-actor "Nurse" as n
 
-Car -- HB : Starts from
-Car -- Net : Connects to
-dn -- UI : Uses
-Route -- Server : Sent to
-Car -- Server : Requests
-Server -- Car : Responds 
-Car -- Loc : Receives
-Car -- Route : Calculates
-dn -- Car : Operates
-n -- Car : Operates
-Car -- Route : Follows
-Route -- Loc : Consists of
-UI -- Loc : Displays
-dn -- Loc : Selects
+Car -u-> HB : Starts\nfrom
+n -r-> Car : Operates
+
+Car -r-> Route : Calculates/\nFollows
+Route -d-> Loc : Consists of
+
+Car <-d- dn : Operates
+dn -r-> Loc : Selects
+UI -r-> Loc : Displays
+
+dn -d-> UI : Uses
+Server <-r-> Car : Requests/\nResponds
+(Server, Car) . Loc
+UI -r-> Server : Sends
+(UI, Server) . Loc
 
 
 
