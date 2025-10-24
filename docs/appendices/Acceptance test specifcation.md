@@ -11,7 +11,7 @@
     \hline 
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{Main scenario} \\
     \hline 
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is turned off} \\ 
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is turned off ??and the hotspot is turned on??} \\ 
     \hline 
     \multicolumn{5}{|c|}{} \\ 
     \hline \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\ 
@@ -62,7 +62,7 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 2 }\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is turned off } \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is turned off and hotspot is turned off } \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
@@ -72,8 +72,10 @@
     \hline 
     \textbf{2} & Place the car on homebase & The car is on homebase & & \\ 
     \hline 
-    \textbf{3} & Press the 'Power' button & The red button starts blinking & & \\ 
+    \textbf{3} & Press the 'Power' button & Wire shark doesnt show connection between car and server & & \\ 
     \hline 
+    \textbf{4} & Car doesnt connect with ther server & The red LED starts to blink & & \\
+    \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 1 - Extension 2}
 \label{tab:at-usecase1ex2}
@@ -273,6 +275,89 @@
 \caption{Acceptance test - Use Case 3 - Main scenario}
 \label{tab:at-usecase3main}
 \end{table}
+\newpage
+
+### Extension 1
+\begin{table}[h]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 3 - Complete delivery route } \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 1 - No available routes }\\  
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is powered on, connected to the network and at homebase no route has been created } \\
+    \hline
+    \multicolumn{5}{|c|}{}\\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    \textbf{1} & Car requests a route from the server & No route is available & & \\ 
+    \hline
+    \textbf{2} & Observe LEDs & The green LED starts blinking & & \\ 
+    \hline
+    \textbf{3} & Wait 5 seconds & The green LED continues blinking during the wait & & \\ 
+    \hline
+    \textbf{4} & Observe LEDs & The green LED stops blinking, and the car enters idle mode & & \\ 
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Use Case 3 - Extension 1 - No available routes}
+\label{tab:at-usecase4main}
+\end{table}
+\newpage
+
+### Extionsen 2
+\begin{table}[h]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 3 - Complete delivery route } \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 2 - Network error }\\  
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is powered on, connected to the network and at homebase no route has been created } \\
+    \hline
+    \multicolumn{5}{|c|}{}\\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    \textbf{1} & Car requests a route from the server & No route is available & & \\ 
+    \hline
+    \textbf{2} & Observe LEDs & The green LED starts blinking & & \\ 
+    \hline
+    \textbf{3} & Wait 5 seconds & The green LED continues blinking during the wait & & \\ 
+    \hline
+    \textbf{4} & Observe LEDs & The green LED stops blinking, and the car enters idle mode & & \\ 
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Use Case 3 - Extension 2 -  Network Error}
+\label{tab:at-usecase4main}
+\end{table}
+\newpage
+
+### Extionsen 3
+\begin{table}[h]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 3 - Complete delivery route } \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 3 - Remaining locations in the route (exel. homebase) }\\  
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is powered on and the car fails to send or receive data from the server. } \\
+    \hline
+    \multicolumn{5}{|c|}{}\\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    \textbf{1} & Press the "Action" button & The green LED turns off & & \\ 
+    \hline
+    \textbf{2} & Wait 5 seconds & The car waits before starting to drive & & \\ 
+    \hline
+    \textbf{3} & Observe car movement & The car starts driving to the next delivery location and return to main scenario point 4 & & \\ 
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Use Case 3 - Extension 3 -  Remaining locations in the route (exel. homebase) }
+\label{tab:at-usecase4main}
+\end{table}
+
 
 ## Use Case 4 - Shutdown of car
 ### Main scenario
