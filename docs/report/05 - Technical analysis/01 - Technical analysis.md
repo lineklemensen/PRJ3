@@ -263,17 +263,21 @@ We decided to rate with a score from 1 to 5, where a higher score is better.
 ---
 
 ## Battery
+Two batteries were considered: **7,2V/3000mAh NiMH battery** and **9,6V/2000mAh NiMH battery**. There are two determining factors when deciding which battery to use. **First runtime**(Watt-hours): Higher runtime provides the vehicle with longer time before recharging. **Second overcurrent:** Risk of overcurrent incresses when a battery has higher voltage than a component which can cause overheating.
 
-|                   | Option A | Option B |
+|                   | 7.2V battery | 9.6V battery |
 | :---------------- | :------: | :------: |
-| Capacity (mAh)    |    -     |    -     |
-| Weight            |    -     |    -     |
-| Voltage stability |    -     |    -     |
-| Recharge time     |    -     |    -     |
-| Price             |    -     |    -     |
-| Developer cost    |    -     |    -     |
+| Capacity (mAh)    |    5     |    3     |
+| Weight            |    3     |    4     |
+| Voltage stability |    5     |    3     |
+| Recharge time     |    4     |    5     |
+| Price             |    5     |    5     |
+| Developer cost    |    5     |    5     |
 : Analysis of battery types for the car
 
+
+### Conclusion
+The **7,2V/3000mAh NiMH battery** is chosen since it satisfies the criteria the most in both runtime and overcurrent. 
 
 /newpage
 
