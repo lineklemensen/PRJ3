@@ -4,6 +4,8 @@
 
 ### Block Definition Diagram
 
+![Block definition diagram](docs\diagrams\out\System Architecture\bdd.png)
+
 \renewcommand{\arraystretch}{1.3}
 \begin{longtable}[h!]{|p{2.5cm}|p{5cm}|p{2.2cm}|p{4.8cm}|}
 
@@ -99,6 +101,7 @@
     \cline{3-4}
     & & BPress & The signal on the button when it gets pressed \\
     \hline
+\caption{Block descriptions}
 \end{longtable}
 
 \newpage
