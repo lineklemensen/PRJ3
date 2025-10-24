@@ -43,23 +43,21 @@
 ### Use Case 1 Start
 Pre: Car is turned off
 
+Initializing: The dispensary nurse clicks the Power button on the car.
+
 what to do: car powers on, establish connection to server, sets this current location as home base.
 
-### Use Case 2 Idle
-
-pre: UC 1 has been completed or UC5
-
-what to do: Car sends a message to the server that it is on/return, puts cpu in standby/waiting mode. Then waits for new route from the system
-
-
-### Use Case 3 Create route
+### Use Case 2 Create route
 
 pre: the car is idle
 
+Initializing: The dispensary nurse opens the UI.
+
+What to do: The dispensary nurse creates a route
 
 
 
-### Use Case 4 Deliver and return
+### Use Case 3 Deliver and return
 
 pre: pathfinding is done
 
@@ -68,7 +66,7 @@ Initializing: button is pressed
 what to do: Car drives to the next point on the pathfinding route, stops, checks if it is a room or home base, if home base go idle, if room waits for button press and then loops around to pathfinding route. 
 
 
-### Use Case 5 Shutdown
+### Use Case 4 Shutdown
 
 pre: the car is powered on
 
@@ -77,35 +75,6 @@ Initializing: the power off button is pressed:
 what to do: sends shutdown message to server, power off
 
 lots of expections....
-
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{ | p{5.04cm} | X | }
-    \hline
-    \textbf{Name:} & Use Case  \\
-    \hline
-    \textbf{Goal:} & \\
-    \hline
-    \textbf{Initialization:} & \\
-    \hline
-    \textbf{Actors:} & \\  
-    \hline
-    \textbf{Concurrent instances:} & \\
-    \hline
-    \textbf{Precondition:} & \\
-    \hline
-    \textbf{Postcondition:} & \\
-    \hline
-    \textbf{Main scenario:} & 
-    \\
-    \hline
-    \textbf{Extensions/Exceptions:} & 
-    \\
-    \hline
-\end{tabularx}
-    \caption{Use Case  - }
-    \label{tab:usecase}
-\end{table}
 
 
 \begin{table}[H]
