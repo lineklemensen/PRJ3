@@ -106,13 +106,27 @@
 
 \newpage
 ### Internal Block Diagram
-\begin{tabularx}{0.8\textwidth}[H] { | X | X | X | X | X | }
+
+\begin{longtable}[H] {|p{2.5cm}|p{4cm}|p{1.5cm}|p{2.6cm}|p{4cm}| }
 \hline
 \textbf{Signal name} & \textbf{Function} & \textbf{Area} & \textbf{Physical ports} & \textbf{Comments}\\
 \hline
+\endfirsthead
+
+\hline
+\textbf{Signal name} & \textbf{Function} & \textbf{Area} & \textbf{Physical ports} & \textbf{Comments}\\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
 BPower & Gives power to the buttons & 5.0V & 2 GPIO & 2 GPIO pins is collective for the two buttons\\
 \hline
-MPower & Gives power to the DC motors & 6.0V & 2 GND, 2 VCC & This is the collective of the 2 motors physical ports\\
+MPower & Gives power to the DC motors & 6.0V & 2 GND \par 2 VCC & This is the collective of the 2 motors physical ports\\
 \hline
 PiCPower & Gives power to RPiCar & 5.0V & USB C & \\
 \hline
@@ -145,7 +159,8 @@ GLSignal & GLSignal is the green light that is released into surroundings & & &\
 DataTransfer & The HTTP data that gets transfered from the server to the car through wifi & & &\\
 \hline
 Net & The wifi that is used to connect server, car and computer & & Ethernet & \\
-\end{tabularx}
+\end{longtable}
+
 ### Interfaces
 
 ## Software architecture
