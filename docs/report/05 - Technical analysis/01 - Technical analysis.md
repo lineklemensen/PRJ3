@@ -321,15 +321,17 @@ It offers strong torque, precise control, and reliable feedback, making it ideal
 
 #### Performance
 
-Using two DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot motors improves **torque**, **traction**, and **precision** through encoder feedback.  
-It allows for closed-loop control, enabling stable and accurate motion.  
-The trade-offs include higher **power consumption**, **component cost**, and **slightly increased complexity**, but the performance benefits justify these.
+The 24 V motor delivers greater torque and higher encoder resolution, making it well-suited for heavy-duty applications requiring precise positioning and load handling. However, these advantages come at the cost of significantly higher current draw, greater heat generation, and the need for more robust power electronics. In the context of this lightweight robotic platform, this level of performance is unnecessary and excessive — effectively overkill for the intended requirements.
+
+The 6 V motor, on the other hand, provides adequate torque, faster rotational speed, and lower power consumption, aligning perfectly with the selected 7.2 V NiMH battery. It offers a strong balance between performance and efficiency, allowing for stable closed-loop control through encoder feedback without straining the power system.
 
 #### Conclusion
 
-The **dual DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot motor setup** was selected for the vehicle.  
-This configuration provides superior control, torque, and precision—key for a responsive and accurate robotic platform.  
-While it increases power demands, the benefits to mobility and control performance make it the optimal choice.
+The 6 V DC Geared Motor w/Encoder – 210 RPM 10 Kg·cm DFrobot was chosen as the final drive motor.
+Although the 24 V variant provides superior torque and encoder precision, it is overkill for this application, leading to unnecessary power consumption, thermal load, and cost.
+
+The 6 V dual-motor configuration offers the optimal combination of control accuracy, maneuverability, and energy efficiency, while maintaining compatibility with the vehicle’s battery and overall power design.
+This setup ensures reliable, responsive, and well-balanced performance, making it the most practical and efficient solution for the project.
 
 ### H-Bridge / Motor Driver
 
