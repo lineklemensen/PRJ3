@@ -295,22 +295,24 @@ The **dual-motor** approach, using one motor per wheel, enables **differential s
 | Cost            |      5       |     3      |
 : Analysis of motor configurations
 
-The selected motor is the **DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot**, a 6 V DC motor with an integrated **1:34 gearbox** and **dual Hall-effect encoder** providing **341.2 counts per revolution**.  
+We decided to go with dual motor instead single, since the demands that our project requires fits better with the benefits and easy of use. noteworthy dual is way better and easier to make if we need good and reliable stearing.
+
+Then the selected motor is the **DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot**, a 6 V DC motor with an integrated **1:34 gearbox** and **dual Hall-effect encoder** providing **341.2 counts per revolution**.  
 It offers strong torque, precise control, and reliable feedback, making it ideal for accurate robotic motion.
 
 ### Motor - DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot
 ####  Technical Specifications
 
-| Specification                 | Value     |
-| :---------------------------- | :-------- |
-| Rated voltage                 | 6 V       |
-| Rated torque                  | 10 kg·cm  |
-| Rated speed                   | 210 rpm   |
-| No-load current               | 0.13 A    |
-| Stall current                 | 3.2 A     |
-| Stall power                   | 19.2 W    |
-| Encoder counts per revolution | 341.2 PPR |
-| Gear ratio                    | 1:34      |
+| Specification                 | DC 6 V    | DC 24 V  |
+| :---------------------------- | :-------- | :------- |
+| Rated voltage                 | 6 V       | 24 V     |
+| Rated torque                  | 10 kg·cm  | 16 kg·cm |
+| Rated speed                   | 210 rpm   | 122 rpm  |
+| No-load current               | 0.13 A    | 500 mA   |
+| Stall current                 | 3.2 A     | 13 A     |
+| Stall power                   | 19.2 W    | 312 W    |
+| Encoder counts per revolution | 341.2 PPR | 980 PPR  |
+| Gear ratio                    | 1:34      | 49:1     |
 
 
 #### Performance
