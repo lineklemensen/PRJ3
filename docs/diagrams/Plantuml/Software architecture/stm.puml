@@ -8,13 +8,15 @@ state Off
 state Idle
 state Driving
 state Pathfinding
+state "Error handling" as err
+state e <<choice>>
 state c1 <<choice>>
 
 Off : entry / Init, Power button pressed
 Off : do / /'Potentially wait for power button pressed'/
 Off : exit / Power button pressed
 
-Idle : entry / Power button pressed, Pathfinding finished, Arrival at next location
+Idle : entry / Power button pressed, Pathfinding finished, Arrival at next location, Error handled
 Idle : do / Await action button pressed
 Idle : exit / Action button pressed
 
@@ -26,18 +28,25 @@ Pathfinding : entry / Action button pressed [Pathfinding not done]
 Pathfinding : do / Perform pathfinding calculations for given route
 Pathfinding : exit / Pathfinding finished
 
+err : entry / Error found
+err : do / Handle error gracefully
+err : exit / Error handled
+
+
 [*] -r-> Off
 
 Off -d-> Idle
 Idle -u-> Off
 
-Idle -r-> c1 
-c1 -u-> Driving : [Rooms available on route]
-c1 -d-> Pathfinding : [Pathfinding not done]
+Idle --> e
+e ---> c1 : [No error]
+e --> err : [Error found]
+c1 --> Driving : [Rooms available\non route]
+c1 --> Pathfinding : [Pathfinding not done]
 
 Pathfinding --> Idle
 Driving --> Idle
-
+err --> Idle
 
 
 @enduml
