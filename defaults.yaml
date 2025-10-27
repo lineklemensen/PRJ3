@@ -8,6 +8,7 @@ header-includes:
   - \usepackage{graphicx}
   - \usepackage{tabularx}
   - \usepackage{float}
+  - \usepackage{array}
 ---
 
 

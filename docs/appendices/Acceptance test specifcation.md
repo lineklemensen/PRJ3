@@ -5,7 +5,7 @@
 ### Main scenario
 
 \begin{table}[H] 
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |} 
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} p{2cm} |} 
     \hline 
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 1 - Start } \\
     \hline 
@@ -285,7 +285,7 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 1 - No available routes }\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is powered on, connected to the network and at homebase no route has been created } \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{>{\hsize=\dimexpr 2\hsize+2\tabcolsep+\arrayrulewidth}X|}{The car is powered on, connected to the network and at homebase no route has been created } \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
@@ -305,7 +305,7 @@
 \end{table}
 \newpage
 
-### Extionsen 2
+### Extension 2
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -313,7 +313,7 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 2 - Network error }\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is powered on, connected to the network and at homebase no route has been created } \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{>{\hsize=\dimexpr 2\hsize+2\tabcolsep+\arrayrulewidth}X|}{The car is powered on, connected to the network and at homebase no route has been created } \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
@@ -333,7 +333,7 @@
 \end{table}
 \newpage
 
-### Extionsen 3
+### Extension 3
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
