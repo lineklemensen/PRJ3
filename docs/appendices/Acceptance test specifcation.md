@@ -4,7 +4,7 @@
 
 ### Main scenario
 
-\begin{table}[h] 
+\begin{table}[H] 
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |} 
     \hline 
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 1 - Start } \\
@@ -28,7 +28,7 @@
 \end{table}
 
 ### Extension 1
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use Case 1 - Start} \\ 
@@ -55,7 +55,7 @@
 \newpage
 
 ### Extension 2
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use Case 1 - Start} \\ 
@@ -85,7 +85,7 @@
 
 ## Use Case 2 - Create Route
 ### Main scenario
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 2 - Create route } \\ 
@@ -122,7 +122,7 @@
 \newpage
 
 ### Extension 1
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 2 - Create route } \\ 
@@ -151,7 +151,7 @@
 \newpage
 
 ### Extension 2(Ikke done)
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 2 - Create route } \\ 
@@ -180,7 +180,7 @@
 \newpage
 
 ### Extension 3
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 2 - Create route } \\ 
@@ -206,7 +206,7 @@
 
 \newpage
 ### Extension 4(ikke done)
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 2 - Create route } \\ 
@@ -244,7 +244,7 @@
 
 ## Use Case 3 - Complete Delivery Route
 ### Main scenario
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 3 - Complete delivery route } \\ 
@@ -278,7 +278,7 @@
 \newpage
 
 ### Extension 1
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 3 - Complete delivery route } \\ 
@@ -306,7 +306,7 @@
 \newpage
 
 ### Extionsen 2
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 3 - Complete delivery route } \\ 
@@ -334,7 +334,7 @@
 \newpage
 
 ### Extionsen 3
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 3 - Complete delivery route } \\ 
@@ -361,7 +361,7 @@
 
 ## Use Case 4 - Shutdown of car
 ### Main scenario
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 4 - Shutdown of car} \\ 
