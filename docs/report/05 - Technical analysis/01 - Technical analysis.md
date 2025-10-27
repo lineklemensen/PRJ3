@@ -256,18 +256,16 @@ Due to the comfortability with developing in C++ and our overall knowledge and e
 
 # Physical components
 
-# Technical Analysis
-
 We decided to rate with a score from 1 to 5, where a higher score is better.
 
 ---
 
 ## Battery
-Two batteries were considered: **7,2V/3000mAh NiMH battery** and **9,6V/2000mAh NiMH battery**. There are two determining factors when deciding which battery to use. **First runtime**(Watt-hours): Higher runtime provides the vehicle with longer time before recharging. **Second overcurrent:** Risk of overcurrent incresses when a battery has higher voltage than a component which can cause overheating.
+Two batteries were considered: **7,2V/3000mAh NiMH battery** and **9,6V/2000mAh NiMH battery**. There are two determining factors when deciding which battery to use. First, **runtime**(Watt-hours): A higher runtime provides the vehicle with longer active time before it needs recharging. Second **overcurrent:** Risk of overcurrent increases when a battery has higher voltage than a component, which can cause overheating.
 
 |                   | 7.2V battery | 9.6V battery |
 | :---------------- | :----------: | :----------: |
-| Capacity (mAh)    |      5       |      3       |
+| Capacity          |      5       |      3       |
 | Weight            |      3       |      4       |
 | Voltage stability |      5       |      3       |
 | Recharge time     |      4       |      5       |
@@ -277,34 +275,14 @@ Two batteries were considered: **7,2V/3000mAh NiMH battery** and **9,6V/2000mAh 
 
 
 ### Conclusion
-The **7,2V/3000mAh NiMH battery** is chosen since it satisfies the criteria the most in both runtime and overcurrent. 
+The **7,2V/3000mAh NiMH battery** is chosen since it satisfies our requirements the best with regards to runtime and overcurrent. 
 
 \newpage
 
 ## Driving hardware
 
-### Single or dual motor
+### Motor
 
-Two configurations were considered: **single-motor** and **dual-motor**.  
-A single-motor design would require a mechanical differential to steer, increasing complexity despite lower power use.  
-The **dual-motor** approach, using one motor per wheel, enables **differential steering**, simplifying control and greatly improving maneuverability and responsiveness.
-
-| Characteristic  | Single Motor | Dual Motor |
-| :-------------- | :----------: | :--------: |
-| Maneuverability |      2       |     5      |
-| Torque output   |      3       |     5      |
-| Complexity      |      5       |     3      |
-| Power usage     |      4       |     3      |
-| Redundancy      |      1       |     4      |
-| Cost            |      5       |     3      |
-: Analysis of motor configurations
-
-We decided to go with dual motor instead single, since the demands that our project requires fits better with the benefits and easy of use. noteworthy dual is way better and easier to make if we need good and reliable stearing.
-
-Then the selected motor is the **DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot**, a 6V DC motor with an integrated **1:34 gearbox** and **dual Hall-effect encoder** providing **341.2 counts per revolution**.  
-It offers strong torque, precise control, and reliable feedback, making it ideal for accurate robotic motion.
-
-### Motor - DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot
 ####  Technical Specifications
 
 | Specification                 | DC 6V     | DC 24V   |
@@ -327,11 +305,32 @@ The 6V motor, on the other hand, provides adequate torque, faster rotational spe
 
 #### Conclusion
 
-The 6V DC Geared Motor w/Encoder – 210 RPM 10 Kg·cm DFrobot was chosen as the final drive motor.
+The 6V DC Geared Motor w/Encoder – 210 RPM 10 Kg·cm DFrobot, FIT0521, was chosen as the final drive motor.
 Although the 24V variant provides superior torque and encoder precision, it is overkill for this application, leading to unnecessary power consumption, thermal load, and cost.
 
 The 6V dual-motor configuration offers the optimal combination of control accuracy, maneuverability, and energy efficiency, while maintaining compatibility with the vehicle’s battery and overall power design.
 This setup ensures reliable, responsive, and well-balanced performance, making it the most practical and efficient solution for the project.
+
+### Single or dual motor
+
+Two configurations were considered: **single-motor** and **dual-motor**.  
+A single-motor design would require a mechanical differential to steer, increasing complexity despite lower power use.  
+The **dual-motor** approach, using one motor per wheel, enables differential steering, simplifying control and greatly improving maneuverability and responsiveness.
+
+| Characteristic  | Single Motor | Dual Motor |
+| :-------------- | :----------: | :--------: |
+| Maneuverability |      2       |     5      |
+| Torque          |      3       |     5      |
+| Complexity      |      5       |     3      |
+| Power usage     |      4       |     3      |
+| Redundancy      |      1       |     4      |
+| Cost            |      5       |     3      |
+: Analysis of motor configurations
+
+We decided to go with dual motor instead single, since the demands our project requires fits better with the benefits and easy of use. Of note, the dual motor setup also allows for turning on the spot.
+
+The selected motor is the **DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot**, a 6V DC motor with an integrated 1:34 gearbox and dual Hall-effect encoder providing 341.2 counts per revolution.  
+It offers strong torque, precise control, and reliable feedback, making it ideal for accurate motion.
 
 ### H-Bridge / Motor Driver
 
@@ -352,22 +351,21 @@ Both are commonly used in robotics, but they differ significantly in power capab
 #### Technical Overview
 
 **L9110**  
-The L9110 is a compact, low-cost H-bridge driver supporting **2.5–12 V** and delivering around **0.8A continuous** per channel (up to 2A peak).  
+The L9110 is a compact, low-cost H-bridge driver supporting 2.5–12 V and delivering around 0.8A continuous per channel, up to a 2A peak.  
 It is simple to use and ideal for small DC motors or lightweight robots. However, it lacks safety features such as overcurrent and thermal protection, making it unsuitable for high-power applications.
 
 **Monster Moto Shield (VNH2SP30)**  
-The Monster Moto Shield, built around two **VNH2SP30 full-bridge drivers**, can supply **14A continuous** and **30A peak** current per channel with a voltage range of **5.5–16 V**.  
+The Monster Moto Shield, built around two **VNH2SP30 full-bridge drivers**, can supply 14A continuous and 30A peak current per channel with a voltage range of 5.5–16 V.  
 It includes thermal shutdown, undervoltage, and current sensing protections, making it well-suited for larger robotic platforms and heavy-duty DC motors.
 
 #### Evaluation
 
-The **L9110** is sufficient for small robots, but our selected **Devantech EMG49 motor** can draw up to **13A** at stall, far exceeding its capacity.  
-In contrast, the **Monster Moto Shield** easily supports that current while offering protection and monitoring features.  
-Its downsides are **higher cost**, **larger size**, and **slightly more complex wiring**, but these trade-offs are acceptable given its performance.
+The **L9110** is sufficient for small robots, but with additional features the **Monster Moto Shield** provides far outweigh the downsides.
+Its downsides are higher cost, larger size, and slightly more complex wiring, but these trade-offs are acceptable given its performance.
 
 #### Conclusion
 
-The **Monster Moto Shield** was chosen for this project because of its **high current handling**, **robust protection features**, and **compatibility** with the EMG49 motor.  
+The **Monster Moto Shield** was chosen for this project because of its high current handling, robust protection features, and compatibility with the FIT0521 motor.  
 The **L9110** was rejected due to its low power limit, despite being more affordable and easier to implement.
 
 
@@ -375,13 +373,13 @@ The **L9110** was rejected due to its low power limit, despite being more afford
 
 ## Final decision
 
-| Component                   | Selected Option                                       | Key Advantages                                              | Trade-offs                               |
-| :-------------------------- | :---------------------------------------------------- | :---------------------------------------------------------- | :--------------------------------------- |
-| **Battery**                 | ikke valgt endnu                                      | ikke valgt endnu                                            | ikke valgt endnu                         |
-| **H-Bridge / Motor Driver** | Monster Moto Shield (VNH2SP30)                        | High current handling, protection, and dual-channel control | Larger size, higher cost                 |
-| **Motor**                   | DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot | High torque, encoder feedback, precise control              | Higher power consumption, increased cost |
+| Component                   | Selected Option                | Key Advantages                                              | Trade-offs                                |
+| :-------------------------- | :----------------------------- | :---------------------------------------------------------- | :---------------------------------------- |
+| **Battery**                 | 7,2V/3000mAh NiMH battery      | Larger capacity                                             | Longer charge time due to larger capacity |
+| **H-Bridge / Motor Driver** | Monster Moto Shield (VNH2SP30) | High current handling, protection, and dual-channel control | Larger size, higher cost                  |
+| **Motor**                   | FIT0521                        | High torque, encoder feedback, precise control              | Higher power consumption, increased cost  |
 
 
-The **DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot** motors combined with the **Monster Moto Shield** form a reliable and scalable drive solution.  
-This pairing supports precise closed-loop control with encoder feedback and provides the robustness required for high-load operation.  
-Once the **battery** is selected, further analysis will ensure sufficient current supply and runtime for the entire system.
+The **FIT0521t** motors combined with the **Monster Moto Shield** form a reliable drive solution.  
+This pairing supports precise closed-loop control with encoder feedback and provides the robustness required for operation.  
+The 3000mAh battery chosen will also be able to power the components for an extended length of time between charges.
