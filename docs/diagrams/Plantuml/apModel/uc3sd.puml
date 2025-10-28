@@ -1,0 +1,33 @@
+@startuml SD UC3 - Deliver Order
+
+mainframe **SD** UC3 - Deliver Order
+hide footbox
+
+participant "Green LED" as gled <<led>>
+participant "LEDs" as led
+participant "Modes" as md
+participant "Buttons" as b
+participant "Action" as ab <<button>>
+participant "RouteController" as rc
+participant "Motor" as m
+participant "Pathfinder" as pf
+participant HTTP
+
+
+HTTP ->] : GET /destinations
+HTTP <--] : 200 OK [destinations]
+rc -> pf : findPath()
+pf --> rc : path
+rc -> md : notify()
+led -> gled : turnOn()
+b -> ab : readButton()
+led -> gled : turnOff()
+m -> m : driveToNextLocation()
+led -> gled : turnOn()
+md -> m : goIdle()
+b -> ab : readButton()
+led -> gled : turnOff()
+m -> m : driveToNextLocation()
+md -> m : goIdle()
+
+@enduml

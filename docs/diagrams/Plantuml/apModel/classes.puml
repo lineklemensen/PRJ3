@@ -2,6 +2,7 @@
 
 skinparam {
     packageStyle rectangle
+    Linetype ortho
 }
 
 package "PC"
@@ -26,6 +27,12 @@ package "Car"
     class "PIDregulator" as pid
 
     class "DeadReckoning" as dr
+
+    class "RouteController" as rc <<control>>
+
+    class "LEDs" as led
+
+    class "Modes" as md
 }
 
 package "Server"
@@ -36,5 +43,7 @@ package "Server"
 
     class "CreateOrder" as co
 }
+
+
 
 @enduml

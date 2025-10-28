@@ -1,0 +1,13 @@
+@startuml CD UC3 - Complete Delivery Route
+
+!include classes.puml
+
+m -- hb
+md -- m
+pid -- rc
+rc -- dr
+pf -- rc
+md -- b
+md -- led
+
+@enduml
