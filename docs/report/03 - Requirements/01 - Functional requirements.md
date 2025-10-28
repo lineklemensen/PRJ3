@@ -92,7 +92,7 @@ lots of expections....
     \hline
     \textbf{Precondition:} & The car is turned off. \\
     \hline
-    \textbf{Postcondition:} & The car is turned on, and is connected to the network. \\
+    \textbf{Postcondition:} & The car is connected to the network. \\
     \hline
     \textbf{Main scenario:} & 
     1. The car is positioned on the homebase. \par
@@ -129,32 +129,31 @@ lots of expections....
     \hline
     \textbf{Precondition:} & The system is running and functional.\\
     \hline
-    \textbf{Postcondition:} & A route has been created and sent to the car. \par
-    The car has finished pathfinding calculations. \\
+    \textbf{Postcondition:} & The car has finished pathfinding calculations. \\
     \hline
     \textbf{Main scenario:} & 
     1. The dispensary nurse opens the UI on the computer \par
     2. The screen displays a message: "Choose the rooms for this route". \par  
     A list of 3 rooms appear on the UI. \par 
     The screen displays instructions for selecting rooms. \par
-    4. A "Finish" and "Cancel" option appears. \par
-    5. The dispensary nurse selects up to 3 rooms \par
+    3. A "Finish" and "Cancel" option appears. \par
+    4. The dispensary nurse selects up to 3 rooms \par
     \hspace{0.5cm} [Exception 1: The dispensary nurse selects the "Cancel" option] \par
     \hspace{0.5cm} [Extension 1: Room is already added] \par
-    6. "Finish" option is selected.  \par
+    5. "Finish" option is selected.  \par
     \hspace{0.5cm} [Extension 2: No rooms were selected] \par
-    7. The screen displays a confirmation message: "These are your chosen rooms:". \par
+    6. The screen displays a confirmation message: "These are your chosen rooms:". \par
     A list of selected rooms is displayed. \par
-    8. "Confirm" and "Deny" options appear on the screen. \par
-    9.  The dispensary nurse selects the "Confirm" option. \par
+    7. "Confirm" and "Deny" options appear on the screen. \par
+    8.  The dispensary nurse selects the "Confirm" option. \par
     \hspace{0.5cm} [Extension 3: The dispensary nurse selects the "Deny" option] \par
-    10. The route gets sent to the server. \par 
-    11. The server saves the route to a log file. \par
-    12. The UI on the screen clears. \par
-    13. The screen displays: "The route has been successfully made". \par
-    14. The screen display: "Press Enter key to close the UI." \par
-    15. Enter key is pressed \par
-    16. The UI closes \par
+    9.  The route gets sent to the server. \par 
+    10. The server saves the route to a log file. \par
+    11. The UI on the screen clears. \par
+    12. The screen displays: "The route has been successfully made". \par
+    13. The screen display: "Press Enter key to close the UI." \par
+    14. Enter key is pressed \par
+    15. The UI closes \par
     \\
     \hline
     \textbf{Extensions/Exceptions:} & 
@@ -248,7 +247,7 @@ lots of expections....
     \hline
     \textbf{Name:} & Use Case 4 - Shutdown of car \\
     \hline
-    \textbf{Goal:} & The car is shutdown successfully \\
+    \textbf{Goal:} & The car is shutdown \\
     \hline
     \textbf{Initialization:} & The "Power" button is pressed. \\
     \hline
