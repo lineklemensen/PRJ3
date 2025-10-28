@@ -1,0 +1,15 @@
+@startuml SD UC3 - Deliver Order
+
+mainframe **SD** UC3 - Deliver Order
+hide footbox
+
+participant HTTP
+participant CreateOrder as sco
+participant OrderLog as ol
+
+[-> HTTP : GET /destinations
+sco -> HTTP : sendDestinations()
+[<-- HTTP : 200 OK [destinations]
+sco -> ol : deleteDestinations()
+
+@enduml

@@ -5,45 +5,107 @@ skinparam {
     Linetype ortho
 }
 
-package "PC"
+package PC
 {
-    class HTTP
+    class "HTTP" as phttp
 
-    class CreateOrder
+    class "CreateOrder" as pco
+    {
+        -destinationListId:int
+        -destinations:List<Location>
+        +addDestination()
+        +sendDestinations()
+    }
 }
 
-package "Car"
+package Server
 {
-    class HTTP
+    class "HTTP" as shttp
+
+    class "OrderLog" as ol
+    {
+        +push(destinations)
+        +deleteDestinations()
+    }
+
+    class "CreateOrder" as sco
+    {
+        -destinationListId:int
+        -destinations:List<Location>
+    }
+}
+
+package Car
+{
+    class "HTTP" as chttp
 
     class "Buttons" as b
+    {
+        -pin:int
+        -state:bool
+        +readButton()
+    }
 
     class "H-bridge" as hb
+    {
+        +setDirection(bool forward)
+    }
 
     class "Motor" as m
+    {
+
+    }
 
     class "Pathfinder" as pf
+    {
+        +setMap()
+        +planPath()
+    }
 
-    class "PIDregulator" as pid
+    class "PIDreg" as pid
+    {
+        +setTarget()
+        +update()
+    }
 
     class "DeadReckoning" as dr
+    {
+        +update()
+        +getPos()
+        +resetPos()
+        +getVelocity()
+    }
 
     class "RouteController" as rc <<control>>
+    {
+        +driveToNextLocation()
+
+    }
 
     class "LEDs" as led
+    {
+        -pin:int
+        +turnOn()
+        +turnOff()
+    }
 
     class "Modes" as md
 }
 
-package "Server"
-{
-    class HTTP
 
-    class "OrderLog" as ol
+m -- hb
+md -l- m
+pid -- rc
+rc -- dr
+pf -- rc
+md -u- b
+md -- led
 
-    class "CreateOrder" as co
-}
+ol -- shttp
+sco -- shttp
+pco -- phttp
 
-
+shttp -- chttp
+shttp -l- phttp
 
 @enduml

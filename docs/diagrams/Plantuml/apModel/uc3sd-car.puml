@@ -9,6 +9,7 @@ participant "Modes" as md
 participant "Buttons" as b
 participant "Action" as ab <<button>>
 participant "RouteController" as rc
+participant "H-bridge" as hb
 participant "Motor" as m
 participant "Pathfinder" as pf
 participant HTTP
@@ -16,13 +17,15 @@ participant HTTP
 
 HTTP ->] : GET /destinations
 HTTP <--] : 200 OK [destinations]
-rc -> pf : findPath()
+rc -> pf : planPath()
 pf --> rc : path
 rc -> md : notify()
 led -> gled : turnOn()
 b -> ab : readButton()
 led -> gled : turnOff()
-m -> m : driveToNextLocation()
+hb -> m : setDirection(forward)
+rc -> rc : driveToNextLocation()
+m -> m : stop()
 led -> gled : turnOn()
 md -> m : goIdle()
 b -> ab : readButton()

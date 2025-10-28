@@ -2,12 +2,8 @@
 
 !include classes.puml
 
-m -- hb
-md -- m
-pid -- rc
-rc -- dr
-pf -- rc
-md -- b
-md -- led
+remove PC
+
+mainframe **CD** UC3 - Complete Delivery Route
 
 @enduml

@@ -1,0 +1,17 @@
+@startuml SD UC2 - Create Delivery
+
+mainframe **SD** UC2 - Create Delivery
+hide footbox
+
+participant HTTP
+participant CreateOrder as co
+participant OrderLog as ol
+
+
+
+[-> HTTP : POST /destinations
+ol -> ol : push(destinations)
+[<-- HTTP : 201 Created
+
+
+@enduml

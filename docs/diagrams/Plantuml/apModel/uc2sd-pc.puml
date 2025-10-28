@@ -1,0 +1,17 @@
+@startuml SD UC2 - Create Delivery
+
+mainframe **SD** UC2 - Create Delivery
+hide footbox
+
+participant HTTP
+participant CreateOrder as pco
+
+loop 1 to 3 times
+pco -> pco : addDestination()
+end
+
+pco -> HTTP : sendDestinations()
+[<- HTTP : POST /destinations
+[--> HTTP : 201 Created
+
+@enduml

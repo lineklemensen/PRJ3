@@ -1,0 +1,9 @@
+@startuml CD UC2 - Create Delivery
+
+!include classes.puml
+
+mainframe **CD** UC2 - Create Delivery
+
+remove Car
+
+@enduml
