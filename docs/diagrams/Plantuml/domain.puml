@@ -4,6 +4,8 @@ allow_mixing
 
 skinparam {
     LineType ortho
+    NodeSep 85 
+    RankSep 55 
 }
 
 actor "Nurse" as n
@@ -41,17 +43,17 @@ object Server {
 
 actor "Dispensary Nurse" as dn
 
-Car "1"-u->"1" HB : Starts\nfrom
-n "*"-r->"1" Car : Operates
+Car "1"--u->"1" HB :  Starts\nfrom
+n "*"-r->"1" Car : Operates\t
 
 Car "1"-r->"1" Route : Calculates/\nFollows
 Route "*"-d->"*" Loc : Consists of
 
 Car "1" <-d- "1" dn : Operates
 dn "1" -r-> "1..*" Loc : Selects
-UI "1" -r-> "*" Loc : Displays
+UI "1" -d-> "*" Loc : \nDisplays
 
-dn "1" -d-> "1" UI : Uses
+dn "1" -r-> "1" UI : \tUses
 Server "1" <-r-> "1" Car : Requests/\nResponds
 (Server, Car) . Loc
 UI "1" -r-> "1" Server : Requests/\nResponds
