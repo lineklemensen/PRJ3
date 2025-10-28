@@ -1,0 +1,40 @@
+@startuml Classes
+
+skinparam {
+    packageStyle rectangle
+}
+
+package "PC"
+{
+    class HTTP
+
+    class CreateOrder
+}
+
+package "Car"
+{
+    class HTTP
+
+    class "Buttons" as b
+
+    class "H-bridge" as hb
+
+    class "Motor" as m
+
+    class "Pathfinder" as pf
+
+    class "PIDregulator" as pid
+
+    class "DeadReckoning" as dr
+}
+
+package "Server"
+{
+    class HTTP
+
+    class "OrderLog" as ol
+
+    class "CreateOrder" as co
+}
+
+@enduml
