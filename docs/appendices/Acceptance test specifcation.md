@@ -1,4 +1,4 @@
-Acceptance test specification
+# Acceptance test specification {-}
 
 # Use Case 1 - Start
 
@@ -150,7 +150,7 @@ Acceptance test specification
 
 \newpage
 
-### Extension 1 - Room is already added(Ikke done)
+### Extension 1 - Room is already added
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -170,7 +170,7 @@ Acceptance test specification
     \hline
     \textbf{3} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & & \\
     \hline
-    \textbf{4} & Select rooms 2 and 3 again & Rooms 2 and 3 will be unselected. Go to point 4 of main scenario(Skal dette være eget punkt eller whatever) & & \\
+    \textbf{4} & Select rooms 2 and 3 again & Rooms 2 and 3 will be unselected & & \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Extension 1 - Room is already added}
@@ -227,14 +227,7 @@ Acceptance test specification
     \hline
     \textbf{4} & Navigate to and select 'Finish route' & A confirmation message saying "These are your chosen rooms" and a list of the rooms 1, 2 and 3 appears & & \\
     \hline
-    \textbf{5} & 'Confirm' is selected & Wireshark shows a message being sent to the server & & \\ 
-    \hline
-    \textbf{6} & Open the text file "routes.txt" on the server and check the contents & The file contains the order of room 1, 2 and 3 & & \\
-    \hline
-    \textbf{8} & Look at the UI & The Terminal UI displays "The route has been successfully made" and "Press Enter to close the UI" & & \\
-    \hline
-    \textbf{9} & Press Enter & The Terminal UI closes & & \\
-    \hline
+    \textbf{5} & 'Deny' is selected & All rooms are deselected. & & \\ 
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Main Extension 3 - The dispensary nurse selects the "Deny" option}
 \label{tab:at-usecase2main}
@@ -361,7 +354,7 @@ Acceptance test specification
     \hline
     \textbf{2} & Wait 5 seconds & The car waits before starting to drive & & \\ 
     \hline
-    \textbf{3} & Observe car movement & The car starts driving to the next delivery location and return to main scenario point 4 & & \\ 
+    \textbf{3} & Observe car movement & The car starts driving to the next delivery location & & \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Extension 1 -  Remaining locations in the route (exel. homebase) }
@@ -394,3 +387,4 @@ Acceptance test specification
 \end{table}
 
 
+# Non-functional Requirements {-}
