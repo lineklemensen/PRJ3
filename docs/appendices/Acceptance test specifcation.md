@@ -388,33 +388,9 @@
 \end{table}
 
 
-# Non-functional Requirements {-}
-
+# Non-functional Req
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-<<<<<<< HEAD
-    \hline
-    \multicolumn{2}{|l|}{\textbf{Nonfunctional requirement under test:}} & \multicolumn{3}{l|}{xxxx} \\ 
-    \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{xxxx} \\
-    \hline
-    \multicolumn{5}{|c|}{}\\
-    \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-    \hline
-    \textbf{1} & xxxx & xxxx & & \\ 
-    \hline
-    \textbf{2} & xxxx & xxxx & & \\ 
-    \hline
-    \textbf{3} & xxxx & xxxx & & \\ 
-    \hline
-\end{tabularx}
-\caption{Acceptance test - Nonfunctional Requirements - xxxx}
-\label{tab:at-nonfunctionalRequirements}
-\end{table}
-
-# Øhhhh
-=======
 \hline
 \multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Functionality - Request route while idle} \\
 \hline
@@ -436,5 +412,3 @@
 \label{tab:nf-functionality}
 \end{table}
 
-
->>>>>>> 78ad077cdf5a00af3867b29609cdc0a1573b7519
