@@ -5,6 +5,7 @@ hide footbox
 
 participant "Green LED" as gled <<led>>
 participant "LEDs" as led
+participant "Red LED" as rled <<led>>
 participant "Modes" as md
 participant "Buttons" as b
 participant "Action" as ab <<button>>
@@ -14,23 +15,51 @@ participant "Motor" as m
 participant "Pathfinder" as pf
 participant HTTP
 
-
+rc -> HTTP : request_destinations()
 HTTP ->] : GET /destinations
 HTTP <--] : 200 OK [destinations]
-rc -> pf : planPath()
-pf --> rc : path
-rc -> md : notify()
-led -> gled : turnOn()
-b -> ab : readButton()
-led -> gled : turnOff()
-hb -> m : setDirection(forward)
-rc -> rc : driveToNextLocation()
-m -> m : stop()
-led -> gled : turnOn()
-md -> m : goIdle()
-b -> ab : readButton()
-led -> gled : turnOff()
-m -> m : driveToNextLocation()
-md -> m : goIdle()
+
+alt Success (200 OK)
+    HTTP -> rc : response(destinations)
+else No routes available
+    HTTP -> rc : response(no_destinations)
+    rc -> md : set_mode(no_destinations)
+    md -> led : blink(5, green)
+    led -> gled : blink()
+    md -> m : idle()
+else Network error
+    HTTP -> rc : response(network_error)
+    rc -> md : set_mode(network_error)
+    md -> led : blink(15, red)
+    led -> rled : blink()
+    md -> m : idle()
+end
+
+rc -> pf : load_destinations()
+pf --> rc : destinations_loaded
+pf -> pf : calculate_path()
+pf --> rc : path_calculated
+rc -> md : set_mode(ready)
+md -> led : solid(green)
+led -> gled : turn_on()
+
+loop 1 to 3 times
+    md -> b : wait_for_button(ab)
+    b -> ab : read_button()
+    ab --> b : pressed
+    b -> md : button_pressed(ab)
+    md -> led : turn_off(green)
+    led -> gled : turn_off()
+    rc -> dr : track()
+    rc -> m : start_route()
+    m -> dr : arrived()
+    dr -> pf : check_position()
+    pf --> dr : position_ok
+    md -> led : solid(green)
+    led -> gled : turn_on()
+end
+
+
+
 
 @enduml

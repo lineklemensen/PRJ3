@@ -37,69 +37,108 @@ package Server
 
 package Car
 {
-    class "HTTP" as chttp
+
+    class "LEDs" as led
+    {
+        -pin:int
+        +turn_on()
+        +turn_off()
+    }
+
+    class "Modes" as md
+    {
+        -current_mode : string
+        +idle() : void
+        +shutdown() : void
+
+    }
 
     class "Buttons" as b
     {
         -pin:int
         -state:bool
-        +readButton()
-    }
-
-    class "H-bridge" as hb
-    {
-        +setDirection(bool forward)
+        +read_button()
     }
 
     class "Motor" as m
     {
-
-    }
-
-    class "Pathfinder" as pf
-    {
-        +setMap()
-        +planPath()
+        -max_speed : double
+        +set_speed(speed : double)
+        +stop() : void
     }
 
     class "PIDreg" as pid
     {
-        +setTarget()
-        +update()
+        -kp : double
+        -ki : double
+        -kd : double
+        -integrator_sum : double
+        -last_error : double
+        -output_min : double
+        -output_max : double
+        +PIDreg(kp : double, ki : double, kd : double,
+        \t    out_min : double, out_max : double)
+        +reset() : void
+        +output(setpoint : double,
+        \t   measurement : double) : double
+    }
+
+
+    class "Pathfinder" as pf
+    {
+        -graph : Graph*
+        -start:int
+        -goal:int
+        +Pathfinder()
+        +calculate_path() : vector<int>
     }
 
     class "DeadReckoning" as dr
     {
+        -pos : vector<int, int>
+        -velocity : double
+        -heading : double
+        +DeadReckoning(initial_pos : vector<int, int>)
         +update()
-        +getPos()
-        +resetPos()
-        +getVelocity()
+        +get_pos() : vector<int, int>
+        +set_velocity(v : double)
+        +set_heading(h : double)
+        +set_pos(p : vector<int, int>)
     }
 
     class "RouteController" as rc <<control>>
     {
-        +driveToNextLocation()
+        -graph : Graph*
+        -homebase : int
+        -destinations : vector<int>
+        +plan_route() : vector<int>
 
     }
 
-    class "LEDs" as led
+    class "H_bridge" as hb
     {
-        -pin:int
-        +turnOn()
-        +turnOff()
+        -pin_forward : int
+        -pin_reverse : int
+        +H_bridge(pin_forward : int, pin_reverse : int)
+        +set_direction(forward : bool) : void
+        +set_speed(pwm : double) : void
     }
 
-    class "Modes" as md
+    class "HTTP" as chttp
+
+    class Graph {
+        -nodes : vector<Node>
+    }
 }
 
-
+dr --> pf
+dr .r.> pid
+dr -l-> m
 m -- hb
-md -l- m
-pid -- rc
-rc -- dr
-pf -- rc
-md -u- b
-md -- led
+
+md -d-> m
+md -r-> b
+md -u-> led
 
 ol -- shttp
 sco -- shttp
@@ -108,4 +147,6 @@ pco -- phttp
 shttp -- chttp
 shttp -l- phttp
 
+Graph <|-l- pf 
+Graph <|-r- rc
 @enduml
