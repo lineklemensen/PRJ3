@@ -1,0 +1,70 @@
+﻿#include "Input.h"
+#ifdef _WIN64
+#include <conio.h>
+#endif
+#ifdef __linux__
+#include <curses.h>
+#endif
+
+
+Key Input::key_ = IGNORED;
+
+Key Input::get_input()
+{
+    return key_;
+}
+
+void Input::update_input()
+{
+    key_ = Key::IGNORED;
+
+    //Key codes https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-6.0/aa299374(v=vs.60)
+    int c = read_input();
+
+    switch(c) {
+        case 32: //space
+        case 13: //enter
+        {
+            key_ = Key::ENTER;
+            return;
+        }
+        default: break;
+    }
+
+    // If
+    if(c != 224)
+        return;
+
+    c = read_input();
+    switch(c) {
+        case 72: {
+            key_ = Key::UP;
+            return;
+        }
+        case 80: {
+            key_ = Key::DOWN;
+            return;
+        }
+        case 75: {
+            key_ = Key::LEFT;
+            return;
+        }
+        case 77: {
+            key_ = Key::RIGHT;
+            return;
+        }
+        default: break;
+    }
+}
+
+int Input::read_input()
+{
+#ifdef _WIN64
+    //From conio.h
+    return _getch();
+#endif
+#ifdef __linux__
+    //Missing linux check
+    //probably curses.h
+#endif
+}
