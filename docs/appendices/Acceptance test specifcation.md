@@ -1,5 +1,5 @@
 # Acceptance test specification
-
+ Ret 'Extensions' til exceptions eller whatever
 ## Use Case 1 - Start
 
 ### Main scenario
@@ -251,25 +251,35 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{Main scenario}\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is idle on homebase} \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is idle on homebase and the server has a single route with 2 rooms stored} \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & (Husk Action trykkes for at begynde at fetche routes)Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & & \\ 
+    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & & \\ 
     \hline
-    \textbf{2} & Look at wireshark & A request to fetch routes is sent from the car to the server & & \\
+    \textbf{2} & Press the Action button & A request to fetch routes is sent from the car to the server & & \\
     \hline
     \textbf{3} & Look at the LEDs & The green LED is on & & \\
     \hline
-    \textbf{4} & Press the Action button & The green LED turns of and, after a short delay(Specifk tid, og husk at skriv at lave en action hvor i tager tid), the car starts driving & & \\
+    \textbf{4} & Prepare a timer to time the response & User is ready to time the response & & \\
     \hline
-    \textbf{5} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & & \\
+    \textbf{5} & Press the Action button and start the timer & The green LED turns off and after a maximum of 5 seconds the car starts driving & & \\
     \hline
-    \textbf{6} & Press the Action button & The green LED turns off, and after a short delay, the car starts driving to homebase(No deliveries left)(Evt lav punkt der hedder "Repeat punkt x til y, for eventulle resterende ruter) & & \\
+    \textbf{6} & When the car starts driving, stop the timer & The response time has been measured & & \\
     \hline
-    \textbf{7} & Wait for car to return to homebase & The car is idle on homebase & & \\
+    \textbf{7} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & & \\
+    \hline
+    \textbf{8} & Prepare a timer to time the response & User is ready to time the response & & \\
+    \hline
+    \textbf{9} & Press the Action button and start the timer & The green LED turns off and after a maximum of 5 seconds the car starts driving & & \\
+    \hline
+    \textbf{10} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & & \\
+    \hline
+    \textbf{11} & Press the Action button & The green LED turns off and the car starts driving & & \\
+    \hline
+    \textbf{12} & Wait for car to arrive at homebase & The car is idle on homebase & & \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Main scenario}
@@ -358,6 +368,8 @@
 \label{tab:at-usecase4main}
 \end{table}
 
+
+\newpage
 
 ## Use Case 4 - Shutdown of car
 ### Main scenario
