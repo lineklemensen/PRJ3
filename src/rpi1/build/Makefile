@@ -129,29 +129,29 @@ DeliveryRobot/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/build
 .PHONY : DeliveryRobot/fast
 
-src/Hbridge.o: src/Hbridge.cpp.o
-.PHONY : src/Hbridge.o
+src/MonsterMoto.o: src/MonsterMoto.cpp.o
+.PHONY : src/MonsterMoto.o
 
 # target to build an object file
-src/Hbridge.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/src/Hbridge.cpp.o
-.PHONY : src/Hbridge.cpp.o
+src/MonsterMoto.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/src/MonsterMoto.cpp.o
+.PHONY : src/MonsterMoto.cpp.o
 
-src/Hbridge.i: src/Hbridge.cpp.i
-.PHONY : src/Hbridge.i
+src/MonsterMoto.i: src/MonsterMoto.cpp.i
+.PHONY : src/MonsterMoto.i
 
 # target to preprocess a source file
-src/Hbridge.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/src/Hbridge.cpp.i
-.PHONY : src/Hbridge.cpp.i
+src/MonsterMoto.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/src/MonsterMoto.cpp.i
+.PHONY : src/MonsterMoto.cpp.i
 
-src/Hbridge.s: src/Hbridge.cpp.s
-.PHONY : src/Hbridge.s
+src/MonsterMoto.s: src/MonsterMoto.cpp.s
+.PHONY : src/MonsterMoto.s
 
 # target to generate assembly for a file
-src/Hbridge.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/src/Hbridge.cpp.s
-.PHONY : src/Hbridge.cpp.s
+src/MonsterMoto.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/src/MonsterMoto.cpp.s
+.PHONY : src/MonsterMoto.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -186,9 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... DeliveryRobot"
-	@echo "... src/Hbridge.o"
-	@echo "... src/Hbridge.i"
-	@echo "... src/Hbridge.s"
+	@echo "... src/MonsterMoto.o"
+	@echo "... src/MonsterMoto.i"
+	@echo "... src/MonsterMoto.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
