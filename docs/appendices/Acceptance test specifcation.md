@@ -49,7 +49,7 @@
     \hline 
 \end{tabularx}
 \caption{Acceptance test - Use Case 1 - Exception 1 - No power on the battery}
-\label{tab:at-usecase1ex1}
+\label{tab:at-usecase1exception1}
 \end{table}
 
 \newpage
@@ -78,7 +78,7 @@
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 1 - Exception 2 - Connection to network fails}
-\label{tab:at-usecase1ex2}
+\label{tab:at-usecase1exception2}
 \end{table}
 
 \newpage
@@ -115,7 +115,7 @@
     \textbf{9} & Press Enter & The Terminal UI closes & & \\
     \hline
 \end{tabularx}
-\caption{Acceptance test - Use Case 2 - Extension 1}
+\caption{Acceptance test - Use Case 2 - Main scenario}
 \label{tab:at-usecase2main}
 \end{table}
 
@@ -144,8 +144,8 @@
     \textbf{4} & Navigate to and select 'Cancel route' & All rooms are deselected and the Terminal UI closes & & \\
     \hline
 \end{tabularx}
-\caption{Acceptance test - Use Case 2 - Extension 1 - The dispensary nurse selects the "Cancel" option}
-\label{tab:at-usecase2ex2}
+\caption{Acceptance test - Use Case 2 - Exception 1 - The dispensary nurse selects the "Cancel" option}
+\label{tab:at-usecase2exception1}
 \end{table}
 
 \newpage
@@ -174,7 +174,7 @@
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Extension 1 - Room is already added}
-\label{tab:at-usecase2ex2}
+\label{tab:at-usecase2extension1}
 \end{table}
 
 \newpage
@@ -201,7 +201,7 @@
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Extension 2 - No rooms were selected}
-\label{tab:at-usecase2ex3}
+\label{tab:at-usecase2extension2}
 \end{table}
 
 \newpage
@@ -228,9 +228,10 @@
     \textbf{4} & Navigate to and select 'Finish route' & A confirmation message saying "These are your chosen rooms" and a list of the rooms 1, 2 and 3 appears & & \\
     \hline
     \textbf{5} & 'Deny' is selected & All rooms are deselected. & & \\ 
+    \hline
 \end{tabularx}
-\caption{Acceptance test - Use Case 2 - Main Extension 3 - The dispensary nurse selects the "Deny" option}
-\label{tab:at-usecase2main}
+\caption{Acceptance test - Use Case 2 - Extension 3 - The dispensary nurse selects the "Deny" option}
+\label{tab:at-usecase2extension3}
 \end{table}
 
 \newpage
@@ -304,7 +305,7 @@
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Exception 1 - No available routes}
-\label{tab:at-usecase4main}
+\label{tab:at-usecase3exception1}
 \end{table}
 \newpage
 
@@ -332,7 +333,7 @@
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Exception 2 -  Network Error}
-\label{tab:at-usecase4main}
+\label{tab:at-usecase3exception2}
 \end{table}
 \newpage
 
@@ -358,7 +359,7 @@
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Extension 1 -  Remaining locations in the route (exel. homebase) }
-\label{tab:at-usecase4main}
+\label{tab:at-usecase3extension1}
 \end{table}
 
 
@@ -388,3 +389,27 @@
 
 
 # Non-functional Requirements {-}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Nonfunctional requirement under test:}} & \multicolumn{3}{l|}{xxxx} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{xxxx} \\
+    \hline
+    \multicolumn{5}{|c|}{}\\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    \textbf{1} & xxxx & xxxx & & \\ 
+    \hline
+    \textbf{2} & xxxx & xxxx & & \\ 
+    \hline
+    \textbf{3} & xxxx & xxxx & & \\ 
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Nonfunctional Requirements - xxxx}
+\label{tab:at-nonfunctionalRequirements}
+\end{table}
+
+# Øhhhh
