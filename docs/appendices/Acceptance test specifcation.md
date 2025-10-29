@@ -1,8 +1,8 @@
-# Acceptance test specification
- Ret 'Extensions' til exceptions eller whatever
-## Use Case 1 - Start
+Acceptance test specification
 
-### Main scenario
+# Use Case 1 - Start
+
+## Main scenario
 
 \begin{table}[H] 
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} p{2cm} |} 
@@ -27,7 +27,7 @@
 \label{tab:at-usecase1main} 
 \end{table}
 
-### Extension 1
+### Exception 1 - No power on the battery
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -48,13 +48,13 @@
     \textbf{3} & Press the 'Power' button & The red LED does not turn on & & \\ 
     \hline 
 \end{tabularx}
-\caption{Acceptance test - Use Case 1 - Extension 1}
+\caption{Acceptance test - Use Case 1 - Exception 1 - No power on the battery}
 \label{tab:at-usecase1ex1}
 \end{table}
 
 \newpage
 
-### Extension 2
+### Exception 2 - Connection to network fails
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -77,14 +77,14 @@
     \textbf{4} & Car doesnt connect with ther server & The red LED starts to blink & & \\
     \hline
 \end{tabularx}
-\caption{Acceptance test - Use Case 1 - Extension 2}
+\caption{Acceptance test - Use Case 1 - Exception 2 - Connection to network fails}
 \label{tab:at-usecase1ex2}
 \end{table}
 
 \newpage
 
-## Use Case 2 - Create Route
-### Main scenario
+# Use Case 2 - Create Route
+## Main scenario
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -121,7 +121,7 @@
 
 \newpage
 
-### Extension 1
+### Exception 1 - The dispensary nurse selects the "Cancel" option
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -144,13 +144,13 @@
     \textbf{4} & Navigate to and select 'Cancel route' & All rooms are deselected and the Terminal UI closes & & \\
     \hline
 \end{tabularx}
-\caption{Acceptance test - Use Case 2 - Extension 2}
+\caption{Acceptance test - Use Case 2 - Extension 1 - The dispensary nurse selects the "Cancel" option}
 \label{tab:at-usecase2ex2}
 \end{table}
 
 \newpage
 
-### Extension 2(Ikke done)
+### Extension 1 - Room is already added(Ikke done)
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -173,13 +173,13 @@
     \textbf{4} & Select rooms 2 and 3 again & Rooms 2 and 3 will be unselected. Go to point 4 of main scenario(Skal dette være eget punkt eller whatever) & & \\
     \hline
 \end{tabularx}
-\caption{Acceptance test - Use Case 2 - Extension 2}
+\caption{Acceptance test - Use Case 2 - Extension 1 - Room is already added}
 \label{tab:at-usecase2ex2}
 \end{table}
 
 \newpage
 
-### Extension 3
+### Extension 2 - No rooms were selected
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -200,12 +200,12 @@
     \textbf{3} & Press confirm before selecting any rooms & An error message is displayed on the UI. Return to point 2 in the main scenario & & \\
     \hline
 \end{tabularx}
-\caption{Acceptance test - Use Case 2 - Extension 3}
+\caption{Acceptance test - Use Case 2 - Extension 2 - No rooms were selected}
 \label{tab:at-usecase2ex3}
 \end{table}
 
 \newpage
-### Extension 4(ikke done)
+### Extension 3 - The dispensary nurse selects the "Deny" option(ikke done)
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -236,14 +236,14 @@
     \textbf{9} & Press Enter & The Terminal UI closes & & \\
     \hline
 \end{tabularx}
-\caption{Acceptance test - Use Case 2 - Main scenario}
+\caption{Acceptance test - Use Case 2 - Main Extension 3 - The dispensary nurse selects the "Deny" option}
 \label{tab:at-usecase2main}
 \end{table}
 
 \newpage
 
-## Use Case 3 - Complete Delivery Route
-### Main scenario
+# Use Case 3 - Complete Delivery Route
+## Main scenario
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -287,7 +287,7 @@
 \end{table}
 \newpage
 
-### Extension 1
+### Exception 1 - No available routes
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -310,12 +310,12 @@
     \textbf{4} & Observe LEDs & The green LED stops blinking, and the car enters idle mode & & \\ 
     \hline
 \end{tabularx}
-\caption{Acceptance test - Use Case 3 - Extension 1 - No available routes}
+\caption{Acceptance test - Use Case 3 - Exception 1 - No available routes}
 \label{tab:at-usecase4main}
 \end{table}
 \newpage
 
-### Extension 2
+### Exception 2 - Network Error
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -338,12 +338,12 @@
     \textbf{4} & Observe LEDs & The green LED stops blinking, and the car enters idle mode & & \\ 
     \hline
 \end{tabularx}
-\caption{Acceptance test - Use Case 3 - Extension 2 -  Network Error}
+\caption{Acceptance test - Use Case 3 - Exception 2 -  Network Error}
 \label{tab:at-usecase4main}
 \end{table}
 \newpage
 
-### Extension 3
+### Extension 1 - Remaining locations in the route(excl. homebase)
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -364,15 +364,15 @@
     \textbf{3} & Observe car movement & The car starts driving to the next delivery location and return to main scenario point 4 & & \\ 
     \hline
 \end{tabularx}
-\caption{Acceptance test - Use Case 3 - Extension 3 -  Remaining locations in the route (exel. homebase) }
+\caption{Acceptance test - Use Case 3 - Extension 1 -  Remaining locations in the route (exel. homebase) }
 \label{tab:at-usecase4main}
 \end{table}
 
 
 \newpage
 
-## Use Case 4 - Shutdown of car
-### Main scenario
+# Use Case 4 - Shutdown of car
+## Main scenario
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
