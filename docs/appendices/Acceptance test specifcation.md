@@ -388,3 +388,28 @@
 
 
 # Non-functional Requirements {-}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+\hline
+\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Functionality - Request route while idle} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{Car powered on, idle, not on route} \\
+\hline
+\multicolumn{5}{|c|}{}\\
+\hline
+\textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+\hline
+1 & Press 'Action' button & Car requests route from server & & \\
+\hline
+2 & Server returns route & Car receives valid JSON route & & \\
+\hline
+3 & Car starts route & Car follows route at max 5 km/h & & \\
+\hline
+4 & Car reaches destination & Car stops, LED indicates idle & & \\
+\end{tabularx}
+\caption{Acceptance test - Functionality: Request route while idle}
+\label{tab:nf-functionality}
+\end{table}
+
+
