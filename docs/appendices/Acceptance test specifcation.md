@@ -388,27 +388,51 @@
 \end{table}
 
 
-# Non-functional Req
+# Non-functional Requirements
+
+## Req 1
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
 \hline
-\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Functionality - Request route while idle} \\
+\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Request routes from server} \\
 \hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{Car powered on, idle, not on route} \\
+\multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{Car is idle, and not on route} \\
 \hline
 \multicolumn{5}{|c|}{}\\
 \hline
 \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
 \hline
-1 & Press 'Action' button & Car requests route from server & & \\
+1 & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & & \\
 \hline
-2 & Server returns route & Car receives valid JSON route & & \\
+2 & Press the action button & The car successfully requests and receives a JSON route from the server& & \\
 \hline
-3 & Car starts route & Car follows route at max 5 km/h & & \\
-\hline
-4 & Car reaches destination & Car stops, LED indicates idle & & \\
 \end{tabularx}
 \caption{Acceptance test - Functionality: Request route while idle}
 \label{tab:nf-functionality}
 \end{table}
 
+
+## Req 2
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+\hline
+\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{XXXX} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{XXXX} \\
+\hline
+\multicolumn{5}{|c|}{}\\
+\hline
+\textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+\hline
+1 & & & & \\
+\hline
+2 & & & & \\
+\hline
+3 & & & & \\
+\hline
+4 & & & & \\
+\hline
+\end{tabularx}
+\caption{Acceptance test - Functionality: Request route while idle}
+\label{tab:nf-functionality}
+\end{table}
