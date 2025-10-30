@@ -1,0 +1,106 @@
+@startuml PCClasses
+
+skinparam {
+    packageStyle rectangle
+    Linetype ortho
+    ClassAttributeIconSize 0
+}
+
+class "TUI" as tui <<control>>
+{
+    -elements_ : vector<Element*>
+    -selected_ : Button*
+    +{static}running_: bool
+    +Tui()
+    +~Tui()
+    +update() : void
+    -update_selection() : void
+    -print_elements() : void
+}
+
+class "Console" as cs <<boundary>>
+{
+    -{static}stdout_handle_: HANDLE
+    +{static}setup() : void
+    +{static}set_cursor_pos(x: short, y: short) : void
+    +{static}set_cursor_pos(pos: Vec2) : void
+}
+
+class "Input" as in <<boundary>>
+{
+    -{static}key_: Key
+    -{static}read_input() : int
+    +{static}get_input() : Key
+    +{static}update_input() : void
+}
+
+class "Button" as b <<domain>>
+{
+    -up_ : Button*
+    -down_ : Button*
+    -left_ : Button*
+    -right_ : Button*
+    -action_ : std::function<void()>
+    +Button(text: string, action: function<void()>)
+    +Button(text: string, position: Vec2, action: function<void()>)
+    +print() : void
+    +action() : void
+    +connect(button: Button, dir: Direction = VERTICAL) : void
+}
+
+abstract "Element" as e <<domain>>
+{
+    #{abstract}text_: string
+    #{abstract}pos_: Vec2
+    +{abstract}print() : void
+    +{abstract}~Element()
+}
+
+class "Text_Element" as te <<domain>>
+{
+    +print() : void
+    +Text_Element(text: string, pos: Vec2)
+}
+
+class "Stateful_Button" as sb <<domain>>
+{
+    -added_: bool
+    +Stateful_Button(text: string, pos: Vec2, action: function<void()>)
+    +action() : void
+    +print() : void
+    +Stateful_Button(text: string, action: function<void()>)
+}
+
+class "Create_Destinations" as pcd <<domain>>
+{
+    +id : int
+    +destinations : List<Location>
+    +to_json() : string
+}
+
+class "HTTP" as pc_http <<boundary>>
+{
+    +get(url : string) : string
+    +post(url : string, data : string) : string
+}
+
+class "Location" as l <<domain>>
+{
+    +id : int
+    +name : string
+}
+
+b --|> e
+te --|> e
+sb --|> b
+
+tui --> e
+tui --> b
+
+pcd --> l
+
+cs ..> l
+cs ..> tui
+in ..> tui
+
+@enduml

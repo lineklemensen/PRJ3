@@ -1,152 +1,32 @@
 @startuml Classes
 
+hide circle
+
 skinparam {
     packageStyle rectangle
     Linetype ortho
+    ClassAttributeIconSize 0
 }
+
+
 
 package PC
 {
-    class "HTTP" as phttp
-
-    class "CreateOrder" as pco
-    {
-        -destinationListId:int
-        -destinations:List<Location>
-        +addDestination()
-        +sendDestinations()
-    }
+    !include pc_classes.puml
 }
 
 package Server
 {
-    class "HTTP" as shttp
-
-    class "OrderLog" as ol
-    {
-        +push(destinations)
-        +deleteDestinations()
-    }
-
-    class "CreateOrder" as sco
-    {
-        -destinationListId:int
-        -destinations:List<Location>
-    }
+    !include server_classes.puml
 }
 
 package Car
 {
-
-    class "LEDs" as led <<boundary>>
-    {
-        -pin:int
-        +turn_on()
-        +turn_off()
-    }
-
-    class "Modes" as md
-    {
-        -current_mode : string
-        +idle() : void
-        +shutdown() : void
-
-    }
-
-    class "Buttons" as b <<boundary>>
-    {
-        -pin:int
-        -state:bool
-        +read_button()
-    }
-
-    class "Motor" as m <<boundary>>
-    {
-        -max_speed : double
-        +set_speed(speed : double)
-        +stop() : void
-    }
-
-    class "PIDreg" as pid
-    {
-        -kp : double
-        -ki : double
-        -kd : double
-        -integrator_sum : double
-        -last_error : double
-        -output_min : double
-        -output_max : double
-        +PIDreg(kp : double, ki : double, kd : double,
-        \t    out_min : double, out_max : double)
-        +reset() : void
-        +output(setpoint : double,
-        \t   measurement : double) : double
-    }
-
-
-    class "Pathfinder" as pf <<domain>>
-    {
-        -graph : Graph*
-        -start:int
-        -goal:int
-        +Pathfinder()
-        +calculate_path() : vector<int>
-    }
-
-    class "DeadReckoning" as dr
-    {
-        -pos : vector<int, int>
-        -velocity : double
-        -heading : double
-        +DeadReckoning(initial_pos : vector<int, int>)
-        +update()
-        +get_pos() : vector<int, int>
-        +set_velocity(v : double)
-        +set_heading(h : double)
-        +set_pos(p : vector<int, int>)
-    }
-
-    class "RouteController" as rc <<control>>
-    {
-        -graph : Graph*
-        -homebase : int
-        -destinations : vector<int>
-        +plan_route() : vector<int>
-
-    }
-
-    class "H_bridge" as hb
-    {
-        -pin_forward : int
-        -pin_reverse : int
-        +H_bridge(pin_forward : int, pin_reverse : int)
-        +set_direction(forward : bool) : void
-        +set_speed(pwm : double) : void
-    }
-
-    class "HTTP" as chttp
-
-    class Graph {
-        -nodes : vector<Node>
-    }
+    !include car_classes.puml
 }
 
-dr --> pf
-dr .r.> pid
-dr -l-> m
-m -- hb
+pc_http --> s_http
+c_http <--> s_http
 
-md -d-> m
-md -r-> b
-md -u-> led
 
-ol -- shttp
-sco -- shttp
-pco -- phttp
-
-shttp -- chttp
-shttp -l- phttp
-
-Graph <|-l- pf 
-Graph <|-r- rc
 @enduml

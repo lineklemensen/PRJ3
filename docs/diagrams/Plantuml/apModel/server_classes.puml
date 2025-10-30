@@ -1,0 +1,28 @@
+@startuml ServerClasses
+
+skinparam {
+    packageStyle rectangle
+    Linetype ortho
+    ClassAttributeIconSize 0
+}
+
+class "Log" as l <<domain>>
+{
+    +push(destinations)
+    +deleteDestinations()
+}
+
+note top of l
+    Stores destination data
+    ER det overhovedet en klasse, eller bare en .txt fil???
+end note
+
+class "Create_Destinations" as scd
+{
+    +id: int
+    +destinations: string
+}
+
+class "HTTP" as s_http <<boundary>>
+
+@enduml
