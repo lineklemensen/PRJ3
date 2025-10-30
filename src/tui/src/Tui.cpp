@@ -1,8 +1,4 @@
-﻿//
-// Created by danie on 9/1/2025.
-//
-
-#include <cassert>
+﻿#include <cassert>
 #include <conio.h>
 #include "tui.h"
 #include "keys.h"

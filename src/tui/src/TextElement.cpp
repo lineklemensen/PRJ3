@@ -1,8 +1,4 @@
-﻿//
-// Created by danie on 10/29/2025.
-//
-
-#include "TextElement.h"
+﻿#include "TextElement.h"
 
 #include <Console.h>
 #include <iostream>
