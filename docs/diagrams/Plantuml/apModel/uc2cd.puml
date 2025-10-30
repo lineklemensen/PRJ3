@@ -1,6 +1,6 @@
 @startuml CD UC2 - Create Delivery
 
-!include classes.puml
+!include pc_classes.puml
 
 mainframe **CD** UC2 - Create Delivery
 

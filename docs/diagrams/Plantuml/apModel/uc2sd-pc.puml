@@ -3,15 +3,92 @@
 mainframe **SD** UC2 - Create Delivery
 hide footbox
 
-participant HTTP
-participant CreateOrder as pco
+actor "Dispensary Nurse" as dn <<actor>>
+participant "TUI" as tui <<control>>
+participant "Console" as cs <<boundary>>
+participant "Input" as in <<boundary>>
+participant "Button" as b <<domain>>
+participant "Text_Element" as te <<domain>>
+participant "Stateful_Button" as sb <<domain>>
+participant "Create_Destinations" as pcd <<domain>>
+participant "Location" as l <<domain>>
+participant "HTTP" as pc_http <<boundary>>
 
+'1. Nurse opens TUI
+dn -> tui : Tui()
+
+'2. TUI displays message and list of rooms
+tui -> cs : setup()
+tui -> cs : set_cursor_pos(pos: vector<int, int>)
+
+'3. A Finish and Cancel button appears
+tui -> cs : set_cursor_pos(x: short, y: short) 
+
+'4. Dispensary nurse selects up to 3 rooms
 loop 1 to 3 times
-pco -> pco : addDestination()
+    dn -> in : update_input()
+    in -> cs : update_selection()
 end
 
-pco -> HTTP : sendDestinations()
-[<- HTTP : POST /destinations
-[--> HTTP : 201 Created
+'Exception 1: Nurse cancels operation
+alt Dispensary Nurse selects "Cancel"
+    tui -> b : action() 
+    return
+end
+
+'5. Dispensary nurse selects "Finish"
+dn -> in : get_input()
+in -> tui : update_selection()
+
+'Exception 2: No rooms selected
+alt No rooms selected
+    tui -> cs : set_cursor_pos(pos: vector<int, int>)
+    tui -> cs : print("You did not choose any rooms")
+    return to step 2
+end
+
+' Step 6: Display confirmation message
+tui -> cs : set_cursor_pos(pos: Vec2)
+tui -> cs : print("These are your chosen rooms:")
+
+' Step 7: Display "Confirm" and "Deny" options
+tui -> cs : set_cursor_pos(x: short, y: short)
+tui -> cs : print("Confirm")
+tui -> cs : print("Deny")
+
+' Step 8: Nurse selects "Confirm"
+dn -> in : get_input()
+in -> tui : update_selection()
+
+' Extension 3: Nurse selects "Deny"
+alt Nurse selects "Deny"
+    tui -> b : action()  ' Deny button action
+    tui -> te : clear()  ' Deselect all rooms
+    return to step 2
+end
+
+' Step 9: Send route to server
+tui -> b : action()  ' Finish button action
+tui -> pc_http : send_destinations()
+pc_http ->] : POST /destinations
+pc_http <--] : 201 Created
+
+' Step 11: Clear screen
+tui -> cs : setup()
+
+' Step 12: Display success message
+tui -> cs : set_cursor_pos(pos: Vec2)
+tui -> cs : print("The route has been successfully made")
+
+' Step 13: Display "Press Enter key to close the UI"
+tui -> cs : print("Press Enter key to close the UI")
+
+' Step 14: Enter key is pressed
+dn -> in : update_input()
+
+' Step 15: Close UI
+tui -> cs : setup()
+dn -> tui : ~Tui()
+
 
 @enduml
