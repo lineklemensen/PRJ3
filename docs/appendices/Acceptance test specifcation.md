@@ -390,12 +390,8 @@
 
 # Non-functional Requirements
 
-<<<<<<< HEAD
-## Nonfunctional Requirements
+## Functionality
 
-=======
-## Req 1
->>>>>>> bf033dac5b4b7119edeb423ff94a74b62ddeb97d
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
 \hline
@@ -411,39 +407,69 @@
 \hline
 2 & Press the action button & The car successfully requests and receives a JSON route from the server& & \\
 \hline
-3 & Car starts route & Car follows route at max 5 km/h & & \\
+3 & Car starts route & Car follows route at max $\leq$ 5 km/h & & \\
 \hline
 4 & Car reaches destination & Car stops, LED indicates idle & & \\
 \hline
 \end{tabularx}
-\caption{Acceptance test - Functionality: Request route while idle}
+\caption{Acceptance test - Functionality: Request route while idle and execution}
 \label{tab:nf-functionality}
 \end{table}
 
 
 
-## Usability: LED and Speaker Feedback
+## Usability
+
+### LED Feedback
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
 \hline
-\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Usability - LED and speaker feedback} \\
+\multicolumn{2}{|l|}{\textbf{Requirement under test:}} &
+\multicolumn{3}{l|}{Usability - LED and speaker feedback} \\
 \hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{Car powered on, ready to start or waiting} \\
+\multicolumn{2}{|l|}{\textbf{Precondition:}} &
+\multicolumn{3}{l|}{Car powered on, ready to start or idle} \\
 \hline
 \multicolumn{5}{|c|}{}\\
 \hline
 \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
 \hline
-1 & Car ready to start route & Green LED on, speaker announces ready & & \\
+1 & Car ready to start route & Green LED on & & \\
 \hline
-2 & Car waiting at destination & Red LED on, speaker announces waiting & & \\
+2 & Car waiting at destination & Red LED on & & \\
 \hline
-3 & Route completed & Green LED flashes, speaker announces completion & & \\
+3 & Route completed & Green LED flashes & & \\
 \hline
 \end{tabularx}
 \caption{Acceptance test - Usability: LED and speaker feedback}
-\label{tab:nf-usability}
+\label{tab:nf-usability-LED}
+\end{table}
+
+## Documentation and User Interface
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c | *{3}{X|} c |}
+\hline
+\multicolumn{2}{|l|}{\textbf{Requirement under test:}} &
+\multicolumn{3}{l|}{Usability – Documentation and User Interface} \\ 
+\hline
+\multicolumn{2}{|l|}{\textbf{Precondition:}} &
+\multicolumn{3}{l|}{System installed, user guide available, server accessible via terminal} \\ 
+\hline
+\multicolumn{5}{|c|}{} \\ 
+\hline
+\textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\ 
+\hline
+1 & Open user guide & Guide $\leq$ 2 pages, includes troubleshooting for top 5 errors & & \\ 
+\hline
+2 & Access server UI from terminal & Text $\geq$ 14pt, high contrast, readable in daylight & & \\ 
+\hline
+3 & Inspect car control panel & Two buttons clearly labeled “Power” and “Action” & & \\ 
+\hline
+\end{tabularx}
+\caption{Acceptance test – Usability: Documentation and interface design}
+\label{tab:nf-usability-ui}
 \end{table}
 
 ##  Reliability: Continuous Operation
@@ -451,9 +477,11 @@
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
 \hline
-\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Reliability - Continuous operation} \\
+\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & 
+\multicolumn{3}{l|}{Reliability - Continuous operation} \\
 \hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{Car fully charged, powered on, ready to drive} \\
+\multicolumn{2}{|l|}{\textbf{Precondition:}} & 
+\multicolumn{3}{l|}{Car fully charged, powered on, ready to drive} \\
 \hline
 \multicolumn{5}{|c|}{}\\
 \hline
@@ -464,6 +492,10 @@
 2 & Server runs simultaneously & Server operates $\leq$ 6 hours continuously & & \\
 \hline
 3 & Perform simple maintenance & Tasks completed $\leq$ 10 minutes & & \\
+\hline
+4 & Observe route execution over time & Car completes $\geq$ 90\% of assigned routes & & \\ 
+\hline
+5 & Simulate wet surface operation & Car refuses to operate on wet ground & & \\ 
 \hline
 \end{tabularx}
 \caption{Acceptance test - Reliability: Continuous operation and maintenance}
@@ -477,49 +509,29 @@
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
 \hline
-\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Reliability - Continuous operation} \\ 
+\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & 
+\multicolumn{3}{l|}{Reliability - Continuous operation, response time efficiency and range} \\ 
 \hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{Car fully charged, powered on, ready to drive} \\ 
+\multicolumn{2}{|l|}{\textbf{Precondition:}} & 
+\multicolumn{3}{l|}{Car fully charged, powered on, ready to drive} \\ 
 \hline
 \multicolumn{5}{|c|}{} \\ 
 \hline
 \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\ 
 \hline
-1 & Drive car continuously & Car operates for $\geq$1 hour without failure & & \\ 
+1 & Press any button or send command & System acknowledges input $\leq$ 1 second & & \\ 
 \hline
-2 & Server runs simultaneously & Server operates $\geq$6 hours continuously & & \\ 
+2 & Power on car & Car ready for operation $\leq$ 1 minute & & \\ 
 \hline
-3 & Perform simple maintenance & Tasks completed $\leq$10 minutes & & \\ 
+3 & Drive full route cycle & Range $\geq$ 500 meters per charge & & \\ 
 \hline
-\end{tabularx} \\ 
+4 & Measure driving speed & Speed $\leq$ 5 km/h & & \\ 
+\hline
+5 & Test multi-car setup & Server supports multiple cars simultaneously & & \\ 
+\hline
+\end{tabularx} 
 \caption{Acceptance test - Reliability: Continuous operation and maintenance}
 \label{tab:nf-reliability}
-\end{table}
-
-
-## Supportability: Logging
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-\hline
-\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Supportability - Logging and remote retrieval} \\ 
-\hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{Car powered on, has performed multiple routes} \\ 
-\hline
-\multicolumn{5}{|c|}{} \\ 
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\ 
-\hline
-1 & Car completes route & Log entry created with route info & & \\ 
-\hline
-2 & Car fails a route & Log entry created with error info & & \\ 
-\hline
-3 & Retrieve logs remotely & Logs successfully retrieved & & \\ 
-\hline
-4 & Delete logs manually & Logs removed within system & & \\ 
-\hline
-\end{tabularx} \\ 
-\caption{Acceptance test - Supportability: Logging and retrieval}
-\label{tab:nf-supportability}
 \end{table}
 
 
