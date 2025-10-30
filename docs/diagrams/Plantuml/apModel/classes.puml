@@ -38,7 +38,7 @@ package Server
 package Car
 {
 
-    class "LEDs" as led
+    class "LEDs" as led <<boundary>>
     {
         -pin:int
         +turn_on()
@@ -53,14 +53,14 @@ package Car
 
     }
 
-    class "Buttons" as b
+    class "Buttons" as b <<boundary>>
     {
         -pin:int
         -state:bool
         +read_button()
     }
 
-    class "Motor" as m
+    class "Motor" as m <<boundary>>
     {
         -max_speed : double
         +set_speed(speed : double)
@@ -84,7 +84,7 @@ package Car
     }
 
 
-    class "Pathfinder" as pf
+    class "Pathfinder" as pf <<domain>>
     {
         -graph : Graph*
         -start:int
