@@ -20,7 +20,6 @@ Tui::Tui()
 {
     elements_.push_back(new TextElement("Please select up to 3 rooms", {1, 0}));
     elements_.push_back(new TextElement("Navigate using WASD, Enter to select", {1, 1}));
-
     for(short i = 2; i < 8; ++i) {
         auto action = [i] {
             std::cout << std::format("\033[{}m", 31 + i);
@@ -31,7 +30,13 @@ Tui::Tui()
     }
 
     const auto close_button = new Button("Close UI", {1, 8}, [&] { exit(0); });
-    const auto cancel_button = new Button("Cancel", {1, 11}, [&] { });
+    const auto cancel_button = new Button("Cancel", {1, 11}, [&] {
+        for(const auto& element : elements_) {
+            // If dynamic cast fails it'll return null pointer
+            if(auto* b = dynamic_cast<StatefulButton*>(element))
+                b->set_state(false);
+        }
+    });
     const auto finish_button = new Button("Finish", {12, 11}, [&] { });
 
     elements_.push_back(close_button);

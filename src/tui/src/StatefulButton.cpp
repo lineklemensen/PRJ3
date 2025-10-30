@@ -5,13 +5,13 @@
 #include <format>
 
 StatefulButton::StatefulButton(const std::string& text, const Vec2 pos, const std::function<void()>& action = nullptr) : Button(text, pos, action),
-    added_(false)
+    state_(false)
 { }
 
 
 void StatefulButton::action()
 {
-    added_ = !added_;
+    state_ = !state_;
     Button::action();
 }
 
@@ -19,9 +19,14 @@ void StatefulButton::print()
 {
     Console::set_cursor_pos(pos_);
 
-    char added_state = added_ ? 'x' : ' ';
+    char added_state = state_ ? 'x' : ' ';
     std::cout << std::format("{} [{}]", text_, added_state);
 
     //We intentionally dont call the base function,
     //as we want to have control over the text here
+}
+
+void StatefulButton::set_state(bool new_state)
+{
+    state_ = new_state;
 }

@@ -4,10 +4,11 @@
 
 class StatefulButton : public Button {
 public:
+    StatefulButton(const std::string& text, const std::function<void()>& action);
     StatefulButton(const std::string& text, Vec2 pos, const std::function<void()>& action);
     void action() override;
     void print() override;
-    StatefulButton(const std::string& text, const std::function<void()>& action);
+    void set_state(bool new_state);
 private:
-    bool added_;
+    bool state_;
 };
