@@ -1,6 +1,8 @@
 @startuml
 !include domain.puml
 
+title Hjælpediagram over klassifikation af domæne-, boundary- og control-klasser
+
 note as boundary
     **Boundary**
     LEDs
@@ -23,6 +25,8 @@ note as domain
     Destinations
     Path
     Route
+    Dead Reckoning
+    PID Regulation
 end note
 
 note bottom of control

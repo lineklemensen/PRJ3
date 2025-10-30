@@ -4,8 +4,8 @@ allow_mixing
 
 skinparam {
     LineType ortho
-    NodeSep 85 
-    RankSep 55 
+    NodeSep 95 
+    RankSep 85 
     ClassAttributeIconSize 0
 }
 
@@ -37,6 +37,8 @@ object "Path" as p
 object "Route" as r
 object "Server" as s
 object LEDs
+object "Dead Reckoning" as dr
+object "PID Regulation" as pid
 
 n -d- btn : > Presses
 dn -r- btn : > Presses
@@ -56,11 +58,12 @@ c -r- p : > Calculates\nFollows
 (c, p) -d- r
 r -r- p : > Contains
 
-c -u- m : > Has
-c -u- hb : > Has
+c --u- m : > Has
+pid -r- hb : > Uses
 hb -r- m : > Controls
 c -u- LEDs : > Has
 
-
+c -u- dr : > Uses
+c -u- pid : > Uses
 
 @enduml
