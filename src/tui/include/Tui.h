@@ -10,8 +10,8 @@ public:
     ~Tui();
     void update();
 
-
     static bool running_;
+
 private:
     void update_selection();
     void print_elements() const;

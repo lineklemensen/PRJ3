@@ -70,35 +70,23 @@ Tui::~Tui()
 
 void Tui::update_selection()
 {
-    switch(Input::get_input()) {
-        case Key::UP: {
-            if(selected_->up_)
-                selected_ = selected_->up_;
-            break;
-        }
-        case Key::DOWN: {
-            if(selected_->down_)
-                selected_ = selected_->down_;
-            break;
-        }
-        case Key::LEFT: {
-            if(selected_->left_)
-                selected_ = selected_->left_;
-            break;
-        }
-        case Key::RIGHT: {
-            if(selected_->right_)
-                selected_ = selected_->right_;
-            break;
-        }
+    switch(const auto key = Input::get_input()) {
         case Key::ENTER: {
             selected_->action();
             break;
         }
-
+        case Key::UP:
+        case Key::DOWN:
+        case Key::LEFT:
+        case Key::RIGHT: {
+            if(const auto b = selected_->get_button(key))
+                selected_ = b;
+            break;
+        }
         default: break;
     }
 }
+
 
 void Tui::print_elements() const
 {

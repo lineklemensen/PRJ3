@@ -4,14 +4,12 @@
 #include <format>
 #include <iostream>
 
-Button::Button(const std::string& text, const std::function<void()>& action) : up_(nullptr), down_(nullptr), left_(nullptr),
-                                                                            right_(nullptr), action_(action)
+Button::Button(const std::string& text, const std::function<void()>& action) : action_(action)
 {
     text_ = text;
 }
 
-Button::Button(const std::string& text, const Vec2 position, const std::function<void()>& action) : up_(nullptr), down_(nullptr), left_(nullptr),
-                                                                            right_(nullptr), action_(action)
+Button::Button(const std::string& text, const Vec2 position, const std::function<void()>& action) : action_(action)
 {
     text_ = text;
     pos_ = position;
@@ -33,14 +31,27 @@ void Button::connect(Button* button, const Direction dir)
 {
     switch(dir) {
         case VERTICAL: {
-            down_ = button;
-            button->up_ = this;
+            this->add_keybind(DOWN, button);
+            button->add_keybind(UP, this);
             break;
         }
         case HORIZONTAL: {
-            right_ = button;
-            button->left_ = this;
+            this->add_keybind(RIGHT, button);
+            button->add_keybind(LEFT, this);
             break;
         }
     }
+}
+
+void Button::add_keybind(const Key key, Button* button)
+{
+    keyMap_.try_emplace(key, button);
+}
+
+Button* Button::get_button(const Key key)
+{
+    if(!keyMap_.contains(key))
+        return nullptr;
+
+    return keyMap_[key];
 }
