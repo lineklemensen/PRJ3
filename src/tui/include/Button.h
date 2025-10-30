@@ -1,8 +1,4 @@
-﻿//
-// Created by danie on 9/1/2025.
-//
-
-#pragma once
+﻿#pragma once
 #include <string>
 #include <functional>
 #include <keys.h>
