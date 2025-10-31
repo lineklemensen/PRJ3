@@ -12,7 +12,7 @@ int main()
     Console::setup();
     Tui tui{};
 
-    while(Tui::running_) {
+    while(Tui::is_running()) {
         tui.update();
     }
 

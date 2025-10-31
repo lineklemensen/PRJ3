@@ -109,8 +109,11 @@ void Tui::update()
     }
 
     Input::update_input();
-    Console::set_cursor_pos({1, 0});
-
     update_selection();
     print_elements();
+}
+
+bool Tui::is_running()
+{
+    return running_;
 }
