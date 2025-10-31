@@ -393,16 +393,12 @@
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
 \hline
-\hline
-\hline
 \multicolumn{5}{|c|}{}\\
 \hline
 \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
 \hline
-\hline
-\hline
-\hline
 4 & Car reaches destination & Car stops, LED indicates idle & & \\
+\hline
 \end{tabularx}
 \label{tab:nf-functionality}
 \end{table}
@@ -535,6 +531,26 @@
 \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{Car powered on, executing route} \\ 
 \hline
 \multicolumn{5}{|c|}{} \\ 
+\hline
+\textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\ 
+\hline
+1 & Press emergency stop & Car halts within 1 second & & \\ 
+\hline
+2 & Attempt operation outdoors or on wet surface & Car does not operate & & \\ 
+\hline
+3 & Attempt operation with obstacles & Car cannot avoid collisions & & \\ 
+\hline
+\end{tabularx} \\ 
+\caption{Acceptance test - Safety and constraints}
+\label{tab:nf-safety}
+\end{table}
+
+## Safety and Constraints
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+\hline
+\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Safety and operational constraints} \\ 
 \hline
 \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\ 
 \hline
