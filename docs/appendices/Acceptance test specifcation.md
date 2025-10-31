@@ -388,34 +388,24 @@
 \end{table}
 
 
-# Non-functional Requirements
 
-## Functionality
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
 \hline
-\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Request routes from server} \\
 \hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{Car is idle, and not on route} \\
 \hline
 \multicolumn{5}{|c|}{}\\
 \hline
 \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
 \hline
-1 & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & & \\
 \hline
-2 & Press the action button & The car successfully requests and receives a JSON route from the server& & \\
 \hline
-3 & Car starts route & Car follows route at max $\leq$ 5 km/h & & \\
 \hline
 4 & Car reaches destination & Car stops, LED indicates idle & & \\
-\hline
 \end{tabularx}
-\caption{Acceptance test - Functionality: Request route while idle and execution}
 \label{tab:nf-functionality}
 \end{table}
-
 
 
 ## Usability
