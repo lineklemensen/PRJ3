@@ -9,6 +9,7 @@ header-includes:
   - \usepackage{tabularx}
   - \usepackage{float}
   - \usepackage{array}
+  - \usepackage{longtable}
 ---
 
 

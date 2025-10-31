@@ -388,7 +388,7 @@
 \end{table}
 
 
-
+# Nonfunctional Requirements
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
@@ -405,8 +405,6 @@
 
 
 ## Usability
-
-### LED Feedback
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
@@ -517,7 +515,7 @@
 \hline
 \end{tabularx} 
 \caption{Acceptance test - Reliability: Continuous operation and maintenance}
-\label{tab:nf-reliability}
+\label{tab:nf-performance}
 \end{table}
 
 
@@ -562,5 +560,83 @@
 \hline
 \end{tabularx} \\ 
 \caption{Acceptance test - Safety and constraints}
-\label{tab:nf-safety}
+\label{tab:nfddd-safety}
 \end{table}
+
+### Longtable
+
+Required tools for test of nonfunctional requirements: \newline
+    - Car \newline
+    - Server \newline
+    - Client/UI \newline
+    - User guide
+
+\begin{longtable}{|p{0.19\textwidth}|p{0.19\textwidth}|p{0.19\textwidth}|p{0.19\textwidth}|p{0.11\textwidth}|}
+\hline
+\textbf{Requirement under test} & \textbf{Action} & \textbf{Expected Result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\  
+\hline
+Functionality 1 - Car requests routes from server & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle on homebase}\\
+\hline
+ & Open Wireshark to monitor the local network & Wireshark is monitoring the local network & H & H\\
+\hline
+ & Press the action button & [Wireshark] The car sends a request to the server, and the server responds & H & H\\
+\hline
+Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at destination}\\
+\hline
+ & Press the action button & The car starts driving to continue its route & H & H\\
+\hline
+Usability 1 - The car is equipped with two LEDs & Inspect the car & [Visual test] On the car is two LEDs, one green and one red & H & H\\
+\hline
+Usability 2 - The car is equipped with a speaker & Inspect the car & [Visual test] The car is equpped with a speaker& H & H\\
+\hline
+Usability 3 - User guide & Write a user guide & A user guide has been written & H & H\\
+\hline
+Usability 4 - User guide & Read the user guide & The user guide includes troublehooting for 5 common error-scenarios & H & H\\
+\hline
+Usability 5 - Buttons on car & Inspect the car & [Visual test]The car is equipped with two buttons labelled 'Action' and 'Power' & H & H\\
+\hline
+Usability 6 - UI & Start creating route on client & A UI opens & H & H\\
+\hline
+Usability 7 - Text on UI & Open the Client UI & The size of text in the UI is > 14pt, and the color of the text is a contrasting color to the background  & H & H\\
+\hline
+ & Shine a flashlight at the screen or recreate a high-light environment in another way & The text in the UI is still readable & H & H\\
+\hline
+Reliability 1 - Continuous driving & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{The car is fully charged and 10+ routes are ready in server}\\
+\hline
+1 & Start a timer & The user is timing the system & H & H\\
+\hline
+2 & Press the action button & The car requests and receives a route, and the green LED turns on & H & H\\
+\hline
+3 & Press the action button & The car starts driving, and arrives at next destination & H & H\\
+\hline
+4 & Repeat point 3 until car is back on homebase & The car is on homebase and ready to request another route & H & H\\
+\hline
+5 & Repeat point 1 to 4 until 65 minutes have passed(To account for delays when fetching/continuing routes, etc.) & 65 minutes have passed and the car is still & H & H\\
+\hline
+Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at destination}\\
+\hline
+ & Press the action button & The car starts driving to continue its route & H & H\\
+\hline
+Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at destination}\\
+\hline
+ & Press the action button & The car starts driving to continue its route & H & H\\
+\hline
+Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at destination}\\
+\hline
+ & Press the action button & The car starts driving to continue its route & H & H\\
+\hline
+Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at destination}\\
+\hline
+ & Press the action button & The car starts driving to continue its route & H & H\\
+\hline
+Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at destination}\\
+\hline
+ & Press the action button & The car starts driving to continue its route & H & H\\
+\hline
+Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at destination}\\
+\hline
+ & Press the action button & The car starts driving to continue its route & H & H\\
+\hline
+\end{longtable}
+
+
