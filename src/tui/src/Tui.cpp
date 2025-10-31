@@ -14,41 +14,36 @@ bool Tui::running_ = true;
 
 Tui::Tui()
 {
-    elements_.push_back(new TextElement("Please select up to 3 rooms"));
-    elements_.push_back(new TextElement("Navigate using WASD, Enter to select"));
+    add_new_element(new TextElement("Please select up to 3 rooms"));
+    add_new_element(new TextElement("Navigate using WASD, Enter to select"));
     for(short i = 2; i < 8; ++i) {
         auto action = [i] {
             std::cout << std::format("\033[{}m", 31 + i);
         };
-        const auto b = new StatefulButton("Option " + std::to_string(i), action);
-
-        elements_.push_back(b);
+        add_new_element(new StatefulButton("Option " + std::to_string(i), action));
     }
 
-    const auto close_button = new Button("Close UI", [&] { exit(0); });
+    const auto close_button = add_new_element(new Button("Close UI", [&] { exit(0); }));
 
-    elements_.push_back(new TextElement(""));
+    add_new_element(new TextElement(""));
 
-    const auto cancel_button = new Button("Cancel", [&] {
+    const auto cancel_button = add_new_element(new Button("Cancel", [&] {
         for(const auto& element : elements_) {
             // If dynamic cast fails it'll return null pointer
             if(auto* b = dynamic_cast<StatefulButton*>(element))
                 b->set_state(false);
         }
-    });
-    const auto finish_button = new Button("Finish", HORIZONTAL, [&] { });
+    }));
 
-    elements_.push_back(close_button);
-    elements_.push_back(cancel_button);
-    elements_.push_back(finish_button);
+    const auto finish_button = add_new_element(new Button("Finish", HORIZONTAL, [&] { }));
 
     // Initial button to start on
-    selected_ = dynamic_cast<Button*>(elements_[2]);
+    selected_ = elements_[2];
 
     //Connect all the 'room' buttons together for navigation
     for(size_t i = 2; i < 7; ++i)
-        dynamic_cast<Button*>(elements_[i])->connect(dynamic_cast<Button*>(elements_[i + 1]));
-    dynamic_cast<Button*>(elements_[7])->connect(close_button);
+        elements_[i]->connect(elements_[i + 1]);
+    elements_[7]->connect(close_button);
 
     // Ordering unfortunately kinda matters here, since this assignment is bi-directional.
     // Since we do cancel after finish hitting down from close it should always jump to cancel
@@ -97,6 +92,12 @@ void Tui::print_elements() const
         const char border_l = e == selected_ ? '<' : ' ';
         std::cout << border_l;
     }
+}
+
+Element* Tui::add_new_element(Element* element)
+{
+    elements_.push_back(element);
+    return element;
 }
 
 
