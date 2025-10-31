@@ -4,7 +4,12 @@
 #include <iostream>
 #include <format>
 
-StatefulButton::StatefulButton(const std::string& text, const Vec2 pos, const std::function<void()>& action = nullptr) : Button(text, pos, action),
+StatefulButton::StatefulButton(const std::string& text, const std::function<void()>& action)
+    : StatefulButton(text, VERTICAL, action)
+{ }
+
+StatefulButton::StatefulButton(const std::string& text, const Direction dir,
+                               const std::function<void()>& action = nullptr) : Button(text, dir, action),
     state_(false)
 { }
 

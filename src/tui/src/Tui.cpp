@@ -14,26 +14,29 @@ bool Tui::running_ = true;
 
 Tui::Tui()
 {
-    elements_.push_back(new TextElement("Please select up to 3 rooms", {1, 0}));
-    elements_.push_back(new TextElement("Navigate using WASD, Enter to select", {1, 1}));
+    elements_.push_back(new TextElement("Please select up to 3 rooms"));
+    elements_.push_back(new TextElement("Navigate using WASD, Enter to select"));
     for(short i = 2; i < 8; ++i) {
         auto action = [i] {
             std::cout << std::format("\033[{}m", 31 + i);
         };
-        const auto b = new StatefulButton("Option " + std::to_string(i), {1, i}, action);
+        const auto b = new StatefulButton("Option " + std::to_string(i), action);
 
         elements_.push_back(b);
     }
 
-    const auto close_button = new Button("Close UI", {1, 8}, [&] { exit(0); });
-    const auto cancel_button = new Button("Cancel", {1, 11}, [&] {
+    const auto close_button = new Button("Close UI", [&] { exit(0); });
+
+    elements_.push_back(new TextElement(""));
+
+    const auto cancel_button = new Button("Cancel", [&] {
         for(const auto& element : elements_) {
             // If dynamic cast fails it'll return null pointer
             if(auto* b = dynamic_cast<StatefulButton*>(element))
                 b->set_state(false);
         }
     });
-    const auto finish_button = new Button("Finish", {12, 11}, [&] { });
+    const auto finish_button = new Button("Finish", HORIZONTAL, [&] { });
 
     elements_.push_back(close_button);
     elements_.push_back(cancel_button);
@@ -50,8 +53,9 @@ Tui::Tui()
     // Ordering unfortunately kinda matters here, since this assignment is bi-directional.
     // Since we do cancel after finish hitting down from close it should always jump to cancel
     cancel_button->connect(finish_button, HORIZONTAL);
-    close_button->connect(finish_button);
-    close_button->connect(cancel_button);
+    close_button->add_keybind(DOWN, cancel_button);
+    cancel_button->add_keybind(UP, close_button);
+    finish_button->add_keybind(UP, close_button);
 
     print_elements();
 }
@@ -68,7 +72,8 @@ void Tui::update_selection()
 {
     switch(const auto key = Input::get_input()) {
         case Key::ENTER: {
-            selected_->action();
+            if(const auto e = dynamic_cast<Button*>(selected_))
+                e->action();
             break;
         }
         case Key::UP:
@@ -93,6 +98,7 @@ void Tui::print_elements() const
         std::cout << border_l;
     }
 }
+
 
 void Tui::update()
 {

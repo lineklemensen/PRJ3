@@ -9,5 +9,4 @@ public:
 private:
     static int read_input();
     static Key key_;
-
 };

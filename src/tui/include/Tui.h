@@ -16,5 +16,5 @@ private:
     void print_elements() const;
 
     std::vector<Element*> elements_;
-    Button* selected_;
+    Element* selected_;
 };

@@ -3,11 +3,14 @@
 #include <Console.h>
 #include <iostream>
 
-TextElement::TextElement(const std::string& text, const Vec2 pos)
+TextElement::TextElement(const std::string& text) : TextElement(text, VERTICAL) { }
+
+TextElement::TextElement(const std::string& text, const Direction dir)
 {
     text_ = text;
-    pos_ = pos;
+    pos_ = getNextAvailablePos(this, dir);
 }
+
 
 void TextElement::print()
 {
