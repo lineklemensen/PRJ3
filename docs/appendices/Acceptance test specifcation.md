@@ -587,7 +587,7 @@ Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\t
 \hline
 Usability 1 - The car is equipped with two LEDs & Inspect the car & [Visual test] On the car is two LEDs, one green and one red & H & H\\
 \hline
-Usability 2 - The car is equipped with a speaker & Inspect the car & [Visual test] The car is equpped with a speaker& H & H\\
+Usability 2 - The car is equipped with a speaker & Inspect the car(???????????????) & [Visual test] The car is equpped with a speaker& H & H\\
 \hline
 Usability 3 - User guide & Write a user guide & A user guide has been written & H & H\\
 \hline
@@ -613,30 +613,90 @@ Reliability 1 - Continuous driving & Precondition: & \multicolumn{3}{|p{0.5\text
 \hline
 5 & Repeat point 1 to 4 until 65 minutes have passed(To account for delays when fetching/continuing routes, etc.) & 65 minutes have passed and the car is still & H & H\\
 \hline
-Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at destination}\\
+Reliability 2 - Continuous running of server & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Server is running and car is idle at homebase}\\
 \hline
- & Press the action button & The car starts driving to continue its route & H & H\\
+1 & Prepare and start a timer or stopwatch & The user is timing the server & H & H\\
 \hline
-Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at destination}\\
+2 & Wait until 6 hours have passed, then press the action button on the car to request a route & The route is fetched without issues & H & H\\
 \hline
- & Press the action button & The car starts driving to continue its route & H & H\\
+Reliability 3 - Continuous running of server & Prepare and start a stopwatch or timer & The timer/stopwatch is tracking the time & H &\\
 \hline
-Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at destination}\\
+2 & Remove the current battery from the car & The battery is removed successfully & H & H\\
 \hline
- & Press the action button & The car starts driving to continue its route & H & H\\
+3 & Install a new battery in the car & The new battery is installed successfully & H & H\\
 \hline
-Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at destination}\\
+4 & Stop the stopwatch/timer & Less then 10 minutes have passed & H & H\\
 \hline
- & Press the action button & The car starts driving to continue its route & H & H\\
+Reliability 4 - Success rate of routes & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase and server is running with 10 routes stored}\\
 \hline
-Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at destination}\\
+1 & Press the action button & The green LED lights up & H & H\\
+2 & Press the action button & The car starts executing route & H & H\\
 \hline
- & Press the action button & The car starts driving to continue its route & H & H\\
+3 & Wait for car to arrive at destination & The car is at destination, and green LED is on & H & H\\
 \hline
-Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at destination}\\
+4 & Repeat point 2 to 3 until route is complete & The car is idle at homebase & H & H\\
 \hline
- & Press the action button & The car starts driving to continue its route & H & H\\
+5 & Repeat step 1 to 4 until 10 routes have been completed in total & The car completed at least 9 routes & H & H\\
 \hline
+Reliability 5 - Car drives on wet floor & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase and server is running}\\
+\hline
+1 & Grab a bottle of water(500 ml) and pour it evenly over the surface that makes up your testing environment & The surface the car is going to drive on is wet & H & H\\
+\hline
+2 & Press the action butto on the car & The green LED turns on & H & H\\
+\hline
+3 & Press the action button & The car starts executing route & H &\\
+\hline
+4 & Watch car while its exeucting route & The car cannot complete the route & H & H\\
+\hline
+Performance 1 - Button response time & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase and server is running}\\
+\hline
+1 & Open Wireshark to monitor the local network & Wireshark is monitoring the local network & H & H\\
+\hline
+2 & Prepare and start stopwatch/timer & The user is now tracking the time & H & H\\
+\hline
+3 & Press the action button & [Wireshark] The car requests a route within 1 second & H & H\\
+\hline
+Performance 2 - Car startup time & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is turned off and server is running}\\
+\hline
+1 & Prepare a stopwatch/timer & The user is tracking the time & H & H\\
+\hline
+2 & Press the power button, and wait for the green LED to turn on & The green LED turns on within 1 minute & H & H\\
+\hline
+Performance 3 - Car minimum range & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle and fully charged at homebase and server is running}\\
+\hline
+1 & Find the longest possible route in your testing setup & The longest route is found & H & H\\
+\hline
+2 & Create make multiple copies of said route on server, so that the total length of routes stored is 500 meters or higher & Routes of total length < 500 meters have been stored on server & H & H\\
+\hline
+3 & Press the action button & The green LED turns on & H & H\\
+\hline
+4 & Press the action button & The car starts driving to next destination & H & H\\
+\hline
+5 & Wait for car to reach destination & The car has reached its destination and the green LED is on & H & H\\
+\hline
+6 & Repeat point 4 through 5 until car has completed route and is idle at homebase & The car is idle at homebase & H & H\\
+\hline
+7 & Repeat point 3 through 6 until car the total length driven by car exceeds 500 meters & The battery is still powering the car & H & H\\
+\hline
+Performance 4 - Car maximum speed & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase and server is running}\\
+\hline
+1 & Prepare a speedometer & The speed of the car is ready to be read & H & H\\
+\hline
+2 & Press the action button & The green LED turns on & H & H\\
+\hline
+3 & Press the action button & The car starts driving to next destination & H & H\\
+\hline
+4 & Track the speed of the car during the completion of the route, until the route car has reached its destination & The car is idle at destination & H & H\\
+\hline
+5 & Repeat point 3 through 4 until route is completed, while still tracking the speed & The car never exceeds a speed of 5 km/h & H & H\\
+\hline
+XXXXX xxxxx - Car car car & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is car car}\\
+\hline
+1 & do car car & car car & H & H\\
+\hline
+1 & do car car & car car & H & H\\
+\hline
+
 \end{longtable}
 
 
