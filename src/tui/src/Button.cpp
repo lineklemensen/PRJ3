@@ -13,9 +13,20 @@ Button::Button(const std::string& text, const Direction dir, const std::function
     pos_ = getNextAvailablePos(this, dir);
 }
 
+Button::Button(const std::string& text, const Vec2 pos, const std::function<void()>& action) : action_(action)
+{
+    text_ = text;
+    pos_ = pos;
+}
+
 void Button::print()
 {
-    Console::set_cursor_pos(pos_);
+    print(pos_);
+}
+
+void Button::print(const Vec2 pos) const
+{
+    Console::set_cursor_pos(pos);
     std::cout << text_;
 }
 
