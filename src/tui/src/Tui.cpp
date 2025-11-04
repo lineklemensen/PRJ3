@@ -42,7 +42,7 @@ Tui::Tui()
         elements_[i]->connect(elements_[i + 1]);
     elements_[4]->connect(close_button);
 
-    // Ordering unfortunately kinda matters here, since this assignment is bi-directional.
+    // Ordering unfortunately kinda matters here, since this assignment is bidirectional.
     // Since we do cancel after finish hitting down from close it should always jump to cancel
     finish_button->connect(cancel_button, HORIZONTAL);
     close_button->add_keybind(DOWN, finish_button);
