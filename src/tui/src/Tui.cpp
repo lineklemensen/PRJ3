@@ -84,9 +84,9 @@ void Tui::update_selection()
 void Tui::print_elements() const
 {
     for(const auto e : elements_) {
+        const std::string border_l = e == selected_ ? "<-" : "  ";
         e->print();
 
-        const char border_l = e == selected_ ? '<' : ' ';
         std::cout << border_l;
     }
 }

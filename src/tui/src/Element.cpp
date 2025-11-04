@@ -16,7 +16,7 @@ Vec2 Element::getNextAvailablePos(const Element* element, const Direction dir)
             break;
         }
         case Direction::HORIZONTAL: {
-            next_available_pos.x += element->Size() + 2;
+            next_available_pos.x += element->Size() + 3;
             break;
         }
     }
