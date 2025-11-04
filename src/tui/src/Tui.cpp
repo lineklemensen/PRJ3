@@ -15,12 +15,12 @@ bool Tui::running_ = true;
 Tui::Tui()
 {
     auto spawn_popup = [&] {
-        int y_pos = 10;
-        const auto top = new TextElement("x-------------------------------------------x", {0, y_pos++});
+        int y_pos = elements_.size();
+        const auto edge = new TextElement("x-------------------------------------------x", {0, y_pos++});
         const auto text = new TextElement("| These are your selected rooms:            |", {0, y_pos++});
         const auto spacer = new TextElement("|                                           |");
 
-        top->print();
+        edge->print();
         text->print();
         spacer->print({0, y_pos++});
 
@@ -38,7 +38,7 @@ Tui::Tui()
         const auto confirm_button = new Button("Confirm", {2, y_pos}, nullptr);
         const auto deny_button = new Button("Deny", {13, y_pos}, [&] {
             //TODO This is unsafe to element order changes
-            selected_ = elements_[2];
+            selected_ = elements_[3];
             //TODO Still not a fan of system calls
             system("cls");
             print_elements();
@@ -50,23 +50,20 @@ Tui::Tui()
         selected_ = deny_button;
 
 
-        const auto bottom = new TextElement("x-------------------------------------------x", {0, ++y_pos});
-        bottom->print();
+        edge->print({0, ++y_pos});
 
         confirm_button->connect(deny_button, HORIZONTAL);
     };
 
     add_new_element(new TextElement("Please select up to 3 rooms"));
     add_new_element(new TextElement("Navigate using WASD, Enter to select"));
-
-    add_new_element(new StatefulButton("Room 1", nullptr));
-    add_new_element(new StatefulButton("Room 2", nullptr));
-    add_new_element(new StatefulButton("Room 3", nullptr));
-
-    const auto close_button = add_new_element(new Button("Close UI", [&] { exit(0); }));
-
     add_new_element(new TextElement(""));
-
+    const auto close_button = add_new_element(new Button("Close UI", [&] { exit(0); }));
+    add_new_element(new TextElement(""));
+    const auto first_room = add_new_element(new StatefulButton("Room 1", nullptr));
+    add_new_element(new StatefulButton("Room 2", nullptr));
+    const auto last_room = add_new_element(new StatefulButton("Room 3", nullptr));
+    add_new_element(new TextElement(""));
     const auto finish_button = add_new_element(new Button("Finish", spawn_popup));
     const auto clear_button = add_new_element(new Button("Clear", HORIZONTAL, [&] {
         for(const auto& element : elements_) {
@@ -77,19 +74,19 @@ Tui::Tui()
     }));
 
     // Initial button to start on
-    selected_ = elements_[2];
+    selected_ = first_room;
 
     //Connect all the 'room' buttons together for navigation
-    for(size_t i = 2; i < 4; ++i)
+    close_button->connect(first_room);
+    for(size_t i = 5; i < 7; ++i)
         elements_[i]->connect(elements_[i + 1]);
-    elements_[4]->connect(close_button);
 
     // Ordering unfortunately kinda matters here, since this assignment is bidirectional.
     // Since we do cancel after finish hitting down from close it should always jump to cancel
     finish_button->connect(clear_button, HORIZONTAL);
-    close_button->add_keybind(DOWN, finish_button);
-    clear_button->add_keybind(UP, close_button);
-    finish_button->add_keybind(UP, close_button);
+    last_room->add_keybind(DOWN, finish_button);
+    finish_button->add_keybind(UP, last_room);
+    clear_button->add_keybind(UP, last_room);
 
     print_elements();
 }
