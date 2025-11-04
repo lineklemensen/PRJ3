@@ -31,7 +31,8 @@ void Input::update_input()
         default: break;
     }
 
-    // If
+    // If a key code of 224 is read it signifies a special key (such as arrow keys),
+    // and we have to check if we need to read a second time to get the actual keycode of the real key
     if(c != 224)
         return;
 
