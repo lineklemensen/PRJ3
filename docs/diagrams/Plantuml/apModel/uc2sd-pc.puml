@@ -27,7 +27,8 @@ tui -> tui: print_elements()
 
 '6.
 loop Tui:is_running()
-dn ->> in : **Keybord button pressed**
+dn ->> in++ : **Keybord button pressed**
+in--
 tui -> in++ : update_input()
 in -> in : read_input()
 in -[hidden]-> in

@@ -4,13 +4,12 @@ mainframe **SD** UC2 - Create Delivery
 hide footbox
 
 participant HTTP
-participant CreateOrder as co
-participant OrderLog as ol
+participant logHandler as oh
 
 
 
 [-> HTTP : POST /destinations
-ol -> ol : push(destinations)
+HTTP -> oh : Struct:Rooms
 [<-- HTTP : 201 Created
 
 
