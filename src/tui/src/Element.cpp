@@ -8,15 +8,15 @@ size_t Element::Size() const
 
 Vec2 Element::getNextAvailablePos(const Element* element, const Direction dir)
 {
-    static Vec2 next_available_pos = {0, 0};
+    static Vec2 next_available_pos = {2, 0};
     switch(dir) {
         case Direction::VERTICAL: {
             next_available_pos.y += 1;
-            next_available_pos.x = 0;
+            next_available_pos.x = 2;
             break;
         }
         case Direction::HORIZONTAL: {
-            next_available_pos.x += element->Size() + 3;
+            next_available_pos.x += element->Size() + 6;
             break;
         }
     }

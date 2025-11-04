@@ -105,6 +105,7 @@ void Tui::update_selection()
         case Key::ENTER: {
             if(const auto e = dynamic_cast<Button*>(selected_))
                 e->action();
+            selected_->print();
             break;
         }
         case Key::UP:
@@ -127,6 +128,14 @@ void Tui::update_selection()
 
 void Tui::print_elements() const
 {
+    const auto edge = new TextElement("x-------------------------------------------x");
+    edge->print({0, 0});
+    const auto spacer = new TextElement("|                                           |");
+    for(size_t i = 1; i < elements_.size() + 1; ++i) {
+        spacer->print({0, static_cast<int>(i)});
+    }
+    edge->print({0, static_cast<int>(elements_.size() + 1)});
+
     for(const auto e : elements_) {
         const std::string border_l = e == selected_ ? "<-" : "  ";
         e->print();
@@ -151,7 +160,6 @@ void Tui::update()
 
     Input::update_input();
     update_selection();
-    print_elements();
 }
 
 bool Tui::is_running()
