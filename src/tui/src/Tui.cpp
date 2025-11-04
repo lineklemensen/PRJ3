@@ -46,13 +46,14 @@ Tui::Tui()
 
         confirm_button->print();
         deny_button->print();
+        std::cout << "<-";
+        selected_ = deny_button;
 
         const auto bottom = new TextElement("x-------------------------------------------x", {0, ++y_pos});
         bottom->print();
 
         confirm_button->connect(deny_button, HORIZONTAL);
 
-        selected_ = deny_button;
     };
 
     add_new_element(new TextElement("Please select up to 3 rooms"));
@@ -69,10 +70,10 @@ Tui::Tui()
     const auto finish_button = add_new_element(new Button("Finish", spawn_popup));
     const auto cancel_button = add_new_element(new Button("Cancel", HORIZONTAL, [&] {
         for(const auto& element : elements_) {
-            // If dynamic cast fails it'll return null pointer
             if(auto* b = dynamic_cast<StatefulButton*>(element))
                 b->set_state(false);
         }
+        print_elements();
     }));
 
     // Initial button to start on
@@ -113,8 +114,13 @@ void Tui::update_selection()
         case Key::DOWN:
         case Key::LEFT:
         case Key::RIGHT: {
-            if(const auto b = selected_->get_button(key))
+            if(const auto b = selected_->get_button(key)) {
+                selected_->print();
+                std::cout << "  ";
                 selected_ = b;
+                selected_->print();
+                std::cout << "<-";
+            }
             break;
         }
         default: break;
