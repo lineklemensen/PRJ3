@@ -2,5 +2,7 @@
 
 struct Vec2
 {
-    short x, y;
+    int x, y;
+    Vec2() = default;
+    Vec2(const int x, const int y) : x(x), y(y) {}
 };

@@ -1,4 +1,6 @@
 ﻿#include "Console.h"
+
+#include <cassert>
 #include <format>
 #include <TextElement.h>
 #include <Vec2.h>
@@ -13,7 +15,12 @@ void Console::set_cursor_pos(const short x, const short y)
 void Console::set_cursor_pos(const Vec2 pos)
 {
     //https://learn.microsoft.com/en-us/windows/console/setconsolecursorposition
-    const COORD coord = {pos.x, pos.y};
+    assert(pos.x < std::numeric_limits<short>::max());
+    assert(pos.y < std::numeric_limits<short>::max());
+    assert(pos.x > std::numeric_limits<short>::min());
+    assert(pos.y > std::numeric_limits<short>::min());
+
+    const COORD coord = {static_cast<short>(pos.x), static_cast<short>(pos.y)};
     SetConsoleCursorPosition(stdout_handle_, coord);
 }
 
@@ -30,4 +37,3 @@ void Console::setup()
     set_cursor_pos({0, 0});
     hide_cursor();
 }
-
