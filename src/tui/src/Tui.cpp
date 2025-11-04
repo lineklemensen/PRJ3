@@ -16,18 +16,17 @@ Tui::Tui()
 {
     add_new_element(new TextElement("Please select up to 3 rooms"));
     add_new_element(new TextElement("Navigate using WASD, Enter to select"));
-    for(short i = 2; i < 8; ++i) {
-        auto action = [i] {
-            std::cout << std::format("\033[{}m", 31 + i);
-        };
-        add_new_element(new StatefulButton("Option " + std::to_string(i), action));
-    }
+
+    add_new_element(new StatefulButton("Room 1", nullptr));
+    add_new_element(new StatefulButton("Room 2", nullptr));
+    add_new_element(new StatefulButton("Room 3", nullptr));
 
     const auto close_button = add_new_element(new Button("Close UI", [&] { exit(0); }));
 
     add_new_element(new TextElement(""));
 
-    const auto cancel_button = add_new_element(new Button("Cancel", [&] {
+    const auto finish_button = add_new_element(new Button("Finish", [&] { }));
+    const auto cancel_button = add_new_element(new Button("Cancel", HORIZONTAL, [&] {
         for(const auto& element : elements_) {
             // If dynamic cast fails it'll return null pointer
             if(auto* b = dynamic_cast<StatefulButton*>(element))
@@ -35,20 +34,18 @@ Tui::Tui()
         }
     }));
 
-    const auto finish_button = add_new_element(new Button("Finish", HORIZONTAL, [&] { }));
-
     // Initial button to start on
     selected_ = elements_[2];
 
     //Connect all the 'room' buttons together for navigation
-    for(size_t i = 2; i < 7; ++i)
+    for(size_t i = 2; i < 4; ++i)
         elements_[i]->connect(elements_[i + 1]);
-    elements_[7]->connect(close_button);
+    elements_[4]->connect(close_button);
 
     // Ordering unfortunately kinda matters here, since this assignment is bi-directional.
     // Since we do cancel after finish hitting down from close it should always jump to cancel
-    cancel_button->connect(finish_button, HORIZONTAL);
-    close_button->add_keybind(DOWN, cancel_button);
+    finish_button->connect(cancel_button, HORIZONTAL);
+    close_button->add_keybind(DOWN, finish_button);
     cancel_button->add_keybind(UP, close_button);
     finish_button->add_keybind(UP, close_button);
 
