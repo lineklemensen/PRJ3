@@ -49,11 +49,11 @@ Tui::Tui()
         std::cout << "<-";
         selected_ = deny_button;
 
+
         const auto bottom = new TextElement("x-------------------------------------------x", {0, ++y_pos});
         bottom->print();
 
         confirm_button->connect(deny_button, HORIZONTAL);
-
     };
 
     add_new_element(new TextElement("Please select up to 3 rooms"));
@@ -68,7 +68,7 @@ Tui::Tui()
     add_new_element(new TextElement(""));
 
     const auto finish_button = add_new_element(new Button("Finish", spawn_popup));
-    const auto cancel_button = add_new_element(new Button("Cancel", HORIZONTAL, [&] {
+    const auto clear_button = add_new_element(new Button("Clear", HORIZONTAL, [&] {
         for(const auto& element : elements_) {
             if(auto* b = dynamic_cast<StatefulButton*>(element))
                 b->set_state(false);
@@ -86,9 +86,9 @@ Tui::Tui()
 
     // Ordering unfortunately kinda matters here, since this assignment is bidirectional.
     // Since we do cancel after finish hitting down from close it should always jump to cancel
-    finish_button->connect(cancel_button, HORIZONTAL);
+    finish_button->connect(clear_button, HORIZONTAL);
     close_button->add_keybind(DOWN, finish_button);
-    cancel_button->add_keybind(UP, close_button);
+    clear_button->add_keybind(UP, close_button);
     finish_button->add_keybind(UP, close_button);
 
     print_elements();
