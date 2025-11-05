@@ -15,6 +15,10 @@ bool Tui::running_ = true;
 Tui::Tui()
 {
     auto spawn_popup = [&] {
+        Console::set_text_color(Color::GRAY);
+        print_elements();
+        Console::set_text_color(Color::WHITE);
+
         int y_pos = elements_.size();
         const auto edge = new TextElement("x-------------------------------------------x", {0, y_pos++});
         const auto text = new TextElement("| These are your selected rooms:            |", {0, y_pos++});

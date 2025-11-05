@@ -1,8 +1,7 @@
 ﻿#include "Console.h"
-
 #include <cassert>
 #include <format>
-#include <TextElement.h>
+#include <iostream>
 #include <Vec2.h>
 
 HANDLE Console::handle_ = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -28,7 +27,25 @@ void Console::hide_cursor()
 {
     //https://learn.microsoft.com/en-us/windows/console/setconsolecursorinfo
     constexpr CONSOLE_CURSOR_INFO cursor_info{1, FALSE};
-    SetConsoleCursorInfo(stdout_handle_, &cursor_info);
+    SetConsoleCursorInfo(handle_, &cursor_info);
+}
+
+void Console::set_text_color(const Color color)
+{
+    //https://en.wikipedia.org/wiki/ANSI_escape_code
+    switch(color) {
+        case WHITE: {
+            SetConsoleTextAttribute(handle_, WHITE);
+            break;
+        }
+        case GRAY: {
+            SetConsoleTextAttribute(handle_, GRAY);
+            break;
+        }
+        default: return;
+    }
+}
+
 void Console::clear_screen()
 {
     CONSOLE_SCREEN_BUFFER_INFO info;
