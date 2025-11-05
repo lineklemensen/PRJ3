@@ -69,7 +69,7 @@ Tui::Tui()
     add_new_element(new TextElement("Please select up to 3 rooms"));
     add_new_element(new TextElement("Navigate using WASD, Enter to select"));
     add_new_element(new TextElement(""));
-    const auto close_button = add_new_element(new Button("Close UI", [&] { exit(0); }));
+    const auto close_button = add_new_element(new Button("Close UI", [&] { running_ = false; }));
     add_new_element(new TextElement(""));
     const auto first_room = add_new_element(new StatefulButton("Room 1", nullptr));
     add_new_element(new StatefulButton("Room 2", nullptr));
