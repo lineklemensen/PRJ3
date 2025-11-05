@@ -8,7 +8,8 @@ public:
     static void set_cursor_pos(short x, short y);
     static void set_cursor_pos(Vec2 pos);
     static void hide_cursor();
+    static void clear_screen();
 private:
-    static HANDLE stdout_handle_;
+    static HANDLE handle_;
 
 };

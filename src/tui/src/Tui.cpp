@@ -39,8 +39,7 @@ Tui::Tui()
         const auto deny_button = new Button("Deny", {13, y_pos}, [&] {
             //TODO This is unsafe to element order changes
             selected_ = elements_[3];
-            //TODO Still not a fan of system calls
-            system("cls");
+            Console::clear_screen();
             print_elements();
         });
 

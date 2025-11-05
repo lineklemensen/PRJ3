@@ -5,7 +5,7 @@
 #include <TextElement.h>
 #include <Vec2.h>
 
-HANDLE Console::stdout_handle_ = GetStdHandle(STD_OUTPUT_HANDLE);
+HANDLE Console::handle_ = GetStdHandle(STD_OUTPUT_HANDLE);
 
 void Console::set_cursor_pos(const short x, const short y)
 {
@@ -21,7 +21,7 @@ void Console::set_cursor_pos(const Vec2 pos)
     assert(pos.y > std::numeric_limits<short>::min());
 
     const COORD coord = {static_cast<short>(pos.x), static_cast<short>(pos.y)};
-    SetConsoleCursorPosition(stdout_handle_, coord);
+    SetConsoleCursorPosition(handle_, coord);
 }
 
 void Console::hide_cursor()
@@ -29,11 +29,17 @@ void Console::hide_cursor()
     //https://learn.microsoft.com/en-us/windows/console/setconsolecursorinfo
     constexpr CONSOLE_CURSOR_INFO cursor_info{1, FALSE};
     SetConsoleCursorInfo(stdout_handle_, &cursor_info);
+void Console::clear_screen()
+{
+    CONSOLE_SCREEN_BUFFER_INFO info;
+    GetConsoleScreenBufferInfo(handle_, &info);
+    DWORD w;
+    FillConsoleOutputCharacter(handle_, ' ', static_cast<DWORD>(info.dwSize.X * info.dwSize.Y), {0, 0}, &w);
 }
 
 void Console::setup()
 {
-    system("cls");
+    clear_screen();
     set_cursor_pos({0, 0});
     hide_cursor();
 }
