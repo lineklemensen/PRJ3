@@ -15,11 +15,23 @@ bool Tui::running_ = true;
 Tui::Tui()
 {
     auto spawn_popup = [&] {
+        std::vector<Button*> rooms;
+        for(const auto e : elements_) {
+            if(const auto& sb = dynamic_cast<StatefulButton*>(e)) {
+                if(sb->get_state()) {
+                    rooms.push_back(dynamic_cast<Button*>(e));
+                }
+            }
+        }
+
+        if(rooms.empty())
+            return;
+
         Console::set_text_color(Color::GRAY);
         print_elements();
         Console::set_text_color(Color::WHITE);
 
-        int y_pos = elements_.size();
+        int y_pos = 4;
         const auto edge = new TextElement("x-------------------------------------------x", {0, y_pos++});
         const auto text = new TextElement("| These are your selected rooms:            |", {0, y_pos++});
         const auto spacer = new TextElement("|                                           |");
@@ -28,13 +40,9 @@ Tui::Tui()
         text->print();
         spacer->print({0, y_pos++});
 
-        for(const auto e : elements_) {
-            if(const auto& sb = dynamic_cast<StatefulButton*>(e)) {
-                if(sb->get_state()) {
-                    spacer->print({0, y_pos});
-                    dynamic_cast<Button*>(e)->print({2, y_pos++});
-                }
-            }
+        for(const auto& r : rooms) {
+            spacer->print({0, y_pos});
+            r->print({2, y_pos++});
         }
 
         spacer->print({0, y_pos++});
