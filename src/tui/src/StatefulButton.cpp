@@ -9,8 +9,8 @@ StatefulButton::StatefulButton(const std::string& text, const std::function<void
 { }
 
 StatefulButton::StatefulButton(const std::string& text, const Direction dir,
-                               const std::function<void()>& action = nullptr) : Button(text, dir, action),
-    state_(false)
+                               const std::function<void()>& action) : Button(text, dir, action),
+                                                                      state_(false)
 { }
 
 
