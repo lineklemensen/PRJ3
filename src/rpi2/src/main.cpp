@@ -1,69 +1,54 @@
 ﻿#include <iostream>
+#include "Route.h"
 #include <restinio/all.hpp>
 #include <json_dto/pub.hpp>
 
-//=========================*/
-// Example data structure
-// TODO later: Replace 'book_t' with your own struct (e.g. something_t).
-//=========================*/
-struct book_t  // This is Data structure (sample code has book_t, you need to define your own data struct)
-{
-	book_t() = default;
-
-	book_t(std::string author, std::string title)
-		: m_author{ std::move(author) }, m_title{ std::move(title) }
-	{}
-
-	template < typename JSON_IO >
-	void json_io(JSON_IO & io)
-	{
-		io
-			& json_dto::mandatory("author", m_author)
-			& json_dto::mandatory("title", m_title);
-	}
-
-	std::string m_author;
-	std::string m_title;
-};
-
-//=========================*/
-// Todo later: Change this alias for your project type, e.g. vector<something_t>
-//=========================*/
-using book_collection_t = std::vector< book_t >;
-
+using route_collection_t = std::vector< route_t >;
 namespace rr = restinio::router;
 using router_t = rr::express_router_t<>;
 
 //=========================*/
 // HTTP handler class
-// TODO later: Rename/modify methods for your data model
 //=========================*/
-class books_handler_t
+class route_handler_t
 {
 public:
-	explicit books_handler_t(book_collection_t & books)
-		: m_books(books)
+	explicit route_handler_t(route_collection_t & routes)
+		: m_routes(routes)
 	{}
 
-	auto on_books_list(const restinio::request_handle_t& req, rr::route_params_t) const
+	auto on_get_route(const restinio::request_handle_t& req, rr::route_params_t) const
 	{
 		auto resp = init_resp(req->create_response());
 
-		resp.set_body("Book collection (book count: " +
-			std::to_string(m_books.size()) + ")\n");
+		//Open log file (with error handling) and read oldest log
 
-		for(std::size_t i = 0; i < m_books.size(); ++i)
-		{
-			resp.append_body(std::to_string(i + 1) + ". ");
-			const auto & b = m_books[i];
-			resp.append_body(b.m_title + " [" + b.m_author + "]\n");
-		}
+		resp.set_body("" /*json string from log file*/);
+
+		//Close log file
 
 		return resp.done();
 	}
 
+	auto on_post_route(const restinio::request_handle_t& req, rr::route_params_t) const
+	{
+		auto resp = init_resp(req->create_response());
+
+		//Open file (with error handling)
+
+		//Append req body to file (as json string)
+
+		//Close file handle
+
+		//Try to convert req body to route struct
+
+		//save route struct in vector/queue
+
+		return resp.done(); //only if all preceding succeeds otherwise need to send failed rsponse
+	}
+
 private:
-	book_collection_t & m_books;  // TODO: Replace 'book_collection_t', m_books with your own ..
+	route_collection_t & m_routes;
 
 	template < typename RESP >
 	static RESP init_resp(RESP resp)
@@ -83,12 +68,11 @@ private:
 
 //=========================*/
 // Router setup
-// TODO later: Add new endpoints for your project (HTTP POST, PUT, etc.) - we will learn gradually in lecture KNP module2
 //=========================*/
-auto server_handler(book_collection_t & book_collection) //replace book_ .. 
+auto server_handler(route_collection_t & book_collection) //replace book_ ..
 {
 	auto router = std::make_unique<router_t>();
-	auto handler = std::make_shared<books_handler_t>(std::ref(book_collection));
+	auto handler = std::make_shared<route_handler_t>(std::ref(book_collection));
 
 	auto by = [&](auto method) {
 		using namespace std::placeholders;
@@ -96,7 +80,10 @@ auto server_handler(book_collection_t & book_collection) //replace book_ ..
 	};
 
 	// Example: GET /
-	router->http_get("/", by(&books_handler_t::on_books_list));  //replace book_ .. 
+	router->http_get("/get_route", by(&route_handler_t::on_get_route));
+
+	router->http_post("/new_route", by(&route_handler_t::on_post_route));
+
 
 	return router;
 }
@@ -115,10 +102,7 @@ int main()
 			restinio::single_threaded_ostream_logger_t,
 			router_t >;
 
-		//=========================*/
-		// TODO later: Replace this hardcoded collection with your own initial values
-		//=========================*/
-		book_collection_t book_collection{
+		route_collection_t book_collection{
 			{"Agatha Christie", "Murder on the Orient Express"},
 			{"Agatha Christie", "Sleeping Murder"},
 			{"B. Stroustrup", "The C++ Programming Language"}
