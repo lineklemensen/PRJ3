@@ -1,0 +1,69 @@
+@startuml
+
+allow_mixing
+
+skinparam {
+    LineType ortho
+    NodeSep 95 
+    RankSep 85 
+    ClassAttributeIconSize 0
+}
+
+actor "Nurse" as n
+
+actor "Dispensary Nurse" as dn
+
+object PC {
+    - Instructions
+    - "Navigation options"
+    - Confirmation
+}
+
+object "Buttons" as btn
+
+object "Motor" as m
+
+object "H-bridge" as hb
+
+object "Car" as c 
+
+object "Locations" as loc {
+    - Name
+    - Coordinates
+}
+
+object "Destinations" as des
+object "Path" as p
+object "Route" as r
+object "Server" as s
+object LEDs
+object "Dead Reckoning" as dr
+object "PID Regulation" as pid
+
+n -d- btn : > Presses
+dn -r- btn : > Presses
+
+c -l- btn : > Has
+
+dn -l- PC : > Uses
+PC -d- loc : > Displays
+dn -d- des : > Selects
+des -l- loc : > Contains
+s -l- des : > Saves
+
+c -d- s : > Requests
+s -u- c : > Responds
+
+c -r- p : > Calculates\nFollows
+(c, p) -d- r
+r -r- p : > Contains
+
+c --u- m : > Has
+pid -r- hb : > Uses
+hb -r- m : > Controls
+c -u- LEDs : > Has
+
+c -u- dr : > Uses
+c -u- pid : > Uses
+
+@enduml

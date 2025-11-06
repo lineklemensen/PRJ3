@@ -1,0 +1,41 @@
+@startuml
+!include domain.puml
+
+title Hjælpediagram over klassifikation af domæne-, boundary- og control-klasser
+
+note as boundary
+    **Boundary**
+    LEDs
+    Buttons
+    Motor
+    H-bridge
+
+end note
+
+note as control
+    **Control**
+    Car
+    PC
+    Server
+end note
+
+note as domain
+    **Domain**
+    Locations
+    Destinations
+    Path
+    Route
+    Dead Reckoning
+    PID Regulation
+end note
+
+note bottom of control
+    (De her er lidt funky,
+    fordi PC og Server er boundary, 
+    men vi skal have control-klasser fra UC?)
+end note
+
+domain -[hidden]u- boundary
+domain -[hidden]d- control
+
+@enduml
