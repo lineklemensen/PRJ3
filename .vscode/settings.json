@@ -1,18 +1,19 @@
 {
-    "triggerTaskOnSave.tasks": {
-        "Render pdf": [
-            "*.md"
-        ],
-    },
-    "plantuml.exportOutDir": "docs/diagrams/out",
-    "plantuml.diagramsRoot": "docs/diagrams/Plantuml",
-    "cSpell.words": [
-        "Datagram",
-        "feedforward",
-        "newpage",
-        "pathfinding",
-        "refstepcounter",
-        "reprioritize",
-        "therisk",
+  "triggerTaskOnSave.tasks": {
+    "Render pdf": [
+      "*.md"
     ]
+  },
+  "plantuml.exportOutDir": "docs/diagrams/out",
+  "plantuml.diagramsRoot": "docs/diagrams/Plantuml",
+  "cSpell.words": [
+    "Datagram",
+    "feedforward",
+    "newpage",
+    "pathfinding",
+    "refstepcounter",
+    "reprioritize",
+    "therisk"
+  ],
+  "C_Cpp_Runner.msvcBatchPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvarsall.bat"
 }
