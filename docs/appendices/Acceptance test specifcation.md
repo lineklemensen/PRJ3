@@ -473,6 +473,7 @@ Reliability 3 - Continuous running of server & Precondition: & \multicolumn{3}{|
 Reliability 4 - Success rate of routes & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase and server is running with 10 routes stored}\\
 \hline
 1 & Press the action button & The green LED lights up & H & H\\
+\hline
 2 & Press the action button & The car starts executing route & H & H\\
 \hline
 3 & Wait for car to arrive at destination & The car is at destination, and green LED is on & H & H\\
