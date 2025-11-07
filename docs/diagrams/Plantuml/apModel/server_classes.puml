@@ -9,8 +9,8 @@ skinparam {
 class "RouteHandler" as h <<domain>>
 {
     RouteHandler(RouteCollection routes)
-    + on_get_route() : auto
-    + on_post_route() : auto
+    + on_get_route() : request_handling_status_t
+    + on_post_route() : request_handling_status_t
     -{static}init_resp(resp : RESP) : RESP
     -{static}mark_as_bad_request(auto& resp) : void
 }
@@ -24,12 +24,7 @@ class "LogHandler" as l
 }
 
 
-note left of h::on_get_route
-Returns HTTP response
-end note
-note left of h::on_post_route
-Returns HTTP response
-end note
+
 
 h --> l
 
