@@ -3,13 +3,29 @@
 mainframe **SD** UC3 - Deliver Order
 hide footbox
 
+actor "RouteController (Car)" as rc
 participant HTTP
-participant CreateOrder as sco
-participant OrderLog as ol
+participant "DeliverOrder" as s
+participant "OrderLog" as ol
 
-[-> HTTP : GET /destinations
-sco -> HTTP : sendDestinations()
-[<-- HTTP : 200 OK [destinations]
-sco -> ol : deleteDestinations()
+' Car requests destinations
+rc -> HTTP : GET /destinations
+HTTP -> s : request_destinations()
+alt Destinations available
+    s -> ol : get_oldest_destination()
+    ol -->> s : destination_data
+    s --> HTTP : send_destination(destination_data)
+    HTTP -> rc : 200 OK [destination_data]
+
+    ' Car deletes route after receiving
+    rc -->> HTTP : ACK
+    HTTP -> s : delete_route()
+    s -> ol : remove_destination()
+    ol -->> s : deletion_confirmed
+
+else No destinations
+    s -->> HTTP : 200 OK [no_destinations]
+    HTTP -->> rc : 200 OK[no_destinations]
+end
 
 @enduml
