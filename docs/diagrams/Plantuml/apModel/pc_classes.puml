@@ -66,7 +66,7 @@ abstract "Element" as e <<boundary>>
     # keymap_ : map<Key, Element*>
 }
 
-class "Text_Element" as te <<boundary>>
+class "TextElement" as te <<boundary>>
 {
     + TextElement(text: const string&)
     + TextElement(text: const string&, dir: Direction)
@@ -75,11 +75,11 @@ class "Text_Element" as te <<boundary>>
     + print(pos: Vec2)
 }
 
-class "Stateful_Button" as sb <<boundary>>
+class "StatefulButton" as sb <<boundary>>
 {
     - state_: bool
-    +Stateful_Button(text: string, action: function<void()>)
-    +Stateful_Button(text: string, dir: Direction, action: function<void()>)
+    +StatefulButton(text: string, action: function<void()>)
+    +StatefulButton(text: string, dir: Direction, action: function<void()>)
     +action() : void
     +print() : void
     +print(pos: Vec2) : void
@@ -89,20 +89,20 @@ class "Stateful_Button" as sb <<boundary>>
 
 class "HTTPHandler" as http <<boundary>>
 {
-    +post(json : string) : string
+    + {static}post(json : string) : void
 }
 
 
-b --|> e
-te --|> e
+b -l-|> e
+te -d-|> e
 sb --|> b
 
-tui --> te
+tui -l-> te
 tui -r-> sb
 tui --> b
 
-cs ..> tui
-in ..> tui
+cs --> tui
+in --> tui
 
-http -u-> b
+http -l-> b
 @enduml
