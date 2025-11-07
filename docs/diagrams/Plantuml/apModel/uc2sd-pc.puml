@@ -46,6 +46,7 @@ in--
 opt key == ENTER
 note over cs : This action function will vary depending on which button is actually selected in the UI. I.e. if you hit enter on the 'Confirm' button it'll send the HTTP request, or the 'Close UI' which closes the UI.
 tui -> b++ : action()
+note over http : This is for the specific case where the 'Confirm' button in the popup is selected
 b -> http++ : send(routes)
 http--
 b--
