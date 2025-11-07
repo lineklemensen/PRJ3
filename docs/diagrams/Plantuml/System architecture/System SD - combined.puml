@@ -60,8 +60,9 @@ end
 ui -> ui :  Show confirmation popup
 alt Confirm option
     ui ->> srv : Send route information to server
-    ui -> ui : route completion message appears
     & srv -> srv : Save route information to log file
+    srv ->> ui : Success
+    ui -> ui : route completion message appears
 
 else Deny option
     ui -> ui : Deselect all rooms
