@@ -388,188 +388,15 @@
 \end{table}
 
 
+
 # Nonfunctional Requirements
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-\hline
-\multicolumn{5}{|c|}{}\\
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-\hline
-4 & Car reaches destination & Car stops, LED indicates idle & & \\
-\hline
-\end{tabularx}
-\label{tab:nf-functionality}
-\end{table}
-
-
-## Usability
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-\hline
-\multicolumn{2}{|l|}{\textbf{Requirement under test:}} &
-\multicolumn{3}{l|}{Usability - LED and speaker feedback} \\
-\hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} &
-\multicolumn{3}{l|}{Car powered on, ready to start or idle} \\
-\hline
-\multicolumn{5}{|c|}{}\\
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-\hline
-1 & Car ready to start route & Green LED on & & \\
-\hline
-2 & Car waiting at destination & Red LED on & & \\
-\hline
-3 & Route completed & Green LED flashes & & \\
-\hline
-\end{tabularx}
-\caption{Acceptance test - Usability: LED and speaker feedback}
-\label{tab:nf-usability-LED}
-\end{table}
-
-## Documentation and User Interface
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c | *{3}{X|} c |}
-\hline
-\multicolumn{2}{|l|}{\textbf{Requirement under test:}} &
-\multicolumn{3}{l|}{Usability – Documentation and User Interface} \\ 
-\hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} &
-\multicolumn{3}{l|}{System installed, user guide available, server accessible via terminal} \\ 
-\hline
-\multicolumn{5}{|c|}{} \\ 
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\ 
-\hline
-1 & Open user guide & Guide $\leq$ 2 pages, includes troubleshooting for top 5 errors & & \\ 
-\hline
-2 & Access server UI from terminal & Text $\geq$ 14pt, high contrast, readable in daylight & & \\ 
-\hline
-3 & Inspect car control panel & Two buttons clearly labeled “Power” and “Action” & & \\ 
-\hline
-\end{tabularx}
-\caption{Acceptance test – Usability: Documentation and interface design}
-\label{tab:nf-usability-ui}
-\end{table}
-
-##  Reliability: Continuous Operation
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-\hline
-\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & 
-\multicolumn{3}{l|}{Reliability - Continuous operation} \\
-\hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} & 
-\multicolumn{3}{l|}{Car fully charged, powered on, ready to drive} \\
-\hline
-\multicolumn{5}{|c|}{}\\
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-\hline
-1 & Drive car continuously & Car operates for $\geq$ 1 hour without failure & & \\
-\hline
-2 & Server runs simultaneously & Server operates $\leq$ 6 hours continuously & & \\
-\hline
-3 & Perform simple maintenance & Tasks completed $\leq$ 10 minutes & & \\
-\hline
-4 & Observe route execution over time & Car completes $\geq$ 90\% of assigned routes & & \\ 
-\hline
-5 & Simulate wet surface operation & Car refuses to operate on wet ground & & \\ 
-\hline
-\end{tabularx}
-\caption{Acceptance test - Reliability: Continuous operation and maintenance}
-\label{tab:nf-reliability}
-\end{table}
-
-
-
-## Performance: Response Time and Range
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-\hline
-\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & 
-\multicolumn{3}{l|}{Reliability - Continuous operation, response time efficiency and range} \\ 
-\hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} & 
-\multicolumn{3}{l|}{Car fully charged, powered on, ready to drive} \\ 
-\hline
-\multicolumn{5}{|c|}{} \\ 
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\ 
-\hline
-1 & Press any button or send command & System acknowledges input $\leq$ 1 second & & \\ 
-\hline
-2 & Power on car & Car ready for operation $\leq$ 1 minute & & \\ 
-\hline
-3 & Drive full route cycle & Range $\geq$ 500 meters per charge & & \\ 
-\hline
-4 & Measure driving speed & Speed $\leq$ 5 km/h & & \\ 
-\hline
-5 & Test multi-car setup & Server supports multiple cars simultaneously & & \\ 
-\hline
-\end{tabularx} 
-\caption{Acceptance test - Reliability: Continuous operation and maintenance}
-\label{tab:nf-performance}
-\end{table}
-
-
-## Safety and Constraints
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-\hline
-\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Safety and operational constraints} \\ 
-\hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{Car powered on, executing route} \\ 
-\hline
-\multicolumn{5}{|c|}{} \\ 
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\ 
-\hline
-1 & Press emergency stop & Car halts within 1 second & & \\ 
-\hline
-2 & Attempt operation outdoors or on wet surface & Car does not operate & & \\ 
-\hline
-3 & Attempt operation with obstacles & Car cannot avoid collisions & & \\ 
-\hline
-\end{tabularx} \\ 
-\caption{Acceptance test - Safety and constraints}
-\label{tab:nf-safety}
-\end{table}
-
-## Safety and Constraints
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-\hline
-\multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Safety and operational constraints} \\ 
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\ 
-\hline
-1 & Press emergency stop & Car halts within 1 second & & \\ 
-\hline
-2 & Attempt operation outdoors or on wet surface & Car does not operate & & \\ 
-\hline
-3 & Attempt operation with obstacles & Car cannot avoid collisions & & \\ 
-\hline
-\end{tabularx} \\ 
-\caption{Acceptance test - Safety and constraints}
-\label{tab:nfddd-safety}
-\end{table}
-
-### Longtable
 
 Required tools for test of nonfunctional requirements: \newline
     - Car \newline
     - Server \newline
     - Client/UI \newline
-    - User guide
+    - User guide \newline
+    - Charging station
 
 \begin{longtable}{|p{0.19\textwidth}|p{0.19\textwidth}|p{0.19\textwidth}|p{0.19\textwidth}|p{0.11\textwidth}|}
 \hline
@@ -577,29 +404,43 @@ Required tools for test of nonfunctional requirements: \newline
 \hline
 Functionality 1 - Car requests routes from server & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle on homebase}\\
 \hline
- & Open Wireshark to monitor the local network & Wireshark is monitoring the local network & H & H\\
+1 & Open Wireshark to monitor the local network & Wireshark is monitoring the local network & H & H\\
 \hline
- & Press the action button & [Wireshark] The car sends a request to the server, and the server responds & H & H\\
+2 & Press the action button & [Wireshark] The car sends a request to the server, and the server responds & H & H\\
 \hline
 Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at destination}\\
 \hline
- & Press the action button & The car starts driving to continue its route & H & H\\
+1 & Press the action button & The car starts driving to continue its route & H & H\\
 \hline
-Usability 1 - The car is equipped with two LEDs & Inspect the car & [Visual test] On the car is two LEDs, one green and one red & H & H\\
+Usability 1 - The car is equipped with two LEDs & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle on homebase}\\
 \hline
-Usability 2 - The car is equipped with a speaker & Inspect the car(???????????????) & [Visual test] The car is equpped with a speaker& H & H\\
+1 & Inspect the car & [Visual test] On the car is two LEDs, one green and one red & H & H\\
 \hline
-Usability 3 - User guide & Write a user guide & A user guide has been written & H & H\\
+Usability 2 - The car is equipped with a speaker & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle on homebase, server is running and has <1 routes stored}\\
 \hline
-Usability 4 - User guide & Read the user guide & The user guide includes troublehooting for 5 common error-scenarios & H & H\\
+1 & Press the action button & When the green LED turns on, a sound is also played to indicate the car is ready to execute route & H & H\\
 \hline
-Usability 5 - Buttons on car & Inspect the car & [Visual test]The car is equipped with two buttons labelled 'Action' and 'Power' & H & H\\
+Usability 3 - User guide !!!!!!!!!!!!!!!!!!!!!!!!!!!! & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{A user guide has been written ???????}\\
 \hline
-Usability 6 - UI & Start creating route on client & A UI opens & H & H\\
+1 & Write a user guide ???? & A user guide has been written ?????? & H & H\\
 \hline
-Usability 7 - Text on UI & Open the Client UI & The size of text in the UI is > 14pt, and the color of the text is a contrasting color to the background  & H & H\\
+Usability 4 - User guide & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle on homebase}\\
 \hline
- & Shine a flashlight at the screen or recreate a high-light environment in another way & The text in the UI is still readable & H & H\\
+1 & Read the user guide & The user guide includes troublehooting for 5 common error-scenarios & H & H\\
+\hline
+Usability 5 - Buttons on car & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle on homebase}\\
+\hline
+1 & Inspect the car & [Visual test]The car is equipped with two buttons labelled 'Action' and 'Power' & H & H\\
+\hline
+Usability 6 - UI & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle on homebase}\\
+\hline
+1 & Start creating route on client & A UI opens & H & H\\
+\hline
+Usability 7 - Text on UI & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle on homebase}\\
+\hline
+1 & Open the Client UI & The size of text in the UI is > 14pt, and the color of the text is a contrasting color to the background  & H & H\\
+\hline
+2 & Shine a flashlight at the screen or recreate a high-light environment in another way & The text in the UI is still readable & H & H\\
 \hline
 Reliability 1 - Continuous driving & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{The car is fully charged and 10+ routes are ready in server}\\
 \hline
@@ -611,15 +452,17 @@ Reliability 1 - Continuous driving & Precondition: & \multicolumn{3}{|p{0.5\text
 \hline
 4 & Repeat point 3 until car is back on homebase & The car is on homebase and ready to request another route & H & H\\
 \hline
-5 & Repeat point 1 to 4 until 65 minutes have passed(To account for delays when fetching/continuing routes, etc.) & 65 minutes have passed and the car is still & H & H\\
+5 & Repeat point 1 to 4 until 65 minutes have passed(To account for delays when fetching/continuing routes, etc.) & 65 minutes have passed and the car is still executing routes without issues & H & H\\
 \hline
 Reliability 2 - Continuous running of server & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Server is running and car is idle at homebase}\\
 \hline
-1 & Prepare and start a timer or stopwatch & The user is timing the server & H & H\\
+1 & Prepare and start a timer or stopwatch & The user is tracking the time & H & H\\
 \hline
 2 & Wait until 6 hours have passed, then press the action button on the car to request a route & The route is fetched without issues & H & H\\
 \hline
-Reliability 3 - Continuous running of server & Prepare and start a stopwatch or timer & The timer/stopwatch is tracking the time & H &\\
+Reliability 3 - Continuous running of server & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Server is running and car is idle at homebase}\\
+\hline
+1 & Prepare and start a stopwatch or timer & The timer/stopwatch is tracking the time & H &\\
 \hline
 2 & Remove the current battery from the car & The battery is removed successfully & H & H\\
 \hline
