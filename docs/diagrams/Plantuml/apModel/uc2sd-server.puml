@@ -15,7 +15,7 @@ l--
 [->> r++ : GET /get_route
 r -> r : on_get_route(req, params)
 r -> l++ : read_log()
-l ..> r : json
+l --> r : json
 [<-- r : 200 Ok
 l--
 
