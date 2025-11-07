@@ -6,23 +6,31 @@ skinparam {
     ClassAttributeIconSize 0
 }
 
-class "Log" as l <<domain>>
+class "RouteHandler" as h <<domain>>
 {
-    +push(destinations)
-    +deleteDestinations()
+    RouteHandler(RouteCollection routes)
+    + on_get_route() : auto
+    + on_post_route() : auto
+    -{static}init_resp(resp : RESP) : RESP
+    -{static}mark_as_bad_request(auto& resp) : void
 }
 
-note top of l
-    Stores destination data
-    ER det overhovedet en klasse, eller bare en .txt fil???
+class "LogHandler" as l
+{
+    + append(log: string) : void
+    + read() : string
+    - fd_ : int
+    - PATH_ : string
+}
+
+
+note left of h::on_get_route
+Returns HTTP response
+end note
+note left of h::on_post_route
+Returns HTTP response
 end note
 
-class "Create_Destinations" as scd
-{
-    +id: int
-    +destinations: string
-}
-
-class "HTTP" as s_http <<boundary>>
+h --> l
 
 @enduml
