@@ -1,5 +1,8 @@
-@startuml UC3Classes
+@startuml CD UC3 - Deliver Order
 
+mainframe **CD** UC3 - Deliver Order
+
+hide circle
 skinparam {
     packageStyle rectangle
     Linetype ortho

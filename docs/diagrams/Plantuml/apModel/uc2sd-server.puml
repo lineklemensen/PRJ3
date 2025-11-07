@@ -1,4 +1,4 @@
-@startuml SD UC2 - Create Delivery
+@startuml SD UC2 - Create Delivery - Server
 
 mainframe **SD** UC2 - Create Delivery
 hide footbox
