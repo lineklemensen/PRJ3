@@ -3,14 +3,22 @@
 mainframe **SD** UC2 - Create Delivery
 hide footbox
 
-participant HTTP
-participant logHandler as oh
+actor Car
+actor TUI
+participant RouteHandler as r
+participant LogHandler as l
 
+TUI ->> r++ : POST /new_route
+r -> r : on_post_route(req, params)
+r -> l++ : add_log(json)
+TUI <-- r-- : 201 Created
+l--
 
-
-[-> HTTP : POST /destinations
-HTTP -> oh : Struct:Rooms
-[<-- HTTP : 201 Created
-
+Car->> r++ : GET /get_route
+r -> r : on_get_route(req, params)
+r -> l++ : read_log()
+l --> r : json
+Car<-- r : 200 Ok
+l--
 
 @enduml
