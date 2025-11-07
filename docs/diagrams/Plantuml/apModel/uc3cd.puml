@@ -50,28 +50,8 @@ class "Location" as l <<domain>> {
 
 class "HTTP" as car_http <<boundary>> {
     +get(url : string) : string
-    +delete(url : string) : string
 }
 
-'----------------------------
-' SERVER SIDE
-'----------------------------
-
-class "CreateDestinations" as cd <<boundary>> {
-    +id : int
-    +destinations : string
-    +to_json() : string
-}
-
-class "Log" as log <<domain>> {
-    +push(destinations)
-    +deleteDestinations()
-}
-
-class "HTTP" as s_http <<boundary>> {
-    +get(url : string) : string
-    +delete(url : string) : string
-}
 
 '----------------------------
 ' RELATIONSHIPS
@@ -84,9 +64,6 @@ r --> l
 pf --> l
 cc --> car_http
 
-cd --> log
-cd --> s_http
 
-cc --> s_http
 
 @enduml
