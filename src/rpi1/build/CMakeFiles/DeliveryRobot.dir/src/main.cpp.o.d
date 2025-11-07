@@ -1,6 +1,6 @@
 CMakeFiles/DeliveryRobot.dir/src/main.cpp.o: \
  /home/au772678/PRJ3/src/rpi1/src/main.cpp /usr/include/stdc-predef.h \
- /home/au772678/PRJ3/src/rpi1/include/MonsterMoto.h \
+ /home/au772678/PRJ3/src/rpi1/include/MotorController.h \
  /home/au772678/PRJ3/src/rpi1/include/RpiPwm.h /usr/include/stdio.h \
  /usr/include/aarch64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -185,5 +185,5 @@ CMakeFiles/DeliveryRobot.dir/src/main.cpp.o: \
  /usr/include/c++/12/tr1/modified_bessel_func.tcc \
  /usr/include/c++/12/tr1/poly_hermite.tcc \
  /usr/include/c++/12/tr1/poly_laguerre.tcc \
- /usr/include/c++/12/tr1/riemann_zeta.tcc \
- /home/au772678/PRJ3/src/rpi1/include/RpiPwm.h
+ /usr/include/c++/12/tr1/riemann_zeta.tcc /usr/include/gpiod.h \
+ /usr/lib/gcc/aarch64-linux-gnu/12/include/stdbool.h

@@ -129,29 +129,29 @@ DeliveryRobot/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/build
 .PHONY : DeliveryRobot/fast
 
-src/MonsterMoto.o: src/MonsterMoto.cpp.o
-.PHONY : src/MonsterMoto.o
+src/MotorController.o: src/MotorController.cpp.o
+.PHONY : src/MotorController.o
 
 # target to build an object file
-src/MonsterMoto.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/src/MonsterMoto.cpp.o
-.PHONY : src/MonsterMoto.cpp.o
+src/MotorController.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o
+.PHONY : src/MotorController.cpp.o
 
-src/MonsterMoto.i: src/MonsterMoto.cpp.i
-.PHONY : src/MonsterMoto.i
+src/MotorController.i: src/MotorController.cpp.i
+.PHONY : src/MotorController.i
 
 # target to preprocess a source file
-src/MonsterMoto.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/src/MonsterMoto.cpp.i
-.PHONY : src/MonsterMoto.cpp.i
+src/MotorController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.i
+.PHONY : src/MotorController.cpp.i
 
-src/MonsterMoto.s: src/MonsterMoto.cpp.s
-.PHONY : src/MonsterMoto.s
+src/MotorController.s: src/MotorController.cpp.s
+.PHONY : src/MotorController.s
 
 # target to generate assembly for a file
-src/MonsterMoto.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/src/MonsterMoto.cpp.s
-.PHONY : src/MonsterMoto.cpp.s
+src/MotorController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.s
+.PHONY : src/MotorController.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -186,9 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... DeliveryRobot"
-	@echo "... src/MonsterMoto.o"
-	@echo "... src/MonsterMoto.i"
-	@echo "... src/MonsterMoto.s"
+	@echo "... src/MotorController.o"
+	@echo "... src/MotorController.i"
+	@echo "... src/MotorController.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

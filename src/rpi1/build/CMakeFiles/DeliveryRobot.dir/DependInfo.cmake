@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/au772678/PRJ3/src/rpi1/src/MonsterMoto.cpp" "CMakeFiles/DeliveryRobot.dir/src/MonsterMoto.cpp.o" "gcc" "CMakeFiles/DeliveryRobot.dir/src/MonsterMoto.cpp.o.d"
+  "/home/au772678/PRJ3/src/rpi1/src/MotorController.cpp" "CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o" "gcc" "CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o.d"
   "/home/au772678/PRJ3/src/rpi1/src/main.cpp" "CMakeFiles/DeliveryRobot.dir/src/main.cpp.o" "gcc" "CMakeFiles/DeliveryRobot.dir/src/main.cpp.o.d"
   )
 
