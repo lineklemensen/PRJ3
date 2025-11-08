@@ -1,25 +1,53 @@
 ﻿#pragma once
 #include <json_dto\pub.hpp>
-
+#include <fstream>
+#include <sstream>
 //=========================*/
 // Example data structure
 //=========================*/
-struct route_t
-{
-    route_t() = default;
 
-    route_t(std::string author, std::string title)
-        : m_author{ std::move(author) }, m_title{ std::move(title) }
-    {}
+class Route {
 
-    template < typename JSON_IO >
-    void json_io(JSON_IO & io)
-    {
-        io
-            & json_dto::mandatory("author", m_author)
-            & json_dto::mandatory("title", m_title);
+    private:
+    std::ofstream route_file;
+
+    public:
+
+    Route(const std::string& file_path = "../../output/logger.txt") {
+        route_file.open(file_path, std::ios::app);
+        if (!route_file.is_open()) {
+            throw std::runtime_error("failed to opn file");
+        }
+    };
+    ~Route() {
+        if (route_file.is_open()) {
+            route_file.close();
+        }
     }
 
-    std::string m_author;
-    std::string m_title;
+    void write_route(const std::string_view log_rooms) {
+        if (route_file.is_open()) {
+            route_file << log_rooms << "\n";
+            route_file.flush();
+        }
+    };
+
+    std::string get_lates_route(const std::string& file_path = "../../output/logger.txt") {
+        std::ifstream log_file(file_path);
+        std::string first_line;
+
+        if (std::getline(log_file, first_line)) {
+            std::string rest;
+            std::string line;
+            while (std::getline(log_file, line)) {
+                rest += line + "\n";
+            }
+
+            std::ofstream out(file_path);
+            out << rest;
+            return first_line;
+        }
+    }
 };
+
+

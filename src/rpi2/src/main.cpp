@@ -3,17 +3,17 @@
 #include <restinio/all.hpp>
 #include <json_dto/pub.hpp>
 
-using route_collection_t = std::vector< route_t >;
+using route_collection_t = std::vector< Route >;
 namespace rr = restinio::router;
 using router_t = rr::express_router_t<>;
 
 //=========================*/
 // HTTP handler class
 //=========================*/
-class route_handler_t
+class RouteHandler
 {
 public:
-	explicit route_handler_t(route_collection_t & routes)
+	explicit RouteHandler(route_collection_t & routes)
 		: m_routes(routes)
 	{}
 
@@ -21,9 +21,17 @@ public:
 	{
 		auto resp = init_resp(req->create_response());
 
-		//Open log file (with error handling) and read oldest log
+		static Route route_logger;
+		std::string result = route_logger.get_lates_route();
 
-		resp.set_body("" /*json string from log file*/);
+		if (result.empty()) {
+			req->create_response(restinio::status_no_content()).done();
+		}
+
+		resp.set_body(result);
+
+
+		//Open log file (with error handling) and read oldest log
 
 		//Close log file
 
@@ -33,6 +41,17 @@ public:
 	auto on_post_route(const restinio::request_handle_t& req, rr::route_params_t) const
 	{
 		auto resp = init_resp(req->create_response());
+
+
+		if (req->body().empty()) {
+			return req->create_response(restinio::status_bad_request()).
+			append_header("Content-Type", "text/json").
+			set_body("Empty request body").done();
+		}
+
+
+		static Route route_logger;
+		route_logger.write_route(req->body());
 
 		//Open file (with error handling)
 
@@ -44,7 +63,8 @@ public:
 
 		//save route struct in vector/queue
 
-		return resp.done(); //only if all preceding succeeds otherwise need to send failed rsponse
+		return resp.done();
+		//only if all preceding succeeds otherwise need to send failed rsponse
 	}
 
 private:
@@ -72,7 +92,7 @@ private:
 auto server_handler(route_collection_t & book_collection) //replace book_ ..
 {
 	auto router = std::make_unique<router_t>();
-	auto handler = std::make_shared<route_handler_t>(std::ref(book_collection));
+	auto handler = std::make_shared<RouteHandler>(std::ref(book_collection));
 
 	auto by = [&](auto method) {
 		using namespace std::placeholders;
@@ -80,9 +100,9 @@ auto server_handler(route_collection_t & book_collection) //replace book_ ..
 	};
 
 	// Example: GET /
-	router->http_get("/get_route", by(&route_handler_t::on_get_route));
+	router->http_get("/get_route", by(&RouteHandler::on_get_route));
 
-	router->http_post("/new_route", by(&route_handler_t::on_post_route));
+	router->http_post("/new_route", by(&RouteHandler::on_post_route));
 
 
 	return router;
@@ -102,10 +122,8 @@ int main()
 			restinio::single_threaded_ostream_logger_t,
 			router_t >;
 
-		route_collection_t book_collection{
-			{"Agatha Christie", "Murder on the Orient Express"},
-			{"Agatha Christie", "Sleeping Murder"},
-			{"B. Stroustrup", "The C++ Programming Language"}
+		route_collection_t route{
+
 		};
 
 		//=========================*/
@@ -118,7 +136,7 @@ int main()
 			restinio::on_this_thread<traits_t>()
 				.address("0.0.0.0")   // For Pi: allow access from outside
 				.port(8080)           // Default port, change if needed
-				.request_handler(server_handler(book_collection))
+				.request_handler(server_handler(route))
 				.read_next_http_message_timelimit(10s)
 				.write_http_response_timelimit(1s)
 				.handle_request_timeout(1s));
