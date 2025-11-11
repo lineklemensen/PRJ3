@@ -10,6 +10,8 @@ using router_t = rr::express_router_t<>;
 //=========================*/
 // HTTP handler class
 //=========================*/
+static Route route_logger;
+
 class RouteHandler
 {
 public:
@@ -21,19 +23,15 @@ public:
 	{
 		auto resp = init_resp(req->create_response());
 
-		static Route route_logger;
-		std::string result = route_logger.get_lates_route();
-
-		if (result.empty()) {
-			req->create_response(restinio::status_no_content()).done();
+		if (route_logger.queue_empty()) {
+			resp.header().status_line(restinio::status_no_content());
+			return resp.done();
 		}
+
+		std::string result = route_logger.get_route();
 
 		resp.set_body(result);
 
-
-		//Open log file (with error handling) and read oldest log
-
-		//Close log file
 
 		return resp.done();
 	}
@@ -44,24 +42,12 @@ public:
 
 
 		if (req->body().empty()) {
-			return req->create_response(restinio::status_bad_request()).
-			append_header("Content-Type", "text/json").
-			set_body("Empty request body").done();
+			resp.header().status_line(restinio::status_no_content());
+			return resp.done();
 		}
 
+		route_logger.post_route(req->body());
 
-		static Route route_logger;
-		route_logger.write_route(req->body());
-
-		//Open file (with error handling)
-
-		//Append req body to file (as json string)
-
-		//Close file handle
-
-		//Try to convert req body to route struct
-
-		//save route struct in vector/queue
 
 		return resp.done();
 		//only if all preceding succeeds otherwise need to send failed rsponse
@@ -69,6 +55,7 @@ public:
 
 private:
 	route_collection_t & m_routes;
+
 
 	template < typename RESP >
 	static RESP init_resp(RESP resp)
