@@ -2,37 +2,46 @@
 #define ENCODER_H
 
 #include <string>
-#include <atomic>
 #include <thread>
+#include <atomic>
+#include <unistd.h>
 #include <poll.h>
 #include <linux/gpio.h>
 
-class Encoder {
+
+class Encoder
+{
 public:
-    Encoder(std::string chipname, int poll_timeout_ms, int gpio_enc_a, int gpio_enc_b);
+    // Constructor / Destructor
+    Encoder(const std::string chipname, int poll_timeout_ms, int gpio_enc_a, int gpio_enc_b);
     ~Encoder();
 
+    // Start / stop background thread
     void start_thread();
     void stop_thread();
-    int get_position() const { return encoder_position_.load(); }
+
+    // Get current encoder position
+    int get_position() const;
 
 private:
-    void monitor_events();
-    void cleanup();
-
-    std::string chipname_;
-    int poll_timeout_ms_;
-    int gpio_enc_a_;
-    int gpio_enc_b_;
-
-    int chip_fd_ = -1;
+    int chip_fd_;
     struct gpioevent_request event_req_[2];
     struct pollfd poll_fds_[3];
-    int wake_pipe_[2] = {-1, -1};
+    int wake_pipe_[2];
 
-    std::atomic<int> encoder_position_{0};
-    std::atomic<bool> running_{false};
+    int gpio_enc_a_;
+    int gpio_enc_b_;
+    int poll_timeout_ms_;
+    int last_state_;
+
+    std::atomic<int> encoder_position_;
     std::thread monitor_thread_;
+    std::atomic<bool> running_;
+    std::string chipname_;
+
+    void monitor_events();
+
+    void cleanup();
 };
 
 #endif // ENCODER_H

@@ -70,6 +70,8 @@ MotorController::~MotorController()
     if (chip_) {
         gpiod_chip_close(chip_);
     }
+
+    std::cout << "MotorController destroyed" << std::endl;
 }
 
 void MotorController::drive(int speed_left, int speed_right)
