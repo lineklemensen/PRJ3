@@ -69,10 +69,24 @@ include CMakeFiles/DeliveryRobot.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/DeliveryRobot.dir/flags.make
 
+CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.o: CMakeFiles/DeliveryRobot.dir/flags.make
+CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.o: /home/au772678/PRJ3/src/rpi1/src/Encoder.cpp
+CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.o: CMakeFiles/DeliveryRobot.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/au772678/PRJ3/src/rpi1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.o -MF CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.o.d -o CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.o -c /home/au772678/PRJ3/src/rpi1/src/Encoder.cpp
+
+CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/au772678/PRJ3/src/rpi1/src/Encoder.cpp > CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.i
+
+CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/au772678/PRJ3/src/rpi1/src/Encoder.cpp -o CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.s
+
 CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o: CMakeFiles/DeliveryRobot.dir/flags.make
 CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o: /home/au772678/PRJ3/src/rpi1/src/MotorController.cpp
 CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o: CMakeFiles/DeliveryRobot.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/au772678/PRJ3/src/rpi1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/au772678/PRJ3/src/rpi1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o -MF CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o.d -o CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o -c /home/au772678/PRJ3/src/rpi1/src/MotorController.cpp
 
 CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.i: cmake_force
@@ -86,7 +100,7 @@ CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.s: cmake_force
 CMakeFiles/DeliveryRobot.dir/src/main.cpp.o: CMakeFiles/DeliveryRobot.dir/flags.make
 CMakeFiles/DeliveryRobot.dir/src/main.cpp.o: /home/au772678/PRJ3/src/rpi1/src/main.cpp
 CMakeFiles/DeliveryRobot.dir/src/main.cpp.o: CMakeFiles/DeliveryRobot.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/au772678/PRJ3/src/rpi1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DeliveryRobot.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/au772678/PRJ3/src/rpi1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DeliveryRobot.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DeliveryRobot.dir/src/main.cpp.o -MF CMakeFiles/DeliveryRobot.dir/src/main.cpp.o.d -o CMakeFiles/DeliveryRobot.dir/src/main.cpp.o -c /home/au772678/PRJ3/src/rpi1/src/main.cpp
 
 CMakeFiles/DeliveryRobot.dir/src/main.cpp.i: cmake_force
@@ -99,17 +113,19 @@ CMakeFiles/DeliveryRobot.dir/src/main.cpp.s: cmake_force
 
 # Object files for target DeliveryRobot
 DeliveryRobot_OBJECTS = \
+"CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.o" \
 "CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o" \
 "CMakeFiles/DeliveryRobot.dir/src/main.cpp.o"
 
 # External object files for target DeliveryRobot
 DeliveryRobot_EXTERNAL_OBJECTS =
 
+DeliveryRobot: CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.o
 DeliveryRobot: CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o
 DeliveryRobot: CMakeFiles/DeliveryRobot.dir/src/main.cpp.o
 DeliveryRobot: CMakeFiles/DeliveryRobot.dir/build.make
 DeliveryRobot: CMakeFiles/DeliveryRobot.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/au772678/PRJ3/src/rpi1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable DeliveryRobot"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/au772678/PRJ3/src/rpi1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable DeliveryRobot"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DeliveryRobot.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

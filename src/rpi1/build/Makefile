@@ -129,6 +129,30 @@ DeliveryRobot/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/build
 .PHONY : DeliveryRobot/fast
 
+src/Encoder.o: src/Encoder.cpp.o
+.PHONY : src/Encoder.o
+
+# target to build an object file
+src/Encoder.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.o
+.PHONY : src/Encoder.cpp.o
+
+src/Encoder.i: src/Encoder.cpp.i
+.PHONY : src/Encoder.i
+
+# target to preprocess a source file
+src/Encoder.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.i
+.PHONY : src/Encoder.cpp.i
+
+src/Encoder.s: src/Encoder.cpp.s
+.PHONY : src/Encoder.s
+
+# target to generate assembly for a file
+src/Encoder.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeliveryRobot.dir/build.make CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.s
+.PHONY : src/Encoder.cpp.s
+
 src/MotorController.o: src/MotorController.cpp.o
 .PHONY : src/MotorController.o
 
@@ -186,6 +210,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... DeliveryRobot"
+	@echo "... src/Encoder.o"
+	@echo "... src/Encoder.i"
+	@echo "... src/Encoder.s"
 	@echo "... src/MotorController.o"
 	@echo "... src/MotorController.i"
 	@echo "... src/MotorController.s"

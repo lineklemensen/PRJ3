@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.o"
+  "CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.o.d"
   "CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o"
   "CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o.d"
   "CMakeFiles/DeliveryRobot.dir/src/main.cpp.o"

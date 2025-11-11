@@ -1,6 +1,5 @@
-CMakeFiles/DeliveryRobot.dir/src/main.cpp.o: \
- /home/au772678/PRJ3/src/rpi1/src/main.cpp /usr/include/stdc-predef.h \
- /home/au772678/PRJ3/src/rpi1/include/MotorController.h \
+CMakeFiles/DeliveryRobot.dir/src/Encoder.cpp.o: \
+ /home/au772678/PRJ3/src/rpi1/src/Encoder.cpp /usr/include/stdc-predef.h \
  /home/au772678/PRJ3/src/rpi1/include/Encoder.h \
  /usr/include/c++/12/string \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
@@ -200,32 +199,16 @@ CMakeFiles/DeliveryRobot.dir/src/main.cpp.o: \
  /usr/lib/linux/uapi/arm64/asm/bitsperlong.h \
  /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
  /usr/include/linux/stddef.h /usr/lib/linux/uapi/arm64/asm/posix_types.h \
- /usr/include/asm-generic/posix_types.h \
- /home/au772678/PRJ3/src/rpi1/include/RpiPwm.h \
- /usr/include/c++/12/stdlib.h /usr/include/string.h \
- /usr/include/strings.h /usr/include/c++/12/iostream \
+ /usr/include/asm-generic/posix_types.h /usr/include/c++/12/iostream \
  /usr/include/c++/12/istream /usr/include/c++/12/bits/istream.tcc \
- /usr/include/c++/12/math.h /usr/include/c++/12/cmath /usr/include/math.h \
- /usr/include/aarch64-linux-gnu/bits/math-vector.h \
- /usr/include/aarch64-linux-gnu/bits/libm-simd-decl-stubs.h \
- /usr/include/aarch64-linux-gnu/bits/flt-eval-method.h \
- /usr/include/aarch64-linux-gnu/bits/fp-logb.h \
- /usr/include/aarch64-linux-gnu/bits/fp-fast.h \
- /usr/include/aarch64-linux-gnu/bits/mathcalls-helper-functions.h \
- /usr/include/aarch64-linux-gnu/bits/mathcalls.h \
- /usr/include/aarch64-linux-gnu/bits/mathcalls-narrow.h \
- /usr/include/aarch64-linux-gnu/bits/iscanonical.h \
- /usr/include/c++/12/bits/specfun.h /usr/include/c++/12/tr1/gamma.tcc \
- /usr/include/c++/12/tr1/special_function_util.h \
- /usr/include/c++/12/tr1/bessel_function.tcc \
- /usr/include/c++/12/tr1/beta_function.tcc \
- /usr/include/c++/12/tr1/ell_integral.tcc \
- /usr/include/c++/12/tr1/exp_integral.tcc \
- /usr/include/c++/12/tr1/hypergeometric.tcc \
- /usr/include/c++/12/tr1/legendre_function.tcc \
- /usr/include/c++/12/tr1/modified_bessel_func.tcc \
- /usr/include/c++/12/tr1/poly_hermite.tcc \
- /usr/include/c++/12/tr1/poly_laguerre.tcc \
- /usr/include/c++/12/tr1/riemann_zeta.tcc /usr/include/gpiod.h \
- /usr/lib/gcc/aarch64-linux-gnu/12/include/stdbool.h \
- /home/au772678/PRJ3/src/rpi1/include/Encoder.h
+ /usr/include/c++/12/cstring /usr/include/string.h /usr/include/strings.h \
+ /usr/include/fcntl.h /usr/include/aarch64-linux-gnu/bits/fcntl.h \
+ /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h \
+ /usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h \
+ /usr/include/linux/falloc.h /usr/include/aarch64-linux-gnu/bits/stat.h \
+ /usr/include/aarch64-linux-gnu/bits/struct_stat.h \
+ /usr/include/aarch64-linux-gnu/sys/ioctl.h \
+ /usr/include/aarch64-linux-gnu/bits/ioctls.h \
+ /usr/lib/linux/uapi/arm64/asm/ioctls.h /usr/include/asm-generic/ioctls.h \
+ /usr/include/aarch64-linux-gnu/bits/ioctl-types.h \
+ /usr/include/aarch64-linux-gnu/sys/ttydefaults.h
