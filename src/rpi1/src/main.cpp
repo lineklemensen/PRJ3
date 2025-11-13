@@ -21,10 +21,10 @@
 #define GPIO_CHANNEL_LEFT 2
 
 // Pin definitions right motor
-#define PIN_ENCODER_RIGHT_A 20
-#define PIN_ENCODER_RIGHT_B 21
-#define PIN_DIRECTION_RIGHT_A 7
-#define PIN_DIRECTION_RIGHT_B 8
+#define PIN_ENCODER_RIGHT_A 5
+#define PIN_ENCODER_RIGHT_B 6
+#define PIN_DIRECTION_RIGHT_A 10
+#define PIN_DIRECTION_RIGHT_B 9
 #define FREQUENCY_RIGHT 1000
 #define GPIO_CHANNEL_RIGHT 3
 
@@ -76,11 +76,10 @@ int main()
                            encoder_left,
                            encoder_right,
                            pwm_left,
-
-                           pwm_right);
+                            pwm_right);
 
     // Example: set left motor forward
-    motors.set_direction(1, 0, 0, 0);
+    motors.set_direction(1, 0, 1, 0);
     motors.drive(30, 30); // 30% speed
 
     // Set stdin non-blocking for key press detection
