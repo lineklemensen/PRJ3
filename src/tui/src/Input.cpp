@@ -22,6 +22,27 @@ void Input::update_input()
     int c = read_input();
 
     switch(c) {
+        case 119: //W
+        {
+            key_ = Key::UP;
+            return;
+        }
+        case 97: //A
+        {
+            key_ = Key::LEFT;
+            return;
+        }
+        case 115: //S
+        {
+            key_ = Key::DOWN;
+            return;
+        }
+        case 100: //D
+        {
+            key_ = Key::RIGHT;
+            return;
+        }
+
         case 32: //space
         case 13: //enter
         {

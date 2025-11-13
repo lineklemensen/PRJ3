@@ -50,7 +50,7 @@ Tui::Tui()
         const auto confirm_button = new Button("Confirm", {2, y_pos}, nullptr);
         const auto deny_button = new Button("Deny", {13, y_pos}, [&] {
             //TODO This is unsafe to element order changes
-            selected_ = elements_[3];
+            selected_ = elements_[4];
             Console::clear_screen();
             print_elements();
         });
@@ -67,7 +67,8 @@ Tui::Tui()
     };
 
     add_new_element(new TextElement("Please select up to 3 rooms"));
-    add_new_element(new TextElement("Navigate using WASD, Enter to select"));
+    add_new_element(new TextElement("Navigate using WASD/Arrow keys"));
+    add_new_element(new TextElement("Enter/Space to select"));
     add_new_element(new TextElement(""));
     const auto close_button = add_new_element(new Button("Close UI", [&] { running_ = false; }));
     add_new_element(new TextElement(""));
@@ -89,7 +90,7 @@ Tui::Tui()
 
     //Connect all the 'room' buttons together for navigation
     close_button->connect(first_room);
-    for(size_t i = 5; i < 7; ++i)
+    for(size_t i = 6; i < 8; ++i)
         elements_[i]->connect(elements_[i + 1]);
 
     // Ordering unfortunately kinda matters here, since this assignment is bidirectional.
