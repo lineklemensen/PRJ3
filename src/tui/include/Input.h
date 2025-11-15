@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "keys.h"
+#include "Key.h"
 
 class Input {
 public:

@@ -1,8 +1,7 @@
 ﻿#pragma once
 #include <Vec2.h>
-
-#include "Color.h"
-#include "windows.h"
+#include <Color.h>
+#include <windows.h>
 
 class Console {
 public:

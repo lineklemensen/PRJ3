@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include <Direction.h>
-#include <keys.h>
+#include <Key.h>
 #include <map>
 #include <string>
 #include "Vec2.h"
