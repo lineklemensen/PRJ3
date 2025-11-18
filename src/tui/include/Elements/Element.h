@@ -9,11 +9,10 @@ class Element {
 public:
     virtual ~Element() = default;
     virtual void print() = 0;
-    size_t Size() const;
-    static Vec2 getNextAvailablePos(const Element* element, Direction dir = VERTICAL);
-
-    void connect(Element* button, Direction dir = VERTICAL);
-    void add_keybind(Key key, Element* button);
+    [[nodiscard]] size_t Size() const;
+    [[nodiscard]] const Vec2& get_next_available_pos(Direction dir = VERTICAL) const;
+    void connect(Element* element, Direction dir = VERTICAL);
+    void add_keybind(Key key, Element* element);
     Element* get_button(Key key);
 
 protected:

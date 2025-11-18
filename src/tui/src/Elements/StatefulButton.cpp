@@ -18,22 +18,14 @@ void StatefulButton::action()
 {
     state_ = !state_;
     Button::action();
+    print();
 }
 
 void StatefulButton::print()
 {
-    print(pos_);
-}
+    Button::print();
+    std::cout << " ["<< (state_ ? 'x' : ' ') << ']';
 
-void StatefulButton::print(const Vec2 pos)
-{
-    Console::set_cursor_pos(pos);
-
-    char added_state = state_ ? 'x' : ' ';
-    std::cout << std::format("{} [{}]", text_, added_state);
-
-    //We intentionally dont call the base function,
-    //as we want to have control over the text here
 }
 
 void StatefulButton::set_state(const bool new_state)

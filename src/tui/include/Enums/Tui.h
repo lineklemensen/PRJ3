@@ -1,22 +1,18 @@
 ﻿#pragma once
-
-#include <vector>
-#include "Button.h"
+#include <stack>
+#include "Screen.h"
 
 class Tui {
 public:
     Tui();
-    ~Tui();
     static bool is_running();
-    void update();
-
+    static void stop();
+    static void push_screen(Screen* screen);
+    static void pop_screen();
+    static void update();
 
 private:
-    void update_selection();
-    void print_elements() const;
-    Element* add_new_element(Element* element);
-
     static bool running_;
-    std::vector<Element*> elements_;
-    Element* selected_;
+    static std::stack<Screen*> screen_stack_;
+
 };

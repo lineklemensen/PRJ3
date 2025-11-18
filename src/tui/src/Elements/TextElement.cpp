@@ -3,12 +3,10 @@
 #include <Console.h>
 #include <iostream>
 
-TextElement::TextElement(const std::string& text) : TextElement(text, VERTICAL) { }
-
 TextElement::TextElement(const std::string& text, const Direction dir)
 {
     text_ = text;
-    pos_ = getNextAvailablePos(this, dir);
+    pos_ = get_next_available_pos(dir);
 }
 
 TextElement::TextElement(const std::string& text, const Vec2 pos)
@@ -20,9 +18,9 @@ TextElement::TextElement(const std::string& text, const Vec2 pos)
 
 void TextElement::print()
 {
-    Console::set_cursor_pos(pos_);
-    std::cout << text_;
+    print(pos_);
 }
+
 void TextElement::print(const Vec2 pos) const
 {
     Console::set_cursor_pos(pos);

@@ -6,10 +6,9 @@
 class Button : public Element {
 public:
     explicit Button(const std::string& text, const std::function<void()>& action = nullptr);
-    explicit Button(const std::string& text, Direction dir, const std::function<void()>& action = nullptr);
-    Button(const std::string& text, Vec2 pos, const std::function<void()>& action);
+    explicit Button(const std::string& text, Direction dir = VERTICAL, const std::function<void()>& action = nullptr);
+    explicit Button(const std::string& text, Vec2 pos = {0, 0}, const std::function<void()>& action = nullptr);
     void print() override;
-    void print(Vec2 pos) const;
     virtual void action();
 
 private:

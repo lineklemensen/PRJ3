@@ -2,11 +2,13 @@
 project(tui)
 
 set(CMAKE_CXX_STANDARD 20)
-add_compile_options(-Wall -Wextra -pedantic -Werror)
+add_compile_options(-Wall -Wextra -Werror)
 
 include_directories(${CMAKE_SOURCE_DIR}/include
         ${CMAKE_SOURCE_DIR}/include/Elements
-        ${CMAKE_SOURCE_DIR}/include/Enums)
+        ${CMAKE_SOURCE_DIR}/include/Enums
+        ${CMAKE_SOURCE_DIR}/include/Screens)
 file(GLOB_RECURSE SRC_FILES src/*.cpp)
+file(GLOB_RECURSE HEADER_FILES include/*.h)
 
-add_executable(tui ${SRC_FILES})
+add_executable(tui ${SRC_FILES} ${HEADER_FILES})

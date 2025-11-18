@@ -10,7 +10,7 @@ Button::Button(const std::string& text, const std::function<void()>& action) : B
 Button::Button(const std::string& text, const Direction dir, const std::function<void()>& action) : action_(action)
 {
     text_ = text;
-    pos_ = getNextAvailablePos(this, dir);
+    pos_ = get_next_available_pos(dir);
 }
 
 Button::Button(const std::string& text, const Vec2 pos, const std::function<void()>& action) : action_(action)
@@ -21,14 +21,9 @@ Button::Button(const std::string& text, const Vec2 pos, const std::function<void
 
 void Button::print()
 {
-    print(pos_);
-}
+    Console::set_cursor_pos(pos_);
+    std::cout << text_;}
 
-void Button::print(const Vec2 pos) const
-{
-    Console::set_cursor_pos(pos);
-    std::cout << text_;
-}
 
 void Button::action()
 {

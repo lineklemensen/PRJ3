@@ -5,9 +5,8 @@
 
 class TextElement : public Element {
 public:
-    explicit TextElement(const std::string& text);
-    explicit TextElement(const std::string& text, Direction dir);
-    TextElement(const std::string& text, Vec2 pos);
+    explicit TextElement(const std::string& text, Direction dir = VERTICAL);
+    explicit TextElement(const std::string& text, Vec2 pos);
     void print() override;
     void print(Vec2 pos) const;
 };

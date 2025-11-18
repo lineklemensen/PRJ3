@@ -8,7 +8,6 @@ public:
     explicit StatefulButton(const std::string& text, Direction dir, const std::function<void()>& action = nullptr);
     void action() override;
     void print() override;
-    void print(Vec2 pos);
     void set_state(bool new_state);
     [[nodiscard]] bool get_state() const;
 

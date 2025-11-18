@@ -6,7 +6,7 @@ size_t Element::Size() const
     return text_.size();
 }
 
-Vec2 Element::getNextAvailablePos(const Element* element, const Direction dir)
+const Vec2& Element::get_next_available_pos(const Direction dir) const
 {
     static Vec2 next_available_pos = {2, 0};
     switch(dir) {
@@ -16,32 +16,32 @@ Vec2 Element::getNextAvailablePos(const Element* element, const Direction dir)
             break;
         }
         case Direction::HORIZONTAL: {
-            next_available_pos.x += element->Size() + 6;
+            next_available_pos.x += Size() + 6;
             break;
         }
     }
     return next_available_pos;
 }
 
-void Element::connect(Element* button, const Direction dir)
+void Element::connect(Element* element, const Direction dir)
 {
     switch(dir) {
         case VERTICAL: {
-            this->add_keybind(DOWN, button);
-            button->add_keybind(UP, this);
+            this->add_keybind(DOWN, element);
+            element->add_keybind(UP, this);
             break;
         }
         case HORIZONTAL: {
-            this->add_keybind(RIGHT, button);
-            button->add_keybind(LEFT, this);
+            this->add_keybind(RIGHT, element);
+            element->add_keybind(LEFT, this);
             break;
         }
     }
 }
 
-void Element::add_keybind(const Key key, Element* button)
+void Element::add_keybind(const Key key, Element* element)
 {
-    keyMap_.try_emplace(key, button);
+    keyMap_.try_emplace(key, element);
 }
 
 Element* Element::get_button(const Key key)
