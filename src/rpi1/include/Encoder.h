@@ -8,14 +8,19 @@
 #include <poll.h>
 #include <linux/gpio.h>
 
+#define CHIP_PATH "/dev/gpiochip0"
+#define POLL_TIMEOUT_MS 0
 
 class Encoder
 {
 public:
     // Constructor / Destructor
-    Encoder(const std::string chipname, int poll_timeout_ms, int gpio_enc_a, int gpio_enc_b);
+    Encoder(int gpio_enc_a, int gpio_enc_b);
+    Encoder();
     ~Encoder();
 
+    // Initialize encoder GPIO lines
+    void init_encoder(int gpio_enc_a, int gpio_enc_b);
     // Start / stop background thread
     void start_thread();
     void stop_thread();
@@ -39,6 +44,7 @@ private:
     std::atomic<bool> running_;
     std::string chipname_;
 
+    // Quadrature encoder event monitoring
     void monitor_events();
 
     void cleanup();

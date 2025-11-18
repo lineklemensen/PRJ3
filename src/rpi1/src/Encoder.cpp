@@ -10,14 +10,19 @@
 #include <atomic>
 #include <thread>
 
-Encoder::Encoder(std::string chipname, int poll_timeout_ms, int gpio_enc_a, int gpio_enc_b)
-    : chipname_(std::move(chipname)),
-      poll_timeout_ms_(poll_timeout_ms),
-      gpio_enc_a_(gpio_enc_a),
-      gpio_enc_b_(gpio_enc_b),
+// Default constructor does not initialize GPIO lines
+Encoder::Encoder()
+    : chipname_(CHIP_PATH),
+      poll_timeout_ms_(POLL_TIMEOUT_MS),
       encoder_position_(0),
       running_(false)
+{}
+
+void Encoder::init_encoder(int gpio_enc_a, int gpio_enc_b)
 {
+    gpio_enc_a_ = gpio_enc_a;
+    gpio_enc_b_ = gpio_enc_b;
+    
     chip_fd_ = open(chipname_.c_str(), O_RDONLY);
     if (chip_fd_ < 0)
         throw std::runtime_error("Failed to open GPIO chip");
@@ -54,6 +59,17 @@ Encoder::Encoder(std::string chipname, int poll_timeout_ms, int gpio_enc_a, int 
     last_state_ = 0;
 
     std::cout << "Encoder initialized successfully." << std::endl;
+}
+
+Encoder::Encoder(int gpio_enc_a, int gpio_enc_b)
+    : chipname_(CHIP_PATH),
+      poll_timeout_ms_(POLL_TIMEOUT_MS),
+      gpio_enc_a_(gpio_enc_a),
+      gpio_enc_b_(gpio_enc_b),
+      encoder_position_(0),
+      running_(false)
+{
+    init_encoder(gpio_enc_a, gpio_enc_b);
 }
 
 void Encoder::start_thread()

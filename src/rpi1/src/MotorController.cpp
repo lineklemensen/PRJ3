@@ -4,33 +4,28 @@
 #include <gpiod.h>
 #include <iostream>
 
-MotorController::MotorController(const char* chipname,   
-                                 int channel_left, 
-                                 int frequency_left,
-                                 int channel_right, 
-                                 int frequency_right,
-                                 int A1_gpio, 
-                                 int B1_gpio,
-                                 int A2_gpio, 
-                                 int B2_gpio,
-                                 Encoder& encoder_left,
-                                 Encoder& encoder_right,
-                                 RpiPwm& pwm_left,
-                                 RpiPwm& pwm_right)
+
+MotorController::MotorController()
                                  
-    : chipname_(chipname),
-      A1_gpio_(A1_gpio), B1_gpio_(B1_gpio),
-      A2_gpio_(A2_gpio), B2_gpio_(B2_gpio),
-      encoder_left_(encoder_left),
-      encoder_right_(encoder_right),
-      pwm_left_(pwm_left),
-      pwm_right_(pwm_right)
+    : chipname_(CHIP_PATH),
+      A1_gpio_(PIN_DIRECTION_LEFT_A), B1_gpio_(PIN_DIRECTION_LEFT_B),
+      A2_gpio_(PIN_DIRECTION_RIGHT_A), B2_gpio_(PIN_DIRECTION_RIGHT_B)
 {
     // Start PWM for motors
-    printf("Enabling PWM on channel %d with a frequency of %d.\n", channel_left, frequency_left);
-    printf("Enabling PWM on channel %d with a frequency of %d.\n", channel_right, frequency_right);
-    pwm_left_.start(channel_left, frequency_left);
-    pwm_right_.start(channel_right, frequency_right);
+    printf("Enabling PWM on channel %d with a frequency of %d.\n", GPIO_CHANNEL_LEFT, FREQUENCY_LEFT);
+    printf("Enabling PWM on channel %d with a frequency of %d.\n", GPIO_CHANNEL_RIGHT, FREQUENCY_RIGHT);
+    pwm_left_.start(GPIO_CHANNEL_LEFT, FREQUENCY_LEFT);
+    pwm_right_.start(GPIO_CHANNEL_RIGHT, FREQUENCY_RIGHT);
+    
+    // Initialize encoders
+    printf("Initializing left encoder on GPIOs %d and %d.\n", PIN_ENCODER_LEFT_A, PIN_ENCODER_LEFT_B);
+    printf("Initializing right encoder on GPIOs %d and %d.\n", PIN_ENCODER_RIGHT_A, PIN_ENCODER_RIGHT_B);
+    encoder_left_.init_encoder(PIN_ENCODER_LEFT_A, PIN_ENCODER_LEFT_B);
+    encoder_right_.init_encoder(PIN_ENCODER_RIGHT_A, PIN_ENCODER_RIGHT_B);
+
+    // Start encoder threads
+    encoder_left_.start_thread();
+    encoder_right_.start_thread();
 
     // Open the GPIO chip
     chip_ = gpiod_chip_open(chipname_);
@@ -76,6 +71,7 @@ MotorController::~MotorController()
 
 void MotorController::drive(int speed_left, int speed_right)
 {
+    // Set PWM duty cycles
     printf("Duty cycle for left motor at %d%%\n", speed_left);
     printf("Duty cycle for right motor at %d%%\n", speed_right);
     pwm_left_.setDutyCycle(speed_left);
@@ -84,6 +80,7 @@ void MotorController::drive(int speed_left, int speed_right)
 
 void MotorController::set_direction(bool A1, bool B1, bool A2, bool B2)
 {
+    // Set motor direction GPIOs
     std::cout << "Setting GPIO " << A1_gpio_ << " to " << A1 << std::endl;
     std::cout << "Setting GPIO " << B1_gpio_ << " to " << B1 << std::endl;
     std::cout << "Setting GPIO " << A2_gpio_ << " to " << A2 << std::endl;
@@ -93,4 +90,9 @@ void MotorController::set_direction(bool A1, bool B1, bool A2, bool B2)
     gpiod_line_set_value(B1_line_, B1);
     gpiod_line_set_value(A2_line_, A2);
     gpiod_line_set_value(B2_line_, B2);
+}
+
+void MotorController::print_encoder_pos()
+{
+    std::cout << "Left: " << encoder_left_.get_position() << "  Right: " << encoder_right_.get_position() << "\r" << std::flush;
 }
