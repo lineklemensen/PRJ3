@@ -4,7 +4,7 @@
 #include <Console.h>
 #include <iostream>
 #include <TextElement.h>
-
+#include <cpr/cpr.h>
 #include "Tui.h"
 
 PopupScreen::PopupScreen(const Route& route)
@@ -23,7 +23,8 @@ PopupScreen::PopupScreen(const Route& route)
     add_new_element(new TextElement("", {2, y_pos++}));
 
     const auto confirm_button = new Button("Confirm", {2, y_pos}, [&] {
-        /*HTTP POST*/
+        cpr::Response r = cpr::Post(cpr::Url{"http://localhost:8080"},
+                                    cpr::Body{});
     });
     const auto deny_button = new Button("Deny", {12, y_pos}, Tui::pop_screen);
     add_new_element(confirm_button);
