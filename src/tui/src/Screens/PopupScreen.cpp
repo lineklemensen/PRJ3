@@ -4,8 +4,8 @@
 #include <Console.h>
 #include <iostream>
 #include <TextElement.h>
-#include <cpr/cpr.h>
 #include "Tui.h"
+#include "HttpHandler.h"
 
 PopupScreen::PopupScreen(const Route& route)
 {
@@ -22,11 +22,38 @@ PopupScreen::PopupScreen(const Route& route)
     }
     add_new_element(new TextElement("", {2, y_pos++}));
 
-    const auto confirm_button = new Button("Confirm", {2, y_pos}, [&] {
-        cpr::Response r = cpr::Post(cpr::Url{"http://localhost:8080"},
-                                    cpr::Body{});
+    const auto confirm_button = new Button("Confirm", {2, y_pos}, [=, this] {
+        constexpr char spr[] = {'|', '/', '-', '\\'};
+        int i = 0;
+
+        //TODO most of this should be refactored out to a single call
+        std::promise<cpr::Response> p;
+        std::future<cpr::Response> f = p.get_future();
+        auto t = std::thread(HttpHandler::send_route, route, std::move(p));
+        std::future_status status;
+
+        //Simple spinner animation while waiting for http
+        do {
+            selected_->print();
+            std::cout << spr[++i % 4];
+            status = f.wait_for(std::chrono::milliseconds(125));
+        } while(status != std::future_status::ready);
+
+        selected_->print();
+        t.join();
+
+        const cpr::Response res = f.get();
+        if(res.status_code != cpr::status::HTTP_OK) {
+            auto error = TextElement("Sending route failed...Try again...", {2, y_pos});
+            error.print();
+            //5s wait to let user read
+            std::this_thread::sleep_for(std::chrono::seconds(5));
+
+            Tui::pop_screen();
+        };
     });
     const auto deny_button = new Button("Deny", {12, y_pos}, Tui::pop_screen);
+
     add_new_element(confirm_button);
     add_new_element(deny_button);
 
