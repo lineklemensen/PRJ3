@@ -11,16 +11,14 @@
     \hline 
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{Main scenario} \\
     \hline 
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is turned off ??and the hotspot is turned on??} \\ 
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is turned off and the local network is running} \\ 
     \hline 
     \multicolumn{5}{|c|}{} \\ 
     \hline \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\ 
     \hline 
-    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and monitoring the network & & \\ 
+    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and monitoring the local network & & \\ 
     \hline 
-    \textbf{2} & Place the car on homebase & The car is on homebase & & \\ 
-    \hline 
-    \textbf{3} & Press the 'Power' button & Wireshark shows the car successfully establishing a connection to the network and the red LED turns on & & \\ 
+    \textbf{2} & Press the 'Power' button & [Wireshark] shows the car successfully establishing a connection to the local network and the red LED turns on & & \\ 
     \hline 
 \end{tabularx} 
 \caption{Acceptance test - Use Case 1 - Main scenario} 
@@ -33,7 +31,7 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use Case 1 - Start} \\ 
     \hline
-    \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 1 }\\  
+    \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Exception 1 }\\  
     \hline
     \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is turned off } \\
     \hline
@@ -41,18 +39,13 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and monitoring the network & & \\ 
-    \hline 
-    \textbf{2} & Place the car on homebase & The car is on homebase & & \\ 
-    \hline 
-    \textbf{3} & Press the 'Power' button & The red LED does not turn on & & \\ 
+    \textbf{1} & Press the 'Power' button & The red LED does not turn on & & \\ 
     \hline 
 \end{tabularx}
 \caption{Acceptance test - Use Case 1 - Exception 1 - No power on the battery}
 \label{tab:at-usecase1exception1}
 \end{table}
 
-\newpage
 
 ### Exception 2 - Connection to network fails
 \begin{table}[H]
@@ -62,20 +55,14 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 2 }\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is turned off and hotspot is turned off } \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is turned off and the local network is not running } \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-    \hline
-    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and monitoring the network & & \\ 
     \hline 
-    \textbf{2} & Place the car on homebase & The car is on homebase & & \\ 
+    \textbf{1} & Press the 'Power' button & The red LED starts to blink & & \\ 
     \hline 
-    \textbf{3} & Press the 'Power' button & Wire shark doesnt show connection between car and server & & \\ 
-    \hline 
-    \textbf{4} & Car doesnt connect with ther server & The red LED starts to blink & & \\
-    \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 1 - Exception 2 - Connection to network fails}
 \label{tab:at-usecase1exception2}
@@ -92,7 +79,7 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{Main scenario}\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The system is running and functional} \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The server and local network is running} \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
@@ -106,7 +93,7 @@
     \hline
     \textbf{4} & Navigate to and select 'Finish route' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms appears & & \\
     \hline
-    \textbf{5} & 'Confirm' is selected & Wireshark shows a message being sent to the server & & \\ 
+    \textbf{5} & 'Confirm' is selected & [Wireshark] A route is sent to the server & & \\ 
     \hline
     \textbf{6} & Open the text file "routes.txt" on the server and check the contents & The file contains the order of room 1, 2 and 3 & & \\
     \hline
@@ -129,26 +116,23 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 1 - The dispensary nurse selects the "Cancel" option }\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The system is running and functional} \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The server and local network is running} \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Monitor the local network the RPI's are using with Wireshark & Wireshark is opened and is monitoring the local network & &\\
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & & \\ 
     \hline
-    \textbf{2} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & & \\ 
+    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & & \\
     \hline
-    \textbf{3} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & & \\
-    \hline
-    \textbf{4} & Navigate to and select 'Cancel route' & All rooms are deselected and the Terminal UI closes & & \\
+    \textbf{3} & Navigate to and select 'Cancel route' & All rooms are deselected and the Terminal UI closes & & \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Exception 1 - The dispensary nurse selects the "Cancel" option}
 \label{tab:at-usecase2exception1}
 \end{table}
 
-\newpage
 
 ### Extension 1 - Room is already added
 \begin{table}[H]
@@ -158,19 +142,17 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 2 - Room already added }\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The system is running and functional} \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The server and local network is running} \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Monitor the local network the RPI's are using with Wireshark & Wireshark is opened and is monitoring the local network & &\\
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & & \\ 
     \hline
-    \textbf{2} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & & \\ 
+    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & & \\
     \hline
-    \textbf{3} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & & \\
-    \hline
-    \textbf{4} & Select rooms 2 and 3 again & Rooms 2 and 3 will be unselected & & \\
+    \textbf{3} & Select rooms 2 and 3 again & Rooms 2 and 3 will be unselected & & \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Extension 1 - Room is already added}
@@ -187,25 +169,22 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 3 - No rooms were selected}\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The system is running and functional} \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The server and local network is running} \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Monitor the local network the RPI's are using with Wireshark & Wireshark is opened and is monitoring the local network & &\\
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & & \\ 
     \hline
-    \textbf{2} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & & \\ 
-    \hline
-    \textbf{3} & Press confirm before selecting any rooms & An error message is displayed on the UI. Return to point 2 in the main scenario & & \\
+    \textbf{2} & Press confirm before selecting any rooms & An error message is displayed on the UI. Return to point 2 in the main scenario & & \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Extension 2 - No rooms were selected}
 \label{tab:at-usecase2extension2}
 \end{table}
 
-\newpage
-### Extension 3 - The dispensary nurse selects the "Deny" option(ikke done)
+### Extension 3 - The dispensary nurse selects the "Deny" option
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
@@ -219,15 +198,13 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Monitor the local network the RPI's are using with Wireshark & Wireshark is opened and is monitoring the local network & &\\
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & & \\ 
     \hline
-    \textbf{2} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & & \\ 
+    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & & \\
     \hline
-    \textbf{3} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & & \\
+    \textbf{3} & Navigate to and select 'Finish route' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms is displayed & & \\
     \hline
-    \textbf{4} & Navigate to and select 'Finish route' & A confirmation message saying "These are your chosen rooms" and a list of the rooms 1, 2 and 3 appears & & \\
-    \hline
-    \textbf{5} & 'Deny' is selected & All rooms are deselected. & & \\ 
+    \textbf{4} & 'Deny' is selected & All rooms are deselected. & & \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Extension 3 - The dispensary nurse selects the "Deny" option}
@@ -245,7 +222,7 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{Main scenario}\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is idle on homebase and the server has a single route with 2 rooms stored} \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{>{\hsize=\dimexpr 2\hsize+2\tabcolsep+\arrayrulewidth}X|}{The car is idle at homebase, the local network is running, and the server is running with a single route of 2 rooms stored} \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
@@ -253,27 +230,23 @@
     \hline
     \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & & \\ 
     \hline
-    \textbf{2} & Press the Action button & A request to fetch routes is sent from the car to the server & & \\
+    \textbf{2} & Press the Action button & [Wireshark]A request to fetch routes is sent from the car to the server & & \\
     \hline
     \textbf{3} & Look at the LEDs & The green LED is on & & \\
     \hline
-    \textbf{4} & Prepare a timer to time the response & User is ready to time the response & & \\
+    \textbf{4} & Prepare a timer to time the system & User is ready to time the system & & \\
     \hline
     \textbf{5} & Press the Action button and start the timer & The green LED turns off and after a maximum of 5 seconds the car starts driving & & \\
     \hline
-    \textbf{6} & When the car starts driving, stop the timer & The response time has been measured & & \\
+    \textbf{6} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & & \\
     \hline
-    \textbf{7} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & & \\
+    \textbf{8} & Press the Action button and start the timer & The green LED turns off and the car starts driving & & \\
     \hline
-    \textbf{8} & Prepare a timer to time the response & User is ready to time the response & & \\
+    \textbf{9} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & & \\
     \hline
-    \textbf{9} & Press the Action button and start the timer & The green LED turns off and after a maximum of 5 seconds the car starts driving & & \\
+    \textbf{10} & Press the Action button & The green LED turns off and the car starts driving & & \\
     \hline
-    \textbf{10} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & & \\
-    \hline
-    \textbf{11} & Press the Action button & The green LED turns off and the car starts driving & & \\
-    \hline
-    \textbf{12} & Wait for car to arrive at homebase & The car is idle on homebase & & \\
+    \textbf{11} & Wait for car to arrive at homebase & The car is idle at homebase & & \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Main scenario}
@@ -289,25 +262,24 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 1 - No available routes }\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{>{\hsize=\dimexpr 2\hsize+2\tabcolsep+\arrayrulewidth}X|}{The car is powered on, connected to the network and at homebase no route has been created } \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{>{\hsize=\dimexpr 2\hsize+2\tabcolsep+\arrayrulewidth}X|}{The car is idle at homebase, local network is running and server is running with no routes stored} \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Car requests a route from the server & No route is available & & \\ 
+    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & & \\ 
     \hline
-    \textbf{2} & Observe LEDs & The green LED starts blinking & & \\ 
+    \textbf{2} & Press the action button & [Wireshark] A request to fetch routes is sent to the server & & \\ 
     \hline
-    \textbf{3} & Wait 5 seconds & The green LED continues blinking during the wait & & \\ 
+    \textbf{3} & Prepare a timer & The user is ready to time the system & & \\ 
     \hline
-    \textbf{4} & Observe LEDs & The green LED stops blinking, and the car enters idle mode & & \\ 
+    \textbf{4} & Observe LEDs & [Wireshark] The green LED starts blinking for 5 seconds, then the car enters idle mode & & \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Exception 1 - No available routes}
 \label{tab:at-usecase3exception1}
 \end{table}
-\newpage
 
 ### Exception 2 - Network Error
 \begin{table}[H]
@@ -317,7 +289,7 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 2 - Network error }\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{>{\hsize=\dimexpr 2\hsize+2\tabcolsep+\arrayrulewidth}X|}{The car is powered on, connected to the network and at homebase no route has been created } \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{>{\hsize=\dimexpr 2\hsize+2\tabcolsep+\arrayrulewidth}X|}{The car is idle at homebase and the local network and server is running} \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
@@ -325,7 +297,7 @@
     \hline
     \textbf{1} & Prepare a timer & The user is ready to time the system & & \\ 
     \hline
-    \textbf{1} & Press the Action button & The red LED starts blinking & & \\ 
+    \textbf{1} & Observe the LEDs & [Visual test]The red LED starts blinking & & \\ 
     \hline
     \textbf{2} & Wait 15 seconds & The red LED stops blinking and the car enters idle mode & & \\ 
     \hline
@@ -343,25 +315,21 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 3 - Remaining locations in the route (exel. homebase) }\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is powered on and the car fails to send or receive data from the server. } \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is powered on and has arrived at a destination(excl. homebase) } \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Press the "Action" button & The green LED turns off & & \\ 
+    \textbf{1} & Press the Action button & The green LED turns off, and the cars starts driving & & \\ 
     \hline
-    \textbf{2} & Wait 5 seconds & The car waits before starting to drive & & \\ 
-    \hline
-    \textbf{3} & Observe car movement & The car starts driving to the next delivery location & & \\ 
+    \textbf{2} & Return to point 10 in the main scenario &  & & \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Extension 1 -  Remaining locations in the route (exel. homebase) }
 \label{tab:at-usecase3extension1}
 \end{table}
 
-
-\newpage
 
 # Use Case 4 - Shutdown of car
 ## Main scenario
@@ -372,7 +340,7 @@
     \hline
     \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Main scenario }\\  
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is powered on, connected to the network and at homebase } \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is idle at homebase } \\
     \hline
     \multicolumn{5}{|c|}{}\\
     \hline
@@ -385,7 +353,7 @@
 \label{tab:at-usecase4main}
 \end{table}
 
-
+\newpage
 
 # Nonfunctional Requirements
 
@@ -400,7 +368,7 @@ Required tools for test of nonfunctional requirements: \newline
 \hline
 \textbf{Requirement under test} & \textbf{Action} & \textbf{Expected Result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\  
 \hline
-Functionality 1 - Car requests routes from server & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle on homebase}\\
+Functionality 1 - Car requests routes from server & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase}\\
 \hline
 1 & Open Wireshark to monitor the local network & Wireshark is monitoring the local network & H & H\\
 \hline
@@ -410,11 +378,11 @@ Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\t
 \hline
 1 & Press the action button & The car starts driving to continue its route & H & H\\
 \hline
-Usability 1 - The car is equipped with two LEDs & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle on homebase}\\
+Usability 1 - The car is equipped with two LEDs & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase}\\
 \hline
 1 & Inspect the car & [Visual test] On the car is two LEDs, one green and one red & H & H\\
 \hline
-Usability 2 - The car is equipped with a speaker & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle on homebase, server is running and has <1 routes stored}\\
+Usability 2 - The car is equipped with a speaker & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase, server is running and has <1 routes stored}\\
 \hline
 1 & Press the action button & When the green LED turns on, a sound is also played to indicate the car is ready to execute route & H & H\\
 \hline
@@ -422,19 +390,19 @@ Usability 3 - User guide !!!!!!!!!!!!!!!!!!!!!!!!!!!! & Precondition: & \multico
 \hline
 1 & Write a user guide ???? & A user guide has been written ?????? & H & H\\
 \hline
-Usability 4 - User guide & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle on homebase}\\
+Usability 4 - User guide & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase}\\
 \hline
 1 & Read the user guide & The user guide includes troublehooting for 5 common error-scenarios & H & H\\
 \hline
-Usability 5 - Buttons on car & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle on homebase}\\
+Usability 5 - Buttons on car & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase}\\
 \hline
 1 & Inspect the car & [Visual test]The car is equipped with two buttons labelled 'Action' and 'Power' & H & H\\
 \hline
-Usability 6 - UI & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle on homebase}\\
+Usability 6 - UI & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase}\\
 \hline
 1 & Start creating route on client & A UI opens & H & H\\
 \hline
-Usability 7 - Text on UI & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle on homebase}\\
+Usability 7 - Text on UI & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase}\\
 \hline
 1 & Open the Client UI & The size of text in the UI is > 14pt, and the color of the text is a contrasting color to the background  & H & H\\
 \hline
@@ -448,7 +416,7 @@ Reliability 1 - Continuous driving & Precondition: & \multicolumn{3}{|p{0.5\text
 \hline
 3 & Press the action button & The car starts driving, and arrives at next destination & H & H\\
 \hline
-4 & Repeat point 3 until car is back on homebase & The car is on homebase and ready to request another route & H & H\\
+4 & Repeat point 3 until car is back at homebase & The car is at homebase and ready to request another route & H & H\\
 \hline
 5 & Repeat point 1 to 4 until 65 minutes have passed(To account for delays when fetching/continuing routes, etc.) & 65 minutes have passed and the car is still executing routes without issues & H & H\\
 \hline
