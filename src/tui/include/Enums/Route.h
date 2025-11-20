@@ -4,6 +4,7 @@
 struct Route {
     int rooms[3] = {0, 0, 0};
 
+    Route() = delete;
     Route(const StatefulButton* r1, const StatefulButton* r2, const StatefulButton* r3)
     {
         if(r1->get_state())
