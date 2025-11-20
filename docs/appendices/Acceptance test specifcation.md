@@ -323,13 +323,11 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Car requests a route from the server & No route is available & & \\ 
+    \textbf{1} & Prepare a timer & The user is ready to time the system & & \\ 
     \hline
-    \textbf{2} & Observe LEDs & The green LED starts blinking & & \\ 
+    \textbf{1} & Press the Action button & The red LED starts blinking & & \\ 
     \hline
-    \textbf{3} & Wait 5 seconds & The green LED continues blinking during the wait & & \\ 
-    \hline
-    \textbf{4} & Observe LEDs & The green LED stops blinking, and the car enters idle mode & & \\ 
+    \textbf{2} & Wait 15 seconds & The red LED stops blinking and the car enters idle mode & & \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Exception 2 -  Network Error}
