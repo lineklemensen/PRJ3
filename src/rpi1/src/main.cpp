@@ -1,14 +1,100 @@
 #include "MotorController.h"
-#include "Encoder.h"
-#include "RpiPwm.h"
 #include <iostream>
 #include <thread>
 #include <chrono>
 #include <unistd.h>
 #include <termios.h>
 #include <fcntl.h>
+#include <fstream>
+
+#define FORWARD 1
+#define BACKWARD 0
 
 
+// Test of Pid class
+// Simulated encoder: reacts to PWM like a real motor
+double simulate_encoder(double pos, double pwm)
+{
+    // convert PWM into acceleration
+    double accel = pwm * 0.05; // tune this for realism
+
+    // friction reduces velocity
+    static double velocity = 0.0;
+    velocity += accel;
+    velocity *= 0.90; // friction / damping
+
+    pos += velocity;
+    return pos;
+}
+
+int main()
+{
+    // Configure PID exactly like MotorController does
+    Pid pid;
+    pid.set_dt(0.1);
+    pid.set_kp(0.6);
+    pid.set_ki(0.15);
+    pid.set_kd(0.6);
+    pid.set_ramp_limit(5.0);
+    pid.set_max_output(100);
+    pid.set_min_output(-100);
+
+    // Setpoint simulating a motor target position
+    double target = 200; // pretend encoder counts
+    double pos = 0;      // starting encoder value
+    constexpr double INTEGRATION_THRESHOLD = 5.0;
+
+    // Open file in truncate mode to clear it first
+    std::ofstream data_file("/home/au772678/PRJ3/src/rpi1/scripts/pid_test.csv", std::ios::out | std::ios::trunc);
+
+    if (!data_file.is_open())
+    {
+        std::cerr << "Failed to open pid_test.csv for writing!\n";
+        return 1;
+    }
+    data_file << "time,pos,ctrl,pwm\n"; // CSV header
+
+    std::cout << "=== PID TEST START ===\n";
+
+    for (int i = 0; i < 200; i++)
+    {
+        double ctrl;
+        int pwm = pid.update(target, pos, &ctrl, INTEGRATION_THRESHOLD);
+
+        // Update simulated encoder
+        pos = simulate_encoder(pos, pwm);
+
+        double t = i * pid.get_dt();
+
+        // Write to CSV
+        data_file << t << "," << pos << "," << ctrl << "," << pwm << "\n";
+        data_file.flush();
+
+        // Print to console
+        std::cout << "t=" << t
+                  << "s  pos=" << pos
+                  << "  ctrl=" << ctrl
+                  << "  pwm=" << pwm
+                  << std::endl;
+
+        // Stop early if close enough
+        if (std::abs(target - pos) < 1.0)
+        {
+            std::cout << "Target reached.\n";
+            break;
+        }
+    }
+
+    data_file.close(); // close CSV
+
+    std::cout << "Final position: " << pos << std::endl;
+    std::cout << "=== PID TEST END ===\n";
+
+    return 0;
+}
+
+/*
+// Test of Encoder class and drive
 // Utility: set stdin to non-blocking mode
 void set_nonblocking(bool enable)
 {
@@ -33,7 +119,7 @@ int main()
     usleep(100000); // wait for initialization
 
     // Example: set left motor forward and right motor forward
-    motors.set_direction(1, 0, 1, 0);
+    motors.set_direction(FORWARD, FORWARD);
     motors.drive(30, 30); // 30% speed
 
     // Set stdin non-blocking for key press detection
@@ -59,3 +145,4 @@ int main()
 
     return 0;
 }
+*/

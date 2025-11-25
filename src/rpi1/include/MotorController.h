@@ -3,9 +3,13 @@
 
 #include "Encoder.h"
 #include "RpiPwm.h"
+#include "Pid.h"
 #include <gpiod.h>
 #include <stdexcept>
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 
 
 // Chip path and poll timeout
@@ -27,6 +31,34 @@
 #define FREQUENCY_RIGHT 1000
 #define GPIO_CHANNEL_RIGHT 3
 
+// Car sizes
+#define WHEEL_CIRCUMFERENCE 10
+#define CAR_DIAMETER 10
+#define ENCODER_PR_ROTATION 300
+
+// Loop time (seconds)
+#define DT 0.01     // 10 ms update rate for both motors
+
+// Proportional gain
+#define KP_LEFT 2.2
+#define KP_RIGHT 2.2
+
+// Integral gain
+#define KI_LEFT 0.01
+#define KI_RIGHT 0.01
+
+// Derivative gain
+#define KD_LEFT 0.6
+#define KD_RIGHT 0.6
+
+// Maximum control output (PWM duty cycle percentage)
+#define MAX_PWM_LEFT 70
+#define MAX_PWM_RIGHT 70
+
+// Minimum control output (PWM duty cycle percentage)
+#define MIN_PWM_LEFT -70
+#define MIN_PWM_RIGHT -70
+
 
 class MotorController {
 public:
@@ -34,8 +66,10 @@ public:
     ~MotorController();
 
     void drive(int speed_left, int speed_right);
-    void set_direction(bool A1, bool B1, bool A2, bool B2);
+    void set_direction(bool left_forward, bool right_forward);
     void print_encoder_pos();
+    void turn(double degrees);
+    void drive_to_pos(double degrees, const std::pair<double, double>& target);
 
 private:
     const char* chipname_;
@@ -49,6 +83,9 @@ private:
 
     RpiPwm pwm_left_;
     RpiPwm pwm_right_;
+
+    Pid pid_left_;
+    Pid pid_right_;
 };
 
 #endif

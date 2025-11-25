@@ -2,6 +2,7 @@
 **/.vs
 **/.idea
 **/cmake-build-debug
+**/build
 
 # Ignore common output file
 *.o
