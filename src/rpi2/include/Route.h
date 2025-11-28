@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include <expected.hpp>
-#include <json_dto\pub.hpp>
 #include <fstream>
 #include <http_headers.hpp>
 #include <deque>
@@ -21,6 +20,14 @@ class Route {
         route_file.open(file_path, std::ios::app);
         if (!route_file.is_open()) {
             throw std::runtime_error("failed to opn file");
+        }
+
+        if (route_file.is_open()) {
+            std::ifstream route_file_stream(file_path);
+            std::string line;
+            while (std::getline(route_file_stream, line)) {
+                route_queue.push_back(line);
+            }
         }
     };
     ~Route() {

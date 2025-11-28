@@ -50,7 +50,7 @@ public:
 
 
 		return resp.done();
-		//only if all preceding succeeds otherwise need to send failed rsponse
+
 	}
 
 private:
@@ -67,7 +67,7 @@ private:
 		return resp;
 	}
 
-	static void mark_as_bad_request(auto & resp)  // (auto & resp) with C++20 , if C++17, it should be (RESP & resp)
+	static void mark_as_bad_request(auto & resp)
 	{
 		resp.header().status_line(restinio::status_bad_request());
 	}
@@ -76,17 +76,17 @@ private:
 //=========================*/
 // Router setup
 //=========================*/
-auto server_handler(route_collection_t & book_collection) //replace book_ ..
+auto server_handler(route_collection_t & route_collection)
 {
 	auto router = std::make_unique<router_t>();
-	auto handler = std::make_shared<RouteHandler>(std::ref(book_collection));
+	auto handler = std::make_shared<RouteHandler>(std::ref(route_collection));
 
 	auto by = [&](auto method) {
 		using namespace std::placeholders;
 		return std::bind(method, handler, _1, _2);
 	};
 
-	// Example: GET /
+
 	router->http_get("/get_route", by(&RouteHandler::on_get_route));
 
 	router->http_post("/new_route", by(&RouteHandler::on_post_route));
@@ -121,8 +121,8 @@ int main()
 		//=========================*/
 		restinio::run(
 			restinio::on_this_thread<traits_t>()
-				.address("0.0.0.0")   // For Pi: allow access from outside
-				.port(8080)           // Default port, change if needed
+				.address("0.0.0.0")
+				.port(8080)
 				.request_handler(server_handler(route))
 				.read_next_http_message_timelimit(10s)
 				.write_http_response_timelimit(1s)
