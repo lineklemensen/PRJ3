@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/DeliveryRobot.dir/src/MotorController.cpp.o CMakeFiles/DeliveryRobot.dir/src/main.cpp.o -o DeliveryRobot  -lgpiod 

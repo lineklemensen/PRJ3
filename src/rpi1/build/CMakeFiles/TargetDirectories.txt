@@ -1,3 +1,0 @@
-/home/au772678/PRJ3/src/rpi1/build/CMakeFiles/DeliveryRobot.dir
-/home/au772678/PRJ3/src/rpi1/build/CMakeFiles/edit_cache.dir
-/home/au772678/PRJ3/src/rpi1/build/CMakeFiles/rebuild_cache.dir
