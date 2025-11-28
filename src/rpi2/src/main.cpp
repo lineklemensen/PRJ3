@@ -1,16 +1,16 @@
 ﻿#include <iostream>
-#include "Route.h"
+#include "LogHandler.h"
 #include <restinio/all.hpp>
 #include <json_dto/pub.hpp>
 
-using route_collection_t = std::vector< Route >;
+using route_collection_t = std::vector< LogHandler >;
 namespace rr = restinio::router;
 using router_t = rr::express_router_t<>;
 
 //=========================*/
 // HTTP handler class
 //=========================*/
-static Route route_logger;
+static LogHandler route_logger;
 
 class RouteHandler
 {
