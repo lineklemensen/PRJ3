@@ -95,9 +95,9 @@ void MotorController::drive(int left_pwm, int right_pwm)
     int left_duty = std::abs(left_pwm);
     int right_duty = std::abs(right_pwm);
 
-    if (left_duty < 20 && left_duty != 0)
+    if (left_duty < 31 && left_duty != 0)
     {
-        left_duty = 20;
+        left_duty = 31;
     }
 
     pwm_left_.setDutyCycle(left_duty);
@@ -210,6 +210,7 @@ void MotorController::turn(double degrees)
 void MotorController::drive_distance(double distance)
 {
     int n = 0;
+    int m = 0;
 
     // Encoder pulses needed to reach target
     double encoder_pulses = distance / WHEEL_CIRCUMFERENCE * ENCODER_PR_ROTATION;
@@ -246,7 +247,7 @@ void MotorController::drive_distance(double distance)
     }
     data_file << "time,pos,ctrl,pwm\n"; // CSV header
 
-    while (left_error > 10)
+    while (true)
     {
         ++n;
 
@@ -265,11 +266,29 @@ void MotorController::drive_distance(double distance)
         double t = n * pid_left_.get_dt();
 
         // Write to CSV
-        data_file << t << "," << left_pos << "," << left_ctrl << "," << left_pwm << "\n";
+        data_file << t << "," << right_pos << "," << right_ctrl << "," << right_pwm << "\n";
         data_file.flush();
 
         // Drive
         drive(left_pwm, right_pwm);
+
+        if (left_error < 20 && std::abs(left_pwm) < 20 && right_error < 20 && std::abs(right_pwm) < 20)
+        {
+            ++m;
+            if (m > 100)
+            {
+                std::cout << "M Left Error: " << left_error << ", M Left PWM: " << left_pwm << std::endl;
+                std::cout << "M Right Error: " << right_error << ", M Right PWM: " << right_pwm << std::endl;
+                break;
+            }
+        }
+
+        if (left_error < 20 && std::abs(left_target) < std::abs(left_pos) && right_error < 20 && std::abs(right_target) < std::abs(right_pos))
+        {
+            std::cout << "E Left Error: " << left_error << ", E Left PWM: " << left_pwm << std::endl;
+            std::cout << "E Right Error: " << right_error << ", E Right PWM: " << right_pwm << std::endl;
+            break;
+        }
 
         usleep(DT * 1000000);
     }

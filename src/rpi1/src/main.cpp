@@ -125,9 +125,9 @@ int main()
     // motors.set_direction(FORWARD, FORWARD);
     // motors.drive(20, -40); // 30% speed
 
-    // motors.drive_distance(TARGET_DISTANCE);
-    // motors.drive(40, 40);
-    motors.turn(900);
+    motors.drive_distance(TARGET_DISTANCE);
+    // motors.drive(30, 0);
+    // motors.turn(900);
 
     // Set stdin non-blocking for key press detection
     set_nonblocking(true);

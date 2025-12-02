@@ -47,7 +47,7 @@
 
 // Proportional gain
 #define KP_LEFT 0.17
-#define KP_RIGHT 0.17
+#define KP_RIGHT 0.1325
 
 // Integral gain
 #define KI_LEFT 0.0000001
@@ -55,7 +55,7 @@
 
 // Derivative gain
 #define KD_LEFT 0.0115
-#define KD_RIGHT 0.0115
+#define KD_RIGHT 0.01675
 
 // Maximum control output (PWM duty cycle percentage)
 #define MAX_PWM_LEFT 70
