@@ -27,6 +27,7 @@ MotorController::MotorController()
     pid_left_.set_kp(KP_LEFT);
     pid_left_.set_ki(KI_LEFT);
     pid_left_.set_kd(KD_LEFT);
+    pid_left_.set_ramp_limit(LEFT_RAMP_LIMIT);
     pid_left_.set_max_output(MAX_PWM_LEFT);
     pid_left_.set_min_output(MIN_PWM_LEFT);
 
@@ -91,15 +92,19 @@ void MotorController::drive(int left_pwm, int right_pwm)
     set_direction(left_forward, right_forward);
 
     // Allow motors to stop if PID output is small
-    int left_duty  = std::abs(left_pwm);
+    int left_duty = std::abs(left_pwm);
     int right_duty = std::abs(right_pwm);
+
+    if (left_duty < 20 && left_duty != 0)
+    {
+        left_duty = 20;
+    }
 
     pwm_left_.setDutyCycle(left_duty);
     pwm_right_.setDutyCycle(right_duty);
 
-    std::cout << "Duty cycle left: " << left_duty << "%, right: " << right_duty << "%\n";
+    // std::cout << "Duty cycle left: " << left_duty << "%, right: " << right_duty << "%\n";
 }
-
 
 // true  = forward
 // false = backward
@@ -112,7 +117,7 @@ void MotorController::set_direction(bool left_forward, bool right_forward)
     gpiod_line_set_value(A2_line_, right_forward ? 1 : 0);
     gpiod_line_set_value(B2_line_, right_forward ? 0 : 1);
 
-    std::cout << "Left motor: " << (left_forward ? "forward" : "backward") << ", Right motor: " << (right_forward ? "forward" : "backward") << std::endl;
+    // std::cout << "Left motor: " << (left_forward ? "forward" : "backward") << ", Right motor: " << (right_forward ? "forward" : "backward") << std::endl;
 }
 
 void MotorController::print_encoder_pos()
@@ -125,6 +130,8 @@ void MotorController::turn(double degrees)
     if (degrees == 0)
         return;
 
+    int n = 0;
+
     // Calculate target encoder counts for the turn
     double dist_counts = ((M_PI * CAR_DIAMETER) / WHEEL_CIRCUMFERENCE) * ENCODER_PR_ROTATION * (std::abs(degrees) / 360.0);
 
@@ -132,53 +139,144 @@ void MotorController::turn(double degrees)
     pid_left_.reset();
     pid_right_.reset();
 
-    int left_start  = encoder_left_.get_position();
-    int right_start = encoder_right_.get_position();
+    // Starting position
+    int left_pos = encoder_left_.get_position();
+    int right_pos = encoder_right_.get_position();
 
     double left_target, right_target;
 
-    if (degrees > 0) { // turn left in place
-        left_target  = left_start  - dist_counts; // backward
-        right_target = right_start + dist_counts; // forward
-    } else {           // turn right in place
-        left_target  = left_start  + dist_counts; // forward
-        right_target = right_start - dist_counts; // backward
+    if (degrees < 0)
+    {                                           // turn left in place
+        left_target = left_pos - dist_counts;   // backward
+        right_target = right_pos + dist_counts; // forward
     }
+    else
+    {                                           // turn right in place
+        left_target = left_pos + dist_counts;   // forward
+        right_target = right_pos - dist_counts; // backward
+    }
+
+    // Errors
+    int left_error = std::abs(left_target - left_pos);
+    int right_error = std::abs(right_target - right_pos);
+
+    // Extra variables
+    double left_ctrl, right_ctrl;
+    constexpr double INTEGRATION_THRESHOLD = 5.0; // prevent integral windup
 
     std::cout << "Starting turn of " << degrees << " degrees.\n";
     std::cout << "Target positions: Left=" << left_target << ", Right=" << right_target << "\n";
 
-    constexpr double INTEGRATION_THRESHOLD = 5.0; // prevent integral windup
+    std::ofstream data_file("/home/au769402/car/PRJ3/src/rpi1/scripts/pid_test.csv", std::ios::out | std::ios::trunc);
 
-    while (true)
+    if (!data_file.is_open())
     {
-        double left_pos  = encoder_left_.get_position();
+        std::cerr << "Failed to open pid_test.csv for writing!\n";
+        return;
+    }
+    data_file << "time,pos,ctrl,pwm\n"; // CSV header
+
+    while (left_error > 10)
+    {
+        ++n;
+
+        // Current positiom
+        double left_pos = encoder_left_.get_position();
         double right_pos = encoder_right_.get_position();
 
-        double left_error  = left_target  - left_pos;
-        double right_error = right_target - right_pos;
-
-        // Stop when both motors reach target within 2 counts
-        if (std::abs(left_error) < 2.0 && std::abs(right_error) < 2.0)
-            break;
-
-        // Compute PID outputs (using double internally)
-        double left_ctrl, right_ctrl;
-        int left_pwm  = pid_left_.update(left_target, left_pos, &left_ctrl, INTEGRATION_THRESHOLD);
+        // Update PWM
+        int left_pwm = pid_left_.update(left_target, left_pos, &left_ctrl, INTEGRATION_THRESHOLD);
         int right_pwm = pid_right_.update(right_target, right_pos, &right_ctrl, INTEGRATION_THRESHOLD);
 
-        // Drive motors with adjusted PWM
-        drive(left_pwm, right_pwm);
+        // Calculate errors
+        left_error = std::abs(left_target - left_pos);
+        right_error = std::abs(right_target - right_pos);
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(pid_left_.get_dt() * 1000)));
+        double t = n * pid_left_.get_dt();
+
+        // Write to CSV
+        data_file << t << "," << left_pos << "," << left_ctrl << "," << left_pwm << "\n";
+        data_file.flush();
+
+        drive(left_pwm, 0);
+
+        usleep(DT * 1000000);
     }
-
+    data_file.close();
     drive(0, 0); // stop motors
     std::cout << "\nTurn completed.\n";
 }
 
-
-
-void MotorController::drive_to_pos(double degrees, const std::pair<double, double> &target)
+void MotorController::drive_distance(double distance)
 {
+    int n = 0;
+
+    // Encoder pulses needed to reach target
+    double encoder_pulses = distance / WHEEL_CIRCUMFERENCE * ENCODER_PR_ROTATION;
+
+    // Starting position
+    double left_pos = encoder_left_.get_position();
+    double right_pos = encoder_right_.get_position();
+
+    // Targets
+    double left_target = left_pos + encoder_pulses;
+    double right_target = right_pos + encoder_pulses;
+
+    // Errors
+    int left_error = std::abs(left_target - left_pos);
+    int right_error = std::abs(right_target - right_pos);
+
+    // Reset PID controllers
+    pid_left_.reset();
+    pid_right_.reset();
+
+    // Extra variables
+    double left_ctrl, right_ctrl;
+    constexpr double INTEGRATION_THRESHOLD = 5.0; // prevent integral windup
+
+    // std::cout << "Stopping at left " << left_target << "and right " << right_target << std::endl;
+
+    // Prepare CSV file
+    std::ofstream data_file("/home/au769402/car/PRJ3/src/rpi1/scripts/pid_test.csv", std::ios::out | std::ios::trunc);
+
+    if (!data_file.is_open())
+    {
+        std::cerr << "Failed to open pid_test.csv for writing!\n";
+        return;
+    }
+    data_file << "time,pos,ctrl,pwm\n"; // CSV header
+
+    while (left_error > 10)
+    {
+        ++n;
+
+        // Track current position
+        left_pos = encoder_left_.get_position();
+        right_pos = encoder_right_.get_position();
+
+        // Update PWM
+        int left_pwm = pid_left_.update(left_target, left_pos, &left_ctrl, INTEGRATION_THRESHOLD);
+        int right_pwm = pid_right_.update(right_target, right_pos, &right_ctrl, INTEGRATION_THRESHOLD);
+
+        // Calculate erros
+        left_error = std::abs(left_target - left_pos);
+        right_error = std::abs(right_target - right_pos);
+
+        double t = n * pid_left_.get_dt();
+
+        // Write to CSV
+        data_file << t << "," << left_pos << "," << left_ctrl << "," << left_pwm << "\n";
+        data_file.flush();
+
+        // Drive
+        drive(left_pwm, right_pwm);
+
+        usleep(DT * 1000000);
+    }
+
+    data_file.close();
+
+    std::cout << "Stopped at left " << encoder_left_.get_position() << " and right " << encoder_right_.get_position() << std::endl;
+
+    drive(0, 0);
 }

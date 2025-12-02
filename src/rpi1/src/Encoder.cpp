@@ -16,13 +16,14 @@ Encoder::Encoder()
       poll_timeout_ms_(POLL_TIMEOUT_MS),
       encoder_position_(0),
       running_(false)
-{}
+{
+}
 
 void Encoder::init_encoder(int gpio_enc_a, int gpio_enc_b)
 {
     gpio_enc_a_ = gpio_enc_a;
     gpio_enc_b_ = gpio_enc_b;
-    
+
     chip_fd_ = open(chipname_.c_str(), O_RDONLY);
     if (chip_fd_ < 0)
         throw std::runtime_error("Failed to open GPIO chip");
@@ -74,14 +75,16 @@ Encoder::Encoder(int gpio_enc_a, int gpio_enc_b)
 
 void Encoder::start_thread()
 {
-    if (running_) return;
+    if (running_)
+        return;
     running_ = true;
     monitor_thread_ = std::thread(&Encoder::monitor_events, this);
 }
 
 void Encoder::stop_thread()
 {
-    if (!running_) return;
+    if (!running_)
+        return;
 
     running_ = false;
     char c = 'x';
@@ -99,14 +102,15 @@ void Encoder::monitor_events()
 
     // Quadrature decoding lookup table
     const int8_t quad_table[16] = {0, -1, 1, 0,
-                                    1, 0, 0, -1,
+                                   1, 0, 0, -1,
                                    -1, 0, 0, 1,
-                                    0, 1, -1, 0};
+                                   0, 1, -1, 0};
 
     while (running_)
     {
         int ret = poll(poll_fds_, 3, -1);
-        if (ret < 0) break;
+        if (ret < 0)
+            break;
 
         if (poll_fds_[2].revents & POLLIN) // wake pipe
         {
@@ -120,7 +124,23 @@ void Encoder::monitor_events()
             if (poll_fds_[i].revents & POLLIN)
             {
                 ssize_t bytes = read(poll_fds_[i].fd, &event_data, sizeof(event_data));
-                if (bytes != sizeof(event_data)) continue;
+                if (bytes != sizeof(event_data))
+                    continue;
+
+                // --- DEBOUNCE START ---
+                static uint64_t last_ts[2] = {0, 0};
+                const uint64_t debounce_ns = 100000; // 1 ms
+
+                int ch = i; // 0 for A, 1 for B
+
+                if (event_data.timestamp - last_ts[ch] < debounce_ns)
+                {
+                    // Ignorer bounce
+                    continue;
+                }
+
+                last_ts[ch] = event_data.timestamp;
+                // --- DEBOUNCE SLUT ---
 
                 int a = (i == 0) ? (event_data.id == GPIOEVENT_EVENT_RISING_EDGE) : (last_state_ >> 1) & 1;
                 int b = (i == 1) ? (event_data.id == GPIOEVENT_EVENT_RISING_EDGE) : last_state_ & 1;
@@ -142,9 +162,11 @@ int Encoder::get_position() const
 void Encoder::cleanup()
 {
     for (int i = 0; i < 2; ++i)
-        if (event_req_[i].fd >= 0) close(event_req_[i].fd);
+        if (event_req_[i].fd >= 0)
+            close(event_req_[i].fd);
 
-    if (chip_fd_ >= 0) close(chip_fd_);
+    if (chip_fd_ >= 0)
+        close(chip_fd_);
     close(wake_pipe_[0]);
     close(wake_pipe_[1]);
 }

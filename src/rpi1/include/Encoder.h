@@ -9,7 +9,7 @@
 #include <linux/gpio.h>
 
 #define CHIP_PATH "/dev/gpiochip0"
-#define POLL_TIMEOUT_MS 0
+#define POLL_TIMEOUT_MS 1
 
 class Encoder
 {
