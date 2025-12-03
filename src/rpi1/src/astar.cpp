@@ -1,26 +1,29 @@
 // Created by johan on 07-11-2025.
 #include "astar.h"
-
-void get_route(cpr::Response&& res){
+#include <vector>
+/*
+void HttpHandler::get_route(cpr::Response&& res){
     // We need to use an out var since thread return values are weird
-    res = cpr::Get(cpr::Url{"http://192.168.43.224:8080/get_route"},
+    res = cpr::Get(cpr::Url{"http://172.16.15.2:8080/get_route"},
                    cpr::Header{{"Content-Type", "application/json"}});
 }
+*/
 
 // A* search between two points
-std::vector<Astar::Point> aStar_search(int grid[][COLS],Astar::Point src, Astar::Point dest) {
+std::vector<Astar::Point> aStar_search(int grid[][COLS], Astar::Point src, Astar::Point dest)
+{
     std::vector<Astar::Point> route;
 
     // Sanity checks
-    if (!Astar::is_unblocked(grid, src.first, src.second)) {
+    if(!Astar::is_unblocked(grid, src.first, src.second)) {
         std::cout << "Source is blocked.\n";
         return route;
     }
-    if (!Astar::is_unblocked(grid, dest.first, dest.second)) {
+    if(!Astar::is_unblocked(grid, dest.first, dest.second)) {
         std::cout << "Destination is blocked.\n";
         return route;
     }
-    if (Astar::is_destination(src.first, src.second, dest)) {
+    if(Astar::is_destination(src.first, src.second, dest)) {
         route.push_back(src);
         return route;
     }
@@ -30,8 +33,8 @@ std::vector<Astar::Point> aStar_search(int grid[][COLS],Astar::Point src, Astar:
 
     // Initialization of the node details
     cell cell_details[ROWS][COLS];
-    for (int i = 0; i < ROWS; i++)
-        for (int j = 0; j < COLS; j++)
+    for(int i = 0; i < ROWS; i++)
+        for(int j = 0; j < COLS; j++)
             cell_details[i][j] = {-1, -1, FLT_MAX, FLT_MAX, FLT_MAX};
 
     int i = src.first;
@@ -45,7 +48,8 @@ std::vector<Astar::Point> aStar_search(int grid[][COLS],Astar::Point src, Astar:
     cell_details[i][j].parent_j = j;
 
     // A min-heap priority queue for A*
-    std::priority_queue<Astar::PriorityPoint, std::vector<Astar::PriorityPoint>, std::greater<Astar::PriorityPoint>> open_list;
+    std::priority_queue<Astar::PriorityPoint, std::vector<Astar::PriorityPoint>, std::greater<Astar::PriorityPoint>>
+            open_list;
     open_list.push({0.0, {i, j}});
 
     bool found_dest = false;
@@ -55,7 +59,7 @@ std::vector<Astar::Point> aStar_search(int grid[][COLS],Astar::Point src, Astar:
     int dc[4] = {0, 0, -1, 1};
 
     //The main loop for A*
-    while (!open_list.empty()) {
+    while(!open_list.empty()) {
         Astar::PriorityPoint current = open_list.top();
         open_list.pop();
 
@@ -64,15 +68,15 @@ std::vector<Astar::Point> aStar_search(int grid[][COLS],Astar::Point src, Astar:
         closed_list[i][j] = true;
 
         //Exploring the neighbors
-        for (int d = 0; d < 4; d++) {
+        for(int d = 0; d < 4; d++) {
             int nr = i + dr[d];
             int nc = j + dc[d];
 
-            if (!Astar::is_valid(nr, nc))
+            if(!Astar::is_valid(nr, nc))
                 continue;
 
             //Reached the destination
-            if (Astar::is_destination(nr, nc, dest)) {
+            if(Astar::is_destination(nr, nc, dest)) {
                 cell_details[nr][nc].parent_i = i;
                 cell_details[nr][nc].parent_j = j;
                 Astar::trace_path(cell_details, {nr, nc}, route);
@@ -81,13 +85,13 @@ std::vector<Astar::Point> aStar_search(int grid[][COLS],Astar::Point src, Astar:
             }
 
             //normal A* expansion
-            if (!closed_list[nr][nc] && Astar::is_unblocked(grid, nr, nc)) {
+            if(!closed_list[nr][nc] && Astar::is_unblocked(grid, nr, nc)) {
                 double g_new = cell_details[i][j].start_cost + 1.0;
                 double h_new = Astar::calculate_h_value(nr, nc, dest);
                 double f_new = g_new + h_new;
 
                 // Update the path if we found a better one
-                if (cell_details[nr][nc].total_cost > f_new) {
+                if(cell_details[nr][nc].total_cost > f_new) {
                     open_list.push({f_new, {nr, nc}});
                     cell_details[nr][nc].total_cost = f_new;
                     cell_details[nr][nc].start_cost = g_new;
@@ -97,11 +101,11 @@ std::vector<Astar::Point> aStar_search(int grid[][COLS],Astar::Point src, Astar:
                 }
             }
         }
-        if (found_dest)
+        if(found_dest)
             break;
     }
 
-    if (!found_dest) {
+    if(!found_dest) {
         std::cout << "No path found.\n";
         return route;
     }
@@ -109,80 +113,73 @@ std::vector<Astar::Point> aStar_search(int grid[][COLS],Astar::Point src, Astar:
 
     // Straight line compression
     int removedCount = 0;
-    for (unsigned int it = 0; it + 1 < route.size();it++ ) {//Goes through the entire route
+    for(unsigned int it = 0; it + 1 < route.size(); it++) {
+        //Goes through the entire route
 
-        if (route[it].first == route[it + 1].first && //If the next x coordinate is the same as current one
-            route[it].second != route[it + 1].second)// And if the next y is different then the current one
+        if(route[it].first == route[it + 1].first && //If the next x coordinate is the same as current one
+           route[it].second != route[it + 1].second) // And if the next y is different then the current one
         {
-            while (route[it].first == route[it + 1].first &&//while the next x coordinate is the same as current one
-                   route[it].second != route[it + 1].second)// And while the next y is different from the current one
+            while(route[it].first == route[it + 1].first && //while the next x coordinate is the same as current one
+                  route[it].second != route[it + 1].second) // And while the next y is different from the current one
             {
-                route.erase(route.begin() + it);//Remove current position
-                removedCount++;//Count up amount of remove points
+                route.erase(route.begin() + it); //Remove current position
+                removedCount++; //Count up amount of remove points
             }
-        }
-        else {
-            while (route[it].first != route[it + 1].first && //while the next x coordinate is the different from the current one
-                   route[it].second == route[it + 1].second)//And while the next y is the same as current one
+        } else {
+            while(route[it].first != route[it + 1].first &&
+                  //while the next x coordinate is the different from the current one
+                  route[it].second == route[it + 1].second) //And while the next y is the same as current one
             {
-                route.erase(route.begin() + it);//Remove current position
-                removedCount++;//Count up amount of remove point
+                route.erase(route.begin() + it); //Remove current position
+                removedCount++; //Count up amount of remove point
             }
         }
     }
-    if (removedCount > 0)
+    if(removedCount > 0)
         std::cout << "[Straight-line compression removed " << removedCount << " points]\n";
 
     return route;
 }
 
 
+int main()
+{
+    /*
+        cpr::Response res;
+        auto t = std::thread(HttpHandler::get_route, res);
 
-int main() {
-    cpr::Response res;
-    auto t = std::thread(get_route, res);
-
-    t.join();
-    if(res.status_code != cpr::status::HTTP_OK) {
-        if(std::wiringPiSetup() == -1){
-            std::cerr<<"Failed to setup LED"<<std::endl;
+        t.join();
+        if(res.status_code != cpr::status::HTTP_OK) {
+            //HOW TO KILL PROGRAM
         }
-        std::pinMode(LED_PIN,OUTPUT); //Sets LED pin as output
-        int seconds = 0;
-        while(seconds != 5){
-            std::digitalWrite(LED_PIN, HGIH);
-            std::sleep_for(std::milliseconds(500));
+        Route r = json_dto::from_json<Route>(res.text);
 
-            std::digitalWrite(LED_PIN, LOW);
-            std::sleep_for(std::milliseconds(500));
-            seconds ++;
-        }
-    }
-    Route r = json_dto::from_json<Route>(res.text);
-
+      room coordinates*/
     std::vector<Astar::Point> waypoints = Astar::rooms();
     int num_points = waypoints.size();
 
     // Path matrix for all pairs
-    std::vector<std::vector<std::vector<Astar::Point>>> paths(num_points, std::vector<std::vector<Astar::Point>>(num_points));
+    std::vector<std::vector<std::vector<Astar::Point>>> paths(
+        num_points, std::vector<std::vector<Astar::Point>>(num_points));
     std::vector<std::vector<double>> cost(num_points, std::vector<double>(num_points, 1e9));
 
     struct cell grid;
     //A* for all pairs (i,j) only once
-    for (int i = 0; i < num_points; i++) {
-       for (int j = i + 1; j < num_points; j++) {
-           std::vector<Astar::Point> p = aStar_search(grid.grid, waypoints[i], waypoints[j]);
-           if (p.empty()) continue;
-                double len = Astar::path_length(p);
-                paths[i][j] = paths[j][i] = p;
-                cost[i][j] = cost[j][i] = len;
-       }
+    for(int i = 0; i < num_points; i++) {
+        for(int j = i + 1; j < num_points; j++) {
+            std::vector<Astar::Point> p = aStar_search(grid.grid, waypoints[i], waypoints[j]);
+            if(p.empty())
+                continue;
+            double len = Astar::path_length(p);
+            paths[i][j] = paths[j][i] = p;
+            cost[i][j] = cost[j][i] = len;
+        }
     }
 
 
     // TSP brute force, generate permutations of visiting order
     std::vector<int> perm;
-    for(int i=0;i<num_points;i++){
+    for(int i = 0; i < num_points; i++) {
         perm.push_back(i);
     }
 
@@ -198,16 +195,16 @@ int main() {
 
         double sum = 0;
         bool valid = true;
-        for(size_t i=1;i<candidate_order.size();i++){
-            if(paths[candidate_order[i-1]][candidate_order[i]].empty()){
-                valid=false;
+        for(size_t i = 1; i < candidate_order.size(); i++) {
+            if(paths[candidate_order[i - 1]][candidate_order[i]].empty()) {
+                valid = false;
                 break;
             }
-            sum += cost[candidate_order[i-1]][candidate_order[i]];
+            sum += cost[candidate_order[i - 1]][candidate_order[i]];
         }
 
         // Update the best solution
-        if(valid && sum < best_cost){
+        if(valid && sum < best_cost) {
             best_cost = sum;
             best_order = candidate_order;
         }
@@ -226,8 +223,8 @@ int main() {
 
 
     // Drive through route
-    for(size_t i=1;i<best_order.size();i++){
-        int a = best_order[i-1];
+    for(size_t i = 1; i < best_order.size(); i++) {
+        int a = best_order[i - 1];
         int b = best_order[i];
         for(Astar::Point p : paths[a][b])
             Astar::send_to_driver(p);
