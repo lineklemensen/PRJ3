@@ -1,12 +1,11 @@
 // Created by johan on 07-11-2025.
 #include "astar.h"
-/*
-void HttpHandler::get_route(cpr::Response&& res){
+
+void get_route(cpr::Response&& res){
     // We need to use an out var since thread return values are weird
-    res = cpr::Get(cpr::Url{"http://172.16.15.2:8080/get_route"},
+    res = cpr::Get(cpr::Url{"http://192.168.43.224:8080/get_route"},
                    cpr::Header{{"Content-Type", "application/json"}});
 }
-*/
 
 // A* search between two points
 std::vector<Astar::Point> aStar_search(int grid[][COLS],Astar::Point src, Astar::Point dest) {
@@ -140,24 +139,34 @@ std::vector<Astar::Point> aStar_search(int grid[][COLS],Astar::Point src, Astar:
 
 
 int main() {
-/*
     cpr::Response res;
-    auto t = std::thread(HttpHandler::get_route, res);
+    auto t = std::thread(get_route, res);
 
     t.join();
     if(res.status_code != cpr::status::HTTP_OK) {
-        //HOW TO KILL PROGRAM
+        if(std::wiringPiSetup() == -1){
+            std::cerr<<"Failed to setup LED"<<std::endl;
+        }
+        std::pinMode(LED_PIN,OUTPUT); //Sets LED pin as output
+        int seconds = 0;
+        while(seconds != 5){
+            std::digitalWrite(LED_PIN, HGIH);
+            std::sleep_for(std::milliseconds(500));
+
+            std::digitalWrite(LED_PIN, LOW);
+            std::sleep_for(std::milliseconds(500));
+            seconds ++;
+        }
     }
     Route r = json_dto::from_json<Route>(res.text);
 
-  room coordinates*/
     std::vector<Astar::Point> waypoints = Astar::rooms();
     int num_points = waypoints.size();
 
     // Path matrix for all pairs
     std::vector<std::vector<std::vector<Astar::Point>>> paths(num_points, std::vector<std::vector<Astar::Point>>(num_points));
     std::vector<std::vector<double>> cost(num_points, std::vector<double>(num_points, 1e9));
-    
+
     struct cell grid;
     //A* for all pairs (i,j) only once
     for (int i = 0; i < num_points; i++) {
@@ -169,7 +178,7 @@ int main() {
                 cost[i][j] = cost[j][i] = len;
        }
     }
-    
+
 
     // TSP brute force, generate permutations of visiting order
     std::vector<int> perm;
