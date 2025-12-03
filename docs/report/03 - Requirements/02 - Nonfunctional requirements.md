@@ -3,7 +3,7 @@
 ## Functionality {-}
 
 1. The car must make a request to the server for route when then action button is pressed while idle and not out on route.
-2. While idle at a destination(Waiting for pickup), the car must continue its route when the action button is pressed.
+2. While idle at a destination(Waiting for pickup), the car must continue its route when the action button is pressed, after a given waiting period. 
 
 ## Usability {-}
 
@@ -34,7 +34,6 @@
 3. Fault tolerance
     1. The car should be able to execute 9 out of 10  routes.
     2. The system won't handle any unexpected shutdowns of the car during execution of routes.
-    3. The car won't be able to operate on wet surfaces.
    
 ## Performance {-}
 
