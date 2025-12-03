@@ -16,7 +16,7 @@ class LogHandler {
 
     public:
 
-    LogHandler(const std::string& file_path = "../../output/logger.txt") : file_path(file_path) {
+    LogHandler(const std::string& file_path = "logger.txt") : file_path(file_path) {
         log_file.open(file_path, std::ios::app);
         if (!log_file.is_open()) {
             throw std::runtime_error("failed to opn file");

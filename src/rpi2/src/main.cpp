@@ -19,6 +19,15 @@ public:
 		: m_routes(routes)
 	{}
 
+		auto options(restinio::request_handle_t req, rr::route_params_t)
+	{
+		auto resp = init_resp(req->create_response());
+		resp.append_header("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PUT");
+		resp.append_header("Access-Control-Allow-Headers", "content-type");
+		resp.append_header("Access-Control-Max-Age", "86400");
+		return resp.done();
+	}
+
 	auto on_get_route(const restinio::request_handle_t& req, rr::route_params_t) const
 	{
 		auto resp = init_resp(req->create_response());
@@ -63,7 +72,8 @@ private:
 		resp
 			.append_header("Server", "RESTinio sample server /v.0.6")
 			.append_header_date_field()
-			.append_header("Content-Type", "text/plain; charset=utf-8");
+			.append_header("Content-Type", "application/json")
+			.append_header(restinio::http_field::access_control_allow_origin, "*");
 		return resp;
 	}
 
@@ -88,8 +98,11 @@ auto server_handler(route_collection_t & route_collection)
 
 
 	router->http_get("/get_route", by(&RouteHandler::on_get_route));
+	router->add_handler(restinio::http_method_options(), "/get_route", by(&RouteHandler::options));
 
 	router->http_post("/new_route", by(&RouteHandler::on_post_route));
+	router->add_handler(restinio::http_method_options(), "/new_route", by(&RouteHandler::options));
+
 
 
 	return router;
