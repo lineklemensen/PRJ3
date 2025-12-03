@@ -157,8 +157,8 @@ int main()
         Route r = json_dto::from_json<Route>(res.text);
 
       room coordinates*/
-    std::vector<Astar::Point> waypoints = Astar::rooms();
-    int num_points = waypoints.size();
+    const std::vector<Point> waypoints = Astar::rooms(r);
+    const int num_points = waypoints.size();
 
     // Path matrix for all pairs
     std::vector<std::vector<std::vector<Astar::Point>>> paths(
