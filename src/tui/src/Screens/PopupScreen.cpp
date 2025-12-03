@@ -2,6 +2,7 @@
 
 #include <Button.h>
 #include <Console.h>
+#include <future>
 #include <iostream>
 #include <TextElement.h>
 #include "Tui.h"
@@ -13,7 +14,7 @@ PopupScreen::PopupScreen(const Route& route)
     int y_pos = pos_.y + 1;
     add_new_element(new TextElement("These are your selected rooms:", {2, y_pos++}));
     add_new_element(new TextElement("", {2, y_pos++}));
-    if(route.empty()) {
+    if(!route.empty()) {
         if(route.room1)
             add_new_element(new TextElement("Room 1", {2, y_pos++}));
         if(route.room2)
@@ -28,8 +29,8 @@ PopupScreen::PopupScreen(const Route& route)
         int i = 0;
 
         //TODO most of this should be refactored out to a single call
-        std::promise<cpr::Response> p;
-        std::future<cpr::Response> f = p.get_future();
+        std::promise<httplib::Result> p;
+        std::future<httplib::Result> f = p.get_future();
         auto t = std::thread(HttpHandler::send_route, route, std::move(p));
         std::future_status status;
 
@@ -43,8 +44,8 @@ PopupScreen::PopupScreen(const Route& route)
         selected_->print();
         t.join();
 
-        const cpr::Response res = f.get();
-        if(res.status_code != cpr::status::HTTP_OK) {
+        const httplib::Result res = f.get();
+        if(res->status != httplib::StatusCode::OK_200) {
             auto error = TextElement("Sending route failed...Try again...", {2, y_pos});
             error.print();
             //5s wait to let user read

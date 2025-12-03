@@ -2,17 +2,19 @@
 #include <format>
 #include "Route.h"
 
-void HttpHandler::send_route(Route r, std::promise<cpr::Response>&& res)
+
+//std::string HttpHandler::URL = "192.168.43.72"; //Dani rpi
+std::string HttpHandler::URL = "192.168.43.242"; //Mikkel rpi
+std::string HttpHandler::ROUTE = "/new_route";
+int HttpHandler::PORT = 8080;
+
+void HttpHandler::send_route(Route r, std::promise<httplib::Result>&& res)
 {
-    // "visit room 1 and room 3
-    //E.g
-    //const std::string json = "{" + std::format("\"rooms\":[{},{},{}]", r.rooms[0], r.rooms[1], r.rooms[2]) + "}";
+    static httplib::Client cli(URL, PORT);
     const std::string json = json_dto::to_json(r);
 
     //Fake network delay
     //std::this_thread::sleep_for(std::chrono::seconds(10));
 
-    res.set_value(cpr::Post(cpr::Url{"http://" + URL + ":" + PORT + ROUTE},
-                            cpr::Body{json},
-                            cpr::Header{{"Content-Type", "application/json"}}));
+    res.set_value(cli.Post(ROUTE, json, "application/json"));
 }

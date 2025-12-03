@@ -1,15 +1,17 @@
 ﻿#pragma once
 #include <thread>
+#include <future>
 #include "Route.h"
-#include <cpr/cpr.h>
+#define WIN32_LEAN_AND_MEAN
+#include <httplib.h>
 
 class HttpHandler {
 public:
-    static void send_route(Route r, std::promise<cpr::Response>&& res);
+    static void send_route(Route r, std::promise<httplib::Result>&& res);
 
 private:
     //static constexpr std::string URL = "localhost";
-    static constexpr std::string URL = "192.168.43.242";
-    static constexpr std::string ROUTE = "/new_route";
-    static constexpr std::string PORT = "8080";
+    static std::string URL;
+    static std::string ROUTE;
+    static int PORT;
 };
