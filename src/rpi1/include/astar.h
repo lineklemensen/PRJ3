@@ -99,34 +99,25 @@ public:
         return waypoints;
     };
 
-// Checks if the coordinates are inside the given grid
-    static bool is_valid(int row, int col) {
-        return (row >= 0) && (row < ROWS) && (col >= 0) && (col < COLS);
+    // Checks if the coordinates are inside the given grid
+    static bool is_valid(Point p)
+    {
+        return (p.x >= 0) && (p.x < ROWS) && (p.y >= 0) && (p.y < COLS);
     }
 
-// Checks if the cell given is traversable, (1 = open, 0 = blocked)
-    static bool is_unblocked(int grid[][COLS], int row, int col) {
-        return grid[row][col] == 1;
+    // Checks if the cell given is traversable, (1 = open, 0 = blocked)
+    static bool is_unblocked(const Point& p)
+    {
+        return grid[p.x][p.y] == 1;
     }
 
-//Checks if the destination has been reached
-    static bool is_destination(int row, int col, Point dest) {
-        return row == dest.first && col == dest.second;
-    }
-
-// The heuristic: Euclidean distance
-    static double calculate_h_value(int row, int col, Point dest) {
-        return sqrt((row - dest.first) * (row - dest.first) +
-                    (col - dest.second) * (col - dest.second));
-    }
-
-// Reconstruct the path by following the parent pointers
-    static void trace_path(cell cell_details[][COLS], Point reached, std::vector<Point> &route) {
-        int row = reached.first;
-        int col = reached.second;
+    // Reconstruct the path by following the parent pointers
+    static void trace_path(cell cell_details[][COLS], const Point reached, std::vector<Point>& route)
+    {
+        int row = reached.x;
+        int col = reached.y;
 
         std::stack<Point> Path;
-
 
         //Follows the parents backwards until the source has been reached
         while(!(cell_details[row][col].parent_i == row && cell_details[row][col].parent_j == col)) {
@@ -146,9 +137,10 @@ public:
         }
     }
 
-// Sends a coordinate to the car
-    static void send_to_driver(Point p) {
-        std::cout << "Driving to: " << p.first << "," << p.second << std::endl;
+    // Sends a coordinate to the car
+    static void send_to_driver(Point p)
+    {
+        std::cout << "Driving to: " << p.x << "," << p.y << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 
@@ -160,12 +152,11 @@ public:
         //std::cin.get();
     }
 
-//Path length = number of moves
-    static double path_length(std::vector<Point> path) {
+    //Path length = number of moves
+    static double path_length(const std::vector<Point>& path)
+    {
         return static_cast<double>(path.size() - 1);
     }
 
-
 private:
-
 };
