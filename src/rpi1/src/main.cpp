@@ -10,7 +10,7 @@
 #define FORWARD 1
 #define BACKWARD 0
 
-
+/*
 // Test of Pid class
 // Simulated encoder: reacts to PWM like a real motor
 double simulate_encoder(double pos, double pwm)
@@ -92,19 +92,22 @@ int main()
 
     return 0;
 }
+*/
 
-/*
 // Test of Encoder class and drive
 // Utility: set stdin to non-blocking mode
 void set_nonblocking(bool enable)
 {
     struct termios ttystate;
     tcgetattr(STDIN_FILENO, &ttystate);
-    if (enable) {
+    if (enable)
+    {
         ttystate.c_lflag &= ~ICANON; // disable canonical mode
         ttystate.c_lflag &= ~ECHO;   // disable echo
         fcntl(STDIN_FILENO, F_SETFL, O_NONBLOCK);
-    } else {
+    }
+    else
+    {
         ttystate.c_lflag |= ICANON; // restore canonical mode
         ttystate.c_lflag |= ECHO;   // restore echo
         fcntl(STDIN_FILENO, F_SETFL, 0);
@@ -119,15 +122,20 @@ int main()
     usleep(100000); // wait for initialization
 
     // Example: set left motor forward and right motor forward
-    motors.set_direction(FORWARD, FORWARD);
-    motors.drive(30, 30); // 30% speed
+    // motors.set_direction(FORWARD, FORWARD);
+    // motors.drive(20, -40); // 30% speed
+
+    motors.drive_distance(TARGET_DISTANCE);
+    // motors.drive(30, 0);
+    // motors.turn(900);
 
     // Set stdin non-blocking for key press detection
     set_nonblocking(true);
 
     std::cout << "Monitoring encoder positions. Press any key to exit..." << std::endl;
 
-    while (true) {
+    while (true)
+    {
         // Print encoder positions
         motors.print_encoder_pos();
 
@@ -135,7 +143,8 @@ int main()
 
         // Check for key press
         char c;
-        if (read(STDIN_FILENO, &c, 1) > 0) {
+        if (read(STDIN_FILENO, &c, 1) > 0)
+        {
             break; // exit on key press
         }
     }
@@ -145,4 +154,3 @@ int main()
 
     return 0;
 }
-*/
