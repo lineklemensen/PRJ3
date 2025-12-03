@@ -41,6 +41,40 @@ class Astar{
 public:
     typedef std::pair<int, int> Point; // Grid coordinates (row, column)
     typedef std::pair<double, std::pair<int, int>> PriorityPoint; // the f-cost + coordinate
+struct Point {
+    // Grid coordinates (row, column)
+    int x, y;
+
+    bool operator==(const Point& p) const
+    {
+        return x == p.x && y == p.y;
+    }
+
+    Point operator+(const Point& p) const
+    {
+        return {x + p.x, y + p.y};
+    }
+
+    bool operator>(const Point& p) const
+    {
+        return x > p.x;
+    }
+    static double distance(const Point& p1, const Point& p2)
+    {
+        return sqrt((p1.x - p2.x) * (p1.x - p2.x) +
+                    (p1.y - p2.y) * (p1.y - p2.y));
+    }
+};
+
+struct PriorityPoint {
+    double pri;
+    Point point;
+
+    bool operator>(const PriorityPoint& p) const
+    {
+        return p.pri > pri;
+    }
+};
 
     static std::vector<Point> rooms(){
         std::vector<Astar::Point> waypoints;
