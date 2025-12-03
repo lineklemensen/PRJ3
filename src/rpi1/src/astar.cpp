@@ -158,19 +158,19 @@ int main()
     const int num_points = waypoints.size();
 
     // Path matrix for all pairs
-    std::vector<std::vector<std::vector<Point>>> paths(num_points, std::vector<std::vector<Point>>(num_points));
-    std::vector<std::vector<int>> cost(num_points, std::vector<int>(num_points, 1e9));
+    std::vector paths(num_points, std::vector<std::vector<Point>>(num_points));
+    std::vector cost(num_points, std::vector<int>(num_points, 1e9));
 
     //A* for all pairs (i,j) only once
     for(int i = 0; i < num_points; i++) {
-        for(int j = i + 1; j < num_points; j++) {
+        for(int j = 0; j < num_points; j++) {
             std::vector<Point> p = aStar_search(waypoints[i], waypoints[j]);
             if(p.empty())
                 continue;
 
             const int len = p.size() - 1;
-            paths[i][j] = paths[j][i] = p;
-            cost[i][j] = cost[j][i] = len;
+            paths[i][j] = p;
+            cost[i][j] = len;
         }
     }
 
