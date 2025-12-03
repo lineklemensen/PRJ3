@@ -177,7 +177,7 @@ int main()
 
     // TSP brute force, generate permutations of visiting order
     std::vector<int> perm;
-    for(int i = 0; i < num_points; i++) {
+    for(int i = 1; i < num_points; i++) {
         perm.push_back(i);
     }
 
