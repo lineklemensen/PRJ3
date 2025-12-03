@@ -159,16 +159,16 @@ int main()
 
     // Path matrix for all pairs
     std::vector<std::vector<std::vector<Point>>> paths(num_points, std::vector<std::vector<Point>>(num_points));
-    std::vector<std::vector<double>> cost(num_points, std::vector<double>(num_points, 1e9));
+    std::vector<std::vector<int>> cost(num_points, std::vector<int>(num_points, 1e9));
 
-    cell grid;
     //A* for all pairs (i,j) only once
     for(int i = 0; i < num_points; i++) {
         for(int j = i + 1; j < num_points; j++) {
             std::vector<Point> p = aStar_search(waypoints[i], waypoints[j]);
             if(p.empty())
                 continue;
-            double len = Astar::path_length(p);
+
+            const int len = p.size() - 1;
             paths[i][j] = paths[j][i] = p;
             cost[i][j] = cost[j][i] = len;
         }
@@ -181,7 +181,7 @@ int main()
         perm.push_back(i);
     }
 
-    double best_cost = 1e9;
+    int best_cost = 1e9;
 
     std::vector<int> best_order;
     // Adds up the costs for each consecutive leg
@@ -191,7 +191,7 @@ int main()
         candidate_order.insert(candidate_order.end(), perm.begin(), perm.end());
         candidate_order.push_back(0); // always return to start
 
-        double sum = 0;
+        int sum = 0;
         bool valid = true;
         for(size_t i = 1; i < candidate_order.size(); i++) {
             if(paths[candidate_order[i - 1]][candidate_order[i]].empty()) {

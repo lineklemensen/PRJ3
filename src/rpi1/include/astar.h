@@ -152,11 +152,6 @@ public:
         //std::cin.get();
     }
 
-    //Path length = number of moves
-    static double path_length(const std::vector<Point>& path)
-    {
-        return static_cast<double>(path.size() - 1);
-    }
 
 private:
 };
