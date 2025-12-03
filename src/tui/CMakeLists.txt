@@ -9,7 +9,9 @@ include_directories(${CMAKE_SOURCE_DIR}/include
         ${CMAKE_SOURCE_DIR}/include/Elements
         ${CMAKE_SOURCE_DIR}/include/Enums
         ${CMAKE_SOURCE_DIR}/include/HTTP
-        ${CMAKE_SOURCE_DIR}/include/Screens)
+        ${CMAKE_SOURCE_DIR}/include/Screens
+        ${CMAKE_SOURCE_DIR}/../rpi2/external/json_dto
+        ${CMAKE_SOURCE_DIR}/../rpi2/external/rapidjson)
 file(GLOB_RECURSE SRC_FILES src/*.cpp)
 file(GLOB_RECURSE HEADER_FILES include/*.h)
 

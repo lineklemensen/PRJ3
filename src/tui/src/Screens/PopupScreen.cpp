@@ -9,16 +9,17 @@
 
 PopupScreen::PopupScreen(const Route& route)
 {
-    if(route.empty())
-        return;
-
     pos_ = {0, 4};
     int y_pos = pos_.y + 1;
     add_new_element(new TextElement("These are your selected rooms:", {2, y_pos++}));
     add_new_element(new TextElement("", {2, y_pos++}));
-    for(int i = 0; i < 3; ++i) {
-        if(route.rooms[i] == 1)
-            add_new_element(new TextElement("Room " + std::to_string(i + 1), {2, y_pos++}));
+    if(route.empty()) {
+        if(route.room1)
+            add_new_element(new TextElement("Room 1", {2, y_pos++}));
+        if(route.room2)
+            add_new_element(new TextElement("Room 2", {2, y_pos++}));
+        if(route.room3)
+            add_new_element(new TextElement("Room 3", {2, y_pos++}));
     }
     add_new_element(new TextElement("", {2, y_pos++}));
 
