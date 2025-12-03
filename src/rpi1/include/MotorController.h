@@ -3,6 +3,7 @@
 
 #include "Encoder.h"
 #include "RpiPwm.h"
+#include "RPi_pwm.h"
 #include "Pid.h"
 #include <gpiod.h>
 #include <stdexcept>
@@ -39,15 +40,15 @@
 #define ENCODER_PR_ROTATION 1364.8
 
 // Temporary
-#define TARGET_DISTANCE 29.4
+#define TARGET_DISTANCE 14.7 // 16.2 giver en fuld rotation
 #define LEFT_RAMP_LIMIT 5
 
 // Loop time (seconds)
 #define DT 0.01
 
 // Proportional gain
-#define KP_LEFT 0.17
-#define KP_RIGHT 0.1325
+#define KP_LEFT 0.1765 // 0.1765
+#define KP_RIGHT 0.14  // 0.14
 
 // Integral gain
 #define KI_LEFT 0.0000001
@@ -55,7 +56,7 @@
 
 // Derivative gain
 #define KD_LEFT 0.0115
-#define KD_RIGHT 0.01675
+#define KD_RIGHT 0.0165 // 0.01675
 
 // Maximum control output (PWM duty cycle percentage)
 #define MAX_PWM_LEFT 70
@@ -87,8 +88,8 @@ private:
     Encoder encoder_left_;
     Encoder encoder_right_;
 
-    RpiPwm pwm_left_;
-    RpiPwm pwm_right_;
+    RPi_pwm pwm_left_;
+    RPi_pwm pwm_right_;
 
     Pid pid_left_;
     Pid pid_right_;

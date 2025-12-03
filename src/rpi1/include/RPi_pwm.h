@@ -3,13 +3,13 @@
 
 #include <string>
 
-class RPi_pwm 
+class RPi_pwm
 {
 public:
-    RPi_pwm() = default;
+    RPi_pwm();
     ~RPi_pwm();
 
-    int start(int channel, int frequency, float duty_cycle = 0, int chip = 0);
+    int start(int channel, int chip, int frequency);
     void stop() noexcept;
     int set_duty_cycle(float p) const;
 

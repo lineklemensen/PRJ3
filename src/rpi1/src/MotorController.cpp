@@ -9,8 +9,8 @@ MotorController::MotorController()
     // Start PWM for motors
     printf("Enabling PWM on channel %d with a frequency of %d.\n", GPIO_CHANNEL_LEFT, FREQUENCY_LEFT);
     printf("Enabling PWM on channel %d with a frequency of %d.\n", GPIO_CHANNEL_RIGHT, FREQUENCY_RIGHT);
-    pwm_left_.start(GPIO_CHANNEL_LEFT, FREQUENCY_LEFT);
-    pwm_right_.start(GPIO_CHANNEL_RIGHT, FREQUENCY_RIGHT);
+    pwm_left_.start(GPIO_CHANNEL_LEFT, 0, FREQUENCY_LEFT);
+    pwm_right_.start(GPIO_CHANNEL_RIGHT, 0, FREQUENCY_RIGHT);
 
     // Initialize encoders
     printf("Initializing left encoder on GPIOs %d and %d.\n", PIN_ENCODER_LEFT_A, PIN_ENCODER_LEFT_B);
@@ -95,13 +95,18 @@ void MotorController::drive(int left_pwm, int right_pwm)
     int left_duty = std::abs(left_pwm);
     int right_duty = std::abs(right_pwm);
 
-    if (left_duty < 31 && left_duty != 0)
+    if (left_duty < 31 && left_duty != 0 && left_duty > 0)
     {
         left_duty = 31;
     }
-
-    pwm_left_.setDutyCycle(left_duty);
-    pwm_right_.setDutyCycle(right_duty);
+    /*
+        if (right_duty < 31 && right_duty != 0 && right_duty > 0)
+        {
+            right_duty = 31;
+        }
+    */
+    pwm_left_.set_duty_cycle(left_duty);
+    pwm_right_.set_duty_cycle(right_duty);
 
     // std::cout << "Duty cycle left: " << left_duty << "%, right: " << right_duty << "%\n";
 }
@@ -131,7 +136,7 @@ void MotorController::turn(double degrees)
         return;
 
     int n = 0;
-
+    int m = 0;
     // Calculate target encoder counts for the turn
     double dist_counts = ((M_PI * CAR_DIAMETER) / WHEEL_CIRCUMFERENCE) * ENCODER_PR_ROTATION * (std::abs(degrees) / 360.0);
 
@@ -146,14 +151,14 @@ void MotorController::turn(double degrees)
     double left_target, right_target;
 
     if (degrees < 0)
-    {                                           // turn left in place
-        left_target = left_pos - dist_counts;   // backward
-        right_target = right_pos + dist_counts; // forward
+    {                                                  // turn right in place
+        left_target = left_pos - dist_counts;          // backward
+        right_target = right_pos + (dist_counts + 80); // forward
     }
     else
-    {                                           // turn right in place
-        left_target = left_pos + dist_counts;   // forward
-        right_target = right_pos - dist_counts; // backward
+    {                                                  // turn left in place
+        left_target = left_pos + dist_counts;          // forward
+        right_target = right_pos - (dist_counts + 80); // backward
     }
 
     // Errors
@@ -165,7 +170,7 @@ void MotorController::turn(double degrees)
     constexpr double INTEGRATION_THRESHOLD = 5.0; // prevent integral windup
 
     std::cout << "Starting turn of " << degrees << " degrees.\n";
-    std::cout << "Target positions: Left=" << left_target << ", Right=" << right_target << "\n";
+    std::cout << "Target positions: Left=" << left_target << ", Right=" << (right_target + 80) << "\n";
 
     std::ofstream data_file("/home/au769402/car/PRJ3/src/rpi1/scripts/pid_test.csv", std::ios::out | std::ios::trunc);
 
@@ -176,7 +181,7 @@ void MotorController::turn(double degrees)
     }
     data_file << "time,pos,ctrl,pwm\n"; // CSV header
 
-    while (left_error > 10)
+    while (true)
     {
         ++n;
 
@@ -187,7 +192,16 @@ void MotorController::turn(double degrees)
         // Update PWM
         int left_pwm = pid_left_.update(left_target, left_pos, &left_ctrl, INTEGRATION_THRESHOLD);
         int right_pwm = pid_right_.update(right_target, right_pos, &right_ctrl, INTEGRATION_THRESHOLD);
-
+        /*
+                if (right_pwm < 31 && right_pwm != 0 && right_pwm > 0)
+                {
+                    right_pwm = 31;
+                }
+                else if (right_pwm > -31 && right_pwm < 0 && right_pwm != 0)
+                {
+                    right_pwm = -31;
+                }
+        */
         // Calculate errors
         left_error = std::abs(left_target - left_pos);
         right_error = std::abs(right_target - right_pos);
@@ -198,7 +212,25 @@ void MotorController::turn(double degrees)
         data_file << t << "," << left_pos << "," << left_ctrl << "," << left_pwm << "\n";
         data_file.flush();
 
-        drive(left_pwm, 0);
+        drive(left_pwm, right_pwm);
+
+        if (std::abs(left_pwm) < 20 && std::abs(right_pwm) < 20)
+        {
+            ++m;
+            if (m > 100)
+            {
+                std::cout << "M Left Error: " << left_error << ", M Left PWM: " << left_pwm << std::endl;
+                std::cout << "M Right Error: " << right_error << ", M Right PWM: " << right_pwm << std::endl;
+                break;
+            }
+        }
+
+        if (std::abs(left_error) < 20 && (std::abs(right_error) - 80) < 20)
+        {
+            std::cout << "E Left Error: " << left_error << ", E Left PWM: " << left_pwm << std::endl;
+            std::cout << "E Right Error: " << right_error << ", E Right PWM: " << right_pwm << std::endl;
+            break;
+        }
 
         usleep(DT * 1000000);
     }
@@ -260,8 +292,8 @@ void MotorController::drive_distance(double distance)
         int right_pwm = pid_right_.update(right_target, right_pos, &right_ctrl, INTEGRATION_THRESHOLD);
 
         // Calculate erros
-        left_error = std::abs(left_target - left_pos);
-        right_error = std::abs(right_target - right_pos);
+        left_error = left_target - left_pos;
+        right_error = right_target - right_pos;
 
         double t = n * pid_left_.get_dt();
 
@@ -272,7 +304,7 @@ void MotorController::drive_distance(double distance)
         // Drive
         drive(left_pwm, right_pwm);
 
-        if (left_error < 20 && std::abs(left_pwm) < 20 && right_error < 20 && std::abs(right_pwm) < 20)
+        if (std::abs(left_pwm) < 20 && std::abs(right_pwm) < 20)
         {
             ++m;
             if (m > 100)
@@ -283,7 +315,7 @@ void MotorController::drive_distance(double distance)
             }
         }
 
-        if (left_error < 20 && std::abs(left_target) < std::abs(left_pos) && right_error < 20 && std::abs(right_target) < std::abs(right_pos))
+        if (left_error < 20 && right_error < 20)
         {
             std::cout << "E Left Error: " << left_error << ", E Left PWM: " << left_pwm << std::endl;
             std::cout << "E Right Error: " << right_error << ", E Right PWM: " << right_pwm << std::endl;

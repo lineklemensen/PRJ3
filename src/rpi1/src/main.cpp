@@ -1,4 +1,5 @@
 #include "MotorController.h"
+#include "RPi_pwm.h"
 #include <iostream>
 #include <thread>
 #include <chrono>
@@ -126,8 +127,16 @@ int main()
     // motors.drive(20, -40); // 30% speed
 
     motors.drive_distance(TARGET_DISTANCE);
-    // motors.drive(30, 0);
-    // motors.turn(900);
+    usleep(100000);
+    motors.drive_distance(TARGET_DISTANCE);
+    usleep(100000);
+    motors.drive_distance(TARGET_DISTANCE);
+    usleep(100000);
+    motors.drive_distance(TARGET_DISTANCE);
+    usleep(100000);
+    motors.drive_distance(TARGET_DISTANCE);
+    // motors.drive(50, 50);
+    // motors.turn(90);
 
     // Set stdin non-blocking for key press detection
     set_nonblocking(true);
