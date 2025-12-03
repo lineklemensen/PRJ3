@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/johan/3semester/Projekt_3/PRJ3/src/rpi1/src",
-      "program": "c:/Users/johan/3semester/Projekt_3/PRJ3/src/rpi1/src/build/Debug/outDebug",
+      "cwd": "c:/Users/johan/3semester/Projekt_3/PRJ3/src/rpi1/pathfinding",
+      "program": "c:/Users/johan/3semester/Projekt_3/PRJ3/src/rpi1/pathfinding/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
