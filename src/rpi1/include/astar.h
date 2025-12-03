@@ -8,18 +8,18 @@
 #include <thread>
 #include <chrono>
 #include <cfloat>
-/*
+#include <wiringPi.h>
 #include <json_dto/pub.hpp>
 #include <cpr/cpr.h>
-*/
+
 #define ROWS 25
 #define COLS 25
+
 // The representation A* node
 struct Route {
-    bool room1 = true;
-    bool room2 = true;
-    bool room3 = true;
-    /*
+    bool room1;
+    bool room2;
+    bool room3;
         template<typename JSON_IO>
         void json_io(JSON_IO& io)
         {
@@ -28,7 +28,6 @@ struct Route {
             & json_dto::mandatory("room2", room2)
             & json_dto::mandatory("room3", room3);
         }
-    */
 };
 
 struct cell {
