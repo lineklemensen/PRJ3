@@ -1,4 +1,7 @@
 // Created by johan on 07-11-2025.
+#include <cfloat>
+#include <queue>
+
 #include "astar.h"
 #include <vector>
 /*
@@ -28,8 +31,7 @@ std::vector<Astar::Point> aStar_search(int grid[][COLS], Astar::Point src, Astar
         return route;
     }
 
-    bool closed_list[ROWS][COLS];
-    memset(closed_list, false, sizeof(closed_list));
+    bool closed_list[ROWS][COLS] = {};
 
     // Initialization of the node details
     cell cell_details[ROWS][COLS];
@@ -40,7 +42,7 @@ std::vector<Astar::Point> aStar_search(int grid[][COLS], Astar::Point src, Astar
     int i = src.first;
     int j = src.second;
 
-    //Source node setup
+    // Source node setup
     cell_details[i][j].total_cost = 0.0;
     cell_details[i][j].start_cost = 0.0;
     cell_details[i][j].cost_to_dest = 0.0;
@@ -58,7 +60,7 @@ std::vector<Astar::Point> aStar_search(int grid[][COLS], Astar::Point src, Astar
     int dr[4] = {-1, 1, 0, 0};
     int dc[4] = {0, 0, -1, 1};
 
-    //The main loop for A*
+    // The main loop for A*
     while(!open_list.empty()) {
         Astar::PriorityPoint current = open_list.top();
         open_list.pop();
@@ -122,16 +124,16 @@ std::vector<Astar::Point> aStar_search(int grid[][COLS], Astar::Point src, Astar
             while(route[it].first == route[it + 1].first && //while the next x coordinate is the same as current one
                   route[it].second != route[it + 1].second) // And while the next y is different from the current one
             {
-                route.erase(route.begin() + it); //Remove current position
-                removedCount++; //Count up amount of remove points
+                route.erase(route.begin() + it); // Remove current position
+                removedCount++; // Count up amount of remove points
             }
         } else {
-            while(route[it].first != route[it + 1].first &&
-                  //while the next x coordinate is the different from the current one
-                  route[it].second == route[it + 1].second) //And while the next y is the same as current one
+            while(route[it].x != route[it + 1].x &&
+                  // while the next x coordinate is the different from the current one
+                  route[it].y == route[it + 1].y) // And while the next y is the same as current one
             {
-                route.erase(route.begin() + it); //Remove current position
-                removedCount++; //Count up amount of remove point
+                route.erase(route.begin() + it); // Remove current position
+                removedCount++; // Count up amount of remove point
             }
         }
     }
@@ -163,7 +165,7 @@ int main()
         num_points, std::vector<std::vector<Astar::Point>>(num_points));
     std::vector<std::vector<double>> cost(num_points, std::vector<double>(num_points, 1e9));
 
-    struct cell grid;
+    cell grid;
     //A* for all pairs (i,j) only once
     for(int i = 0; i < num_points; i++) {
         for(int j = i + 1; j < num_points; j++) {

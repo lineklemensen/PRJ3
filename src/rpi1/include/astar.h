@@ -1,13 +1,10 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include <queue>
 #include <stack>
 #include <cmath>
-#include <cstring>
 #include <thread>
 #include <chrono>
-#include <cfloat>
 #include <wiringPi.h>
 #include <json_dto/pub.hpp>
 #include <cpr/cpr.h>
@@ -21,14 +18,16 @@ struct Route {
     bool room1;
     bool room2;
     bool room3;
-        template<typename JSON_IO>
-        void json_io(JSON_IO& io)
-        {
-            io
-            & json_dto::mandatory("room1", room1)
-            & json_dto::mandatory("room2", room2)
-            & json_dto::mandatory("room3", room3);
-        }
+
+
+    template<typename JSON_IO>
+    void json_io(JSON_IO& io)
+    {
+        io
+                & json_dto::mandatory("room1", room1)
+                & json_dto::mandatory("room2", room2)
+                & json_dto::mandatory("room3", room3);
+    }
 };
 
 struct cell {
@@ -97,7 +96,7 @@ public:
 
 
         //Follows the parents backwards until the source has been reached
-        while (!(cell_details[row][col].parent_i == row && cell_details[row][col].parent_j == col)) {
+        while(!(cell_details[row][col].parent_i == row && cell_details[row][col].parent_j == col)) {
             Path.push({row, col});
             int t_row = cell_details[row][col].parent_i;
             int t_col = cell_details[row][col].parent_j;
@@ -108,7 +107,7 @@ public:
 
 
         //Reverse the stack into a vector
-        while (!Path.empty()) {
+        while(!Path.empty()) {
             route.push_back(Path.top());
             Path.pop();
         }
@@ -120,11 +119,12 @@ public:
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 
-//Pause execution Enter is pressed(becomes button later on)
-    static void wait_for_button() {
-        std::cout << "Press Enter to continue..." << std::endl;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cin.get();
+    //Pause execution Enter is pressed(becomes button later on)
+    static void wait_for_button()
+    {
+        //std::cout << "Press Enter to continue..." << std::endl;
+        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        //std::cin.get();
     }
 
 //Path length = number of moves
