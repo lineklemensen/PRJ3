@@ -1,28 +1,88 @@
 // Created by johan on 07-11-2025.
 #include <cfloat>
 #include <queue>
-
 #include "astar.h"
 #include <vector>
-/*
-void HttpHandler::get_route(cpr::Response&& res){
-    // We need to use an out var since thread return values are weird
-    res = cpr::Get(cpr::Url{"http://172.16.15.2:8080/get_route"},
-                   cpr::Header{{"Content-Type", "application/json"}});
-}
-*/
+#include <algorithm>
 
-// A* search between two points
-std::vector<Point> aStar_search(const Point src, const Point dest)
+#define LED_PIN 21
+
+std::vector<std::vector<Point>> Astar::calculate_path(const Route r)
+{
+    const std::vector<Point> waypoints = create_rooms(r);
+    const int num_points = waypoints.size();
+
+    // Path matrix for all pairs
+    std::vector paths(num_points, std::vector<std::vector<Point>>(num_points));
+    std::vector cost(num_points, std::vector<int>(num_points, 1e9));
+
+    //A* for all pairs (i,j) only once
+    for(int i = 0; i < num_points; i++) {
+        for(int j = 0; j < num_points; j++) {
+            std::vector<Point> p = aStar_search(waypoints[i], waypoints[j]);
+            if(p.empty())
+                continue;
+
+            const int len = p.size() - 1;
+            paths[i][j] = p;
+            cost[i][j] = len;
+        }
+    }
+
+    // TSP brute force, generate permutations of visiting order
+    std::vector<int> perm;
+    for(int i = 1; i < num_points; i++) {
+        perm.push_back(i);
+    }
+
+    int best_cost = 1e9;
+    std::vector<int> best_order;
+
+    // Adds up the costs for each consecutive leg
+    do {
+        std::vector<int> candidate_order;
+        candidate_order.push_back(0);
+        candidate_order.insert(candidate_order.end(), perm.begin(), perm.end());
+        candidate_order.push_back(0); // always return to start
+
+        int sum = 0;
+        bool valid = true;
+        for(size_t i = 1; i < candidate_order.size(); i++) {
+            if(paths[candidate_order[i - 1]][candidate_order[i]].empty()) {
+                valid = false;
+                break;
+            }
+            sum += cost[candidate_order[i - 1]][candidate_order[i]];
+        }
+
+        // Update the best solution
+        if(valid && sum < best_cost) {
+            best_cost = sum;
+            best_order = candidate_order;
+        }
+    } while(std::next_permutation(perm.begin(), perm.end()));
+
+    std::vector<std::vector<Point>> combined_path;
+
+    for(size_t i = 1; i < best_order.size(); i++) {
+        int a = best_order[i - 1];
+        int b = best_order[i];
+        combined_path.push_back(paths[a][b]);
+    }
+
+    return combined_path;
+}
+
+std::vector<Point> Astar::aStar_search(const Point src, const Point dest)
 {
     std::vector<Point> route;
 
     // Sanity checks
-    if(!Astar::is_unblocked(src)) {
+    if(!is_unblocked(src)) {
         std::cout << "Source is blocked.\n";
         return route;
     }
-    if(!Astar::is_unblocked(dest)) {
+    if(!is_unblocked(dest)) {
         std::cout << "Destination is blocked.\n";
         return route;
     }
@@ -129,25 +189,60 @@ std::vector<Point> aStar_search(const Point src, const Point dest)
             }
         }
     }
-    if(removedCount > 0)
-        std::cout << "[Straight-line compression removed " << removedCount << " points]\n";
+    //if(removedCount > 0)
+    //std::cout << "[Straight-line compression removed " << removedCount << " points]\n";
 
     return route;
 }
 
-int main()
+std::vector<Point> Astar::create_rooms(const Route& r)
 {
-    /*
-        cpr::Response res;
-        auto t = std::thread(HttpHandler::get_route, res);
+    std::vector<Point> waypoints;
+    waypoints.emplace_back(0, 0);
 
-        t.join();
-        if(res.status_code != cpr::status::HTTP_OK) {
-            //HOW TO KILL PROGRAM
+    if(r.room1)
+        waypoints.emplace_back(2, 4);
+    if(r.room2)
+        waypoints.emplace_back(6, 11);
+    if(r.room3)
+        waypoints.emplace_back(6, 9);
+
+    return waypoints;
+}
+
+
+//Test main program
+/* int main()
+{
+    httplib::Result res;
+    auto t = std::thread(get_route, &res);
+
+    t.join();
+
+    if (res->status != httplib::StatusCode::OK_200)
+    {
+        if (wiringPiSetupGpio() == -1)
+        {
+            std::cerr << "Failed to setup LED" << std::endl;
         }
-        Route r = json_dto::from_json<Route>(res.text);
+        pinMode(LED_PIN, OUTPUT); // Sets LED pin as output
+        int seconds = 0;
+        while (seconds != 5)
+        {
+            digitalWrite(LED_PIN, HIGH);
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
-      room coordinates*/
+            digitalWrite(LED_PIN, LOW);
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            seconds++;
+        }
+
+        std::cerr << "No route received\n";
+        return -1;
+    }
+
+    Route r = json_dto::from_json<Route>(res->body);
+
     const std::vector<Point> waypoints = Astar::rooms(r);
     const int num_points = waypoints.size();
 
@@ -224,4 +319,4 @@ int main()
     }
     std::cout << "Route has been completed.\n";
     return 0;
-}
+} */

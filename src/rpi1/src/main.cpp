@@ -6,9 +6,15 @@
 #include <termios.h>
 #include <fcntl.h>
 #include <fstream>
+#include "astar.h"
+#include <httplib.h>
+#include "HttpHandler.h"
+#include "CalcPath.h"
+#include <gpiod.h>
 
 #define FORWARD 1
 #define BACKWARD 0
+#define GREEN_LED_PIN 21
 
 /*
 // Test of Pid class
@@ -94,6 +100,7 @@ int main()
 }
 */
 
+/*
 // Test of Encoder class and drive
 // Utility: set stdin to non-blocking mode
 void set_nonblocking(bool enable)
@@ -151,6 +158,105 @@ int main()
 
     set_nonblocking(false);
     std::cout << "\nExiting program." << std::endl;
+
+    return 0;
+}
+ */
+
+
+void init_button(int pin)
+{
+    gpioevent_request req = {};
+    int chip_fd = open(CHIP_PATH, O_RDONLY);
+    if(chip_fd < 0)
+        throw std::runtime_error("Failed to open GPIO chip");
+
+    req.lineoffset = pin;
+    req.handleflags = GPIOHANDLE_REQUEST_INPUT;
+    req.eventflags = GPIOEVENT_REQUEST_RISING_EDGE;
+    strcpy(req.consumer_label, "action_button_event");
+
+    if(ioctl(chip_fd, GPIO_GET_LINEEVENT_IOCTL, &req) < 0) {
+        close(chip_fd);
+        throw std::runtime_error("Failed to request GPIO line event");
+    }
+
+    pollfd poll_fds_ = { 
+        .fd = req.fd,
+        .events = POLLIN,
+        .revents = 0,
+    }
+
+    if(pipe(wake_pipe_) < 0)
+        throw std::runtime_error("Failed to create wake pipe");
+
+    poll_fds_[1].fd = wake_pipe_[0];
+    poll_fds_[1].events = POLLIN;
+    poll_fds_[1].revents = 0;
+
+    last_state_ = 0;
+
+    std::cout << "Encoder initialized successfully." << std::endl;
+}
+
+int main()
+{
+    // Initialize MotorController
+    MotorController motors;
+    usleep(100000); // wait for initialization
+    DR driving_calculator;
+
+    httplib::Result res;
+#pragma region Get route from server
+
+    auto t = std::thread(HttpHandler::get_route, &res);
+    t.join();
+
+    //TODO move to gpiod
+    if(res->status != httplib::StatusCode::OK_200) {
+        gpiod_chip* chip_ = gpiod_chip_open(CHIP_PATH);
+        if(!chip_)
+            throw std::runtime_error("Error: Failed to setup LED");
+
+        gpiod_line* led = gpiod_chip_get_line(chip_, GREEN_LED_PIN);
+        if(!led) {
+            gpiod_chip_close(chip_);
+            throw std::runtime_error("Error: Failed to get led GPIO line");
+        }
+
+        if(gpiod_line_request_output(led, "LedCtrl", 0) < 0) {
+            gpiod_chip_close(chip_);
+            throw std::runtime_error("Error: Failed to set led GPIO line as output");
+        }
+        int seconds = 0;
+        while(seconds != 5) {
+            gpiod_line_set_value(led, 1);
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+            gpiod_line_set_value(led, 0);
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            seconds++;
+        }
+
+        std::cerr << "No route received\n";
+        return -1;
+    }
+
+#pragma endregion
+
+    Route r = json_dto::from_json<Route>(res->body);
+    std::vector<std::vector<Point>> paths = Astar::calculate_path(r);
+
+    for(const auto& path : paths) {
+        for(const auto& point : path) {
+            //Drive to point
+            auto instr = driving_calculator.calc_route({point.x, point.y});
+            motors.turn(instr.first);
+            motors.drive_distance(instr.second);
+        }
+
+        //Wait for button press
+    }
 
     return 0;
 }

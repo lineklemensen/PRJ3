@@ -6,65 +6,13 @@
 #include <thread>
 #include <chrono>
 #include <wiringPi.h>
-#include <json_dto/pub.hpp>
-#include <cpr/cpr.h>
 #include "Grid.h"
+#include "Point.h"
+#include "Route.h"
 
 #define ROWS 7
 #define COLS 13
 
-// The representation A* node
-struct Route {
-    bool room1;
-    bool room2;
-    bool room3;
-
-
-    template<typename JSON_IO>
-    void json_io(JSON_IO& io)
-    {
-        io
-                & json_dto::mandatory("room1", room1)
-                & json_dto::mandatory("room2", room2)
-                & json_dto::mandatory("room3", room3);
-    }
-};
-
-struct Point {
-    // Grid coordinates (row, column)
-    int x, y;
-
-    bool operator==(const Point& p) const
-    {
-        return x == p.x && y == p.y;
-    }
-
-    Point operator+(const Point& p) const
-    {
-        return {x + p.x, y + p.y};
-    }
-
-    bool operator>(const Point& p) const
-    {
-        return x > p.x;
-    }
-
-    static double distance(const Point& p1, const Point& p2)
-    {
-        return sqrt((p1.x - p2.x) * (p1.x - p2.x) +
-                    (p1.y - p2.y) * (p1.y - p2.y));
-    }
-};
-
-struct PriorityPoint {
-    double priority;
-    Point point;
-
-    bool operator>(const PriorityPoint& p) const
-    {
-        return p.priority > priority;
-    }
-};
 
 struct cell {
     Point p;
@@ -75,20 +23,11 @@ struct cell {
 
 class Astar {
 public:
-    static std::vector<Point> rooms(const Route& r)
-    {
-        std::vector<Point> waypoints;
-        waypoints.emplace_back(0, 0);
-
-        if(r.room1)
-            waypoints.emplace_back(2, 4);
-        if(r.room2)
-            waypoints.emplace_back(6, 11);
-        if(r.room3)
-            waypoints.emplace_back(6, 9);
-
-        return waypoints;
-    };
+    static std::vector<std::vector<Point>> calculate_path(const Route r);
+private:
+    // A* search between two points
+    static std::vector<Point> aStar_search(const Point src, const Point dest);
+    static std::vector<Point> create_rooms(const Route& r);
 
     // Checks if the coordinates are inside the given grid
     static bool is_valid(const Point& p)
