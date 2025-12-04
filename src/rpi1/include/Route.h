@@ -1,5 +1,4 @@
-#pragma once 
-
+#pragma once
 #include <json_dto/pub.hpp>
 
 struct Route {
