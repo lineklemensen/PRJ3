@@ -43,11 +43,14 @@ std::vector<Point> aStar_search(const Point src, const Point dest)
     int j = src.y;
 
     // Source node setup
-    cell_details[i][j].total_cost = 0.0;
-    cell_details[i][j].start_cost = 0.0;
-    cell_details[i][j].cost_to_dest = 0.0;
-    cell_details[i][j].parent_i = i;
-    cell_details[i][j].parent_j = j;
+    cell_details[i][j] = {
+        .parent_i = i,
+        .parent_j = j,
+        .total_cost = 0.0,
+        .start_cost = 0.0,
+        .cost_to_dest = 0.0,
+    };
+
 
     // A min-heap priority queue for A*
     std::priority_queue<PriorityPoint, std::vector<PriorityPoint>, std::greater<>> open_list;
@@ -92,11 +95,13 @@ std::vector<Point> aStar_search(const Point src, const Point dest)
                 // Update the path if we found a better one
                 if(cell_details[n.x][n.y].total_cost > f_new) {
                     open_list.emplace(f_new, n);
-                    cell_details[n.x][n.y].total_cost = f_new;
-                    cell_details[n.x][n.y].start_cost = g_new;
-                    cell_details[n.x][n.y].cost_to_dest = h_new;
-                    cell_details[n.x][n.y].parent_i = i;
-                    cell_details[n.x][n.y].parent_j = j;
+                    cell_details[n.x][n.y] = {
+                        .parent_i = i,
+                        .parent_j = j,
+                        .total_cost = f_new,
+                        .start_cost = g_new,
+                        .cost_to_dest = h_new,
+                    };
                 }
             }
         }
