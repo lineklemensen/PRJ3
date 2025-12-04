@@ -11,9 +11,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 include_directories(
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/external
-    ${CMAKE_SOURCE_DIR}/../rpi2/external/rapidjson
-    ${CMAKE_SOURCE_DIR}/../rpi2/external/json_dto
-    ${CMAKE_SOURCE_DIR}/../rpi2/external)
+    ${CMAKE_SOURCE_DIR}/external/rapidjson
+    ${CMAKE_SOURCE_DIR}/external/json_dto)
 
 # Gather all source files
 file(GLOB_RECURSE SRC_FILES src/*.cpp)
