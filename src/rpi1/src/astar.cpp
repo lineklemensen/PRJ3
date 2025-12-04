@@ -39,13 +39,9 @@ std::vector<Point> aStar_search(const Point src, const Point dest)
         for(int j = 0; j < COLS; j++)
             cell_details[i][j] = {-1, -1, FLT_MAX, FLT_MAX, FLT_MAX};
 
-    int i = src.x;
-    int j = src.y;
-
     // Source node setup
-    cell_details[i][j] = {
-        .parent_i = i,
-        .parent_j = j,
+    cell_details[src.x][src.y] = {
+        .p = src,
         .total_cost = 0.0,
         .start_cost = 0.0,
         .cost_to_dest = 0.0,
@@ -63,9 +59,8 @@ std::vector<Point> aStar_search(const Point src, const Point dest)
         Point current = open_list.top().point;
         open_list.pop();
 
-        i = current.x;
-        j = current.y;
-        closed_list[i][j] = true;
+        Point p = current;
+        closed_list[p.x][p.y] = true;
 
         // Movement directions for the 4 ways we can move
         constexpr Point adj[4] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
@@ -79,8 +74,7 @@ std::vector<Point> aStar_search(const Point src, const Point dest)
 
             // Reached the destination
             if(dest == n) {
-                cell_details[n.x][n.y].parent_i = i;
-                cell_details[n.x][n.y].parent_j = j;
+                cell_details[n.x][n.y].p = p;
                 Astar::trace_path(cell_details, n, route);
                 found_dest = true;
                 break;
@@ -88,7 +82,7 @@ std::vector<Point> aStar_search(const Point src, const Point dest)
 
             // normal A* expansion
             if(!closed_list[n.x][n.y] && Astar::is_unblocked(n)) {
-                double g_new = cell_details[i][j].start_cost + 1.0;
+                double g_new = cell_details[p.x][p.y].start_cost + 1.0;
                 double h_new = Point::distance(n, dest);
                 double f_new = g_new + h_new;
 
@@ -96,8 +90,7 @@ std::vector<Point> aStar_search(const Point src, const Point dest)
                 if(cell_details[n.x][n.y].total_cost > f_new) {
                     open_list.emplace(f_new, n);
                     cell_details[n.x][n.y] = {
-                        .parent_i = i,
-                        .parent_j = j,
+                        .p = p,
                         .total_cost = f_new,
                         .start_cost = g_new,
                         .cost_to_dest = h_new,
@@ -114,13 +107,10 @@ std::vector<Point> aStar_search(const Point src, const Point dest)
         return route;
     }
 
-
     // Straight line compression
     int removedCount = 0;
     for(int it = 0; it + 2 < route.size(); it++) {
         // Goes through the entire route
-
-
         if(route[it].x == route[it + 1].x && // If the next x coordinate is the same as current one
            route[it].y != route[it + 1].y) // And if the next y is different then the current one
         {

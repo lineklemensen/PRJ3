@@ -30,13 +30,6 @@ struct Route {
     }
 };
 
-struct cell {
-    int parent_i, parent_j; // parent position
-    double total_cost; // f = g +h
-    double start_cost; // g cost
-    double cost_to_dest; // h cost
-};
-
 struct Point {
     // Grid coordinates (row, column)
     int x, y;
@@ -72,6 +65,13 @@ struct PriorityPoint {
     }
 };
 
+struct cell {
+    Point p;
+    double total_cost; // f = g +h
+    double start_cost; // g cost
+    double cost_to_dest; // h cost
+};
+
 class Astar {
 public:
     static std::vector<Point> rooms(const Route& r)
@@ -104,20 +104,15 @@ public:
     // Reconstruct the path by following the parent pointers
     static void trace_path(cell cell_details[][COLS], const Point reached, std::vector<Point>& route)
     {
-        int row = reached.x;
-        int col = reached.y;
-
+        Point p = reached;
         std::stack<Point> Path;
 
         //Follows the parents backwards until the source has been reached
-        while(!(cell_details[row][col].parent_i == row && cell_details[row][col].parent_j == col)) {
-            Path.push({row, col});
-            int t_row = cell_details[row][col].parent_i;
-            int t_col = cell_details[row][col].parent_j;
-            row = t_row;
-            col = t_col;
+        while(cell_details[p.x][p.y].p != p) {
+            Path.push(p);
+            p = cell_details[p.x][p.y].p;
         }
-        Path.push({row, col}); // push the start node
+        Path.push(p); // push the start node
 
 
         //Reverse the stack into a vector
