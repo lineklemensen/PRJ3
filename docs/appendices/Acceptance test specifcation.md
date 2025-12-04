@@ -95,7 +95,7 @@
     \hline
     \textbf{5} & 'Confirm' is selected & [Wireshark] A route is sent to the server & - & - \\ 
     \hline
-    \textbf{6} & Open the text file "routes.txt" on the server and check the contents & The file contains the order of room 1, 2 and 3 & - & - \\
+    \textbf{6} & Open the text file "routes.txt" on the server and check the contents & The file contains the list of selected rooms (1, 2 and 3) & & \\
     \hline
     \textbf{8} & Look at the UI & The Terminal UI displays "The route has been successfully made" and "Press Enter to close the UI" & - & - \\
     \hline
@@ -202,7 +202,7 @@
     \hline
     \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & - & - \\
     \hline
-    \textbf{3} & Navigate to and select 'Finish route' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms is displayed & - & - \\
+    \textbf{3} & Navigate to and select 'Finish selecting' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms is displayed & & \\
     \hline
     \textbf{4} & 'Deny' is selected & All rooms are deselected & - & - \\ 
     \hline
@@ -323,7 +323,7 @@
     \hline
     \textbf{1} & Press the Action button & The green LED turns off, and the cars starts driving & - & - \\ 
     \hline
-    \textbf{2} & Return to point 10 in the main scenario & - & - & - \\ 
+    \textbf{2} & Return to point 10 in the main scenario & The car resumes from point 10  & & \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Extension 1 -  Remaining locations in the route (excl. homebase) }
@@ -403,103 +403,613 @@ Usability 7 - Text on UI & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{C
 \hline
 Reliability 1 - Continuous driving & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{The car is fully charged and 10+ routes are ready in server}\\
 \hline
-1 & Start a timer & The user is timing the system & - & -\\
+1 & Start a timer & The user is timing the system & H & H\\
 \hline
-2 & Press the action button & The car requests and receives a route, and the green LED turns on & - & -\\
+2 & Press the action button & The car requests and receives a route, and the green LED turns on & H & H\\
 \hline
-3 & Press the action button & The car starts driving, and arrives at next destination & - & -\\
+3 & Press the action button & The car starts driving, and arrives at next destination & H & H\\
 \hline
-4 & Repeat point 3 until car is back at homebase & The car is at homebase and ready to request another route & - & -\\
+4 & Repeat point 3 until car is back at homebase & The car is at homebase and ready to request another route & H & H\\
 \hline
-5 & Repeat point 1 to 4 until 65 minutes have passed(To account for delays when fetching/continuing routes, etc.) & 65 minutes have passed and the car is still executing routes without issues & - & -\\
+5 & Repeat point 1 to 4 until 65 minutes have passed(To account for delays when fetching/continuing routes, etc.) & 65 minutes have passed and the car is still executing routes without issues & H & H\\
 \hline
 Reliability 2 - Continuous running of server & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Server is running and car is idle at homebase}\\
 \hline
-1 & Prepare and start a timer or stopwatch & The user is tracking the time & - & -\\
+1 & Prepare and start a timer or stopwatch & The user is tracking the time & H & H\\
 \hline
-2 & Wait until 6 hours have passed, then press the action button on the car to request a route & The route is fetched without issues & - & -\\
+2 & Wait until 6 hours have passed, then press the action button on the car to request a route & The route is fetched without issues & H & H\\
 \hline
 Reliability 3 - Continuous running of server & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Server is running and car is idle at homebase}\\
 \hline
-1 & Prepare and start a stopwatch or timer & The timer/stopwatch is tracking the time & - &\\
+1 & Prepare and start a stopwatch or timer & The timer/stopwatch is tracking the time & H &\\
 \hline
-2 & Remove the current battery from the car & The battery is removed successfully & - & -\\
+2 & Remove the current battery from the car & The battery is removed successfully & H & H\\
 \hline
-3 & Install a new battery in the car & The new battery is installed successfully & - & -\\
+3 & Install a new battery in the car & The new battery is installed successfully & H & H\\
 \hline
-4 & Stop the stopwatch/timer & Less then 10 minutes have passed & - & -\\
+4 & Stop the stopwatch/timer & Less then 10 minutes have passed & H & H\\
 \hline
-Reliability 4 - Success rate of routes & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase and server is running with 10 routes stored}\\
+\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
 \hline
-1 & Press the action button & The green LED lights up & - & -\\
+1 & Press the action button & The green LED lights up & H & H\\
 \hline
-2 & Press the action button & The car starts executing route & - & -\\
+2 & Press the action button & The car starts executing route & H & H\\
 \hline
-3 & Wait for car to arrive at destination & The car is at destination, and green LED is on & - & -\\
+3 & Wait for car to arrive at destination & The car is at destination, and green LED is on & H & H\\
 \hline
-4 & Repeat point 2 to 3 until route is complete & The car is idle at homebase & - & -\\
+4 & Repeat point 2 to 3 until route is complete & The car is idle at homebase & H & H\\
 \hline
-5 & Repeat step 1 to 4 until 10 routes have been completed in total & The car completed at least 9 routes & - & -\\
+5 & Repeat step 1 to 4 until 10 routes have been completed in total & The car completed at least 9 routes & H & H\\
 \hline
-Reliability 5 - Car drives on wet floor & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase and server is running}\\
+\end{tabularx}
+\caption{Acceptance test - Reliability 4}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
 \hline
-1 & Grab a bottle of water(500 ml) and pour it evenly over the surface that makes up your testing environment & The surface the car is going to drive on is wet & - & -\\
+\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+    & \multicolumn{3}{l|}{Reliability 5 - Car drives on wet floor} \\ 
 \hline
-2 & Press the action butto on the car & The green LED turns on & - & -\\
+\multicolumn{2}{|l|}{\textbf{Precondition:}} 
+    & \multicolumn{3}{l|}{Car is idle at homebase and server is running} \\
 \hline
-3 & Press the action button & The car starts executing route & - &\\
+\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
 \hline
-4 & Watch car while its exeucting route & The car cannot complete the route & - & -\\
+1 & Grab a bottle of water(500 ml) and pour it evenly over the surface & The surface the car is going to drive on is wet & H & H\\
 \hline
-Performance 1 - Button response time & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase and server is running}\\
+2 & Press the action button on the car & The green LED turns on & H & H\\
 \hline
-1 & Open Wireshark to monitor the local network & Wireshark is monitoring the local network & - & -\\
+3 & Press the action button & The car starts executing route & H & \\
 \hline
-2 & Prepare and start stopwatch/timer & The user is now tracking the time & - & -\\
+1 & Grab a bottle of water(500 ml) and pour it evenly over the surface that makes up your testing environment & The surface the car is going to drive on is wet & H & H\\
 \hline
-3 & Press the action button & [Wireshark] The car requests a route within 1 second & - & -\\
+2 & Press the action butto on the car & The green LED turns on & H & H\\
 \hline
-Performance 2 - Car startup time & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is turned off and server is running}\\
+3 & Press the action button & The car starts executing route & H &\\
 \hline
-1 & Prepare a stopwatch/timer & The user is tracking the time & - & -\\
+4 & Watch car while its exeucting route & The car cannot complete the route & H & H\\
 \hline
-2 & Press the power button, and wait for the green LED to turn on & The green LED turns on within 1 minute & - & -\\
+\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+\hline
+1 & Open Wireshark to monitor the local network & Wireshark is monitoring the local network & H & H\\
+\hline
+2 & Prepare and start stopwatch/timer & The user is now tracking the time & H & H\\
+\hline
+3 & Press the action button & [Wireshark] The car requests a route within 1 second & H & H\\
+\hline
+\end{tabularx}
+\caption{Acceptance test - Performance 1}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+\hline
+\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+    & \multicolumn{3}{l|}{Performance 2 - Car startup time} \\ 
+\hline
+\multicolumn{2}{|l|}{\textbf{Precondition:}} 
+    & \multicolumn{3}{l|}{Car is turned off and server is running} \\
+\hline
+\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+\hline
+1 & Prepare a stopwatch/timer & The user is tracking the time & H & H\\
+\hline
+2 & Press the power button, and wait for the green LED to turn on & The green LED turns on within 1 minute & H & H\\
 \hline
 Performance 3 - Car minimum range & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle and fully charged at homebase and server is running}\\
 \hline
-1 & Find the longest possible route in your testing setup & The longest route is found & - & -\\
+1 & Find the longest possible route in your testing setup & The longest route is found & H & H\\
 \hline
-2 & Create make multiple copies of said route on server, so that the total length of routes stored is 500 meters or higher & Routes of total length < 500 meters have been stored on server & - & -\\
+2 & Create make multiple copies of said route on server, so that the total length of routes stored is 500 meters or higher & Routes of total length < 500 meters have been stored on server & H & H\\
 \hline
-3 & Press the action button & The green LED turns on & - & -\\
+3 & Press the action button & The green LED turns on & H & H\\
 \hline
-4 & Press the action button & The car starts driving to next destination & - & -\\
+4 & Press the action button & The car starts driving to next destination & H & H\\
 \hline
-5 & Wait for car to reach destination & The car has reached its destination and the green LED is on & - & -\\
+5 & Wait for car to reach destination & The car has reached its destination and the green LED is on & H & H\\
 \hline
-6 & Repeat point 4 through 5 until car has completed route and is idle at homebase & The car is idle at homebase & - & -\\
+6 & Repeat point 4 through 5 until car has completed route and is idle at homebase & The car is idle at homebase & H & H\\
 \hline
-7 & Repeat point 3 through 6 until car the total length driven by car exceeds 500 meters & The battery is still powering the car & - & -\\
+7 & Repeat point 3 through 6 until car the total length driven by car exceeds 500 meters & The battery is still powering the car & H & H\\
 \hline
-Performance 4 - Car maximum speed & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase and server is running}\\
+\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
 \hline
-1 & Prepare a speedometer & The speed of the car is ready to be read & - & -\\
+1 & Prepare a speedometer & The speed of the car is ready to be read & H & H\\
 \hline
-2 & Press the action button & The green LED turns on & - & -\\
+2 & Press the action button & The green LED turns on & H & H\\
 \hline
-3 & Press the action button & The car starts driving to next destination & - & -\\
+3 & Press the action button & The car starts driving to next destination & H & H\\
 \hline
-4 & Track the speed of the car during the completion of the route, until the route car has reached its destination & The car is idle at destination & - & -\\
+4 & Track the speed of the car during the completion of the route, until the route car has reached its destination & The car is idle at destination & H & H\\
 \hline
-5 & Repeat point 3 through 4 until route is completed, while still tracking the speed & The car never exceeds a speed of 5 km/- & - & -\\
+5 & Repeat point 3 through 4 until route is completed, while still tracking the speed & The car never exceeds a speed of 5 km/h & H & H\\
 \hline
-XXXXX xxxxx - Car car car & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is car car}\\
+\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
 \hline
-1 & do car car & car car & - & -\\
+1 & do car car & car car & H & H\\
 \hline
-1 & do car car & car car & - & -\\
+1 & do car car & car car & H & H\\
 \hline
+\end{tabularx}
+\caption{Acceptance test - XXXXX xxxxx}
+\end{table}
+
 
 \end{longtable}
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Functionality 1 - Car requests routes from server} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{Car is idle at homebase} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    1 & Open Wireshark to monitor the local network 
+      & Wireshark is monitoring the local network 
+      & H & H\\
+    \hline
+    2 & Press the action button 
+      & The car sends a request to the server, and the server responds 
+      & H & H\\
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Functionality 1}
+\end{table}
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Functionality 2 - Car continues route} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{Car is idle at destination} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    1 & Press the action button 
+      & The car starts driving to continue its route 
+      & H & H\\
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Functionality 2}
+\end{table}
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Usability 1 - The car is equipped with two LEDs} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{Car is idle at homebase} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    1 & Inspect the car 
+      & Two LEDs visible: one green and one red 
+      & H & H\\
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Usability 1}
+\end{table}
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Functionality 1 - Car requests routes from server} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{Car is idle at homebase} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    1 & Open Wireshark to monitor the local network 
+      & Wireshark is monitoring the local network & H & H\\
+    \hline
+    2 & Press the action button 
+      & The car sends a request to the server, and the server responds & H & H\\
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Functionality 1}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Functionality 2 - Car continues route} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{Car is idle at destination} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    1 & Press the action button & The car starts driving to continue its route & H & H\\
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Functionality 2}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Usability 1 - The car is equipped with two LEDs} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{Car is idle at homebase} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    1 & Inspect the car & Two LEDs visible: one green and one red & H & H\\
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Usability 1}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Usability 2 - The car is equipped with a speaker} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{Car is idle at homebase, server is running and has <1 routes stored} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    1 & Press the action button 
+      & When the green LED turns on, a sound is played to indicate the car is ready to execute route & H & H\\
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Usability 2}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Usability 3 - User guide !!!!!!!!!!!!!!!!!!!!!!!!!!!!} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{A user guide has been written ???????} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    1 & Write a user guide ???? & A user guide has been written ?????? & H & H\\
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Usability 3}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Usability 4 - User guide} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{Car is idle at homebase} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    1 & Read the user guide & The user guide includes troubleshooting for 5 common error-scenarios & H & H\\
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Usability 4}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Usability 5 - Buttons on car} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{Car is idle at homebase} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    1 & Inspect the car & The car is equipped with two buttons labelled 'Action' and 'Power' & H & H\\
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Usability 5}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Usability 6 - UI} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{Car is idle at homebase} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    1 & Start creating route on client & A UI opens & H & H\\
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Usability 6}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Usability 7 - Text on UI} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{Car is idle at homebase} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    1 & Open the Client UI & The size of text in the UI is > 14pt, and the color of the text is a contrasting color to the background & H & H\\
+    \hline
+    2 & Shine a flashlight at the screen or recreate a high-light environment in another way & The text in the UI is still readable & H & H\\
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Usability 7}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Reliability 1 - Continuous driving} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{The car is fully charged and 10+ routes are ready in server} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    1 & Start a timer & The user is timing the system & H & H\\
+    \hline
+    2 & Press the action button & The car requests and receives a route, and the green LED turns on & H & H\\
+    \hline
+    3 & Press the action button & The car starts driving, and arrives at next destination & H & H\\
+    \hline
+    4 & Repeat point 3 until car is back at homebase & The car is at homebase and ready to request another route & H & H\\
+    \hline
+    5 & Repeat point 1 to 4 until 65 minutes have passed & 65 minutes have passed and the car is still executing routes without issues & H & H\\
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Reliability 1}
+\end{table}
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Reliability 2 - Continuous running of server} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{Server is running and car is idle at homebase} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    1 & Prepare and start a timer or stopwatch & The user is tracking the time & H & H\\
+    \hline
+    2 & Wait until 6 hours have passed, then press the action button on the car to request a route & The route is fetched without issues & H & H\\
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Reliability 2}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Reliability 3 - Continuous running of server (battery swap)} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{Server is running and car is idle at homebase} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    1 & Prepare and start a stopwatch or timer & The timer/stopwatch is tracking the time & H & \\
+    \hline
+    2 & Remove the current battery from the car & The battery is removed successfully & H & H\\
+    \hline
+    3 & Install a new battery in the car & The new battery is installed successfully & H & H\\
+    \hline
+    4 & Stop the stopwatch/timer & Less than 10 minutes have passed & H & H\\
+    \hline
+\end{tabularx}
+\caption{Acceptance test - Reliability 3}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+\hline
+\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+    & \multicolumn{3}{l|}{Reliability 4 - Success rate of routes} \\ 
+\hline
+\multicolumn{2}{|l|}{\textbf{Precondition:}} 
+    & \multicolumn{3}{l|}{Car is idle at homebase and server is running with 10 routes stored} \\
+\hline
+\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+\hline
+1 & Press the action button & The green LED lights up & H & H\\
+\hline
+2 & Press the action button & The car starts executing route & H & H\\
+\hline
+3 & Wait for car to arrive at destination & The car is at destination, and green LED is on & H & H\\
+\hline
+4 & Repeat point 2 to 3 until route is complete & The car is idle at homebase & H & H\\
+\hline
+5 & Repeat step 1 to 4 until 10 routes have been completed in total & The car completed at least 9 routes & H & H\\
+\hline
+\end{tabularx}
+\caption{Acceptance test - Reliability 4}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+\hline
+\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+    & \multicolumn{3}{l|}{Reliability 5 - Car drives on wet floor} \\ 
+\hline
+\multicolumn{2}{|l|}{\textbf{Precondition:}} 
+    & \multicolumn{3}{l|}{Car is idle at homebase and server is running} \\
+\hline
+\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+\hline
+1 & Grab a bottle of water(500 ml) and pour it evenly over the surface & The surface the car is going to drive on is wet & H & H\\
+\hline
+2 & Press the action button on the car & The green LED turns on & H & H\\
+\hline
+3 & Press the action button & The car starts executing route & H & \\
+\hline
+4 & Watch car while it is executing route & The car cannot complete the route & H & H\\
+\hline
+\end{tabularx}
+\caption{Acceptance test - Reliability 5}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+\hline
+\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+    & \multicolumn{3}{l|}{Performance 1 - Button response time} \\ 
+\hline
+\multicolumn{2}{|l|}{\textbf{Precondition:}} 
+    & \multicolumn{3}{l|}{Car is idle at homebase and server is running} \\
+\hline
+\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+\hline
+1 & Open Wireshark to monitor the local network & Wireshark is monitoring the local network & H & H\\
+\hline
+2 & Prepare and start stopwatch/timer & The user is now tracking the time & H & H\\
+\hline
+3 & Press the action button & [Wireshark] The car requests a route within 1 second & H & H\\
+\hline
+\end{tabularx}
+\caption{Acceptance test - Performance 1}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+\hline
+\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+    & \multicolumn{3}{l|}{Performance 2 - Car startup time} \\ 
+\hline
+\multicolumn{2}{|l|}{\textbf{Precondition:}} 
+    & \multicolumn{3}{l|}{Car is turned off and server is running} \\
+\hline
+\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+\hline
+1 & Prepare a stopwatch/timer & The user is tracking the time & H & H\\
+\hline
+2 & Press the power button, and wait for the green LED to turn on & The green LED turns on within 1 minute & H & H\\
+\hline
+\end{tabularx}
+\caption{Acceptance test - Performance 2}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+        & \multicolumn{3}{l|}{Performance 3 - Car minimum range} \\ 
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
+        & \multicolumn{3}{l|}{Car is idle and fully charged at homebase and server is running} \\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Action} 
+                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+1 & Find the longest possible route in your testing setup & The longest route is found & H & H\\
+\hline
+2 & Create multiple copies of said route on server so that total length is \(\geq 500\) meters 
+  & Routes of total length \(\geq 500\) meters have been stored on server & H & H\\
+\hline
+3 & Press the action button & The green LED turns on & H & H\\
+\hline
+4 & Press the action button & The car starts driving to next destination & H & H\\
+\hline
+5 & Wait for car to reach destination & The car has reached its destination and the green LED is on & H & H\\
+\hline
+6 & Repeat point 4–5 until car has completed route & The car is idle at homebase & H & H\\
+\hline
+7 & Repeat point 3–6 until total length driven exceeds 500 meters & The battery is still powering the car & H & H\\
+\hline
+\end{tabularx}
+\caption{Acceptance test - Performance 3}
+\end{table}
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+\hline
+\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+    & \multicolumn{3}{l|}{Performance 4 - Car maximum speed} \\ 
+\hline
+\multicolumn{2}{|l|}{\textbf{Precondition:}} 
+    & \multicolumn{3}{l|}{Car is idle at homebase and server is running} \\
+\hline
+\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+\hline
+1 & Prepare a speedometer & The speed of the car is ready to be read & H & H\\
+\hline
+2 & Press the action button & The green LED turns on & H & H\\
+\hline
+3 & Press the action button & The car starts driving to next destination & H & H\\
+\hline
+4 & Track the speed during route completion & The car is idle at destination & H & H\\
+\hline
+5 & Repeat point 3–4 until route completed & The car never exceeds a speed of 5 km/h & H & H\\
+\hline
+\end{tabularx}
+\caption{Acceptance test - Performance 4}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
+\hline
+\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
+    & \multicolumn{3}{l|}{XXXXX xxxxx - Car car car} \\ 
+\hline
+\multicolumn{2}{|l|}{\textbf{Precondition:}} 
+    & \multicolumn{3}{l|}{Car is car car} \\
+\hline
+\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+\hline
+1 & do car car & car car & H & H\\
+\hline
+2 & do car car & car car & H & H\\
+\hline
+\end{tabularx}
+\caption{Acceptance test - XXXXX xxxxx}
+\end{table}
+
+
 
 
