@@ -2,9 +2,9 @@
 
 ## Project concept delimitation
 
-### The project concept focuses on designing a basic functional prototype system that supports the delivery of medicine a hospital setting. The system consists of a server that receives user input from a dispensary nurse and forwards a list of rooms to the car. Then the car performs a simple pathfinding to the given rooms and only moves to the next location when the user presses the "Action" button.
+### The project concept focuses on designing a basic functional prototype system that supports the delivery of medicine a hospital setting. The system consists of a server that receives user input from a dispensary nurse and forwards a list of rooms to the car. Then the car performs simple pathfinding to the given rooms and moves along the route.
 
-### We decided to limit the project concept to a simplified workflow where the car drives to predefined rooms in an indoor environment. The concept demonstrates the core interaction between the server, the car and the user. Including receiving room lists, calculating Astar pathfinding, waiting for user confirmation and driving between the fixed locations.
+### We decided to limit the project concept to a simplified workflow where the car drives to predefined rooms in an indoor environment. The concept demonstrates the core interaction between the server, the car and the user, including receiving room lists, calculating Astar pathfinding, waiting for user confirmation and driving between the fixed locations.
 
 ### The project concept excludes more advanced features like obstacle detection, dynamic environmental sensing etc.
 ### We also exclude integration with external hospital IT systems, authentication systems, or any other form of medication verification. The concept doesn't cover secure transport mechanisms, real-world safety regulations or large scale deployment with multiple cars 
@@ -21,6 +21,6 @@
 
 ## Summary
 
-### The project is scoped on developing a simple prototype system that demonstrates how medicine delivery can be supported through basic automation. The system includes a server that receives input from a dispensary nurse and a car that drives to a predefined room based on a provided list. here it waits with driving until a button press has been done.
+### The project is scoped on developing a simple prototype system that demonstrates how medicine delivery can be supported through basic automation. The system includes a server that receives input from a dispensary nurse and a car that drives to a predefined room based on a provided list.
 
-### The project focuses on the essential functions needed to show the interaction between the server, the car and the user. Advanced features such a fully autonomous navigation, dynamic obstacle detection, external IT integration or real hospital deployment are not included. The goal is to present a clear and functional concept that illustrates how automated delivery could assist nurses in their daily workflow
+### The project focuses on the essential functions needed to show the interaction between the server, the car and the user. Advanced features such as fully autonomous navigation, dynamic obstacle detection, external IT integration or real hospital deployment are not included. The goal is to present a clear and functional concept that illustrates how automated delivery could assist nurses in their daily workflow
