@@ -77,24 +77,14 @@ public:
     static std::vector<Point> rooms(const Route& r)
     {
         std::vector<Point> waypoints;
-        int num_points = 1;
         waypoints.emplace_back(0, 0);
 
-        if(r.room1) {
+        if(r.room1)
             waypoints.emplace_back(2, 4);
-            //waypoints.emplace_back(0,12);
-            num_points++;
-        }
-        if(r.room2) {
-            waypoints.emplace_back(4, 11);
-            //waypoints.emplace_back(24,12);
-            num_points++;
-        }
-        if(r.room3) {
-            waypoints.emplace_back(4, 9);
-            //waypoints.emplace_back(24,24);
-            num_points++;
-        }
+        if(r.room2)
+            waypoints.emplace_back(6, 11);
+        if(r.room3)
+            waypoints.emplace_back(6, 9);
 
         return waypoints;
     };
