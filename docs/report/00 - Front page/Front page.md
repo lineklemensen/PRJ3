@@ -9,8 +9,6 @@ geometry: margin=2cm
 
 <div style="text-align:center;">
 
-<!-- Optional top logo -->
-<!-- <img src="path/to/logo.pdf" width="50%"/> -->
 
 <hr style="width:22cm; border:0.5mm solid black;">
 
@@ -23,12 +21,9 @@ geometry: margin=2cm
 
 <br>
 
-<!-- Optional secondary logo -->
-<!-- <img src="path/to/logo2.pdf" width="60%"/> -->
 
 <br><br>
 
-<!-- Students and supervisor -->
 
 | **Students**                | **Student number**| **Initials** |
 |---:                         |---:               |---:          |
@@ -51,7 +46,6 @@ geometry: margin=2cm
 
 <br><br>
 
-<!-- Submission and university info -->
 <div style="display:flex; justify-content:space-between; width:16cm; margin:auto;">
 <div style="text-align:left;">
 Submission date: **12-12-2025**
