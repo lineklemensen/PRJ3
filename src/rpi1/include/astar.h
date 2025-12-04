@@ -48,6 +48,7 @@ struct Point {
     {
         return x > p.x;
     }
+
     static double distance(const Point& p1, const Point& p2)
     {
         return sqrt((p1.x - p2.x) * (p1.x - p2.x) +
@@ -56,12 +57,12 @@ struct Point {
 };
 
 struct PriorityPoint {
-    double pri;
+    double priority;
     Point point;
 
     bool operator>(const PriorityPoint& p) const
     {
-        return p.pri > pri;
+        return p.priority > priority;
     }
 };
 
@@ -90,7 +91,7 @@ public:
     };
 
     // Checks if the coordinates are inside the given grid
-    static bool is_valid(Point p)
+    static bool is_valid(const Point& p)
     {
         return (p.x >= 0) && (p.x < ROWS) && (p.y >= 0) && (p.y < COLS);
     }
@@ -102,7 +103,7 @@ public:
     }
 
     // Reconstruct the path by following the parent pointers
-    static void trace_path(cell cell_details[][COLS], const Point reached, std::vector<Point>& route)
+    static void trace_path(cell cell_details[][COLS], const Point& reached, std::vector<Point>& route)
     {
         Point p = reached;
         std::stack<Point> Path;
@@ -114,7 +115,6 @@ public:
         }
         Path.push(p); // push the start node
 
-
         //Reverse the stack into a vector
         while(!Path.empty()) {
             route.push_back(Path.top());
@@ -123,7 +123,7 @@ public:
     }
 
     // Sends a coordinate to the car
-    static void send_to_driver(Point p)
+    static void send_to_driver(const Point& p)
     {
         std::cout << "Driving to: " << p.x << "," << p.y << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
@@ -136,7 +136,4 @@ public:
         //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         //std::cin.get();
     }
-
-
-private:
 };

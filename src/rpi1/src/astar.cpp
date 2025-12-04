@@ -47,7 +47,6 @@ std::vector<Point> aStar_search(const Point src, const Point dest)
         .cost_to_dest = 0.0,
     };
 
-
     // A min-heap priority queue for A*
     std::priority_queue<PriorityPoint, std::vector<PriorityPoint>, std::greater<>> open_list;
     open_list.emplace(0.0, src);
@@ -59,7 +58,7 @@ std::vector<Point> aStar_search(const Point src, const Point dest)
         Point current = open_list.top().point;
         open_list.pop();
 
-        Point p = current;
+        const Point p = current;
         closed_list[p.x][p.y] = true;
 
         // Movement directions for the 4 ways we can move
@@ -169,7 +168,6 @@ int main()
         }
     }
 
-
     // TSP brute force, generate permutations of visiting order
     std::vector<int> perm;
     for(int i = 1; i < num_points; i++) {
@@ -177,8 +175,8 @@ int main()
     }
 
     int best_cost = 1e9;
-
     std::vector<int> best_order;
+
     // Adds up the costs for each consecutive leg
     do {
         std::vector<int> candidate_order;
