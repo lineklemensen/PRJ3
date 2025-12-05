@@ -165,13 +165,14 @@ int main()
 }
  */
 
-int wake_pipe = {};
+int wake_pipe[2] = {};
 pollfd poll_fds[2];
 std::atomic<bool> act_btn_pressed = false;
+int chip_fd;
 
 void init_button(const int pin)
 {
-    int chip_fd = open(CHIP_PATH, O_RDONLY);
+    chip_fd = open(CHIP_PATH, O_RDONLY);
     if(chip_fd < 0)
         throw std::runtime_error("Failed to open GPIO chip");
 
@@ -192,11 +193,11 @@ void init_button(const int pin)
         .revents = 0,
     };
 
-    if(pipe(&wake_pipe) < 0)
+    if(pipe(wake_pipe) < 0)
         throw std::runtime_error("Failed to create wake pipe");
 
     poll_fds[1] = {
-        .fd = wake_pipe,
+        .fd = wake_pipe[0],
         .events = POLLIN,
         .revents = 0,
     };
@@ -209,14 +210,14 @@ void monitor_act_btn()
     gpioevent_data event_data;
 
     while(true) {
-        int ret = poll(&poll_fds[0], 2, -1);
+        int ret = poll(poll_fds, 3, -1);
         if(ret < 0)
             break;
 
         if(poll_fds[1].revents & POLLIN) // wake pipe
         {
             char buf[8];
-            read(wake_pipe, buf, sizeof(buf));
+            read(wake_pipe[0], buf, sizeof(buf));
             break;
         }
 
@@ -318,7 +319,10 @@ int main()
 
     std::cout << "Shutting down\n";
     char c = 'x';
-    write(wake_pipe, &c, 1);
+    write(wake_pipe[1], &c, 1);
     activity_button_thr.join();
+
+    close(wake_pipe[0]);
+    close(wake_pipe[1]);
     return 0;
 }
