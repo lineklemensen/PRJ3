@@ -166,7 +166,7 @@ int main()
  */
 
 int wake_pipe[2] = {};
-pollfd poll_fds[2];
+pollfd poll_fds[3];
 std::atomic<bool> act_btn_pressed = false;
 int chip_fd;
 
@@ -299,6 +299,7 @@ int main()
 
         std::vector<std::vector<Point>> paths = Astar::calculate_path(r);
         std::cout << "Ready to start route\n";
+        act_btn_pressed.store(false);
         for(const auto& path : paths) {
             while(!act_btn_pressed.load()) { }
             for(const auto& point : path) {
@@ -324,5 +325,6 @@ int main()
 
     close(wake_pipe[0]);
     close(wake_pipe[1]);
+    close(chip_fd);
     return 0;
 }
