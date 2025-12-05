@@ -192,16 +192,7 @@ void MotorController::turn(double degrees)
         // Update PWM
         int left_pwm = pid_left_.update(left_target, left_pos, &left_ctrl, INTEGRATION_THRESHOLD);
         int right_pwm = pid_right_.update(right_target, right_pos, &right_ctrl, INTEGRATION_THRESHOLD);
-        /*
-                if (right_pwm < 31 && right_pwm != 0 && right_pwm > 0)
-                {
-                    right_pwm = 31;
-                }
-                else if (right_pwm > -31 && right_pwm < 0 && right_pwm != 0)
-                {
-                    right_pwm = -31;
-                }
-        */
+
         // Calculate errors
         left_error = std::abs(left_target - left_pos);
         right_error = std::abs(right_target - right_pos);

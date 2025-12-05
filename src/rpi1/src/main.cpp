@@ -305,7 +305,9 @@ int main()
 
         const auto r = json_dto::from_json<Route>(res->body);
 
-        std::vector<std::vector<Point>> paths = Astar::calculate_path(r);
+        //std::vector<std::vector<Point>> paths = Astar::calculate_path(r);
+        std::vector<std::vector<Point>> paths = {{{0,5},{5,5},{5,0},{0,0}}};
+
         std::cout << "Ready to start route\n";
         act_btn_pressed.store(false);
         for(const auto& path : paths) {
@@ -315,6 +317,7 @@ int main()
                 auto instr = driving_calculator.calc_route({point.x, point.y});
                 motors.turn(instr.first);
                 motors.drive_distance(instr.second);
+                //std::cout << instr.first << ' ' << instr.second << '\n';
                 //std::cout << '(' << point.x << ',' << point.y << ')';
             }
             std::cout << '\n';
