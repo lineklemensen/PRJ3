@@ -16,7 +16,7 @@ On top of this several different UI elements can be made and easily added to the
 
 ## Server
 
-### Empty class diagram
+    ### Empty class diagram
 
 ### Sequence diagram
 
@@ -24,6 +24,7 @@ The "server" is a very basic HTTP server. It supports handling incoming "orders"
 
 ### Full class diagram
 
+![UC2 SD](docs/diagrams/out/apModel/SD UC2 - Create Delivery - PC.png){width=680px}
 
 ## Car
 
