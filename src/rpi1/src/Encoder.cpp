@@ -42,6 +42,7 @@ void Encoder::init_encoder(int gpio_enc_a, int gpio_enc_b)
         if (ioctl(chip_fd_, GPIO_GET_LINEEVENT_IOCTL, &event_req_[i]) < 0)
         {
             close(chip_fd_);
+	    std::cout << gpio_enc_a <<" "<< gpio_enc_b << std::endl;
             throw std::runtime_error("Failed to request GPIO line event");
         }
 

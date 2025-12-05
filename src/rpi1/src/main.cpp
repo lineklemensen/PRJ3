@@ -16,8 +16,8 @@
 
 #define FORWARD 1
 #define BACKWARD 0
-#define GREEN_LED_PIN 21
-#define ACTIVITY_BUTTON_PIN 16
+#define GREEN_LED_PIN 8
+#define ACTIVITY_BUTTON_PIN 1
 
 /*
 // Test of Pid class
@@ -259,7 +259,6 @@ int main()
     DR driving_calculator;
     init_button(ACTIVITY_BUTTON_PIN);
     auto activity_button_thr = std::thread(monitor_act_btn);
-
 
     while(true) {
         std::cout << "Waiting for button before req route\n";
