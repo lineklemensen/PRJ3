@@ -86,8 +86,8 @@ MotorController::~MotorController()
 void MotorController::drive(int left_pwm, int right_pwm)
 {
     // Determine motor directions
-    bool left_forward = left_pwm >= 0;
-    bool right_forward = right_pwm >= 0;
+    bool left_forward = left_pwm <= 0;
+    bool right_forward = right_pwm <= 0;
 
     set_direction(left_forward, right_forward);
 
@@ -99,12 +99,12 @@ void MotorController::drive(int left_pwm, int right_pwm)
     {
         left_duty = 31;
     }
-    /*
-        if (right_duty < 31 && right_duty != 0 && right_duty > 0)
-        {
-            right_duty = 31;
-        }
-    */
+
+    if (right_duty < 31 && right_duty != 0 && right_duty > 0)
+    {
+        right_duty = 31;
+    }
+
     pwm_left_.set_duty_cycle(left_duty);
     pwm_right_.set_duty_cycle(right_duty);
 
