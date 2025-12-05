@@ -1,6 +1,6 @@
 ---
-title: "SW3 semester project"
-subtitle: "Self driving medicine delivering system"
+title: "SW3 Semester Project"
+subtitle: "Self Driving Medicine Delivering System"
 date: "12/12/2025"
 fontsize: 12pt
 geometry: margin=2cm
@@ -25,16 +25,16 @@ geometry: margin=2cm
 <br><br>
 
 
-| **Students**                | **Student number**| **Initials** |
-|---:                         |---:               |---:          |
-| Johan Høffner| 202409238 | JH |
-| Line Nystrup Klemensen | 202407497 | LK |
-| Nicolai Broholm Hansen| 202409080 | NH |
-| Frederik Vagn Lorenzen | 202406665 | FL |
-| Daniel Jenrich Svendsen | 202408416 | DS |
-| Mikkel Kristiansen | 202301563 | MK |
-| Kasper Ørtoft Rasmussen | 202207121 | KR |
-| Christopher Frank Jørgensen| 202300791 | CJ |
+|                **Students** | **Student number** | **Initials** |
+| --------------------------: | -----------------: | -----------: |
+|               Johan Høffner |          202409238 |           JH |
+|      Line Nystrup Klemensen |          202407497 |           LK |
+|      Nicolai Broholm Hansen |          202409080 |           NH |
+|      Frederik Vagn Lorenzen |          202406665 |           FL |
+|     Daniel Jenrich Svendsen |          202408416 |           DS |
+|          Mikkel Kristiansen |          202301563 |           MK |
+|     Kasper Ørtoft Rasmussen |          202207121 |           KR |
+| Christopher Frank Jørgensen |          202300791 |           CJ |
 
 <br><br>
 
