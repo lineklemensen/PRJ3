@@ -1,8 +1,7 @@
 #include "CalcPath.h"
 #include <iostream>
-#define _USE_MATH_DEFINES
 #include <cmath>
-
+#include <numbers>
 
 // Returns two values. First is the turning angle, second is the length of the drive.
 std::pair<double, double> DR::calc_route(std::pair<double, double> next_pos)
@@ -20,7 +19,7 @@ std::pair<double, double> DR::calc_route(std::pair<double, double> next_pos)
 
     // Calculating angle B and converting it from radians to degrees. 
     double angle = (pow(length_next_vector, 2) + pow(length_last_vector, 2) - pow(length_last_to_next, 2)) / (2 * length_last_vector * length_next_vector);
-    double cos_angle = acos(angle) * (180 / M_PI);
+    double cos_angle = acos(angle) * (180 / std::numbers::pi);
 
 
     // Making sure the angle is negative when we go against the unit circle.

@@ -172,7 +172,7 @@ void MotorController::turn(double degrees)
     std::cout << "Starting turn of " << degrees << " degrees.\n";
     std::cout << "Target positions: Left=" << left_target << ", Right=" << (right_target + 80) << "\n";
 
-    std::ofstream data_file("/home/au769402/car/PRJ3/src/rpi1/scripts/pid_test.csv", std::ios::out | std::ios::trunc);
+    std::ofstream data_file("pid_test.csv", std::ios::out | std::ios::trunc);
 
     if (!data_file.is_open())
     {
@@ -270,7 +270,7 @@ void MotorController::drive_distance(double distance)
     // std::cout << "Stopping at left " << left_target << "and right " << right_target << std::endl;
 
     // Prepare CSV file
-    std::ofstream data_file("/home/au769402/car/PRJ3/src/rpi1/scripts/pid_test.csv", std::ios::out | std::ios::trunc);
+    std::ofstream data_file("pid_test.csv", std::ios::out | std::ios::trunc);
 
     if (!data_file.is_open())
     {

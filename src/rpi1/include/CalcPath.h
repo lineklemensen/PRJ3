@@ -1,7 +1,8 @@
-#include <iostream>
 #ifndef CALC_PATH_H
-
 #define CALC_PATH_H
+
+#include <iostream>
+#include "Point.h"
 
 class DR{
     public:
