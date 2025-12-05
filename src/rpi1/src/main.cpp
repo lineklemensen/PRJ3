@@ -304,10 +304,10 @@ int main()
             while(!act_btn_pressed.load()) { }
             for(const auto& point : path) {
                 //Drive to point
-                //auto instr = driving_calculator.calc_route({point.x, point.y});
-                //motors.turn(instr.first);
-                //motors.drive_distance(instr.second);
-                std::cout << '(' << point.x << ',' << point.y << ')';
+                auto instr = driving_calculator.calc_route({point.x, point.y});
+                motors.turn(instr.first);
+                motors.drive_distance(instr.second);
+                //std::cout << '(' << point.x << ',' << point.y << ')';
             }
             std::cout << '\n';
             //Wait for button press
