@@ -5,7 +5,6 @@
 #include <cmath>
 #include <thread>
 #include <chrono>
-#include <wiringPi.h>
 #include "Grid.h"
 #include "Point.h"
 #include "Route.h"
