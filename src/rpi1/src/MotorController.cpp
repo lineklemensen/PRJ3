@@ -40,8 +40,7 @@ MotorController::MotorController()
 
     // Open the GPIO chip
     chip_ = gpiod_chip_open(chipname_);
-    if (!chip_)
-    {
+    if(!chip_) {
         throw std::runtime_error("Failed to open GPIO chip");
     }
 
@@ -51,18 +50,16 @@ MotorController::MotorController()
     B1_line_ = gpiod_chip_get_line(chip_, B1_gpio_);
     B2_line_ = gpiod_chip_get_line(chip_, B2_gpio_);
 
-    if (!A1_line_ || !A2_line_ || !B1_line_ || !B2_line_)
-    {
+    if(!A1_line_ || !A2_line_ || !B1_line_ || !B2_line_) {
         gpiod_chip_close(chip_);
         throw std::runtime_error("Error: Failed to get one or more GPIO lines");
     }
 
     // Request lines as outputs (all LOW initially)
-    if (gpiod_line_request_output(A1_line_, "MotorCtrl", 0) < 0 ||
-        gpiod_line_request_output(B1_line_, "MotorCtrl", 0) < 0 ||
-        gpiod_line_request_output(A2_line_, "MotorCtrl", 0) < 0 ||
-        gpiod_line_request_output(B2_line_, "MotorCtrl", 0) < 0)
-    {
+    if(gpiod_line_request_output(A1_line_, "MotorCtrl", 0) < 0 ||
+       gpiod_line_request_output(B1_line_, "MotorCtrl", 0) < 0 ||
+       gpiod_line_request_output(A2_line_, "MotorCtrl", 0) < 0 ||
+       gpiod_line_request_output(B2_line_, "MotorCtrl", 0) < 0) {
         gpiod_chip_close(chip_);
         throw std::runtime_error("Failed to request lines as output");
     }
@@ -75,8 +72,7 @@ MotorController::~MotorController()
     pwm_left_.stop();
     pwm_right_.stop();
 
-    if (chip_)
-    {
+    if(chip_) {
         gpiod_chip_close(chip_);
     }
 
@@ -95,14 +91,12 @@ void MotorController::drive(int left_pwm, int right_pwm)
     int left_duty = std::abs(left_pwm);
     int right_duty = std::abs(right_pwm);
 
-    if (left_duty < 31 && left_duty != 0 && left_duty > 0)
-    {
-        left_duty = 31;
+    if(left_duty < 35 && left_duty != 0 && left_duty > 0) {
+        left_duty = 35;
     }
 
-    if (right_duty < 31 && right_duty != 0 && right_duty > 0)
-    {
-        right_duty = 31;
+    if(right_duty < 35 && right_duty != 0 && right_duty > 0) {
+        right_duty = 35;
     }
 
     pwm_left_.set_duty_cycle(left_duty);
@@ -127,12 +121,13 @@ void MotorController::set_direction(bool left_forward, bool right_forward)
 
 void MotorController::print_encoder_pos()
 {
-    std::cout << "Left: " << encoder_left_.get_position() << "  Right: " << encoder_right_.get_position() << "\r" << std::flush;
+    std::cout << "Left: " << encoder_left_.get_position() << "  Right: " << encoder_right_.get_position() << "\r" <<
+            std::flush;
 }
 
 void MotorController::turn(double degrees)
 {
-    if (degrees == 0)
+    if(degrees == 0)
         return;
 
     int n = 0;
@@ -150,15 +145,14 @@ void MotorController::turn(double degrees)
 
     double left_target, right_target;
 
-    if (degrees < 0)
-    {                                                  // turn right in place
-        left_target = left_pos - dist_counts;          // backward
-        right_target = right_pos + (dist_counts + 80); // forward
-    }
-    else
-    {                                                  // turn left in place
-        left_target = left_pos + dist_counts;          // forward
-        right_target = right_pos - (dist_counts + 80); // backward
+    if(degrees < 0) {
+        // turn right in place
+        //left_target = left_pos - dist_counts; // backward
+        right_target = right_pos + 2 * dist_counts; // forward
+    } else {
+        // turn left in place
+        //left_target = left_pos + dist_counts; // forward
+        right_target = right_pos - 2 * dist_counts; // backward
     }
 
     // Errors
@@ -174,20 +168,18 @@ void MotorController::turn(double degrees)
 
     std::ofstream data_file("pid_test.csv", std::ios::out | std::ios::trunc);
 
-    if (!data_file.is_open())
-    {
+    if(!data_file.is_open()) {
         std::cerr << "Failed to open pid_test.csv for writing!\n";
         return;
     }
     data_file << "time,pos,ctrl,pwm\n"; // CSV header
 
-    while (true)
-    {
+    while(true) {
         ++n;
 
         // Current positiom
-        double left_pos = encoder_left_.get_position();
-        double right_pos = encoder_right_.get_position();
+        left_pos = encoder_left_.get_position();
+        right_pos = encoder_right_.get_position();
 
         // Update PWM
         int left_pwm = pid_left_.update(left_target, left_pos, &left_ctrl, INTEGRATION_THRESHOLD);
@@ -205,19 +197,16 @@ void MotorController::turn(double degrees)
 
         drive(left_pwm, right_pwm);
 
-        if (std::abs(left_pwm) < 20 && std::abs(right_pwm) < 20)
-        {
+        if(std::abs(left_pwm) < 20 && std::abs(right_pwm) < 20) {
             ++m;
-            if (m > 100)
-            {
+            if(m > 100) {
                 std::cout << "M Left Error: " << left_error << ", M Left PWM: " << left_pwm << std::endl;
                 std::cout << "M Right Error: " << right_error << ", M Right PWM: " << right_pwm << std::endl;
                 break;
             }
         }
 
-        if (std::abs(left_error) < 20 && (std::abs(right_error) - 80) < 20)
-        {
+        if(std::abs(left_error) < 20 && (std::abs(right_error) - 80) < 20) {
             std::cout << "E Left Error: " << left_error << ", E Left PWM: " << left_pwm << std::endl;
             std::cout << "E Right Error: " << right_error << ", E Right PWM: " << right_pwm << std::endl;
             break;
@@ -263,20 +252,20 @@ void MotorController::drive_distance(double distance)
     // Prepare CSV file
     std::ofstream data_file("pid_test.csv", std::ios::out | std::ios::trunc);
 
-    if (!data_file.is_open())
-    {
+    if(!data_file.is_open()) {
         std::cerr << "Failed to open pid_test.csv for writing!\n";
         return;
     }
     data_file << "time,pos,ctrl,pwm\n"; // CSV header
 
-    while (true)
-    {
+    while(true) {
         ++n;
 
         // Track current position
         left_pos = encoder_left_.get_position();
-        right_pos = encoder_right_.get_position();
+        right_pos = left_pos;
+
+        //right_pos = encoder_right_.get_position();
 
         // Update PWM
         int left_pwm = pid_left_.update(left_target, left_pos, &left_ctrl, INTEGRATION_THRESHOLD);
@@ -295,19 +284,16 @@ void MotorController::drive_distance(double distance)
         // Drive
         drive(left_pwm, right_pwm);
 
-        if (std::abs(left_pwm) < 20 && std::abs(right_pwm) < 20)
-        {
+        if(std::abs(left_pwm) < 20 && std::abs(right_pwm) < 20) {
             ++m;
-            if (m > 100)
-            {
+            if(m > 100) {
                 std::cout << "M Left Error: " << left_error << ", M Left PWM: " << left_pwm << std::endl;
                 std::cout << "M Right Error: " << right_error << ", M Right PWM: " << right_pwm << std::endl;
                 break;
             }
         }
 
-        if (left_error < 20 && right_error < 20)
-        {
+        if(left_error < 2 && right_error < 2) {
             std::cout << "E Left Error: " << left_error << ", E Left PWM: " << left_pwm << std::endl;
             std::cout << "E Right Error: " << right_error << ", E Right PWM: " << right_pwm << std::endl;
             break;
@@ -318,7 +304,8 @@ void MotorController::drive_distance(double distance)
 
     data_file.close();
 
-    std::cout << "Stopped at left " << encoder_left_.get_position() << " and right " << encoder_right_.get_position() << std::endl;
+    std::cout << "Stopped at left " << encoder_left_.get_position() << " and right " << encoder_right_.get_position() <<
+            std::endl;
 
     drive(0, 0);
 }

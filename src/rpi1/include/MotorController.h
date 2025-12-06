@@ -36,7 +36,7 @@
 
 // Car sizes
 #define WHEEL_CIRCUMFERENCE 14.7
-#define CAR_DIAMETER 10
+#define CAR_DIAMETER 20
 #define ENCODER_PR_ROTATION 1364.8
 
 // Temporary
@@ -47,7 +47,7 @@
 #define DT 0.01
 
 // Proportional gain
-#define KP_LEFT 0.1765 // 0.1765
+#define KP_LEFT 0.14 // 0.1765
 #define KP_RIGHT 0.14  // 0.14
 
 // Integral gain
@@ -55,16 +55,16 @@
 #define KI_RIGHT 0.0000001
 
 // Derivative gain
-#define KD_LEFT 0.0115
+#define KD_LEFT 0.0165
 #define KD_RIGHT 0.0165 // 0.01675
 
 // Maximum control output (PWM duty cycle percentage)
-#define MAX_PWM_LEFT 70
-#define MAX_PWM_RIGHT 70
+#define MAX_PWM_LEFT 50
+#define MAX_PWM_RIGHT 50
 
 // Minimum control output (PWM duty cycle percentage)
-#define MIN_PWM_LEFT -70
-#define MIN_PWM_RIGHT -70
+#define MIN_PWM_LEFT -50
+#define MIN_PWM_RIGHT -50
 
 class MotorController
 {
