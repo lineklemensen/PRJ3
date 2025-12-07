@@ -145,7 +145,7 @@ void MotorController::turn(double degrees)
 
     double left_target, right_target;
 
-    if(degrees < 0) {
+    if(degrees > 0) {
         // turn right in place
         left_target = left_pos - dist_counts; // backward
         right_target = right_pos + dist_counts; // forward
