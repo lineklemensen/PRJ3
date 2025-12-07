@@ -65,6 +65,6 @@ std::pair<double, double> DR::calc_route(std::pair<double, double> next_pos)
     current_pos.first = next_pos.first;
     current_pos.second = next_pos.second;
 
-
-    return {cos_angle, length_next_vector};
+    double inch = 2.54 * 3;
+    return {cos_angle, length_next_vector*inch};
 }

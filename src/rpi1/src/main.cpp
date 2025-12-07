@@ -103,6 +103,7 @@ int main()
 }
 */
 
+
 /*
 // Test of Encoder class and drive
 // Utility: set stdin to non-blocking mode
@@ -110,16 +111,13 @@ void set_nonblocking(bool enable)
 {
     struct termios ttystate;
     tcgetattr(STDIN_FILENO, &ttystate);
-    if (enable)
-    {
+    if(enable) {
         ttystate.c_lflag &= ~ICANON; // disable canonical mode
-        ttystate.c_lflag &= ~ECHO;   // disable echo
+        ttystate.c_lflag &= ~ECHO; // disable echo
         fcntl(STDIN_FILENO, F_SETFL, O_NONBLOCK);
-    }
-    else
-    {
+    } else {
         ttystate.c_lflag |= ICANON; // restore canonical mode
-        ttystate.c_lflag |= ECHO;   // restore echo
+        ttystate.c_lflag |= ECHO; // restore echo
         fcntl(STDIN_FILENO, F_SETFL, 0);
     }
 }
@@ -128,14 +126,12 @@ int main()
 {
     // Initialize MotorController
     MotorController motors;
-
     usleep(100000); // wait for initialization
-
     // Example: set left motor forward and right motor forward
     // motors.set_direction(FORWARD, FORWARD);
     // motors.drive(20, -40); // 30% speed
 
-    motors.drive_distance(TARGET_DISTANCE);
+    /*motors.drive_distance(TARGET_DISTANCE);
     usleep(100000);
     motors.drive_distance(TARGET_DISTANCE);
     usleep(100000);
@@ -143,17 +139,24 @@ int main()
     usleep(100000);
     motors.drive_distance(TARGET_DISTANCE);
     usleep(100000);
-    motors.drive_distance(TARGET_DISTANCE);
-    // motors.drive(50, 50);
+    motors.drive_distance(TARGET_DISTANCE);#1#
+    //motors.drive(0, 0);
     // motors.turn(90);
+    motors.drive_distance(TARGET_DISTANCE * 4);
+    motors.turn(-90);
+    motors.drive_distance(TARGET_DISTANCE * 4);
+    motors.turn(-90);
+    motors.drive_distance(TARGET_DISTANCE * 4);
+    motors.turn(-90);
+    motors.drive_distance(TARGET_DISTANCE * 4);
+    motors.turn(-90);
 
     // Set stdin non-blocking for key press detection
     set_nonblocking(true);
 
     std::cout << "Monitoring encoder positions. Press any key to exit..." << std::endl;
 
-    while (true)
-    {
+    while(true) {
         // Print encoder positions
         motors.print_encoder_pos();
 
@@ -161,8 +164,7 @@ int main()
 
         // Check for key press
         char c;
-        if (read(STDIN_FILENO, &c, 1) > 0)
-        {
+        if(read(STDIN_FILENO, &c, 1) > 0) {
             break; // exit on key press
         }
     }
@@ -171,8 +173,8 @@ int main()
     std::cout << "\nExiting program." << std::endl;
 
     return 0;
-}
- */
+}*/
+
 
 int wake_pipe[2] = {};
 pollfd poll_fds[3];
@@ -305,8 +307,7 @@ int main()
 
         const auto r = json_dto::from_json<Route>(res->body);
 
-        //std::vector<std::vector<Point>> paths = Astar::calculate_path(r);
-        std::vector<std::vector<Point>> paths = {{{0,5},{5,5},{5,0},{0,0}}};
+        std::vector<std::vector<Point>> paths = Astar::calculate_path(r);
 
         std::cout << "Ready to start route\n";
         act_btn_pressed.store(false);
@@ -317,8 +318,7 @@ int main()
                 auto instr = driving_calculator.calc_route({point.x, point.y});
                 motors.turn(instr.first);
                 motors.drive_distance(instr.second);
-                //std::cout << instr.first << ' ' << instr.second << '\n';
-                //std::cout << '(' << point.x << ',' << point.y << ')';
+                std::cout << "Driving to coord: " << '(' << point.x << ',' << point.y << ')' << " Deg: " << instr.first << " Dist:" << instr.second << '\n';
             }
             std::cout << '\n';
             //Wait for button press

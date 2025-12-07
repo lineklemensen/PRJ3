@@ -147,12 +147,12 @@ void MotorController::turn(double degrees)
 
     if(degrees < 0) {
         // turn right in place
-        //left_target = left_pos - dist_counts; // backward
-        right_target = right_pos + 2 * dist_counts; // forward
+        left_target = left_pos - dist_counts; // backward
+        right_target = right_pos + dist_counts; // forward
     } else {
         // turn left in place
-        //left_target = left_pos + dist_counts; // forward
-        right_target = right_pos - 2 * dist_counts; // backward
+        left_target = left_pos + dist_counts; // forward
+        right_target = right_pos - dist_counts; // backward
     }
 
     // Errors
@@ -192,8 +192,8 @@ void MotorController::turn(double degrees)
         double t = n * pid_left_.get_dt();
 
         // Write to CSV
-        data_file << t << "," << left_pos << "," << left_ctrl << "," << left_pwm << "\n";
-        data_file.flush();
+        //data_file << t << "," << left_pos << "," << left_ctrl << "," << left_pwm << "\n";
+        //data_file.flush();
 
         drive(left_pwm, right_pwm);
 
@@ -236,8 +236,8 @@ void MotorController::drive_distance(double distance)
     double right_target = right_pos + encoder_pulses;
 
     // Errors
-    int left_error = std::abs(left_target - left_pos);
-    int right_error = std::abs(right_target - right_pos);
+    double left_error = std::abs(left_target - left_pos);
+    double right_error = std::abs(right_target - right_pos);
 
     // Reset PID controllers
     pid_left_.reset();
@@ -263,7 +263,7 @@ void MotorController::drive_distance(double distance)
 
         // Track current position
         left_pos = encoder_left_.get_position();
-        right_pos = left_pos;
+        right_pos = encoder_right_.get_position();
 
         //right_pos = encoder_right_.get_position();
 
@@ -278,8 +278,20 @@ void MotorController::drive_distance(double distance)
         double t = n * pid_left_.get_dt();
 
         // Write to CSV
-        data_file << t << "," << right_pos << "," << right_ctrl << "," << right_pwm << "\n";
-        data_file.flush();
+        //data_file << t << "," << right_pos << "," << right_ctrl << "," << right_pwm << "\n";
+        //data_file.flush();
+
+        //During testing we found that one motor was consistently stronger that the other,
+        //so we apply a band-aid adjustment factor that shifts the pwm of both sides to compensate
+
+        const double adjust_factor = (std::abs(right_error) / (std::abs(left_error) == 0 ? std::abs(right_error) : std::abs(left_error))) - 1;
+        //std::cout << "Adjustment factor: " << adjust_factor << "Old: [" << left_pwm << ',' << right_pwm << "]\t";
+        left_pwm *= 1 - adjust_factor * 4;
+        right_pwm *= 1 + adjust_factor * 4;
+        //Clamp values [0, 1] to avoid silly stuff
+        left_pwm = std::max(-100, std::min(100, left_pwm));
+        right_pwm = std::max(-100, std::min(100, right_pwm));
+        std::cout << "new: [" << left_pwm << ',' << right_pwm << "]\n";
 
         // Drive
         drive(left_pwm, right_pwm);

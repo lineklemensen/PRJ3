@@ -36,7 +36,7 @@
 
 // Car sizes
 #define WHEEL_CIRCUMFERENCE 14.7
-#define CAR_DIAMETER 20
+#define CAR_DIAMETER 22
 #define ENCODER_PR_ROTATION 1364.8
 
 // Temporary
@@ -59,12 +59,12 @@
 #define KD_RIGHT 0.0165 // 0.01675
 
 // Maximum control output (PWM duty cycle percentage)
-#define MAX_PWM_LEFT 50
-#define MAX_PWM_RIGHT 50
+#define MAX_PWM_LEFT 70
+#define MAX_PWM_RIGHT 70
 
 // Minimum control output (PWM duty cycle percentage)
-#define MIN_PWM_LEFT -50
-#define MIN_PWM_RIGHT -50
+#define MIN_PWM_LEFT -70
+#define MIN_PWM_RIGHT -70
 
 class MotorController
 {
