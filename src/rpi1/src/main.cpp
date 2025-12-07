@@ -216,6 +216,26 @@ void init_button(const int pin)
     std::cout << "Encoder initialized successfully." << std::endl;
 }
 
+gpiod_line* init_green_led()
+{
+    gpiod_chip* chip_ = gpiod_chip_open(CHIP_PATH);
+    if(!chip_)
+        throw std::runtime_error("Error: Failed to setup LED");
+
+    gpiod_line* led = gpiod_chip_get_line(chip_, GREEN_LED_PIN);
+    if(!led) {
+        gpiod_chip_close(chip_);
+        throw std::runtime_error("Error: Failed to get led GPIO line");
+    }
+
+    if(gpiod_line_request_output(led, "LedCtrl", 0) < 0) {
+        gpiod_chip_close(chip_);
+        throw std::runtime_error("Error: Failed to set led GPIO line as output");
+    }
+
+    return led;
+}
+
 void monitor_act_btn()
 {
     gpioevent_data event_data;
@@ -260,6 +280,8 @@ int main()
     usleep(100000); // wait for initialization
     DR driving_calculator;
     init_button(ACTIVITY_BUTTON_PIN);
+    gpiod_line* g_led_line = init_green_led();
+    gpiod_line_set_value(g_led_line, 0);
     auto activity_button_thr = std::thread(monitor_act_btn);
 
     while(true) {
@@ -273,28 +295,13 @@ int main()
         auto t = std::thread(HttpHandler::get_route, &res);
         t.join();
 
-        //TODO move to gpiod
         if(res->status != httplib::StatusCode::OK_200) {
-            gpiod_chip* chip_ = gpiod_chip_open(CHIP_PATH);
-            if(!chip_)
-                throw std::runtime_error("Error: Failed to setup LED");
-
-            gpiod_line* led = gpiod_chip_get_line(chip_, GREEN_LED_PIN);
-            if(!led) {
-                gpiod_chip_close(chip_);
-                throw std::runtime_error("Error: Failed to get led GPIO line");
-            }
-
-            if(gpiod_line_request_output(led, "LedCtrl", 0) < 0) {
-                gpiod_chip_close(chip_);
-                throw std::runtime_error("Error: Failed to set led GPIO line as output");
-            }
             int seconds = 0;
             while(seconds != 5) {
-                gpiod_line_set_value(led, 1);
+                gpiod_line_set_value(g_led_line, 1);
                 std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
-                gpiod_line_set_value(led, 0);
+                gpiod_line_set_value(g_led_line, 0);
                 std::this_thread::sleep_for(std::chrono::milliseconds(500));
                 seconds++;
             }
@@ -312,7 +319,9 @@ int main()
         std::cout << "Ready to start route\n";
         act_btn_pressed.store(false);
         for(const auto& path : paths) {
+            gpiod_line_set_value(g_led_line, 1); //Turn on to signal ready to do route
             while(!act_btn_pressed.load()) { }
+            gpiod_line_set_value(g_led_line, 0);
             for(const auto& point : path) {
                 //Drive to point
                 auto instr = driving_calculator.calc_route({point.x, point.y});
