@@ -291,7 +291,7 @@ void MotorController::drive_distance(double distance)
         //Clamp values [0, 1] to avoid silly stuff
         left_pwm = std::max(-100, std::min(100, left_pwm));
         right_pwm = std::max(-100, std::min(100, right_pwm));
-        std::cout << "new: [" << left_pwm << ',' << right_pwm << "]\n";
+        //std::cout << "new: [" << left_pwm << ',' << right_pwm << "]\n";
 
         // Drive
         drive(left_pwm, right_pwm);

@@ -316,9 +316,9 @@ int main()
             for(const auto& point : path) {
                 //Drive to point
                 auto instr = driving_calculator.calc_route({point.x, point.y});
+                std::cout << "Driving to coord: " << '(' << point.x << ',' << point.y << ')' << " Deg: " << instr.first << " Dist:" << instr.second << '\n';
                 motors.turn(instr.first);
                 motors.drive_distance(instr.second);
-                std::cout << "Driving to coord: " << '(' << point.x << ',' << point.y << ')' << " Deg: " << instr.first << " Dist:" << instr.second << '\n';
             }
             std::cout << '\n';
             //Wait for button press

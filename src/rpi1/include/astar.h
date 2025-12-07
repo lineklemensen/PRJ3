@@ -10,7 +10,7 @@
 #include "Route.h"
 
 #define ROWS 7
-#define COLS 13
+#define COLS 11
 
 
 struct cell {

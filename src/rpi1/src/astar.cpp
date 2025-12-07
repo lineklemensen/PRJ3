@@ -5,8 +5,6 @@
 #include <vector>
 #include <algorithm>
 
-#define LED_PIN 21
-
 std::vector<std::vector<Point>> Astar::calculate_path(const Route r)
 {
     const std::vector<Point> waypoints = create_rooms(r);
@@ -168,7 +166,7 @@ std::vector<Point> Astar::aStar_search(const Point src, const Point dest)
 
     // Straight line compression
     int removedCount = 0;
-    for(int it = 0; it + 2 < route.size(); it++) {
+    for(int it = 0; it + 1 < route.size(); it++) {
         // Goes through the entire route
         if(route[it].x == route[it + 1].x && // If the next x coordinate is the same as current one
            route[it].y != route[it + 1].y) // And if the next y is different then the current one
@@ -203,9 +201,9 @@ std::vector<Point> Astar::create_rooms(const Route& r)
     if(r.room1)
         waypoints.emplace_back(2, 4);
     if(r.room2)
-        waypoints.emplace_back(6, 11);
+        waypoints.emplace_back(6, 10);
     if(r.room3)
-        waypoints.emplace_back(6, 9);
+        waypoints.emplace_back(6, 8);
 
     return waypoints;
 }
