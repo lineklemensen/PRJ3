@@ -16,6 +16,11 @@ Tui::Tui()
     screen_stack_.top()->print();
 }
 
+Tui::~Tui()
+{
+    Console::clear_screen();
+}
+
 void Tui::update()
 {
     if(!kbhit()) {

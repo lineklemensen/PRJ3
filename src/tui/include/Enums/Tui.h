@@ -5,6 +5,7 @@
 class Tui {
 public:
     Tui();
+    ~Tui();
     static bool is_running();
     static void stop();
     static void push_screen(Screen* screen);

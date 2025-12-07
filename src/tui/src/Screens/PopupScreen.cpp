@@ -12,16 +12,15 @@ PopupScreen::PopupScreen(const Route& route)
 {
     pos_ = {0, 4};
     int y_pos = pos_.y + 1;
+
     add_new_element(new TextElement("These are your selected rooms:", {2, y_pos++}));
     add_new_element(new TextElement("", {2, y_pos++}));
-    if(!route.empty()) {
         if(route.room1)
             add_new_element(new TextElement("Room 1", {2, y_pos++}));
         if(route.room2)
             add_new_element(new TextElement("Room 2", {2, y_pos++}));
         if(route.room3)
             add_new_element(new TextElement("Room 3", {2, y_pos++}));
-    }
     add_new_element(new TextElement("", {2, y_pos++}));
 
     const auto confirm_button = new Button("Confirm", {2, y_pos}, [=, this] {
@@ -53,15 +52,19 @@ PopupScreen::PopupScreen(const Route& route)
 
             Tui::pop_screen();
         };
+
+        auto success_msg = TextElement("The route has been successfully made...", {2, y_pos});
+        success_msg.print();
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+        Tui::pop_screen();
     });
     const auto deny_button = new Button("Deny", {12, y_pos}, Tui::pop_screen);
 
     add_new_element(confirm_button);
     add_new_element(deny_button);
+    confirm_button->connect(deny_button, HORIZONTAL);
 
     selected_ = deny_button;
-
-    confirm_button->connect(deny_button, HORIZONTAL);
 }
 
 void PopupScreen::print()

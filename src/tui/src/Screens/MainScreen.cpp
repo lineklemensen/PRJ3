@@ -3,6 +3,7 @@
 #include <iostream>
 #include <StatefulButton.h>
 #include <TextElement.h>
+#include <thread>
 #include <tui.h>
 #include "PopupScreen.h"
 #include "Route.h"
@@ -10,8 +11,8 @@
 MainScreen::MainScreen()
 {
     add_new_element(new TextElement("Navigate using WASD/Arrow keys"));
-    add_new_element(new TextElement("Please select up to 3 rooms"));
     add_new_element(new TextElement("Enter/Space to select"));
+    add_new_element(new TextElement("Choose the rooms for this route"));
     add_new_element(new TextElement(""));
     const auto close_button = new Button("Close UI", [&] { Tui::stop(); });
     add_new_element(close_button);
@@ -25,7 +26,13 @@ MainScreen::MainScreen()
     add_new_element(new TextElement(""));
     const auto finish_button = new Button("Finish", [=] {
         const Route r{room1, room2, room3};
-        Tui::push_screen(new PopupScreen(r));
+        if(!r.empty())
+            Tui::push_screen(new PopupScreen(r));
+        else {
+            static auto no_room_error = TextElement("Please select at least one room...");
+            no_room_error.print();
+            std::this_thread::sleep_for(std::chrono::seconds(5));
+        }
     });
     const auto clear_button = new Button("Clear", HORIZONTAL, [&] {
         for(const auto& element : elements_) {
