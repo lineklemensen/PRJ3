@@ -8,7 +8,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Add include path
-include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/external
+    ${CMAKE_SOURCE_DIR}/external/rapidjson
+    ${CMAKE_SOURCE_DIR}/external/json_dto)
 
 # Gather all source files
 file(GLOB_RECURSE SRC_FILES src/*.cpp)

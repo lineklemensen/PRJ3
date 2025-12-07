@@ -42,6 +42,7 @@ void Encoder::init_encoder(int gpio_enc_a, int gpio_enc_b)
         if (ioctl(chip_fd_, GPIO_GET_LINEEVENT_IOCTL, &event_req_[i]) < 0)
         {
             close(chip_fd_);
+	    std::cout << gpio_enc_a <<" "<< gpio_enc_b << std::endl;
             throw std::runtime_error("Failed to request GPIO line event");
         }
 
@@ -127,21 +128,22 @@ void Encoder::monitor_events()
                 if (bytes != sizeof(event_data))
                     continue;
 
-                // --- DEBOUNCE START ---
-                static uint64_t last_ts[2] = {0, 0};
-                const uint64_t debounce_ns = 100000; // 1 ms
+                /*
+                               // --- DEBOUNCE START ---
+                                static uint64_t last_ts[2] = {0, 0};
+                                const uint64_t debounce_ns = 100000; // 1 ms
 
-                int ch = i; // 0 for A, 1 for B
+                                int ch = i; // 0 for A, 1 for B
 
-                if (event_data.timestamp - last_ts[ch] < debounce_ns)
-                {
-                    // Ignorer bounce
-                    continue;
-                }
+                                if (event_data.timestamp - last_ts[ch] < debounce_ns)
+                                {
+                                    // Ignorer bounce
+                                    continue;
+                                }
 
-                last_ts[ch] = event_data.timestamp;
-                // --- DEBOUNCE SLUT ---
-
+                                last_ts[ch] = event_data.timestamp;
+                                // --- DEBOUNCE SLUT ---
+                */
                 int a = (i == 0) ? (event_data.id == GPIOEVENT_EVENT_RISING_EDGE) : (last_state_ >> 1) & 1;
                 int b = (i == 1) ? (event_data.id == GPIOEVENT_EVENT_RISING_EDGE) : last_state_ & 1;
 

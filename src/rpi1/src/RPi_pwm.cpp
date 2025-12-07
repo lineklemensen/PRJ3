@@ -1,16 +1,18 @@
 #include "RPi_pwm.h"
 
 #include <cmath>
+#include <iostream>
+#include <unistd.h>
 
 RPi_pwm::RPi_pwm()
     : per(0), chip_path(), pwm_path() {}
 
 RPi_pwm::~RPi_pwm()
 {
-    disable(); 
+    disable();
 }
 
-int RPi_pwm::start(int channel, int frequency, float duty_cycle, int chip)
+int RPi_pwm::start(int channel, int chip, int frequency)
 {
     chip_path = "/sys/class/pwm/pwmchip" + std::to_string(chip);
     pwm_path = chip_path + "/pwm" + std::to_string(channel);
@@ -29,6 +31,15 @@ int RPi_pwm::start(int channel, int frequency, float duty_cycle, int chip)
 
     if (write_result < 0)
         return write_result;
+
+    usleep(100000);
+
+    per = (int)1E9 / frequency;
+    set_period(per);
+    set_duty_cycle(0);
+    enable();
+
+    return write_result;
 }
 
 void RPi_pwm::stop() noexcept
@@ -73,7 +84,7 @@ int RPi_pwm::write_sys(std::string filename, int value) const
         fprintf(stderr, "Failed to open %s for writing.\n", filename.c_str());
         return -1;
     }
-    
+
     const int r = fprintf(fp, "%d", value);
     fclose(fp);
     return r;
