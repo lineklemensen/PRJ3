@@ -45,11 +45,17 @@ std::pair<double, double> DR::calc_route(std::pair<double, double> next_pos)
         cos_angle = cos_angle * -1;
     }
 
+    if(cos_angle == 0 || cos_angle == -0){
+        cos_angle = 180;
+    }
+
     // Set the angle to zero if our current point is home base.
     if (current_pos.first == 0 && current_pos.second == 0)
     {
         cos_angle = 0;
     }
+
+
 
 
     if (last_pos.first == next_pos.first && last_pos.second == next_pos.second)
