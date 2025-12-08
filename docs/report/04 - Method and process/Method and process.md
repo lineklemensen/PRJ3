@@ -200,6 +200,12 @@ Working in a group has been challenging for me in the past, and has caused some 
 
 ### Nicolai Broholm Hansen  
 
+This semester was the first time we were allowed to form our own groups, which resulted in a team where our expectations for the project were aligned. It also meant that many of us already knew each other well and worked comfortably together. However, this did not completely eliminate communication challenges. When we split into smaller sub-groups, there were still moments where information did not flow as clearly as it should have. Despite this, the group as a whole collaborated effectively, and everyone contributed actively to the project. Many decisions were made collectively, and even though decision making is not something I usually feel confident with, I noticed myself becoming more comfortable with it throughout the semester.
+
+We used Scrum to structure the work and decide which tasks to prioritize, and for most of the project this proved helpful. Towards the end, however, Scrum alone was not enough, especially as deadlines from other courses piled up. Next semester, I think it will be important to plan our internal deadlines more carefully to account for the workload in other classes.
+
+Overall, the group functioned well, and I would be happy to work with the same people again in a future project. With slightly better communication, I believe the collaboration could become even stronger.
+
 
 ## Sources
 \newpage
