@@ -193,7 +193,7 @@ This however did also open the door to the only and biggest problem that I felt 
 Personally for the future I would say a big step that needs to be taking, is to better organize how and when work is done. This also includes better using and maintaining the timetable. 
 
 ### Line Nystrup Klemensen  
-
+Working in a group has been challenging for me in the past, and has caused some problems in this project as well. This project has thought me a lot about how I work with other people, and what I can do to improve my collaboration skills in the future. 
 
 ### Mikkel Kristiansen  
 
