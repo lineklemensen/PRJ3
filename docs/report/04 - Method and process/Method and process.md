@@ -204,6 +204,15 @@ Overall, I think the group has worked well together. We have been able to commun
 The technical aspects of the project has brought some interesting challenges as well. The project had very broad requirements, which meant that we were able to base our ideas on our own interests. However, since the group consists of very ambitious people, this also meant that we have had a tendency to take on too much work, which has caused some stress and pressure throughout the project. In the future, I think it would be beneficial to set more realistic goals, and to prioritize tasks more effectively. This would help to ensure that we are able to complete the project on time, without feeling overwhelmed.
 
 ### Mikkel Kristiansen  
+From the very start this semster projekt has been diffrent compared to previous ones because the groups were not made by the teachers but rather us students deciding ourselfs. Since the group already knew each other, we did not need to spend a lot of time getting to know each other, which sped up the early phase of the project and allowed us to get stright into brainstorming ideas. 
+  
+Everyone was quickly assigned a role such as scrum master, git master, group leader, referent etc. With the roles devided a structure was quickly established giving us a better workflow and sense of order. Meetings with our advisor were great and very helpfull even though some of them could get a bit frustrating at times. Another thing i learned throughout this semester is that we were a bit too reliant on our adviser saying "good" to everything insted of us making a decision and going with it. 
+  
+Because the group work was split, everyone for the most part had something to do but that also meant there was some confusion among group members, since people were in doubt about what was being written and how far everyone was with their individual work. The Scrum meetings, and the fact that the group was sitting together every day, were the main reasons this problem did not become so big that the work structure would collapse, and they made sure we could continue working in a stable way. 
+  
+Personally, I was not that good at using GitHub to do reviews, pull requests and see the updated content in our documents. This is something I need to improve on going forward, since it could have helped with catching a few, or even a lot of the problems that were present in the documents. 
+  
+My conclusion is that as a group we worked together pretty well, but we should improve in some areas to really boost the efficiency of our workflow and minimize internal confusion. Another place to improve is also to better spread out the workload, since some of the group members had a significantly higher workload compared to others.  
 
 
 ### Nicolai Broholm Hansen  
