@@ -177,7 +177,13 @@ Below are the individule conclusions from each group memember, refelcting back o
 
 
 ### Johan Høffner  
+The project this semester have been very different from the once before this, since this is the first time we got to make the groups on our own, and not being balanced by the insights profile scores. This lead us to already from the start of the project to give people roles and responsibilities so even though we shared a lot of traits within the group we could still cover all the bases.
 
+Even with good work ethic and atmosphere we ran into a problem of sorts, that people sometimes had a hard time actually making a decision, to make sure it didn't conflict with anyone or how someone wanted it to be. It sounds like a good thing but sometimes it grind our progress to a halt. Moving forward and if the group decides to work together on another project it would benefit a lot people would be quicker and more decisive to make decisions and roll with them.
+
+Everyone in the group is a hard worker and everyone felt like they wanted to accomplish the project in good fashion. Everyone also have good understand of software, the projects goal, problem solving skills and could independent, so more often that not people in the group would work outside of the agreed work schedule. This came both with good and bad effects, the good being that when we got behind on our time line, the independent work could catch us straight up again so we could meet the final deadline, but the bad part became that people sometimes felt left behind or that they didn't put in the same amount of work as someone else in the group. I see it as everyone had different times throughout the project to shine, it helped lessen the workload from others and helped the morale to always see changes and progress in the project.
+
+In conclusion the group had a good work flow and worked together nicely, but more open communication, order and structure would elevate on the process and project as a whole.
 
 ### Kasper Ørtoft Rasmussen  
 This project have been both very hard and very rewarding. The project as a whole have been very open in terms of what each group have wanted to do and design. Were as this normally would have cost me allot of trouble, do to decision paralayzis, this semester it has not been an issue at all due to other people in the group being very creative and generally good at idea creation. Using scrum for this semester have personally been a victory since it sets clear expectations and deadlines for when different parts of the project have to be done. The group work itself have for the most part been excellent and have functioned well due to everyone in the groups willingness to help were needs be and not being afraid to admit they needed help.  
