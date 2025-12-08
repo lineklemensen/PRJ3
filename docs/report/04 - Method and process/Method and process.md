@@ -193,7 +193,11 @@ This however did also open the door to the only and biggest problem that I felt 
 Personally for the future I would say a big step that needs to be taking, is to better organize how and when work is done. This also includes better using and maintaining the timetable. 
 
 ### Line Nystrup Klemensen  
-Working in a group has been challenging for me in the past, and has caused some problems in this project as well. This project has thought me a lot about how I work with other people, and what I can do to improve my collaboration skills in the future. 
+Working in a group has been challenging for me in the past, and has caused some problems in this project as well. This project has taught me a lot about how I work with other people, and what I can do to improve my collaboration skills in the future.  
+This project is the first time we have been able to choose our own group members. This choise has brought both advantages and disadvantages. On one side, it means that we know each other well, and have a good understanding of each other's strengths and weaknesses. On the other side, it also means that difference of opinions can grow into conflicts, and can be more difficult to resolve, because it can affect our personal relationships.  
+Overall, I think the group has worked well together. We have been able to communicate effectively.
+
+The technical aspects of the project has brought some interesting challenges as well. The project had very broad requirements, which meant that we were able to base our ideas on our own interests. However, since the group consists of very ambitious people, this also meant that we have had a tendency to take on too much work, which has caused some stress and pressure throughout the project. In the future, I think it would be beneficial to set more realistic goals, and to prioritize tasks more effectively. This would help to ensure that we are able to complete the project on time, without feeling overwhelmed.
 
 ### Mikkel Kristiansen  
 
