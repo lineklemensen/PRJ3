@@ -85,19 +85,19 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Monitor the local network the RPI's are using with Wireshark & Wireshark is opened and is monitoring the local network & - & - \\
+    \textbf{1} & Monitor the local network the RPI's are using with Wireshark & Wireshark is opened and is monitoring the local network & The network is being monitored & OK \\
     \hline
-    \textbf{2} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & - & - \\ 
+    \textbf{2} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & The message appears & - \\ 
     \hline
-    \textbf{3} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & - & - \\
+    \textbf{3} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & The rooms are marked & - \\
     \hline
-    \textbf{4} & Navigate to and select 'Finish route' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms appears & - & - \\
+    \textbf{4} & Navigate to and select 'Finish route' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms appears & The list appears & - \\
     \hline
-    \textbf{5} & 'Confirm' is selected & [Wireshark] A route is sent to the server & - & - \\ 
+    \textbf{5} & 'Confirm' is selected & [Wireshark] A route is sent to the server & A route is sent & - \\ 
     \hline
-    \textbf{6} & Open the text file "routes.txt" on the server and check the contents & The file contains the list of selected rooms (1, 2 and 3) & & \\
+    \textbf{6} & Open the text file "routes.txt" on the server and check the contents & The file contains the list of selected rooms (1, 2 and 3) & The route is contained on server & \\
     \hline
-    \textbf{8} & Look at the UI & The Terminal UI displays "The route has been successfully made" and "Press Enter to close the UI" & - & - \\
+    \textbf{8} & Look at the UI & The Terminal UI displays "The route has been successfully made" and "Press Enter to close the UI" & Failed for now & - \\
     \hline
     \textbf{9} & Press Enter & The Terminal UI closes & - & - \\
     \hline
@@ -122,11 +122,11 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & - & - \\ 
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & - & OK \\ 
     \hline
-    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & - & - \\
+    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & - & OK \\
     \hline
-    \textbf{3} & Navigate to and select 'Cancel route' & All rooms are deselected and the Terminal UI closes & - & - \\
+    \textbf{3} & Navigate to and select 'Cancel route' & All rooms are deselected and the Terminal UI closes & All rooms are deselected & OK \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Exception 1 - The dispensary nurse selects the "Cancel" option}
@@ -148,11 +148,11 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & - & - \\ 
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & - & OK \\ 
     \hline
-    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & - & - \\
+    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & - & OK \\
     \hline
-    \textbf{3} & Select rooms 2 and 3 again & Rooms 2 and 3 will be unselected & - & - \\
+    \textbf{3} & Select rooms 2 and 3 again & Rooms 2 and 3 will be unselected & - & OK \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Extension 1 - Room is already added}
@@ -175,9 +175,9 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & - & - \\ 
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & - & OK \\ 
     \hline
-    \textbf{2} & Press confirm before selecting any rooms & An error message is displayed on the UI. Return to point 2 in the main scenario & - & - \\
+    \textbf{2} & Press confirm before selecting any rooms & An error message is displayed on the UI. Return to point 2 in the main scenario & Fail for nu, lav video & Fail for nu \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Extension 2 - No rooms were selected}
@@ -198,13 +198,13 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & - & - \\ 
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & - & OK \\ 
     \hline
-    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & - & - \\
+    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & - & OK \\
     \hline
-    \textbf{3} & Navigate to and select 'Finish selecting' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms is displayed & & \\
+    \textbf{3} & Navigate to and select 'Finish selecting' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms is displayed & & OK\\
     \hline
-    \textbf{4} & 'Deny' is selected & All rooms are deselected & - & - \\ 
+    \textbf{4} & 'Deny' is selected & All rooms are deselected & - & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Extension 3 - The dispensary nurse selects the "Deny" option}
@@ -228,25 +228,25 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & - & - \\ 
+    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & - & OK \\ 
     \hline
-    \textbf{2} & Press the Action button & [Wireshark]A request to fetch routes is sent from the car to the server & - & - \\
+    \textbf{2} & Press the Action button & [Wireshark]A request to fetch routes is sent from the car to the server & Post men ingen get & OK ? \\
     \hline
-    \textbf{3} & Look at the LEDs & The green LED is on & - & - \\
+    \textbf{3} & Look at the LEDs & The green LED is on & - & OK \\
     \hline
-    \textbf{4} & Prepare a timer to time the system & User is ready to time the system & - & - \\
+    \textbf{4} & Prepare a timer to time the system & User is ready to time the system & - & OK \\
     \hline
-    \textbf{5} & Press the Action button and start the timer & The green LED turns off and after a maximum of 5 seconds the car starts driving & - & - \\
+    \textbf{5} & Press the Action button and start the timer & The green LED turns off and after a maximum of 5 seconds the car starts driving & - & OK \\
     \hline
-    \textbf{6} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & - & - \\
+    \textbf{6} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & Ikke super præcis men semi & OK \\
     \hline
-    \textbf{8} & Press the Action button and start the timer & The green LED turns off and the car starts driving & - & - \\
+    \textbf{8} & Press the Action button and start the timer & The green LED turns off and the car starts driving & - & OK \\
     \hline
-    \textbf{9} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & - & - \\
+    \textbf{9} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & Same den er lidt off & OK \\
     \hline
-    \textbf{10} & Press the Action button & The green LED turns off and the car starts driving & - & - \\
+    \textbf{10} & Press the Action button & The green LED turns off and the car starts driving & - & OK \\
     \hline
-    \textbf{11} & Wait for car to arrive at homebase & The car is idle at homebase & - & - \\
+    \textbf{11} & Wait for car to arrive at homebase & The car is idle at homebase & Igen lander den et stykke væk fra målet & OK \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Main scenario}
@@ -268,13 +268,13 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & - & - \\ 
+    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & - & OK \\ 
     \hline
-    \textbf{2} & Press the action button & [Wireshark] A request to fetch routes is sent to the server & - & - \\ 
+    \textbf{2} & Press the action button & [Wireshark] A request to fetch routes is sent to the server & - & OK \\ 
     \hline
-    \textbf{3} & Prepare a timer & The user is ready to time the system & - & - \\ 
+    \textbf{3} & Prepare a timer & The user is ready to time the system & - & OK \\ 
     \hline
-    \textbf{4} & Observe LEDs & [Wireshark] The green LED starts blinking for 5 seconds, then the car enters idle mode & - & - \\ 
+    \textbf{4} & Observe LEDs & [Wireshark] The green LED starts blinking for 5 seconds, then the car enters idle mode & - & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Exception 1 - No available routes}
@@ -299,7 +299,7 @@
     \hline
     \textbf{1} & Observe the LEDs & [Visual test]The red LED starts blinking & - & - \\ 
     \hline
-    \textbf{2} & Wait 15 seconds & The red LED stops blinking and the car enters idle mode & - & - \\ 
+    \textbf{2} & Wait 15 seconds & The red LED stops blinking and the car enters idle mode & Ikke implementeret & FAIL \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Exception 2 -  Network Error}
@@ -321,9 +321,9 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Press the Action button & The green LED turns off, and the cars starts driving & - & - \\ 
+    \textbf{1} & Press the Action button & The green LED turns off, and the cars starts driving & - & OK \\ 
     \hline
-    \textbf{2} & Return to point 10 in the main scenario & The car resumes from point 10  & & \\ 
+    \textbf{2} & Return to point 10 in the main scenario & The car resumes from point 10 &  & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Extension 1 -  Remaining locations in the route (excl. homebase) }
