@@ -168,7 +168,11 @@ Below are the individule conclusions from each group memember, refelcting back o
 
 
 ### Christopher Frank Jørgensen  
+It was easy to feel a difference in our project group, now that we can pick who we want to work with. It felt a lot better to work with people you knew you could work with. Even though it did end up that I would easily get chatty with the others and then procrastinate the work. We do know now that we should have had more communication in the group. Especially myself with hearing if people need help, as people in the group have also been asking for help with verifying that what they did was good, I should have been a lot better at helping people out with that. In general, I wasn’t very focused on what needed to be done.  
 
+I also made very poor hardware decisions, with the parts i needed to handle, to the point where someone else needed to handle it. In the future I will not let that happen again, and I will be more open to needing help. Using GitHub for the report was very likely not the right choice. I think we should go back to using overleaf to handle all the report work next semester. Using GitHub for everything else, all our files, were very nice as it was very easy to find what you were looking for and everything stayed organized. We could also very easily see what was committed to the repository, so it was easy to follow where things were going wrong.  
+
+Overall, the experience of this project was the most enjoyable out of all the semesters so far, and I'm expecting the next to be even better. Working with our current advisor was also good, as she pushed us in the right direction. I think we could also have been way better at following our timeline, as it ended in us finding hardware issues way too late. In relation to next semester, I would love to work with a lot of the same people as this semester.  
 
 ### Daniel Jenrich Svendsen  
 
