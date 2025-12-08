@@ -1,0 +1,58 @@
+@startuml SD UC2 - Create Delivery - PC
+
+<style>
+note {
+  MaximumWidth 150
+}
+</style>
+
+mainframe **SD** UC2 - Create Delivery
+hide footbox
+
+actor "Dispensary Nurse" as dn <<actor>>
+participant "Input" as in <<boundary>>
+participant "TUI" as tui <<control>>
+participant "Console" as cs <<boundary>>
+participant "Button" as b <<boundary>>
+'participant "TextElement" as te <<boundary>>
+'participant "StatefulButton" as sb <<boundary>>
+participant "HTTPHandler" as http <<domain>>
+
+'1. TUI active/open TUI
+tui++ 
+
+'2. TUI displays message and list of rooms
+tui -> cs : setup()
+
+'3.
+cs++
+cs--
+
+'5.
+tui -> tui: print_elements()
+
+'6.
+loop Tui:is_running()
+dn ->> in++ : **Keybord button pressed**
+in--
+tui -> in++ : update_input()
+in -> in : read_input()
+'extra hidden arrow for plantuml aligment
+in -[hidden]-> in
+in--
+tui -> in++ : get_input()
+in --> tui : key
+in--
+opt key == ENTER
+note over cs : This action function will vary depending on which button is actually selected in the UI. I.e. if you hit enter on the 'Confirm' button it'll send the HTTP request, or the 'Close UI' which closes the UI.
+tui -> b++ : action()
+note over http : This is for the specific case where the 'Confirm' button in the popup is selected
+b -> http++ : post(routes)
+http--
+b--
+
+end
+tui -> tui : print_elements()
+end 
+
+@enduml
