@@ -1,3 +1,58 @@
+---
+title: "SW3 Semester Project"
+subtitle: "Self Driving Medicine Delivering System"
+date: "12/12/2025"
+fontsize: 12pt
+geometry: margin=2cm
+---
+
+\begin{center}
+
+
+
+\vspace{1cm}
+
+
+\vspace{2cm}
+
+\begin{tabular}{r r r}
+\hline
+\textbf{Students} & \textbf{Student number} & \textbf{Initials} \\
+\hline
+Johan Høffner & 202409238 & JH \\
+Line Nystrup Klemensen & 202407497 & LK \\
+Nicolai Broholm Hansen & 202409080 & NH \\
+Frederik Vagn Lorenzen & 202406665 & FL \\
+Daniel Jenrich Svendsen & 202408416 & DS \\
+Mikkel Kristiansen & 202301563 & MK \\
+Kasper Ørtoft Rasmussen & 202207121 & KR \\
+Christopher Frank Jørgensen & 202300791 & CJ \\
+\hline
+\end{tabular}
+
+\vspace{1.5cm}
+
+\textbf{Project Counselor} \\
+“Jenny” Jung Min Kim
+
+\vspace{2cm}
+
+Submission date: \textbf{12-12-2025} \\[6mm]
+
+
+
+University Name: Aarhus University \\
+Degree / Program: Software Engineering
+
+\end{center}
+
+\clearpage
+
+# Index
+
+\newpage
+
+
 # Method and Process
 In this project, specific tools have been utilized to ensure a clean, systematic and well documented process from idea to prototype. The methods used have been is a combination of requirements specifications, technical assesments, analyses and design. All of these choices have been made with the purpose of creating a solid fundation for implementation.
 
@@ -107,7 +162,38 @@ Through this project the group has not experienced many challenges that would co
 However both of these conflicts was handled swiftly with discord being used to communicate with the absent memember and a vote was had for code etiquette, with the stimulation that there were no hard feelings after the vote.
 
 ## Conclusion  
-This project have been a challenging and teaching experience, we have had free oppertunity to choose our own project based on the perameters placed by the project supervisor. This have given space to find a interesting project to dive down into. Through this project scrum have been used to keep track of the progess and stay on top of the work through out the process. Furthermore have the insight profils 
+This project have been a challenging and teaching experience, we have had free oppertunity to choose our own project based on the perameters placed by the project supervisor. This have given space to find a interesting project to dive down into. Through this project scrum have been used to keep track of the progess and stay on top of the work through out. Furthermore insight profils have been used to find the missing memember of the group to make sure the group was more well rounded as we thought that would make more sense and be a good tool to make sure the group was not compeletly one sided.  
+
+Below are the individule conclusions from each group memember, refelcting back on the project. Both in terms of how the group work felt, and how the work went but also what could have gone better aswell as reflecting on what to do and not to do next semester.
+
+
+### Christopher Frank Jørgensen  
+
+
+### Daniel Jenrich Svendsen  
+
+
+### Frederik Vagn Lorenzen  
+
+
+### Johan Høffner  
+
+
+### Kasper Ørtoft Rasmussen  
+This project have been both very hard and very rewarding. The project as a whole have been very open in terms of what each group have wanted to do and design. Were as this normally would have cost me allot of trouble, do to decision paralayzis, this semester it has not been an issue at all due to other people in the group being very creative and generally good at idea creation. Using scrum for this semester have personally been a victory since it sets clear expectations and deadlines for when different parts of the project have to be done. The group work itself have for the most part been excellent and have functioned well due to everyone in the groups willingness to help were needs be and not being afraid to admit they needed help.  
+
+This however did also open the door to the only and biggest problem that I felt like we had as a group. That being some if not most memembers are very independt thinking people, which would result in some people showing up having made huge steps forward in the work while others did not. Which could sometimes lead to the feeling of being lazy or even abit behind. However most of the instances of this happning was later dicussed and everyone got caught up on the work.  
+
+Personally for the future I would say a big step that needs to be taking, is to better organize how and when work is done. This also includes better using and maintaining the timetable. 
+
+### Line Nystrup Klemensen  
+
+
+### Mikkel Kristiansen  
+
+
+### Nicolai Broholm Hansen  
+
 
 ## Sources
 \newpage
