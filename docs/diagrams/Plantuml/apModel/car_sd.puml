@@ -63,8 +63,8 @@ loop true
             m ->> m : gpiod_line_set_value(g_led_line, 0) : void
             loop for each point in path
                 m -> dr : calc_route(int, int) : point<double>
-                dr -->> m : angle, distance
-                m -> mc : turn(double angle)
+                dr -->> m : degrees, distance
+                m -> mc : turn(double degrees)
                 m -> mc : drive_distance(double distance)
             end
         end
