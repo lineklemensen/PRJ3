@@ -16,9 +16,9 @@
     \multicolumn{5}{|c|}{} \\ 
     \hline \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\ 
     \hline 
-    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and monitoring the local network & - & - \\ 
+    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and monitoring the local network & The network is being monitored & OK \\ 
     \hline 
-    \textbf{2} & Press the 'Power' button & [Wireshark] shows the car successfully establishing a connection to the local network and the red LED turns on & - & - \\ 
+    \textbf{2} & Press the 'Power' button & [Wireshark] shows the car successfully establishing a connection to the local network and the red LED turns on & The car turns on but doesn't connect to network & FAIL \\ 
     \hline 
 \end{tabularx} 
 \caption{Acceptance test - Use Case 1 - Main scenario} 
@@ -39,7 +39,7 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Press the 'Power' button & The red LED does not turn on & - & - \\ 
+    \textbf{1} & Press the 'Power' button & The red LED does not turn on & The LED doesn't turn on & OK \\ 
     \hline 
 \end{tabularx}
 \caption{Acceptance test - Use Case 1 - Exception 1 - No power on the battery}
@@ -61,7 +61,7 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline 
-    \textbf{1} & Press the 'Power' button & The red LED starts to blink & - & - \\ 
+    \textbf{1} & Press the 'Power' button & The red LED starts to blink & Not implemented & FAIL \\ 
     \hline 
 \end{tabularx}
 \caption{Acceptance test - Use Case 1 - Exception 2 - Connection to network fails}
@@ -85,19 +85,19 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Monitor the local network the RPI's are using with Wireshark & Wireshark is opened and is monitoring the local network & The network is being monitored & OK \\
+    \textbf{1} & Monitor the local network the RPI's are using with Wireshark & Wireshark is opened and is monitoring the local network & Wireshark is monitoring the network & OK \\
     \hline
-    \textbf{2} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & The message appears & - \\ 
+    \textbf{2} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & The message appears on the TUI & OK \\ 
     \hline
-    \textbf{3} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & The rooms are marked & - \\
+    \textbf{3} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & The chosen rooms are marked on the TUI & OK \\
     \hline
-    \textbf{4} & Navigate to and select 'Finish' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms appears & The list appears & - \\
+    \textbf{4} & Navigate to and select 'Finish' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms appears & The list of chosen rooms appears on the TUI & OK \\
     \hline
-    \textbf{5} & 'Confirm' is selected & [Wireshark] A route is sent to the server & A route is sent & - \\ 
+    \textbf{5} & 'Confirm' is selected & [Wireshark] A route is sent to the server & Wireshark shows a package being sent and the server has received the route & OK \\ 
     \hline
-    \textbf{6} & Open the text file "logger.txt" on the server and check the contents & The file contains the list of selected rooms (1, 2 and 3) & The route is contained on server & \\
+    \textbf{6} & Open the text file "logger.txt" on the server and check the contents & The file contains the list of selected rooms (1, 2 and 3) & The route is contained in "logger.txt" on the server & OK\\
     \hline
-    \textbf{8} & Look at the UI & The Terminal UI displays "The route has been successfully made" & & \\
+    \textbf{8} & Look at the UI & The Terminal UI displays "The route has been successfully made" & Fail for nu & FAIL for nu \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Main scenario}
@@ -120,11 +120,11 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & - & OK \\ 
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & The message is displayed correctly on the TUI & OK \\ 
     \hline
-    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & - & OK \\
+    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & The chosen rooms are marked on the TUI & OK \\
     \hline
-    \textbf{3} & Navigate to and select 'Clear' & All rooms are deselected & All rooms are deselected & OK \\
+    \textbf{3} & Navigate to and select 'Clear' & All rooms are deselected & All rooms are deselected on the TUI & OK \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Exception 1 - The dispensary nurse selects the "Clear" option}
@@ -146,11 +146,11 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & - & OK \\ 
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & The message is displayed on the TUI & OK \\ 
     \hline
-    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & - & OK \\
+    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & The chosen rooms are marked on the TUI & OK \\
     \hline
-    \textbf{3} & Select rooms 2 and 3 again & Rooms 2 and 3 will be unselected & - & OK \\
+    \textbf{3} & Select rooms 2 and 3 again & Rooms 2 and 3 will be unselected & The chosen rooms are unselected on the TUI & OK \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Extension 1 - Room is already added}
@@ -173,9 +173,9 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & - & OK \\ 
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & The message is displayed on the TUI & OK \\ 
     \hline
-    \textbf{2} & Press confirm before selecting any rooms & An error message is displayed on the UI. Return to point 2 in the main scenario & Fail for nu, lav video & Fail for nu \\
+    \textbf{2} & Press confirm before selecting any rooms & An error message is displayed on the UI. Return to point 2 in the main scenario & Fail for nu & Fail for nu \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Extension 2 - No rooms were selected}
@@ -196,13 +196,13 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & - & OK \\ 
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & The message is displayed on the TUI & OK \\ 
     \hline
-    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & - & OK \\
+    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & The rooms are marked TUI & OK \\
     \hline
-    \textbf{3} & Navigate to and select 'Finish selecting' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms is displayed & & OK\\
+    \textbf{3} & Navigate to and select 'Finish selecting' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms is displayed & The list of rooms is displayed on the TUI & OK\\
     \hline
-    \textbf{4} & 'Deny' is selected & Popup closes & - & OK \\ 
+    \textbf{4} & 'Deny' is selected & Popup closes & The popup is closed & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Extension 3 - The dispensary nurse selects the "Deny" option}
@@ -226,25 +226,25 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & - & OK \\ 
+    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & Wireshark is monitoring the network & OK \\ 
     \hline
-    \textbf{2} & Press the Action button & [Wireshark]A request to fetch routes is sent from the car to the server & Post men ingen get & OK ? \\
+    \textbf{2} & Press the Action button & [Wireshark]A request to fetch routes is sent from the car to the server & A post is sent but get is not visible & OK ? \\
     \hline
-    \textbf{3} & Look at the LEDs & The green LED is on & - & OK \\
+    \textbf{3} & Look at the LEDs & The green LED is on & The green LED is turned on & OK \\
     \hline
-    \textbf{4} & Prepare a timer to time the system & User is ready to time the system & - & OK \\
+    \textbf{4} & Prepare a timer to time the system & User is ready to time the system & The system is being timed & OK \\
     \hline
-    \textbf{5} & Press the Action button and start the timer & The green LED turns off and after a maximum of 5 seconds the car starts driving & - & OK \\
+    \textbf{5} & Press the Action button and start the timer & The green LED turns off and after a maximum of 5 seconds the car starts driving & The green LED turns off and the car starts driving immediately & OK \\
     \hline
-    \textbf{6} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & Ikke super præcis men semi & OK \\
+    \textbf{6} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & The car turns and drives in the pattern of the map, but it sometimes over/underturns & OK ?\\
     \hline
-    \textbf{8} & Press the Action button and start the timer & The green LED turns off and the car starts driving & - & OK \\
+    \textbf{8} & Press the Action button and start the timer & The green LED turns off and the car starts driving & The LED turns off and the car starts driving immediately & OK \\
     \hline
-    \textbf{9} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & Same den er lidt off & OK \\
+    \textbf{9} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & Again, it drives in a pattern that matches the map, but it is not very precise & OK ?\\
     \hline
-    \textbf{10} & Press the Action button & The green LED turns off and the car starts driving & - & OK \\
+    \textbf{10} & Press the Action button & The green LED turns off and the car starts driving & The LED is off and the car starts driving & OK \\
     \hline
-    \textbf{11} & Wait for car to arrive at homebase & The car is idle at homebase & Igen lander den et stykke væk fra målet & OK \\
+    \textbf{11} & Wait for car to arrive at homebase & The car is idle at homebase & Same as point 6 / 9 & OK ? \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Main scenario}
@@ -266,13 +266,13 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & - & OK \\ 
+    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & Wireshark is monitoring the network & OK \\ 
     \hline
-    \textbf{2} & Press the action button & [Wireshark] A request to fetch routes is sent to the server & - & OK \\ 
+    \textbf{2} & Press the action button & [Wireshark] A request to fetch routes is sent to the server & Same as main scenario point 2 & OK \\ 
     \hline
-    \textbf{3} & Prepare a timer & The user is ready to time the system & - & OK \\ 
+    \textbf{3} & Prepare a timer & The user is ready to time the system & The user is timing the system & OK \\ 
     \hline
-    \textbf{4} & Observe LEDs & [Wireshark] The green LED starts blinking for 5 seconds, then the car enters idle mode & - & OK \\ 
+    \textbf{4} & Observe LEDs & The green LED starts blinking for 5 seconds, then the car enters idle mode & The LED blinks for 5 seconds & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Exception 1 - No available routes}
@@ -293,11 +293,11 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Prepare a timer & The user is ready to time the system & - & - \\ 
+    \textbf{1} & Prepare a timer & The user is ready to time the system & Timer is ready & OK \\ 
     \hline
-    \textbf{1} & Observe the LEDs & [Visual test]The red LED starts blinking & - & - \\ 
+    \textbf{1} & Observe the LEDs & [Visual test]The red LED starts blinking & Not implemented & FAIL \\ 
     \hline
-    \textbf{2} & Wait 15 seconds & The red LED stops blinking and the car enters idle mode & Ikke implementeret & FAIL \\ 
+    \textbf{2} & Wait 15 seconds & The red LED stops blinking and the car enters idle mode & Not implemented & FAIL \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Exception 2 -  Network Error}
@@ -319,9 +319,9 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Press the Action button & The green LED turns off, and the cars starts driving & - & OK \\ 
+    \textbf{1} & Press the Action button & The green LED turns off, and the cars starts driving & The green LED turns off and the car starts driving immediately & OK \\ 
     \hline
-    \textbf{2} & Return to point 10 in the main scenario & The car resumes from point 10 &  & OK \\ 
+    \textbf{2} & Return to point 10 in the main scenario & The car resumes from point 10 & The car continues route as expected & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Extension 1 -  Remaining locations in the route (excl. homebase) }
@@ -344,7 +344,7 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Press the Power button & The car terminates all driving instructions and powers off safely & - & - \\ 
+    \textbf{1} & Press the Power button & The car terminates all driving instructions and powers off safely & The car turned off after the second click & OK ?? \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 4 - Main scenario}
@@ -354,94 +354,6 @@
 \newpage
 
 # Nonfunctional Requirements
-
-\begin{longtable}{|p{0.19\textwidth}|p{0.19\textwidth}|p{0.19\textwidth}|p{0.19\textwidth}|p{0.11\textwidth}|}
-\hline
-\textbf{Requirement under test} & \textbf{Action} & \textbf{Expected Result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\  
-\hline
-Functionality 1 - Car requests routes from server & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase}\\
-\hline
-1 & Open Wireshark to monitor the local network & Wireshark is monitoring the local network & - & -\\
-\hline
-2 & Press the action button & [Wireshark] The car sends a request to the server, and the server responds & - & -\\
-\hline
-Functionality 2 - Car continues route & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at destination}\\
-\hline
-1 & Press the action button & The car starts driving to continue its route & - & -\\
-\hline
-Usability 1 - The car is equipped with two LEDs & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase}\\
-\hline
-1 & Inspect the car & [Visual test] On the car is two LEDs, one green and one red & - & -\\
-\hline
-Usability 2 - The car is equipped with a speaker & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase, server is running and has <1 routes stored}\\
-\hline
-1 & Press the action button & When the green LED turns on, a sound is also played to indicate the car is ready to execute route & - & -\\
-\hline
-Usability 3 - User guide !!!!!!!!!!!!!!!!!!!!!!!!!!!! & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{A user guide has been written ???????}\\
-\hline
-1 & Write a user guide ???? & A user guide has been written ?????? & - & -\\
-\hline
-Usability 4 - User guide & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase}\\
-\hline
-1 & Read the user guide & The user guide includes troublehooting for 5 common error-scenarios & - & -\\
-\hline
-Usability 5 - Buttons on car & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase}\\
-\hline
-1 & Inspect the car & [Visual test]The car is equipped with two buttons labelled 'Action' and 'Power' & - & -\\
-\hline
-Usability 6 - UI & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase}\\
-\hline
-1 & Start creating route on client & A UI opens & - & -\\
-\hline
-Usability 7 - Text on UI & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle at homebase}\\
-\hline
-1 & Open the Client UI & The size of text in the UI is > 14pt, and the color of the text is a contrasting color to the background  & - & -\\
-\hline
-2 & Shine a flashlight at the screen or recreate a high-light environment in another way & The text in the UI is still readable & - & -\\
-\hline
-Reliability 1 - Continuous driving & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{The car is fully charged and 10+ routes are ready in server}\\
-\hline
-1 & Start a timer & The user is timing the system & H & H\\
-\hline
-2 & Press the action button & The car requests and receives a route, and the green LED turns on & H & H\\
-\hline
-3 & Press the action button & The car starts driving, and arrives at next destination & H & H\\
-\hline
-4 & Repeat point 3 until car is back at homebase & The car is at homebase and ready to request another route & H & H\\
-\hline
-5 & Repeat point 1 to 4 until 65 minutes have passed(To account for delays when fetching/continuing routes, etc.) & 65 minutes have passed and the car is still executing routes without issues & H & H\\
-\hline
-Reliability 2 - Continuous running of server & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Server is running and car is idle at homebase}\\
-\hline
-1 & Prepare and start a timer or stopwatch & The user is tracking the time & H & H\\
-\hline
-2 & Wait until 6 hours have passed, then press the action button on the car to request a route & The route is fetched without issues & H & H\\
-\hline
-Reliability 3 - Continuous running of server & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Server is running and car is idle at homebase}\\
-\hline
-1 & Prepare and start a stopwatch or timer & The timer/stopwatch is tracking the time & H &\\
-\hline
-2 & Remove the current battery from the car & The battery is removed successfully & H & H\\
-\hline
-3 & Install a new battery in the car & The new battery is installed successfully & H & H\\
-\hline
-4 & Stop the stopwatch/timer & Less then 10 minutes have passed & H & H\\
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-\hline
-1 & Press the action button & The green LED lights up & H & H\\
-\hline
-2 & Press the action button & The car starts executing route & H & H\\
-\hline
-3 & Wait for car to arrive at destination & The car is at destination, and green LED is on & H & H\\
-\hline
-4 & Repeat point 2 to 3 until route is complete & The car is idle at homebase & H & H\\
-\hline
-5 & Repeat step 1 to 4 until 10 routes have been completed in total & The car completed at least 9 routes & H & H\\
-\hline
-\end{tabularx}
-\caption{Acceptance test - Reliability 4}
-\end{table}
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
