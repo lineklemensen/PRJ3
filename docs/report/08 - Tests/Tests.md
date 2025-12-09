@@ -1,5 +1,27 @@
 # Tests
-\newpage
+
+## Calculate route
+DR is the class used for calculating the length and angle needed to drive from where the car currently is and where it needs to be. Testing this class, I put in every variation of points so that it would have to turn in every 90 degree turn available. This way there was an easy way to keep track of when the turn needed to be negative depending on where the car came from. The unit circle was used in deciding wether the turn was to be negative or positive. 
+
+| Input X | Input Y | Expected output in degrees | Actual result |
+| :-----: | :-----: | :------------------------: | :-----------: |
+|    4    |    0    |             0              |       0       |
+|    4    |    8    |             90             |      90       |
+|    6    |    8    |            -90             |      -90      |
+|    6    |    2    |            -90             |      -90      |
+|    8    |    2    |             90             |      90       |
+|    8    |   10    |             90             |      90       |
+|    4    |   10    |             90             |      90       |
+|    4    |    6    |             90             |      90       |
+|    2    |    6    |            -90             |      -90      |
+|    2    |    8    |            -90             |      -90      |
+|    2    |    4    |            180             |      180      |
+
+The first and last point inputted in the above table, is special cases handled independently in the code, to set the outputted angle to either 0 if the current point is our homebase, or if the angle is zero as it will only be that if we have to turn around.
+
+
+
+
 
 ## PID regulating
 
