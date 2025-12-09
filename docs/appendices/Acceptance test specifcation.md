@@ -87,19 +87,17 @@
     \hline
     \textbf{1} & Monitor the local network the RPI's are using with Wireshark & Wireshark is opened and is monitoring the local network & The network is being monitored & OK \\
     \hline
-    \textbf{2} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & The message appears & - \\ 
+    \textbf{2} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & The message appears & - \\ 
     \hline
     \textbf{3} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & The rooms are marked & - \\
     \hline
-    \textbf{4} & Navigate to and select 'Finish route' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms appears & The list appears & - \\
+    \textbf{4} & Navigate to and select 'Finish' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms appears & The list appears & - \\
     \hline
     \textbf{5} & 'Confirm' is selected & [Wireshark] A route is sent to the server & A route is sent & - \\ 
     \hline
-    \textbf{6} & Open the text file "routes.txt" on the server and check the contents & The file contains the list of selected rooms (1, 2 and 3) & The route is contained on server & \\
+    \textbf{6} & Open the text file "logger.txt" on the server and check the contents & The file contains the list of selected rooms (1, 2 and 3) & The route is contained on server & \\
     \hline
-    \textbf{8} & Look at the UI & The Terminal UI displays "The route has been successfully made" and "Press Enter to close the UI" & Failed for now & - \\
-    \hline
-    \textbf{9} & Press Enter & The Terminal UI closes & - & - \\
+    \textbf{8} & Look at the UI & The Terminal UI displays "The route has been successfully made" & & \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Main scenario}
@@ -108,13 +106,13 @@
 
 \newpage
 
-### Exception 1 - The dispensary nurse selects the "Cancel" option
+### Exception 1 - The dispensary nurse selects the "Clear" option
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
     \multicolumn{2}{|l|}{\textbf{Use case under test:}} & \multicolumn{3}{l|}{Use case 2 - Create route } \\ 
     \hline
-    \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 1 - The dispensary nurse selects the "Cancel" option }\\  
+    \multicolumn{2}{|l|}{\textbf{Scenario:}} & \multicolumn{3}{l|}{ Extension 1 - The dispensary nurse selects the "Clear" option }\\  
     \hline
     \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The server is running} \\
     \hline
@@ -122,14 +120,14 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & - & OK \\ 
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & - & OK \\ 
     \hline
     \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & - & OK \\
     \hline
-    \textbf{3} & Navigate to and select 'Cancel route' & All rooms are deselected and the Terminal UI closes & All rooms are deselected & OK \\
+    \textbf{3} & Navigate to and select 'Clear' & All rooms are deselected & All rooms are deselected & OK \\
     \hline
 \end{tabularx}
-\caption{Acceptance test - Use Case 2 - Exception 1 - The dispensary nurse selects the "Cancel" option}
+\caption{Acceptance test - Use Case 2 - Exception 1 - The dispensary nurse selects the "Clear" option}
 \label{tab:at-usecase2exception1}
 \end{table}
 
@@ -148,7 +146,7 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & - & OK \\ 
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & - & OK \\ 
     \hline
     \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & - & OK \\
     \hline
@@ -175,7 +173,7 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & - & OK \\ 
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & - & OK \\ 
     \hline
     \textbf{2} & Press confirm before selecting any rooms & An error message is displayed on the UI. Return to point 2 in the main scenario & Fail for nu, lav video & Fail for nu \\
     \hline
@@ -198,13 +196,13 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and cancel option appear as well & - & OK \\ 
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & - & OK \\ 
     \hline
     \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & - & OK \\
     \hline
     \textbf{3} & Navigate to and select 'Finish selecting' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms is displayed & & OK\\
     \hline
-    \textbf{4} & 'Deny' is selected & All rooms are deselected & - & OK \\ 
+    \textbf{4} & 'Deny' is selected & Popup closes & - & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Extension 3 - The dispensary nurse selects the "Deny" option}
