@@ -21,11 +21,12 @@ The first and last point inputted in the above table, is special cases handled i
 
 
 
-
-
 ## PID regulating
 
-Pid is a class for controlling the acceleration of the motors and precisely hitting a specific location. This class was tested by creating a simulation of an encoder. This was done to separate the class from hardware. The class contains a bunch of setter and getter functions for all the different tuning parameters. These were all tested by calling the setter function and then calling the getter function and printing the result.
+The Pid class is responsible for controlling motor acceleration and accurately driving the system toward a target position. To validate the controller independently from the hardware, the class was tested using a software-simulated encoder, allowing repeatable and deterministic testing.
+
+\textbf{Parameter Accessors}  
+The class provides setter and getter functions for all tuning parameters (e.g., kp, ki, kd, dt, output limits, and ramp limits). These accessors were verified by setting each parameter and immediately reading it back:
 
 ```cpp
 Pid pid;
@@ -44,9 +45,17 @@ std::cout << "PID parameters set:\n"
             << "  kd=" << pid.get_kd() << "\n";
 ```
 
-Aside from those functions the class also contains a reset function that sets a bunch of values used by the update function to zero. And a squash function that ensures that the pwm value never exceeds the max and min values. These were tested by running the update function and observing the result.
+\textbf{Auxiliary Functions}  
+Besides the accessors, the class includes:
 
-The update function is tested by running a loop that calls the update function repeatedly and simulates the encoder according to the result. Then the pwm value and position is written into a csv file. Using a python script those values are then read with pandas and plotted using matplotlib.
+reset() — clears all internal state variables used by the update loop (integral term, previous error, etc.).
+
+squash() — clamps the controller output to the configured min_output and max_output values to protect the motor driver.
+
+These were validated indirectly by observing changes in the controller behavior during runtime.
+
+\textbf{Update-Loop Testing}  
+The core of the testing focused on the update() function. A closed-loop simulation was created where the PID output controls a virtual motor encoder. Each iteration computes a new PWM command, updates the simulated position, and logs the results:
 
 ```cpp
 for (int i = 0; i < 200; i++)
@@ -78,3 +87,4 @@ for (int i = 0; i < 200; i++)
         }
     }
 ```
+The resulting CSV file was analyzed using a Python script that loads the data via pandas and visualizes the controller response using matplotlib. These plots allowed evaluation of settling time, overshoot, stability, and convergence behavior.
