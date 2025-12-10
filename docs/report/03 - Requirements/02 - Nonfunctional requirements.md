@@ -27,9 +27,6 @@
    1. The car must be ready for operation within 1 minute of power-on.
    2. The car must drive at an maximum speed of 5 km/h.
 
-## Supportability {-}
-
-
 ## + {-}
 
 1. Constraints
