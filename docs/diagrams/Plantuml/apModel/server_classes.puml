@@ -1,0 +1,31 @@
+@startuml ServerClasses
+
+skinparam {
+    packageStyle rectangle
+    Linetype ortho
+    ClassAttributeIconSize 0
+}
+
+class "RouteHandler" as h <<domain>>
+{
+    RouteHandler(RouteCollection routes)
+    + on_get_route() : request_handling_status_t
+    + on_post_route() : request_handling_status_t
+    -{static}init_resp(resp : RESP) : RESP
+    -{static}mark_as_bad_request(auto& resp) : void
+}
+
+class "LogHandler" as l
+{
+    + append(log: string) : void
+    + read() : string
+    - fd_ : int
+    - PATH_ : string
+}
+
+
+
+
+h --> l
+
+@enduml

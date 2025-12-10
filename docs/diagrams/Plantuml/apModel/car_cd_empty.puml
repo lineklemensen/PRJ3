@@ -1,0 +1,43 @@
+@startuml CarClasses
+
+skinparam {
+    packageStyle rectangle
+    Linetype ortho
+    ClassAttributeIconSize 0
+}
+
+
+class "MotorController" as mc <<boundary>>
+{
+}
+
+class "PID" as pid <<domain>>
+{
+}
+
+class "Astar" as a <<domain>>
+{
+}
+
+class "DR" as dr <<domain>>
+{
+}
+
+class "HttpHandler" as http <<boundary>>
+{
+}
+
+class "RPi_pwm" as rp <<boundary>>
+{
+}
+
+class "Encoder" as enc <<boundary>>
+{
+}
+
+class "main" as m <<control>>
+{
+}
+
+
+@enduml

@@ -1,0 +1,198 @@
+dont cut any functions out
+
+@startuml CarClasses
+
+skinparam {
+    packageStyle rectangle
+    Linetype ortho
+    ClassAttributeIconSize 0
+}
+
+
+class "MotorController" as mc <<boundary>>
+{
+    -chipname : const char*
+    -A1_gpio_ : int
+    -B1_gpio_ : int
+    -A2_gpio_ : int
+    -B2_gpio_ : int
+    -chip_ : gpiod_chip*
+    -A1_line_ : gpiod_line*
+    -B1_line_ : gpiod_line*
+    -A2_line_ : gpiod_line*
+    -B2_line_ : gpiod_line*
+    -encoder_left_ : Encoder
+    -encoder_right_ : Encoder
+    -pwm_left_ : RPi_pwm
+    -pwm_right_ : RPi_pwm
+    -pid_left_ : PID
+    -pid_right_ : PID
+    +MotorController()
+    +~MotorController()
+    +drive(speed_left : int, speed_right : int) : void
+    +set_direction(left_forward : bool, right_forward : bool) : void
+    +print_encoder_pos() : void
+    +turn(degrees) : void
+    +drive_distance(distance) : void
+}
+
+class "PID" as pid <<domain>>
+{
+    -dt_ : double
+    -max_ctrl_value_ : double
+    -min_ctrl_value_ : double
+    -kp_ : double
+    -ki_ : double
+    -kd_ : double
+    -error_sum_ : double
+    -previous_error_ : double
+    -unsigned long n_ : double
+    -last_ctrl_ : double
+    -ramp_limit_ : double
+    -squash(value) const : double
+    +Pid() : void
+    +Pid(dt : double, max_ctrl_value : double)
+    +set_kp(double kp) : void
+    +set_ki(double ki) : void
+    +set_kd(double kd) : void
+    +set_dt(double dt) : void
+    +set_max_output(double max_val) : void
+    +set_min_output(double min_val) : void
+    +set_ramp_limit(double ramp) : void
+    +double get_dt() const : double
+    +double get_kp() const : double
+    +double get_ki() const : double
+    +double get_kd() const : double
+    +reset() : void
+    +update(set_value : double, current_value : double, ctrl_value : double *, integration_threshold : double) : int
+}
+
+class "Astar" as a <<boundary>>
+{
+    -ROWS : int
+    -COLS : int
+    -is_valid(p : Point) const : bool
+    -is_unblocked(p : Point) const : bool
+    -trace_path(cell_details[][COLS] : cell, dest : Point, route : std::vector<Point>&) const : void
+    +calculate_path(r : Route) : std::vector<std::vector<Point>>
+    +aStar_search(src : Point, dest : Point) : std::vector<Point>
+    +create_rooms(r : Route) : std::vector<Point>
+}
+
+class "Point"
+{
+    -x : int
+    -y : int
+    +Point()
+    +Point(x : int, y : int)
+    +operator==(other : Point) : bool
+    +operator+(other : Point) : Point
+    +distance(p1 : Point, p2 : Point) : double
+}
+
+class "Route"
+{
+    +room1 : bool
+    +room2 : bool
+    +room3 : bool
+}
+
+class "cell"
+{
+    +p : Point
+    +total_cost : double
+    +start_cost : double
+    +cost_to_dest : double
+}
+
+class "PriorityPoint"
+{
+    +f_cost : double
+    +point : Point
+    +operator>=(other : PriorityPoint) : bool
+}
+
+a --> "1..*" Point
+a --> Route
+a --> cell 
+a --> PriorityPoint
+
+class "DR" as dr <<domain>>
+{
+
+    +current_pos : std::pair <double, double>
+    +last_pos : std::pair <double, double>
+    +DR()
+    +calc_route(next_pos : std::pair <double, double>) : std::pair <double, double>
+}
+
+class "HttpHandler" as http <<boundary>>
+{
+    +get_route(res : httplib::Result *) : static void
+}
+
+class "RPi_pwm" as rp <<boundary>>
+{
+    -per : int
+    -chip_path : std::string
+    -pwm_path : std::string
+    -set_period(ns : int) const : void
+    -set_duty_cycle_ns(ns : int) const : int
+    -enable() const : void
+    -disable() const :void
+    -write_sys(filename : std::string , value : int) const : int
+    +RPi_pwm()
+    +~RPi_pwm()
+    +start(channel : int, chip : int, frequency : int) : int
+    +stop() noexcept : void
+    +set_duty_cycle(p : float) const : int
+}
+
+class "Encoder" as enc <<boundary>>
+{
+
+
+    -chip_fd_ : int
+    -event_req_ : gpioevent_request[2]
+    -poll_fds_ : pollfd[3]
+    -wake_pipe_ : int[2]
+    -gpio_enc_a_ : int
+    -gpio_enc_b_ : int
+    -poll_timeout_ms_ : int
+    -last_state_ : int
+    -encoder_position_ : atomic<int>
+    -monitor_thread_ : thread
+    -running_ : atomic<bool>
+    -chipname_ : string
+    -monitor_events() : void
+    -cleanup() : void
+    +Encoder(gpio_enc_a : int, gpio_enc_b : int)
+    +Encoder()
+    +~Encoder()
+    +init_encoder(gpio_enc_a : int, gpio_enc_b : int) : void
+    +start_thread() : void
+    +stop_thread() : void
+    +get_position() const : int;
+}
+
+class "main" as m <<control>>
+{
+    +init_button(pin : int) : void
+    +init_green_led() : gpiod_line*
+    +monitor_act_btn() : void
+}
+
+
+m --> mc
+m --> dr
+m --> a
+m --> http
+
+mc o-- enc
+mc o-- pid
+mc o-- rp
+
+enc --> mc
+
+
+@enduml

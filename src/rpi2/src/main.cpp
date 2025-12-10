@@ -1,69 +1,70 @@
 ﻿#include <iostream>
+#include "LogHandler.h"
 #include <restinio/all.hpp>
 #include <json_dto/pub.hpp>
 
-//=========================*/
-// Example data structure
-// TODO later: Replace 'book_t' with your own struct (e.g. something_t).
-//=========================*/
-struct book_t  // This is Data structure (sample code has book_t, you need to define your own data struct)
-{
-	book_t() = default;
-
-	book_t(std::string author, std::string title)
-		: m_author{ std::move(author) }, m_title{ std::move(title) }
-	{}
-
-	template < typename JSON_IO >
-	void json_io(JSON_IO & io)
-	{
-		io
-			& json_dto::mandatory("author", m_author)
-			& json_dto::mandatory("title", m_title);
-	}
-
-	std::string m_author;
-	std::string m_title;
-};
-
-//=========================*/
-// Todo later: Change this alias for your project type, e.g. vector<something_t>
-//=========================*/
-using book_collection_t = std::vector< book_t >;
-
+using route_collection_t = std::vector< LogHandler >;
 namespace rr = restinio::router;
 using router_t = rr::express_router_t<>;
 
 //=========================*/
 // HTTP handler class
-// TODO later: Rename/modify methods for your data model
 //=========================*/
-class books_handler_t
+static LogHandler route_logger;
+
+class RouteHandler
 {
 public:
-	explicit books_handler_t(book_collection_t & books)
-		: m_books(books)
+	explicit RouteHandler(route_collection_t & routes)
+		: m_routes(routes)
 	{}
 
-	auto on_books_list(const restinio::request_handle_t& req, rr::route_params_t) const
+		auto options(restinio::request_handle_t req, rr::route_params_t)
+	{
+		auto resp = init_resp(req->create_response());
+		resp.append_header("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PUT");
+		resp.append_header("Access-Control-Allow-Headers", "content-type");
+		resp.append_header("Access-Control-Max-Age", "86400");
+		return resp.done();
+	}
+
+	auto on_get_route(const restinio::request_handle_t& req, rr::route_params_t) const
 	{
 		auto resp = init_resp(req->create_response());
 
-		resp.set_body("Book collection (book count: " +
-			std::to_string(m_books.size()) + ")\n");
-
-		for(std::size_t i = 0; i < m_books.size(); ++i)
-		{
-			resp.append_body(std::to_string(i + 1) + ". ");
-			const auto & b = m_books[i];
-			resp.append_body(b.m_title + " [" + b.m_author + "]\n");
+		if (route_logger.queue_empty()) {
+			resp.header().status_line(restinio::status_no_content());
+			return resp.done();
 		}
+
+		std::string result = route_logger.get_route();
+
+		resp.set_body(result);
+
 
 		return resp.done();
 	}
 
+	auto on_post_route(const restinio::request_handle_t& req, rr::route_params_t) const
+	{
+		auto resp = init_resp(req->create_response());
+
+
+		if (req->body().empty()) {
+			resp.header().status_line(restinio::status_no_content());
+			return resp.done();
+		}
+
+		route_logger.post_route(req->body());
+
+
+		return resp.done();
+
+	}
+
 private:
-	book_collection_t & m_books;  // TODO: Replace 'book_collection_t', m_books with your own ..
+	route_collection_t & m_routes;
+
 
 	template < typename RESP >
 	static RESP init_resp(RESP resp)
@@ -71,11 +72,12 @@ private:
 		resp
 			.append_header("Server", "RESTinio sample server /v.0.6")
 			.append_header_date_field()
-			.append_header("Content-Type", "text/plain; charset=utf-8");
+			.append_header("Content-Type", "application/json")
+			.append_header(restinio::http_field::access_control_allow_origin, "*");
 		return resp;
 	}
 
-	static void mark_as_bad_request(auto & resp)  // (auto & resp) with C++20 , if C++17, it should be (RESP & resp)
+	static void mark_as_bad_request(auto & resp)
 	{
 		resp.header().status_line(restinio::status_bad_request());
 	}
@@ -83,20 +85,25 @@ private:
 
 //=========================*/
 // Router setup
-// TODO later: Add new endpoints for your project (HTTP POST, PUT, etc.) - we will learn gradually in lecture KNP module2
 //=========================*/
-auto server_handler(book_collection_t & book_collection) //replace book_ .. 
+auto server_handler(route_collection_t & route_collection)
 {
 	auto router = std::make_unique<router_t>();
-	auto handler = std::make_shared<books_handler_t>(std::ref(book_collection));
+	auto handler = std::make_shared<RouteHandler>(std::ref(route_collection));
 
 	auto by = [&](auto method) {
 		using namespace std::placeholders;
 		return std::bind(method, handler, _1, _2);
 	};
 
-	// Example: GET /
-	router->http_get("/", by(&books_handler_t::on_books_list));  //replace book_ .. 
+
+	router->http_get("/get_route", by(&RouteHandler::on_get_route));
+	router->add_handler(restinio::http_method_options(), "/get_route", by(&RouteHandler::options));
+
+	router->http_post("/new_route", by(&RouteHandler::on_post_route));
+	router->add_handler(restinio::http_method_options(), "/new_route", by(&RouteHandler::options));
+
+
 
 	return router;
 }
@@ -115,13 +122,8 @@ int main()
 			restinio::single_threaded_ostream_logger_t,
 			router_t >;
 
-		//=========================*/
-		// TODO later: Replace this hardcoded collection with your own initial values
-		//=========================*/
-		book_collection_t book_collection{
-			{"Agatha Christie", "Murder on the Orient Express"},
-			{"Agatha Christie", "Sleeping Murder"},
-			{"B. Stroustrup", "The C++ Programming Language"}
+		route_collection_t route{
+
 		};
 
 		//=========================*/
@@ -132,9 +134,9 @@ int main()
 		//=========================*/
 		restinio::run(
 			restinio::on_this_thread<traits_t>()
-				.address("0.0.0.0")   // For Pi: allow access from outside
-				.port(8080)           // Default port, change if needed
-				.request_handler(server_handler(book_collection))
+				.address("0.0.0.0")
+				.port(8080)
+				.request_handler(server_handler(route))
 				.read_next_http_message_timelimit(10s)
 				.write_http_response_timelimit(1s)
 				.handle_request_timeout(1s));
