@@ -3,6 +3,8 @@
 
 #include <string>
 
+// Based on class found at https://github.com/berndporr/rpi_pwm
+
 class RPi_pwm
 {
 public:
