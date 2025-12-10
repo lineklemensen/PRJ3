@@ -140,9 +140,9 @@ m --> dr
 m --> a
 m --> http
 
-mc *-- enc
-mc *-- pid 
-mc *-- rp 
+mc o-- enc
+mc o-- pid 
+mc o-- rp 
 
 enc --> mc
 
