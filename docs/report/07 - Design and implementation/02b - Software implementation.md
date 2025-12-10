@@ -73,4 +73,65 @@ When the loop breaks, the duty cycles for both motors are set to 0, to reduce th
 The function drive_distance(), works in very much the same way, except of course the wheels driving in different directions.
 
 
+## PID
+
+The PID class contains a key function called update(), which calculates a control output based on its inputs. The purpose of this function is to generate a control signal that drives the system—such as a DC motor with encoder feedback—toward a desired target position. The function takes the following inputs: the target value the system should reach, the current measured value, a pointer to store the control output, and a threshold that determines when the integral term should be applied.
+
+The first step in the function is to calculate the error, defined as the difference between the target value and the current value. This error represents how far the system is from the desired position and is used as the basis for all subsequent PID calculations. If the magnitude of the error is smaller than the integration threshold, the accumulated error variable is increased. This ensures that the integral term only contributes when the system is close enough to the target, preventing excessive accumulation, also known as integral windup.
+
+Next, the proportional, integral, and derivative contributions are computed. The proportional term provides a corrective action directly proportional to the current error. When the motor is far from the target, this term generates a strong response to reduce the error quickly. As the motor approaches the target, the proportional term naturally decreases, preventing overshoot and unnecessary speed. The proportional value is therefore equal to the current error.
+
+The integral term addresses small, persistent errors that may remain due to friction, mechanical load, or system dead zones. By accumulating the error over time, the integral term ensures that the motor reaches the desired position accurately. It is calculated as the sum of the accumulated error multiplied by the time step.
+
+The derivative term predicts the future trend of the error by measuring how quickly it is changing. If the motor is moving too rapidly toward the target, the derivative term applies a damping effect, reducing the control signal and helping to prevent overshoot or oscillations. The derivative value is computed as the difference between the current error and the previous error, divided by the time step.
+
+After calculating the proportional, integral, and derivative contributions, each is multiplied by its respective tuning parameter. This yields a raw control value, which may be too large or too small for the hardware. To ensure safety and stability, the value is first squashed to stay within predefined minimum and maximum limits. Additionally, the rate of change of the control signal is limited to prevent abrupt increases or decreases that the hardware cannot handle. This ramp limiting helps maintain smooth and controlled motion of the motor.
+
+Finally, for monitoring and debugging purposes, the function prints relevant information, including the current value, target value, control output, and error, every 50 iterations. This allows developers to observe the controller’s behavior and make adjustments to the tuning parameters if necessary.
+
+int Pid::update(double set_value, double current_value, double *ctrl_value, double integration_threshold)
+{
+    double error_ = set_value - current_value;
+
+    if (std::fabs(error_) < integration_threshold)
+        error_sum_ += error_;
+
+    double kp_val = error_;
+    double ki_val = error_sum_ * dt_;
+    double kd_val = (error_ - previous_error_) / dt_;
+
+    previous_error_ = error_;
+
+    double ctrl = kp_ * kp_val + ki_ * ki_val + kd_ * kd_val;
+ 
+    // squash to min/max
+    double squashed_ctrl = squash(ctrl);
+
+    // ramp limiting
+    if (squashed_ctrl > last_ctrl_ + ramp_limit_)
+        squashed_ctrl = last_ctrl_ + ramp_limit_;
+    else if (squashed_ctrl < last_ctrl_ - ramp_limit_)
+        squashed_ctrl = last_ctrl_ - ramp_limit_;
+
+    last_ctrl_ = squashed_ctrl;
+
+    if (ctrl_value)
+        *ctrl_value = squashed_ctrl;
+
+    n_++;
+    if (n_ % 50 == 0) {
+        std::cout << "curr_val: " << current_value
+                  << "  set_val: " << set_value
+                  << "  ctrl: " << squashed_ctrl
+                  << "  error: " << error_ << std::endl;
+    }
+
+    return static_cast<int>(std::round(squashed_ctrl));
+}
+```
+
+## Encoder
+
+
+
 \newpage
