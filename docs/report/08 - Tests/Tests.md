@@ -1,4 +1,6 @@
 # Tests
+## Hardware
+Testing the hardware, multisim was used to check if the hardware would work in a simulation, and speaking with one of the workers in Elab to hear their advise on what to do, then a multimeter was used to check that connections was good on the veroboard. After the full implementation we could test the drive with the full weight of all parts.
 
 ## Calculate route
 DR is the class used for calculating the length and angle needed to drive from where the car currently is and where it needs to be. Testing this class, I put in every variation of points so that it would have to turn in every 90 degree turn available. This way there was an easy way to keep track of when the turn needed to be negative depending on where the car came from. The unit circle was used in deciding wether the turn was to be negative or positive. 
