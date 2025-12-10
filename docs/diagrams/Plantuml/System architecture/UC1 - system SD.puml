@@ -1,0 +1,29 @@
+@startuml SystemSD UC1 - Start
+!pragma teoz true
+mainframe **SD** UC1 - Start
+hide footbox
+
+skinparam {
+    MaxMessageSize 120
+}
+
+actor "Dispensary nurse" as dn
+
+participant "**Car (RPi 2)**" as car
+
+dn ->> car++ : Press power button
+
+break Battery has no charge
+    car -[hidden]>] 
+end
+
+car ->>] : Connect to network
+
+break Connection could\nnot be established
+    car -> car : Red led starts to blink
+end
+
+
+car -> car : Turn on red LED
+
+@enduml

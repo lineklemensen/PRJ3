@@ -1,0 +1,106 @@
+@startuml System SD - combined
+
+mainframe **System SD**
+
+hide footbox
+!pragma teoz true
+
+skinparam {
+    MaxMessageSize 120
+}
+
+
+actor "Nurse" as n
+participant "**Terminal UI**" as ui
+participant "**Server (RPi 1)**" as srv
+participant "**Car (RPi 2)**" as car
+actor "Dispensary nurse" as dn
+
+'UC1
+srv++
+dn ->> car++ : Press power button
+
+break Battery has no charge
+    car -[hidden]>] 
+end
+
+car ->>] : Connect to network
+
+break Connection could\nnot be established
+    car -> car : Show error
+end
+
+
+car -> car : Show car is fully on
+
+
+'UC2
+dn ->> ui++ : Open UI
+ui -> ui : Show UI
+
+loop 1 to 3 times
+    dn ->> ui : Select room to add
+    opt Room is already selected
+        ui -> ui : Deselect room
+    end
+    ui -> ui : Show updated selection
+end
+
+opt Cancel option selected
+    ui -> ui : Close UI
+end
+
+dn ->> ui : Navigate to finish button and hit Enter key
+
+opt No rooms added to route
+    ui -> ui : Show "No rooms selected" msg
+
+end
+
+ui -> ui :  Show confirmation popup
+alt Confirm option
+    ui ->> srv : Send route information to server
+    & srv -> srv : Save route information to log file
+    srv ->> ui : Success
+    ui -> ui : route completion message appears
+
+else Deny option
+    ui -> ui : Deselect all rooms
+end
+dn ->> ui : Press Enter key
+
+ui -> ui : Close ui
+|||
+ui--
+
+'UC3
+car ->> srv : Request route
+
+break Network error
+    car -> car : Show error
+end
+
+alt Route available
+    srv -->> car : Return oldest route
+    srv -> srv : Delete oldest route locally
+
+else No routes available
+    srv -->> car : No routes available response
+    break No available routes
+        car -> car : Show error
+    end
+end
+
+car -> car : Perform pathfinding calculations
+
+loop More locations remain
+    n ->> car : Action button is pressed.
+    car -> car : Drive to next location.
+end
+
+'UC4
+dn ->> car : Power button is pressed
+car -> car : The car powers off safely
+
+
+@enduml

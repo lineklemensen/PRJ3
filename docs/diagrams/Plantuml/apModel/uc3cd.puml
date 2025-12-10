@@ -1,0 +1,72 @@
+@startuml CD UC3 - Deliver Order
+
+mainframe **CD** UC3 - Deliver Order
+
+hide circle
+skinparam {
+    packageStyle rectangle
+    Linetype ortho
+    ClassAttributeIconSize 0
+}
+
+'----------------------------
+' CAR SIDE
+'----------------------------
+
+class "CarController" as cc <<control>> {
+    -current_mode : string
+    +set_mode(mode : string) : void
+    +start() : void
+    +idle() : void
+    +shutdown() : void
+}
+
+class "Route" as r <<domain>> {
+    -start : Location
+    -end : Location
+    -segments : List<Path>
+    +total_length() : float
+    +build_route(locations : List<Location>, pf : Pathfinder) : void
+}
+
+class "Pathfinder" as pf <<domain>> {
+    -graph : Graph
+    -segments : List<Path>
+    +calculate_path(from : Location, to : Location) : void
+    +solve_tsp(locations : List<Location>, start : Location, end : Location) : List<Location>
+    +build_route(locations : List<Location>) : void
+}
+
+class "Graph" as g <<domain>> {
+    -nodes : List<Location>
+    -edges : List<Edge>
+    +get_neighbors(loc : Location) : List<Location>
+    +get_edge_cost(from : Location, to : Location) : float
+}
+
+class "Location" as l <<domain>> {
+    +id : int
+    +name : string
+    -x : float
+    -y : float
+}
+
+class "HTTP" as car_http <<boundary>> {
+    +get(url : string) : string
+}
+
+
+'----------------------------
+' RELATIONSHIPS
+'----------------------------
+
+cc --> r
+r --> pf
+pf --> g
+r --> l
+pf --> l
+cc --> car_http
+
+
+
+@enduml
