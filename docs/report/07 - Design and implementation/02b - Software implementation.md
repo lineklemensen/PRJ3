@@ -166,7 +166,7 @@ this reduces the number of points the car needs to follow and will make the driv
 
 
 
-## Calculate route
+## calc_route()
 To begin with I keep track of where the car currently is, where the next point is, and where the car last were. Then I can get the three sides for a triangle using the code below, for each side. 
 ```cpp
 std::pair<double, double> last_pos_vector = {
