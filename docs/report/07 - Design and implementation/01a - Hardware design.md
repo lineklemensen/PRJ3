@@ -4,7 +4,7 @@ The project needed to be able to turn the LED's on and off, handle the power to 
 ![Multisim diagram over the currently used veroboard](/docs/pictures/multisim.png)
 
 
-Using the above diagram, we could then make a very compact veroboard design. 
+Using the above diagram, we could then make a very compact veroboard design.   
 ![DIY layout over the current veroboard](/docs/pictures/veroboard.png)
 
 
