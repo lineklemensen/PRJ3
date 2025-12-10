@@ -1,0 +1,150 @@
+@startuml CarClasses
+
+skinparam {
+    packageStyle rectangle
+    Linetype ortho
+    ClassAttributeIconSize 0
+}
+
+class "LEDs" as led <<boundary>>
+{
+    -pin:int
+    +turn_on()
+    +turn_off()
+}
+
+class "Car_Controller" as cc <<control>>
+{
+    -current_mode : string
+    +set_mode(mode : string) : void
+    +start() : void
+    +idle() : void
+    +shutdown() : void
+}
+
+class "Buttons" as b <<boundary>>
+{
+    -pin:int
+    -state:bool
+    +read_button()
+}
+
+class "Motor" as m <<boundary>>
+{
+    -max_speed : double
+    +set_speed(speed : double)
+    +stop() : void
+}
+
+class "PIDreg" as pid <<domain>>
+{
+    -kp : double
+    -ki : double
+    -kd : double
+    -integrator_sum : double
+    -last_error : double
+    -output_min : double
+    -output_max : double
+    +PIDreg(kp : double, ki : double, kd : double,
+    \t    out_min : double, out_max : double)
+    +reset() : void
+    +output(setpoint : double,
+    \t   measurement : double) : double
+}
+
+class "Pathfinder" as pf <<domain>>
+{
+    +graph : Graph
+    +calculate_path(from: Location, to: Location): void
+    +solve_tsp(locations: List<Location>, start: Location, end: Location): List<Location>
+    +segments: List<Path>
+    +total_length(): float
+    +build_route(locations: List<Location>): void
+}
+
+class "DeadReckoning" as dr <<domain>>
+{
+    -pos : vector<int, int>
+    -velocity : double
+    -heading : double
+    +DeadReckoning(initial_pos : vector<int, int>)
+    +update()
+    +get_pos() : vector<int, int>
+    +set_velocity(v : double)
+    +set_heading(h : double)
+    +set_pos(p : vector<int, int>)
+}
+
+class "Route" as r <<domain>>
+{
+    +start : Location
+    +destinations : List<Location>
+    +end : Location
+    +segments: List<Path>
+    +total_length(): float
+    +build_route(locations: List<Location>, pf: Pathfinder): void
+
+}
+
+class "H_bridge" as hb <<boundary>>
+{
+    -pin_forward : int
+    -pin_reverse : int
+    +H_bridge(pin_forward : int, pin_reverse : int)
+    +set_direction(forward : bool) : void
+    +set_speed(pwm : double) : void
+}
+
+class "HTTP" as c_http <<boundary>>
+{
+    +get(destinations : string) : string
+}
+
+class "Location" as loc <<domain>>
+{
+    +x : float
+    +y : float
+    +theta : float
+    +speed : float
+    +time : float
+}
+
+class "Graph" as g <<domain>>
+{
+    +nodes : List<Location>
+    +edges : List<Edge>
+    +get_neighbors(loc : Location) : List<Location>
+    +get_edge_cost(from : Location, to : Location) : float
+}
+
+class "Edge" as e <<domain>>
+{
+    +from : Location
+    +to : Location
+    +cost : float
+}
+
+r --o pf
+pf --> loc
+
+cc --> pid
+cc --> pf
+cc ..> r
+
+cc ..> b
+cc ..> led
+
+cc --> hb
+hb --> m
+
+pid --> hb
+m --> dr
+pid ..> dr
+dr <--> cc
+
+g --> loc
+g --> e
+e --> loc
+pf --> g
+
+@enduml

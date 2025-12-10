@@ -1,0 +1,77 @@
+@startuml SD UC3 - Deliver Order - Car
+
+mainframe **SD** UC3 - Deliver Order
+hide footbox
+
+participant "Green LED" as gled <<led>>
+participant "Red LED" as rled <<led>>
+participant "Modes" as md
+participant "Buttons" as b
+participant "Action" as ab <<button>>
+participant "RouteController" as rc
+note right of rc
+  Represents the car's control logic.
+end note
+participant "Motor" as m
+participant "Pathfinder" as pf
+participant HTTP
+actor "Server" as s
+
+' Initialization
+b -> ab : press("Power")
+ab -> md : initialize()
+md -> m : idle()
+
+
+' Step 1: Request route
+rc -> HTTP : request_destinations()
+HTTP -> s : GET /destinations
+HTTP <<--s : 200 OK [destinations]
+
+alt Success (200 OK)
+    HTTP -> rc : response(destinations)
+    rc -> HTTP : delete_route()
+    HTTP ->s : DELETE /destinations/{oldest}
+    HTTP <<--s : 200 OK [deleted]
+    rc -> pf : load_destinations()
+    pf -->> rc : destinations_loaded
+    pf -> pf : calculate_path()
+    pf -->> rc : path_calculated
+    rc -> md : set_mode(ready)
+    md -> gled : turn_on()
+
+    loop For each delivery stop (excluding homebase)
+        md -> b : wait_for_button(ab)
+        b -> ab : read_button()
+        ab -->> b : pressed
+        b -> md : button_pressed(ab)
+        md -> gled : turn_off()
+        md -> m : delay(5s)
+        rc -> m : start_route()
+        m -> rc : arrived()
+        rc -> pf : check_position()
+        pf -->> rc : position_ok
+        md -> gled : turn_on()
+        md -> m : idle()
+    end
+
+    rc -> md : set_mode(idle)
+    md -> m : idle()
+
+else No available routes
+    HTTP -> rc : response(no_destinations)
+    rc -> md : set_mode(no_destinations)
+    md -> gled : blink(5)
+    md -> m : idle()
+
+else Network error
+    s -->> HTTP : 500 Internal Server Error
+    HTTP -> rc : response(network_error)
+    rc -> md : set_mode(network_error)
+    md -> rled : blink(15)
+    md -> m : idle()
+end
+
+
+
+@enduml

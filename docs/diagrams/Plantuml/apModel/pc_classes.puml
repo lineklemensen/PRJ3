@@ -1,0 +1,108 @@
+@startuml PCClasses
+
+hide circle
+skinparam {
+    packageStyle rectangle
+    'Linetype ortho
+    ClassAttributeIconSize 0
+}
+
+class "TUI" as tui <<control>>
+{
+    - {static}running_: bool
+    - elements_ : vector<Element*>
+    - selected_ : Element*
+
+    + Tui()
+    + ~Tui()
+    + {static}is_running() : bool
+    + update() : void
+    - update_selection() : void
+    - print_elements() : void
+    - add_new_element(element: Element*) : Element*
+}
+
+class "Console" as cs <<boundary>>
+{
+    -{static}handle_: HANDLE
+    +{static}setup() : void
+    +{static}set_cursor_pos(x: short, y: short) : void
+    +{static}set_cursor_pos(pos: Vec2) : void
+    +{static}hide_cursor() : void
+    +{static}set_text_color(color: Color) : void
+    +{static}clear_screen() : void
+
+}
+
+class "Input" as in <<boundary>>
+{
+    -{static}key_: Key
+    -{static}read_input() : int
+    +{static}get_input() : Key
+    +{static}update_input() : void
+}
+
+class "Button" as b <<boundary>>
+{
+    -{field}action_ : std::function<void()>
+    +Button(text: string, action: function<void()>)
+    +Button(text: string, dir: Direction, action: function<void()>)
+    +Button(text: string, position: Vec2, action: function<void()>)
+    +print() : void
+    +print(pos: Vec2) : void
+    +action() : void
+}
+
+abstract "Element" as e <<boundary>>
+{
+    +{abstract}~Element()
+    +{abstract}print() : void
+    + size() : size_t
+    + connect(element: Element*, dir: Direction) : void
+    + add_keybind(key : Key, element: Element*) : void
+    + get_element(key: Key) : Element*
+    # text_: string
+    # pos_: Vec2
+    # keymap_ : map<Key, Element*>
+}
+
+class "TextElement" as te <<boundary>>
+{
+    + TextElement(text: const string&)
+    + TextElement(text: const string&, dir: Direction)
+    + TextElement(text: const string&, pos: Vec2)
+    + print() : void
+    + print(pos: Vec2)
+}
+
+class "StatefulButton" as sb <<boundary>>
+{
+    - state_: bool
+    +StatefulButton(text: string, action: function<void()>)
+    +StatefulButton(text: string, dir: Direction, action: function<void()>)
+    +action() : void
+    +print() : void
+    +print(pos: Vec2) : void
+    +set_state(new_state: bool) : void
+    + get_state() : bool
+}
+
+class "HTTPHandler" as http <<boundary>>
+{
+    + {static}post(json : string) : void
+}
+
+
+b -l-|> e
+te -d-|> e
+sb --|> b
+
+tui -l-> te
+tui -r-> sb
+tui --> b
+
+cs --> tui
+in --> tui
+
+http -l-> b
+@enduml

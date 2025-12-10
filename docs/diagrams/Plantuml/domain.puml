@@ -1,0 +1,64 @@
+@startuml
+
+allow_mixing
+
+skinparam {
+    LineType ortho
+    NodeSep 85 
+    RankSep 55 
+}
+
+actor "Nurse" as n
+
+object "Homebase" as HB
+object Car {
+    Battery
+    .. Buttons ..
+    "Power-button"
+    "Action-button"
+    .. Indicators ..
+    "Red LED"
+    "Green LED"
+    .. Modes ..
+    "Idle mode"
+    "Shutdown mode"
+}
+
+object UI {
+    Instructions
+    "Navigation options"
+    Confirmation
+}
+
+object "Locations" as Loc {
+    Coordinates
+}
+object Route
+
+
+object Server {
+    log
+}
+
+
+actor "Dispensary Nurse" as dn
+
+Car "1"--u->"1" HB :  Starts\nfrom
+n "*"-r->"1" Car : Operates\t
+
+Car "1"-r->"1" Route : Calculates/\nFollows
+Route "*"-d->"*" Loc : Consists of
+
+Car "1" <-d- "1" dn : Operates
+dn "1" -r-> "1..*" Loc : Selects
+UI "1" -d-> "*" Loc : \nDisplays
+
+dn "1" -r-> "1" UI : \tUses
+Server "1" <-r-> "1" Car : Requests/\nResponds
+(Server, Car) . Loc
+UI "1" -r-> "1" Server : Requests/\nResponds
+(UI, Server) . Loc
+
+
+
+@enduml
