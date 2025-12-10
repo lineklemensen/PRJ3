@@ -40,7 +40,7 @@ mc ->> encr : start_thread()
 m ->> m : usleep(1000000)
 m ->> dr : DR()
 m ->> m : init_button(int ACTIVITY_BUTTON_PIN)
-m -> m : init_green_led()
+m -> m : init_green_led() : gpiod_line*
 m ->> m : gpiod_line_set_value(g_led_line, 0) : void
 m ->> m : monitor_act_btn() : void
 
