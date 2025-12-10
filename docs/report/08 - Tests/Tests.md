@@ -105,6 +105,8 @@ The functionality of this was tested by calling the function at intervals, with 
     
 ```
 
+At the same time, the Encoder class was also verified to function properly, by simply observing whether or not the encoder positions would change in accordance to the movement of the motors
+
 The logic for handling acceleration/deceleration and distance, takes place in drive_distance(), and turn(). Initially the function would simply keep updating the duty cycle of the PWM signal, using the PID class, and passing these values off to drive(), stopping when both encoders were within 10 encodes pulses of the target.
 
 ```cpp
