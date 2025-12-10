@@ -130,7 +130,15 @@ int Pid::update(double set_value, double current_value, double *ctrl_value, doub
 
 ## Encoder
 
-The encoder class uses poll for event based triggering for handling a rotary encoder. This is done by listening for rising 
+The encoder class uses poll() to handle a rotary encoder using event-based triggering. It monitors two GPIO pins corresponding to the A and B channels of the encoder. By detecting the order in which these pins go high and using a quadrature decoding lookup table, the code can determine whether the encoder is rotating forward or backward.
+
+Before entering the main loop, the class sets up a structure containing the file descriptors needed by poll(), along with a lookup table that maps state transitions to position changes. All processing happens inside a loop that continues as long as the running_ flag remains true.
+
+At the start of each loop iteration, poll() is called. This is a blocking call with an infinite timeout, meaning it will wait indefinitely until one of the monitored file descriptors becomes readable. Under normal operation, this happens whenever an edge is detected on one of the encoder’s GPIO pins. However, because the encoder may not always be moving for example, when the vehicle is stationary “wake pipe” is also included in the poll() set. Writing anything to this pipe makes it readable, causing poll() to return. If this wake-up event occurs, the loop exists.
+
+When an event occurs on one of the GPIO pins, the function reads a gpioevent_data structure that indicates which pin triggered and whether the event was a rising or falling edge. Based on this information, the code reconstructs the new logical state of the encoder’s A and B signals. It then combines the previous state and the newly computed state into a 4-bit index. This index is used to access the quadrature decoding table, which determines whether the transition represents a step forward, a step backward, or an invalid transition. The resulting value is added to the encoder’s position counter.
+
+Finally, the new A/B state becomes the stored last_state_, ensuring that the next detected edge will be interpreted correctly. This process repeats for every encoder event until the wake pipe is triggered or running_ is set to false, allowing the thread to shut down cleanly.
 
 ```cpp
 void Encoder::monitor_events()
