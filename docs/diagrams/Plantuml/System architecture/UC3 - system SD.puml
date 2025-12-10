@@ -1,0 +1,53 @@
+@startuml SystemSD UC3 - Complete delivery route
+!pragma teoz true
+mainframe **SD** UC3 - Complete delivery route
+hide footbox
+
+skinparam {
+    MaxMessageSize 120
+}
+
+actor "Nurse" as n
+
+participant "**Car (RPi 2)**" as car
+participant "**Server (RPi 1)**" as srv
+
+car++
+car ->> srv++ : Request route
+
+break Network error
+    car -> car : Red led starts to blink
+    car -> car : Car waits 15 seconds
+    car -> car : Red led stops blinking
+    car -> car : Car enters idle mode
+end
+
+alt Route available
+    srv -->> car : Return oldest route
+
+    srv -> srv : Delete oldest route locally
+
+else No routes available
+    srv -->> car : No routes available response
+    break No available routes
+    car -> car : Green led starts to blink
+    car -> car : Car waits 5 seconds
+    car -> car : Green led stops blinking
+    car -> car : Car enters idle mode
+    end
+end
+
+car -> car : Perform pathfinding calculations
+car -> car : The green LED turns on.
+
+loop More locations remain
+    n ->> car : Action button is pressed.
+    car -> car : The green LED turns off.
+    car -> car : Wait 5 seconds.
+    car -> car : start driving to next location.
+    car -> car : Stop at location.
+    car -> car : Green LED turns on.
+    car -> car : Enter idle mode.
+end
+
+@enduml
