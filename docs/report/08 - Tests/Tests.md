@@ -171,18 +171,23 @@ This resulted in the car being able to drive in a straight line again, but turni
 ## Raspberry Pi Setup (rpi1)
 
 The Rpi controlling the car required a bit of setup as well. Firstly the PWM chip had to be enabled, as otherwise we wouldn't be able to generate a PWM signal to control the car. This was done by adding the following line to config.txt.
-
-dtoverlay = pwm something something
-
+```bash
+dtoverlay=pwm-2chan
+```
 This was tested using an the oscilloscope function off an Analog Discovery 2, which verified that we were able to send out PWM signals. 
 
 Another line was also added to config.txt, that enables safe shutdown of the Raspberry Pi, when clicking its dedicated power button. This was achieved as shown below.
-
-dtoverlay = shutdown blah blah
-
+```bash
+dtoverlay=rpi-power-button
+```
 This functionality was verified by simply turning the Pi off as described, which prints a message, indicating a safe shutdown. 
-We also needed to set a couple of GPIO pins to output/input, which controlled the LEDs and button, as well as a gate to enable power to the Motor Driver. These pins were set through the !! IDONTREMEMBER.file !!. The functionality of the was verified through visual observation, as the LEDs turned on as expected, and the LED on the Motor Driver also lit up.
-
+We also needed to set a couple of GPIO pins to output/input, which controlled the LEDs and button, as well as a gate to enable power to the Motor Driver. These pins were also set through the config.txt file. The functionality of the was verified through visual observation, as the LEDs turned on as expected, and the LED on the Motor Driver also lit up.
+```bash
+gpio=25=op,dh
+gpio=8=op,dl
+gpio=7=op,dh
+gpio=1=ip
+```
 Lastly, a service was created to run on startup, which ultimately was supposed to run our program, after the Pi had established an internet connection. At first, this service ran a dummy script, that simply created a text file, to test if the service worked as expected.
 
 SHOW ORIGINAL TEST SCRIPT
