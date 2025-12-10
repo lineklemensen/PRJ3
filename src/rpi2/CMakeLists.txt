@@ -20,10 +20,10 @@ if (WIN32)
     add_definitions(-D_WIN32_WINNT=0x0601)
 endif()
 
-
 add_definitions(-DFMT_HEADER_ONLY)
-
-add_executable(${PROJECT_NAME} ${SRC_FILES} ${LLHTTP_SRC})
+include_directories(${CMAKE_SOURCE_DIR}/include)
+add_executable(${PROJECT_NAME} ${SRC_FILES} ${LLHTTP_SRC}
+        include/LogHandler.h)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
         ${CMAKE_SOURCE_DIR}/external

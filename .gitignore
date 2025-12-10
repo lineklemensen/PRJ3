@@ -10,3 +10,5 @@
 
 # Pandoc render pdfs
 **/*.pdf
+src/rpi2/cmake-build-debug-mingw
+src/rpi2/cmake-build-debug-visual-studio
