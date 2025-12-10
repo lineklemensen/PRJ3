@@ -177,7 +177,8 @@ Overall, the experience of this project was the most enjoyable out of all the se
 ### Daniel Jenrich Svendsen  
 
 
-### Frederik Vagn Lorenzen  
+### Frederik Vagn Lorenzen
+At the start of the project, we underestimated the size of the task we had taken on, maybe because we had some experience with programming a car from our 1st semester, or perhaps we were just too enthusiastic. Regardless of why, we encountered a huge time crunch towards the end, which hindered us from being as iterative with this project as we had liked, since we struggled with even getting our prototype ready in time for our acceptance test, which is obviously not ideal. This semester was also our first time working with Scrum, which we also brought along some confusion and growing pains. However, I still think this project has been very beneficial to my development as a software engineer, becoming way more comfortable with Git, which I have become quite familiar with at this point, and in general, especially towards the end of the project, becoming more aware of how important it is to be on the same page as the people you work with, as I believe better communication would have resulted in our final prototype being better and  less frustration/burnout towards in the time crunch towards the end of the project.  
 
 
 ### Johan Høffner  
