@@ -67,28 +67,75 @@ class "PID" as pid <<domain>>
     +update(set_value : double, current_value : double, ctrl_value : double *, integration_threshold : double) : int
 }
 
-class "Astar" as a <<domain>>
+class "Astar" as a <<boundary>>
 {
+    -ROWS : int
+    -COLS : int
+    -is_valid(p : Point) const : bool
+    -is_unblocked(p : Point) const : bool
+    -trace_path(cell_details[][COLS] : cell, dest : Point, route : std::vector<Point>&) const : void
+    +calculate_path(r : Route) : std::vector<std::vector<Point>>
+    +aStar_search(src : Point, dest : Point) : std::vector<Point>
+    +create_rooms(r : Route) : std::vector<Point>
 }
 
+class "Point"
+{
+    -x : int
+    -y : int
+    +Point()
+    +Point(x : int, y : int)
+    +operator==(other : Point) : bool
+    +operator+(other : Point) : Point
+    +distance(p1 : Point, p2 : Point) : double
+}
+
+class "Route"
+{
+    +room1 : bool
+    +room2 : bool
+    +room3 : bool
+}
+
+class "cell"
+{
+    +p : Point
+    +total_cost : double
+    +start_cost : double
+    +cost_to_dest : double
+}
+
+class "PriorityPoint"
+{
+    +f_cost : double
+    +point : Point
+    +operator>=(other : PriorityPoint) : bool
+}
+
+a --> "1..*" Point
+a --> Route
+a --> cell 
+a --> PriorityPoint
+
 class "DR" as dr <<domain>>
-{ 
+{
+
     +current_pos : std::pair <double, double>
-    +last_pos : std::pair <double, double> 
+    +last_pos : std::pair <double, double>
     +DR()
-    +calc_route(next_pos : std::pair <double, double>) : std::pair <double, double> 
+    +calc_route(next_pos : std::pair <double, double>) : std::pair <double, double>
 }
 
 class "HttpHandler" as http <<boundary>>
 {
-    +get_route(res : httplib::Result *) : static void 
+    +get_route(res : httplib::Result *) : static void
 }
 
 class "RPi_pwm" as rp <<boundary>>
 {
     -per : int
-    -chip_path : std::string 
-    -pwm_path : std::string 
+    -chip_path : std::string
+    -pwm_path : std::string
     -set_period(ns : int) const : void
     -set_duty_cycle_ns(ns : int) const : int
     -enable() const : void
@@ -102,8 +149,9 @@ class "RPi_pwm" as rp <<boundary>>
 }
 
 class "Encoder" as enc <<boundary>>
-{   
-    
+{
+
+
     -chip_fd_ : int
     -event_req_ : gpioevent_request[2]
     -poll_fds_ : pollfd[3]
@@ -135,14 +183,14 @@ class "main" as m <<control>>
 }
 
 
-m --> mc 
+m --> mc
 m --> dr
 m --> a
 m --> http
 
 mc o-- enc
-mc o-- pid 
-mc o-- rp 
+mc o-- pid
+mc o-- rp
 
 enc --> mc
 
