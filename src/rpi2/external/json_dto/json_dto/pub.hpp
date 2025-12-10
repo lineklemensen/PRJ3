@@ -23,6 +23,7 @@
 #include <limits>
 #include <type_traits>
 #include <iostream>
+#include <string>
 
 #if defined( __has_include )
 	//
