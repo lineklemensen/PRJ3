@@ -19,8 +19,6 @@ DR is the class used for calculating the length and angle needed to drive from w
 
 The first and last point inputted in the above table, is special cases handled independently in the code, to set the outputted angle to either 0 if the current point is our homebase, or if the angle is zero as it will only be that if we have to turn around.
 
-
-
 ## PID regulating
 
 The Pid class is responsible for controlling motor acceleration and accurately driving the system toward a target position. To validate the controller independently from the hardware, the class was tested using a software-simulated encoder, allowing repeatable and deterministic testing.
@@ -174,13 +172,14 @@ The Rpi controlling the car required a bit of setup as well. Firstly the PWM chi
 ```bash
 dtoverlay=pwm-2chan
 ```
-This was tested using an the oscilloscope function off an Analog Discovery 2, which verified that we were able to send out PWM signals. 
+To generate the PWM signal, we used the class RPi_pwm, which is based on public wrapper, found at https://github.com/berndporr/rpi_pwm. The functionality was verified using an oscilloscope, which clearly showed a PWM signal to the specifications of our code.
 
 Another line was also added to config.txt, that enables safe shutdown of the Raspberry Pi, when clicking its dedicated power button. This was achieved as shown below.
 ```bash
 dtoverlay=rpi-power-button
 ```
 This functionality was verified by simply turning the Pi off as described, which prints a message, indicating a safe shutdown. 
+
 We also needed to set a couple of GPIO pins to output/input, which controlled the LEDs and button, as well as a gate to enable power to the Motor Driver. These pins were also set through the config.txt file. The functionality of the was verified through visual observation, as the LEDs turned on as expected, and the LED on the Motor Driver also lit up.
 ```bash
 gpio=25=op,dh
@@ -190,6 +189,19 @@ gpio=1=ip
 ```
 Lastly, a service was created to run on startup, which ultimately was supposed to run our program, after the Pi had established an internet connection. At first, this service ran a dummy script, that simply created a text file, to test if the service worked as expected.
 
-SHOW ORIGINAL TEST SCRIPT
+```bash
+[Unit]
+Description=Run Script on startup
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=au769402
+ExecStart=/home/au769402/projekt/startUpScript.sh
+
+[Install]
+WantedBy=multi-user.target
+```
 
 When the time came to have it run the program itself, we encountered issues with the Pi not booting. At first we suspected that the service type was wrong, and that was causing the issue, so we changed it from oneshot to simple, since we thought oneshot type may have gotten 'unhappy' from getting stuck in the program, as it runs indefintely. However, this had no effect, and the Pi would still not boot, so eventually we decided to ditch this functionality, and simply run the program through a remote SSH connection.
