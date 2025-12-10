@@ -30,10 +30,14 @@ The "server" is a very basic HTTP server. It supports handling incoming "orders"
 
 ### Empty class diagram
 
+![alt text](docs/diagrams/out/apModel/car_cd_empty/CarClasses.png){width=500px}
+
 ### Sequence diagram
+
+![alt text](docs/diagrams/out/apModel/car_sd/car_sd.png){width=500px}
 
 ### Full class diagram
 
-![alt text](docs/diagrams/out/apModel/car_classes/CarClasses.png){width=500px}
+![alt text](docs/diagrams/out/apModel/car_cd/CarClasses.png){width=500px}
 
 \newpage
