@@ -1,10 +1,7 @@
 # Software implementation
 
 ## MotorController
-
-turn(double degrees)
-
-The function take a double, degrees, which is the amount of degrees the car has to turn. A positive value results in a counter-clockwise turn, and vice versa. As the function is called every time the car reaches a new point, and will sometimes have to keep going straight, the function will return immediately, if the value passed is 0. 
+The turn() function is responsible for turning the car. The function takes a double, degrees, which is the amount of degrees the car has to turn. A positive value results in a counter-clockwise turn, and vice versa. As the function is called every time the car reaches a new point, and will sometimes have to keep going straight, the function will return immediately, if the value passed is 0. 
 
 ```cpp
 if(degrees == 0)
@@ -48,8 +45,8 @@ In the loop, first the encoder positions are updated, as these are used in the P
 The errors are updated, and the PWM values from the PID regulation are passed into the drive() function to start driving. We then encounter the two conditions that will break the loop. First we'll look at 
 ```cpp
 if(std::abs(left_error) < 20 && (std::abs(right_error)) < 20) {
-            std::cout << "E Left Error: " << left_error << ", E Left PWM: " << left_pwm << std::endl;
-            std::cout << "E Right Error: " << right_error << ", E Right PWM: " << right_pwm << std::endl;
+            std::cout << "Left Error: " << left_error << ", Left PWM: " << left_pwm << std::endl;
+            std::cout << "Right Error: " << right_error << ", Right PWM: " << right_pwm << std::endl;
             break;
         }
 ```
@@ -70,7 +67,7 @@ This loop checks if the duty cycle of the PWM signals is below 20. If this happe
 
 When the loop breaks, the duty cycles for both motors are set to 0, to reduce the impact of the momentum the wheels/motors might have when exiting the loop, and then returns.
 
-The function drive_distance(), works in very much the same way, except of course the wheels driving in different directions.
+The function drive_distance(), works in very much the same way, except, of course, the wheels driving in different directions.
 
 
 \newpage
