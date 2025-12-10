@@ -175,7 +175,11 @@ I also made very poor hardware decisions, with the parts i needed to handle, to 
 Overall, the experience of this project was the most enjoyable out of all the semesters so far, and I'm expecting the next to be even better. Working with our current advisor was also good, as she pushed us in the right direction. I think we could also have been way better at following our timeline, as it ended in us finding hardware issues way too late. In relation to next semester, I would love to work with a lot of the same people as this semester.  
 
 ### Daniel Jenrich Svendsen  
+This semester project came with a couple new challenges, it was a lot more free in the sense that it's the first project where we fully get to pick our own groups, as well as the theme of the project being completely free. This led to a very enjoyable working experience where everyone was largely able to work on their own time, and if someone needed a break, or need an extra hour in the morning, that was just allowed.
 
+Although towards the later half of the semester we started to slip from our schedule, which didn't immediately seem to cause any issues but towards the final couple of weeks we really started to feel the pressure, and challenges from integrations. Unfortunately this led to us having to prioritise the core functionality over smaller nice-to-have features.
+
+I worked with developing the TUI for the project, and i'm quite satisfied with its outcome, i wanted to design something that would be general enough to also be useful for other personal side projects, and i believe the current iteration satisfies that to a good extent, although like all software, it'll probably be better on the next rewrite.
 
 ### Frederik Vagn Lorenzen
 At the start of the project, we underestimated the size of the task we had taken on, maybe because we had some experience with programming a car from our 1st semester, or perhaps we were just too enthusiastic. Regardless of why, we encountered a huge time crunch towards the end, which hindered us from being as iterative with this project as we had liked, since we struggled with even getting our prototype ready in time for our acceptance test, which is obviously not ideal. This semester was also our first time working with Scrum, which we also brought along some confusion and growing pains. 
