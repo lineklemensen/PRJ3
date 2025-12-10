@@ -357,569 +357,238 @@
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-\hline
-\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-    & \multicolumn{3}{l|}{Reliability 5 - Car drives on wet floor} \\ 
-\hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} 
-    & \multicolumn{3}{l|}{Car is idle at homebase and server is running} \\
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-\hline
-1 & Grab a bottle of water(500 ml) and pour it evenly over the surface & The surface the car is going to drive on is wet & H & H\\
-\hline
-2 & Press the action button on the car & The green LED turns on & H & H\\
-\hline
-3 & Press the action button & The car starts executing route & H & \\
-\hline
-1 & Grab a bottle of water(500 ml) and pour it evenly over the surface that makes up your testing environment & The surface the car is going to drive on is wet & H & H\\
-\hline
-2 & Press the action butto on the car & The green LED turns on & H & H\\
-\hline
-3 & Press the action button & The car starts executing route & H &\\
-\hline
-4 & Watch car while its exeucting route & The car cannot complete the route & H & H\\
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-\hline
-1 & Open Wireshark to monitor the local network & Wireshark is monitoring the local network & H & H\\
-\hline
-2 & Prepare and start stopwatch/timer & The user is now tracking the time & H & H\\
-\hline
-3 & Press the action button & [Wireshark] The car requests a route within 1 second & H & H\\
-\hline
-\end{tabularx}
-\caption{Acceptance test - Performance 1}
-\end{table}
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-\hline
-\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-    & \multicolumn{3}{l|}{Performance 2 - Car startup time} \\ 
-\hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} 
-    & \multicolumn{3}{l|}{Car is turned off and server is running} \\
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-\hline
-1 & Prepare a stopwatch/timer & The user is tracking the time & H & H\\
-\hline
-2 & Press the power button, and wait for the green LED to turn on & The green LED turns on within 1 minute & H & H\\
-\hline
-Performance 3 - Car minimum range & Precondition: & \multicolumn{3}{|p{0.5\textwidth}|}{Car is idle and fully charged at homebase and server is running}\\
-\hline
-1 & Find the longest possible route in your testing setup & The longest route is found & H & H\\
-\hline
-2 & Create make multiple copies of said route on server, so that the total length of routes stored is 500 meters or higher & Routes of total length < 500 meters have been stored on server & H & H\\
-\hline
-3 & Press the action button & The green LED turns on & H & H\\
-\hline
-4 & Press the action button & The car starts driving to next destination & H & H\\
-\hline
-5 & Wait for car to reach destination & The car has reached its destination and the green LED is on & H & H\\
-\hline
-6 & Repeat point 4 through 5 until car has completed route and is idle at homebase & The car is idle at homebase & H & H\\
-\hline
-7 & Repeat point 3 through 6 until car the total length driven by car exceeds 500 meters & The battery is still powering the car & H & H\\
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-\hline
-1 & Prepare a speedometer & The speed of the car is ready to be read & H & H\\
-\hline
-2 & Press the action button & The green LED turns on & H & H\\
-\hline
-3 & Press the action button & The car starts driving to next destination & H & H\\
-\hline
-4 & Track the speed of the car during the completion of the route, until the route car has reached its destination & The car is idle at destination & H & H\\
-\hline
-5 & Repeat point 3 through 4 until route is completed, while still tracking the speed & The car never exceeds a speed of 5 km/h & H & H\\
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-\hline
-1 & do car car & car car & H & H\\
-\hline
-1 & do car car & car car & H & H\\
-\hline
-\end{tabularx}
-\caption{Acceptance test - XXXXX xxxxx}
-\end{table}
-
-
-\end{longtable}
-
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Functionality 1 - Car requests routes from server} \\ 
+    \multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Usability 1 - LEDs equipped on car} \\ 
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{Car is idle at homebase} \\
+    \multicolumn{5}{|c|}{}\\
     \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    1 & Open Wireshark to monitor the local network 
-      & Wireshark is monitoring the local network 
-      & H & H\\
-    \hline
-    2 & Press the action button 
-      & The car sends a request to the server, and the server responds 
-      & H & H\\
+    \textbf{1} & Inspect the car & The car is equipped with one green LED and one red LED & - & -\\ 
     \hline
 \end{tabularx}
-\caption{Acceptance test - Functionality 1}
-\end{table}
-
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-    \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Functionality 2 - Car continues route} \\ 
-    \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{Car is idle at destination} \\
-    \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-    \hline
-    1 & Press the action button 
-      & The car starts driving to continue its route 
-      & H & H\\
-    \hline
-\end{tabularx}
-\caption{Acceptance test - Functionality 2}
-\end{table}
-
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-    \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Usability 1 - The car is equipped with two LEDs} \\ 
-    \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{Car is idle at homebase} \\
-    \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-    \hline
-    1 & Inspect the car 
-      & Two LEDs visible: one green and one red 
-      & H & H\\
-    \hline
-\end{tabularx}
-\caption{Acceptance test - Usability 1}
-\end{table}
-
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-    \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Functionality 1 - Car requests routes from server} \\ 
-    \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{Car is idle at homebase} \\
-    \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-    \hline
-    1 & Open Wireshark to monitor the local network 
-      & Wireshark is monitoring the local network & H & H\\
-    \hline
-    2 & Press the action button 
-      & The car sends a request to the server, and the server responds & H & H\\
-    \hline
-\end{tabularx}
-\caption{Acceptance test - Functionality 1}
+\caption{Acceptance test - Nonfunctional Requirements - Usability 1}
+\label{tab:at-nonFuncUsability1}
 \end{table}
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Functionality 2 - Car continues route} \\ 
+    \multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Usability 2 - Car equipped with speaker} \\ 
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{Car is idle at destination} \\
+    \multicolumn{5}{|c|}{}\\
     \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    1 & Press the action button & The car starts driving to continue its route & H & H\\
+    \textbf{1} & Inspect the car & The car is equipped with a speaker & Not Implemented & FAIL \\ 
     \hline
 \end{tabularx}
-\caption{Acceptance test - Functionality 2}
+\caption{Acceptance test - Nonfunctional Requirements - Usability 2}
+\label{tab:at-nonFuncUsability2}
 \end{table}
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Usability 1 - The car is equipped with two LEDs} \\ 
+    \multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Usability 3 - Routes stored on server} \\ 
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{Car is idle at homebase} \\
+    \multicolumn{5}{|c|}{}\\
     \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    1 & Inspect the car & Two LEDs visible: one green and one red & H & H\\
+    \textbf{1} & Open the Terminal UI & The Terminal UI is running & - & -\\ 
+    \hline
+    \textbf{2} & Create 5 routes using the Terminal UI & 5 routes have been created & - & -\\ 
+    \hline
+    \textbf{3} & Open the text file "logger.txt" on the server & The 5 routes are stored in the file & - & -\\ 
     \hline
 \end{tabularx}
-\caption{Acceptance test - Usability 1}
+\caption{Acceptance test - Nonfunctional Requirements - Usability 3}
+\label{tab:at-nonFuncUsability3}
 \end{table}
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Usability 2 - The car is equipped with a speaker} \\ 
+    \multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Usability 4 - User guide} \\ 
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{Car is idle at homebase, server is running and has <1 routes stored} \\
+    \multicolumn{5}{|c|}{}\\
     \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    1 & Press the action button 
-      & When the green LED turns on, a sound is played to indicate the car is ready to execute route & H & H\\
+    \textbf{1} & Read the user guide & The user guide explains the functionality of the car, and how to operate it & - & -  \\ 
     \hline
 \end{tabularx}
-\caption{Acceptance test - Usability 2}
+\caption{Acceptance test - Nonfunctional Requirements - Usability 4}
+\label{tab:at-nonFuncUsability4}
 \end{table}
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Usability 3 - User guide !!!!!!!!!!!!!!!!!!!!!!!!!!!!} \\ 
+    \multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Usability 5 - Car equipped with buttons} \\ 
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{A user guide has been written ???????} \\
+    \multicolumn{5}{|c|}{}\\
     \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    1 & Write a user guide ???? & A user guide has been written ?????? & H & H\\
+    \textbf{1} & Inspect the car & The car is equipped with 2 buttons, for performing actions and power on/off & - & - \\ 
     \hline
 \end{tabularx}
-\caption{Acceptance test - Usability 3}
+\caption{Acceptance test - Nonfunctional Requirements - Usability 5}
+\label{tab:at-nonFuncUsability5}
 \end{table}
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Usability 4 - User guide} \\ 
+    \multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Usability 6 - Terminal UI} \\ 
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{Car is idle at homebase} \\
+    \multicolumn{5}{|c|}{}\\
     \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    1 & Read the user guide & The user guide includes troubleshooting for 5 common error-scenarios & H & H\\
+    \textbf{1} & Open the Terminal UI & The server can be accessed & - & - \\ 
     \hline
 \end{tabularx}
-\caption{Acceptance test - Usability 4}
+\caption{Acceptance test - Nonfunctional Requirements - Usability 6}
+\label{tab:at-nonFuncUsability6}
 \end{table}
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Usability 5 - Buttons on car} \\ 
+    \multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Usability 7 - Terminal UI text} \\ 
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{Car is idle at homebase} \\
+    \multicolumn{5}{|c|}{}\\
     \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    1 & Inspect the car & The car is equipped with two buttons labelled 'Action' and 'Power' & H & H\\
+    \textbf{1} & Open the Terminal UI & The text is size > 14, and the color of the text is in stark contrast to the background & - & - \\ 
     \hline
 \end{tabularx}
-\caption{Acceptance test - Usability 5}
+\caption{Acceptance test - Nonfunctional Requirements - Usability 7}
+\label{tab:at-nonFuncUsability7}
 \end{table}
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Usability 6 - UI} \\ 
+    \multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Reliability 1 - Continuous driving of car} \\ 
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{Car is idle at homebase} \\
+    \multicolumn{5}{|c|}{}\\
     \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    1 & Start creating route on client & A UI opens & H & H\\
+    \textbf{1} & Start a timer & The user is timing the system & - & - \\ 
+    \hline
+    \textbf{2} & Run the test program ??? & The car is driving at max speed & - & - \\ 
+    \hline
+    \textbf{3} & Wait 10 minutes & The car is still driving & - & - \\ 
     \hline
 \end{tabularx}
-\caption{Acceptance test - Usability 6}
+\caption{Acceptance test - Nonfunctional Requirements - Reliability 1}
+\label{tab:at-nonFuncReliability1}
 \end{table}
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Usability 7 - Text on UI} \\ 
+    \multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Reliability 2 - Continuous operation of server} \\ 
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{Car is idle at homebase} \\
+    \multicolumn{5}{|c|}{}\\
     \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    1 & Open the Client UI & The size of text in the UI is > 14pt, and the color of the text is a contrasting color to the background & H & H\\
+    \textbf{1} & Start a timer & The user is timing the system & - & - \\ 
     \hline
-    2 & Shine a flashlight at the screen or recreate a high-light environment in another way & The text in the UI is still readable & H & H\\
+    \textbf{2} & Start the server & The server is running & - & - \\ 
+    \hline
+    \textbf{3} & Wait 1 hour & The server is still running & - & - \\ 
     \hline
 \end{tabularx}
-\caption{Acceptance test - Usability 7}
+\caption{Acceptance test - Nonfunctional Requirements - Reliability 2}
+\label{tab:at-nonFuncReliability2}
 \end{table}
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Reliability 1 - Continuous driving} \\ 
+    \multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Performance 1 - Car power on time} \\ 
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{The car is fully charged and 10+ routes are ready in server} \\
+    \multicolumn{2}{|l|}{\textbf{Precondition:}} & \multicolumn{3}{l|}{The car is turned off} \\
     \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \multicolumn{5}{|c|}{}\\
     \hline
-    1 & Start a timer & The user is timing the system & H & H\\
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    2 & Press the action button & The car requests and receives a route, and the green LED turns on & H & H\\
+    \textbf{1} & Start a timer & The user is timing the system & - & - \\ 
     \hline
-    3 & Press the action button & The car starts driving, and arrives at next destination & H & H\\
+    \textbf{2} & Press the power button & The car begins powering on & - & - \\ 
     \hline
-    4 & Repeat point 3 until car is back at homebase & The car is at homebase and ready to request another route & H & H\\
-    \hline
-    5 & Repeat point 1 to 4 until 65 minutes have passed & 65 minutes have passed and the car is still executing routes without issues & H & H\\
+    \textbf{3} & Wait 1 minute & The remote SSH connection shows "Waiting for button press/ Waiting for req route eller whatever" & - & - \\ 
     \hline
 \end{tabularx}
-\caption{Acceptance test - Reliability 1}
-\end{table}
-
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-    \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Reliability 2 - Continuous running of server} \\ 
-    \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{Server is running and car is idle at homebase} \\
-    \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-    \hline
-    1 & Prepare and start a timer or stopwatch & The user is tracking the time & H & H\\
-    \hline
-    2 & Wait until 6 hours have passed, then press the action button on the car to request a route & The route is fetched without issues & H & H\\
-    \hline
-\end{tabularx}
-\caption{Acceptance test - Reliability 2}
+\caption{Acceptance test - Nonfunctional Requirements - Performance 1}
+\label{tab:at-nonFuncPerformance1}
 \end{table}
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Reliability 3 - Continuous running of server (battery swap)} \\ 
+    \multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{Performance 2 - Car maximum speed} \\ 
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{Server is running and car is idle at homebase} \\
+    \multicolumn{5}{|c|}{}\\
     \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    1 & Prepare and start a stopwatch or timer & The timer/stopwatch is tracking the time & H & \\
+    \textbf{1} & Mark a line with a length of 10 meters on a drivable surface & The testing track is ready & - & - \\ 
     \hline
-    2 & Remove the current battery from the car & The battery is removed successfully & H & H\\
+    \textbf{2} & Start a time & The user is ready to time the system & - & - \\ 
     \hline
-    3 & Install a new battery in the car & The new battery is installed successfully & H & H\\
+    \textbf{3} & Start the test program ??? & The car starts driving at max speed & - & - \\ 
     \hline
-    4 & Stop the stopwatch/timer & Less than 10 minutes have passed & H & H\\
+    \textbf{4} & Stop the timer when the car reaches the end of the line & The time for the car to travel 10 meters is noted & - & - \\ 
+    \hline
+    \textbf{5} & Calculate the speed of the car based on the time to travel the line & The average speed of the car is under 5 km/h & - & - \\ 
     \hline
 \end{tabularx}
-\caption{Acceptance test - Reliability 3}
-\end{table}
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-\hline
-\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-    & \multicolumn{3}{l|}{Reliability 4 - Success rate of routes} \\ 
-\hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} 
-    & \multicolumn{3}{l|}{Car is idle at homebase and server is running with 10 routes stored} \\
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-\hline
-1 & Press the action button & The green LED lights up & H & H\\
-\hline
-2 & Press the action button & The car starts executing route & H & H\\
-\hline
-3 & Wait for car to arrive at destination & The car is at destination, and green LED is on & H & H\\
-\hline
-4 & Repeat point 2 to 3 until route is complete & The car is idle at homebase & H & H\\
-\hline
-5 & Repeat step 1 to 4 until 10 routes have been completed in total & The car completed at least 9 routes & H & H\\
-\hline
-\end{tabularx}
-\caption{Acceptance test - Reliability 4}
-\end{table}
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-\hline
-\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-    & \multicolumn{3}{l|}{Reliability 5 - Car drives on wet floor} \\ 
-\hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} 
-    & \multicolumn{3}{l|}{Car is idle at homebase and server is running} \\
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-\hline
-1 & Grab a bottle of water(500 ml) and pour it evenly over the surface & The surface the car is going to drive on is wet & H & H\\
-\hline
-2 & Press the action button on the car & The green LED turns on & H & H\\
-\hline
-3 & Press the action button & The car starts executing route & H & \\
-\hline
-4 & Watch car while it is executing route & The car cannot complete the route & H & H\\
-\hline
-\end{tabularx}
-\caption{Acceptance test - Reliability 5}
-\end{table}
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-\hline
-\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-    & \multicolumn{3}{l|}{Performance 1 - Button response time} \\ 
-\hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} 
-    & \multicolumn{3}{l|}{Car is idle at homebase and server is running} \\
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-\hline
-1 & Open Wireshark to monitor the local network & Wireshark is monitoring the local network & H & H\\
-\hline
-2 & Prepare and start stopwatch/timer & The user is now tracking the time & H & H\\
-\hline
-3 & Press the action button & [Wireshark] The car requests a route within 1 second & H & H\\
-\hline
-\end{tabularx}
-\caption{Acceptance test - Performance 1}
-\end{table}
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-\hline
-\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-    & \multicolumn{3}{l|}{Performance 2 - Car startup time} \\ 
-\hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} 
-    & \multicolumn{3}{l|}{Car is turned off and server is running} \\
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-\hline
-1 & Prepare a stopwatch/timer & The user is tracking the time & H & H\\
-\hline
-2 & Press the power button, and wait for the green LED to turn on & The green LED turns on within 1 minute & H & H\\
-\hline
-\end{tabularx}
-\caption{Acceptance test - Performance 2}
+\caption{Acceptance test - Nonfunctional Requirements - Performance 2}
+\label{tab:at-nonFuncPerformance2}
 \end{table}
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
     \hline
-    \multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-        & \multicolumn{3}{l|}{Performance 3 - Car minimum range} \\ 
+    \multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{+ 1 - Driving environment} \\ 
     \hline
-    \multicolumn{2}{|l|}{\textbf{Precondition:}} 
-        & \multicolumn{3}{l|}{Car is idle and fully charged at homebase and server is running} \\
+    \multicolumn{5}{|c|}{}\\
     \hline
-    \textbf{No.} & \textbf{Action} & \textbf{Action} 
-                 & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-1 & Find the longest possible route in your testing setup & The longest route is found & H & H\\
-\hline
-2 & Create multiple copies of said route on server so that total length is \(\geq 500\) meters 
-  & Routes of total length \(\geq 500\) meters have been stored on server & H & H\\
-\hline
-3 & Press the action button & The green LED turns on & H & H\\
-\hline
-4 & Press the action button & The car starts driving to next destination & H & H\\
-\hline
-5 & Wait for car to reach destination & The car has reached its destination and the green LED is on & H & H\\
-\hline
-6 & Repeat point 4–5 until car has completed route & The car is idle at homebase & H & H\\
-\hline
-7 & Repeat point 3–6 until total length driven exceeds 500 meters & The battery is still powering the car & H & H\\
-\hline
+    \textbf{1} & Place the car indoors on a dry and flat surface & The car is in position & - & - \\ 
+    \hline
+    \textbf{2} & Execute a route & The car is able to drive on the surface & - & - \\ 
+    \hline
 \end{tabularx}
-\caption{Acceptance test - Performance 3}
-\end{table}
-
-
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-\hline
-\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-    & \multicolumn{3}{l|}{Performance 4 - Car maximum speed} \\ 
-\hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} 
-    & \multicolumn{3}{l|}{Car is idle at homebase and server is running} \\
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-\hline
-1 & Prepare a speedometer & The speed of the car is ready to be read & H & H\\
-\hline
-2 & Press the action button & The green LED turns on & H & H\\
-\hline
-3 & Press the action button & The car starts driving to next destination & H & H\\
-\hline
-4 & Track the speed during route completion & The car is idle at destination & H & H\\
-\hline
-5 & Repeat point 3–4 until route completed & The car never exceeds a speed of 5 km/h & H & H\\
-\hline
-\end{tabularx}
-\caption{Acceptance test - Performance 4}
+\caption{Acceptance test - Nonfunctional Requirements - + 1}
+\label{tab:at-nonFuncPlus1}
 \end{table}
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}
-\hline
-\multicolumn{2}{|l|}{\textbf{Demand under test:}} 
-    & \multicolumn{3}{l|}{XXXXX xxxxx - Car car car} \\ 
-\hline
-\multicolumn{2}{|l|}{\textbf{Precondition:}} 
-    & \multicolumn{3}{l|}{Car is car car} \\
-\hline
-\textbf{No.} & \textbf{Action} & \textbf{Action} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
-\hline
-1 & do car car & car car & H & H\\
-\hline
-2 & do car car & car car & H & H\\
-\hline
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Requirement under test:}} & \multicolumn{3}{l|}{+ 2 - Outside interference} \\ 
+    \hline
+    \multicolumn{5}{|c|}{}\\
+    \hline
+    \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
+    \hline
+    \textbf{1} & Pick up the car while it is driving and place it outside the designated map & The car has been moved to outside the map & - & - \\ 
+    \hline
+    \textbf{2} & Continue execution of route & The car is not able to find its way back to the map & - & - \\ 
+    \hline
 \end{tabularx}
-\caption{Acceptance test - XXXXX xxxxx}
+\caption{Acceptance test - Nonfunctional Requirements - + 2}
+\label{tab:at-nonFuncPlus2}
 \end{table}
-
-
-
-
