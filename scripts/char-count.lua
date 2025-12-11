@@ -10,15 +10,17 @@ wordcount = {
     end
   end,
 
-  Code = function(el)
-    _,n = el.text:gsub("%S+","")
-    words = words + n
-  end,
-
-  CodeBlock = function(el)
-    _,n = el.text:gsub("%S+","")
-    words = words + n
-  end
+  --Code = function(el)
+  --  if el.text:match("%P") then
+  --      words = words + el.text:len("%P")
+  --  end
+  --end,
+--
+  --CodeBlock = function(el)
+  --  if el.text:match("%P") then
+  --      words = words + el.text:len("%P")
+  --  end
+  --end
 }
 
 function Pandoc(el)
