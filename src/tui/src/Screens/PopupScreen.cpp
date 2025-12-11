@@ -44,13 +44,14 @@ PopupScreen::PopupScreen(const Route& route)
         t.join();
 
         const httplib::Result res = f.get();
-        if(res->status != httplib::StatusCode::OK_200) {
+        if(!res) {
             auto error = TextElement("Sending route failed...Try again...", {2, y_pos});
             error.print();
             //5s wait to let user read
             std::this_thread::sleep_for(std::chrono::seconds(5));
 
             Tui::pop_screen();
+            return;
         };
 
         auto success_msg = TextElement("The route has been successfully made...", {2, y_pos});

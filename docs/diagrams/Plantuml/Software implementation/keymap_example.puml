@@ -1,0 +1,16 @@
+@startuml Keymap example
+
+hide empty description
+
+state "Room 3 [ ]" as r
+state "Finish" as f
+state "Clear" as c
+
+
+r -d-> f : DOWN
+f -u-> r : UP
+c -u-> r : UP
+
+c -l-> f : LEFT
+f -r-> c : RIGHT
+@enduml
