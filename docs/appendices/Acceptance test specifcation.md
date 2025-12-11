@@ -16,9 +16,7 @@
     \multicolumn{5}{|c|}{} \\ 
     \hline \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)} \\ 
     \hline 
-    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and monitoring the local network & The network is being monitored & OK \\ 
-    \hline 
-    \textbf{2} & Press the 'Power' button & [Wireshark] shows the car successfully establishing a connection to the local network and the red LED turns on & The car turns on but doesn't connect to network & FAIL \\ 
+    \textbf{1} & Press the 'Power' button & The car powers on & The car powers on & OK \\ 
     \hline 
 \end{tabularx} 
 \caption{Acceptance test - Use Case 1 - Main scenario} 
@@ -85,19 +83,17 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Monitor the local network the RPI's are using with Wireshark & Wireshark is opened and is monitoring the local network & Wireshark is monitoring the network & OK \\
+    \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & The message appears on the TUI & OK \\ 
     \hline
-    \textbf{2} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & The message appears on the TUI & OK \\ 
+    \textbf{2} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & The chosen rooms are marked on the TUI & OK \\
     \hline
-    \textbf{3} & Choose room 1, 2, and 3 & Room 1, 2 and 3 are marked & The chosen rooms are marked on the TUI & OK \\
+    \textbf{3} & Navigate to and select 'Finish' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms appears & The list of chosen rooms appears on the TUI & OK \\
     \hline
-    \textbf{4} & Navigate to and select 'Finish' & A confirmation message saying "These are your chosen rooms" and a list of the chosen rooms appears & The list of chosen rooms appears on the TUI & OK \\
+    \textbf{4} & Select 'Confirm' & A POST request has been registered on the server at the /on\_new\_route route & The POST request is received & OK \\ 
     \hline
-    \textbf{5} & 'Confirm' is selected & [Wireshark] A route is sent to the server & Wireshark shows a package being sent and the server has received the route & OK \\ 
+    \textbf{5} & Open the text file "logger.txt" on the server and check the contents & The file contains the list of selected rooms (1, 2 and 3) & The route is contained in "logger.txt" on the server & OK\\
     \hline
-    \textbf{6} & Open the text file "logger.txt" on the server and check the contents & The file contains the list of selected rooms (1, 2 and 3) & The route is contained in "logger.txt" on the server & OK\\
-    \hline
-    \textbf{8} & Look at the UI & The Terminal UI displays "The route has been successfully made" & The message is displayed & OK \\
+    \textbf{7} & Look at the UI & The Terminal UI displays "The route has been successfully made" & The message is displayed & OK \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Main scenario}
@@ -226,25 +222,23 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & Wireshark is monitoring the network & OK \\ 
+    \textbf{1} & Press the Action button & A POST request has been received on the server at the /on\_get\_route route & The POST request is received & OK \\
     \hline
-    \textbf{2} & Press the Action button & [Wireshark]A request to fetch routes is sent from the car to the server & The route is requested & OK \\
+    \textbf{2} & Look at the LEDs & The green LED is on & The green LED is turned on & OK \\
     \hline
-    \textbf{3} & Look at the LEDs & The green LED is on & The green LED is turned on & OK \\
+    \textbf{3} & Prepare a timer to time the system & User is ready to time the system & The system is being timed & OK \\
     \hline
-    \textbf{4} & Prepare a timer to time the system & User is ready to time the system & The system is being timed & OK \\
+    \textbf{4} & Press the Action button and start the timer & The green LED turns off and after a maximum of 5 seconds the car starts driving & The green LED turns off and the car starts driving immediately & OK \\
     \hline
-    \textbf{5} & Press the Action button and start the timer & The green LED turns off and after a maximum of 5 seconds the car starts driving & The green LED turns off and the car starts driving immediately & OK \\
+    \textbf{5} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & The car turns and drives in the pattern of the map, but it sometimes over/underturns & Partial OK \\
     \hline
-    \textbf{6} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & The car turns and drives in the pattern of the map, but it sometimes over/underturns & Partial OK \\
+    \textbf{6} & Press the Action button and start the timer & The green LED turns off and the car starts driving & The LED turns off and the car starts driving immediately & OK \\
     \hline
-    \textbf{8} & Press the Action button and start the timer & The green LED turns off and the car starts driving & The LED turns off and the car starts driving immediately & OK \\
+    \textbf{7} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & Again, it drives in a pattern that matches the map, but it is not very precise & Partial OK\\
     \hline
-    \textbf{9} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & Again, it drives in a pattern that matches the map, but it is not very precise & Partial OK\\
+    \textbf{8} & Press the Action button & The green LED turns off and the car starts driving & The LED is off and the car starts driving & OK \\
     \hline
-    \textbf{10} & Press the Action button & The green LED turns off and the car starts driving & The LED is off and the car starts driving & OK \\
-    \hline
-    \textbf{11} & Wait for car to arrive at homebase & The car is idle at homebase & Again, the car is not very precise compared to our map, but the logic is followed & Partial OK \\
+    \textbf{9} & Wait for car to arrive at homebase & The car is idle at homebase & Again, the car is not very precise compared to our map, but the logic is followed & Partial OK \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Main scenario}
@@ -266,13 +260,11 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & Wireshark is monitoring the network & OK \\ 
+    \textbf{1} & Press the action button & A POST request is received on the server at the /on\_get\_route route & The POST request is received & OK \\ 
     \hline
-    \textbf{2} & Press the action button & [Wireshark] A request to fetch routes is sent to the server & Same as main scenario point 2 & OK \\ 
+    \textbf{2} & Prepare a timer & The user is ready to time the system & The user is timing the system & OK \\ 
     \hline
-    \textbf{3} & Prepare a timer & The user is ready to time the system & The user is timing the system & OK \\ 
-    \hline
-    \textbf{4} & Observe LEDs & The green LED starts blinking for 5 seconds, then the car enters idle mode & The LED blinks for 5 seconds & OK \\ 
+    \textbf{3} & Observe LEDs & The green LED starts blinking for 5 seconds, then the car enters idle mode & The LED blinks for 5 seconds & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Exception 1 - No available routes}
