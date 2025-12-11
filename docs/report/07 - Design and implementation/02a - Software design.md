@@ -28,8 +28,12 @@ The Tui has the following classes
 
 **PopupScreen** is the confirmation dialogue that lets the user verify the route before it gets sent.
 
-
-![Empty class diagram for TUI](docs/diagrams/out/apModel/PCClasses-Empty.png){width=400px}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{docs/diagrams/out/apModel/PCClasses-Empty.png}
+\caption{Empty class diagram for TUI}
+\end{center}
+\end{figure}
 
 \newpage
 ### Sequence diagram
@@ -67,26 +71,42 @@ Additionally some helper structs and enums were added mainly as some data abstra
 
 However since the structs and enums are used across many classes they do not have their arrows drawn as it would unnecessarily clutter the diagram.
 
-![Full class diagram for the TUI](docs/diagrams/out/apModel/PCClasses.png)
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{docs/diagrams/out/apModel/PCClasses.png}
+\caption{Full class diagram for the TUI}
+\end{center}
+\end{figure}
 
 
 \newpage
 ## Server
 
 ### Empty class diagram
-
 **RouteHandler** decides which handler should handle the incoming request.
 
 **LogHandler** stores the data given from RouteHandler and also returns the data that is asked for in RouteHandler. 
 
 
 
-![empty class diagram for server](docs/diagrams/out/apModel/server_class_empty/ServerClasses.png)
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{docs/diagrams/out/apModel/server_class_empty/ServerClasses.png}
+\caption{Empty class diagram for server}
+\end{center}
+\end{figure}
 
 ### Sequence diagram
 
 The "server" is a very basic HTTP server. It supports handling incoming "request" and should store them in a local log file as persistent storage. It has two routes "/new_route" and "/get_route" the first handles incoming orders from the pc, while the latter handles sending the order to the car when requested.
-![Sequence diagram for server](docs/diagrams/out/apModel/server_sd/server_sd.png)
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{docs/diagrams/out/apModel/server_sd/server_sd.png}
+\caption{Sequence diagram for server}
+\end{center}
+\end{figure}
+
 
 ### Full class diagram
 **RouteHandler**
@@ -95,7 +115,12 @@ Sees incoming request and decides which handler should take the request.
 **LogHandler**
 Does all the functionallity of either GET or POST, by storing data inside a queue and then also taking all the elements inside queue and give it to the log file. 
   
-![Full class diagram for server](docs/diagrams/out/apModel/server_classes/ServerClasses.png)
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{docs/diagrams/out/apModel/server_classes/ServerClasses.png}
+\caption{Full class diagram for server}
+\end{center}
+\end{figure}
 
 \newpage
 ## Car 
@@ -120,7 +145,12 @@ The car has the following classes
 
 **main** is not a class but instead where all the classes are initialized and where the control loop can be found.
 
-![Empty class diagram for the car](docs/diagrams/out/apModel/car_cd_empty/CarClasses.png){width=500px}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{docs/diagrams/out/apModel/car_cd_empty/CarClasses.png}
+\caption{Empty class diagram for the car}
+\end{center}
+\end{figure}
 
 \newpage
 
@@ -136,7 +166,12 @@ If the request was a success the paths to reach all the rooms are then calculate
 
 When the button is pressed the car then repeats this for the next room until it reaches its home base. Here it waits for a button press to once again request what rooms it needs to visit.
 
-![Sequence diagram for the car](docs/diagrams/out/apModel/car_sd/car_sd.png){width=500px}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{docs/diagrams/out/apModel/car_sd/car_sd.png}
+\caption{Sequence diagram for the car}
+\end{center}
+\end{figure}
 
 \newpage
 
@@ -144,6 +179,11 @@ When the button is pressed the car then repeats this for the next room until it 
 
 The class diagram shows all the classes from the empty class diagram, and the functions from the sequence diagram. It also shows all the functions that are not on the sequence diagram but classes has. The class diagram also shows the associations between the classes. main is also in the diagram even though its not a class. This is to show what functions are defined in main and its relations to the classes.
 
-![Full class diagram for the car](docs/diagrams/out/apModel/car_cd/CarClasses.png){width=500px}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{docs/diagrams/out/apModel/car_cd/CarClasses.png}
+\caption{Full class diagram for the car}
+\end{center}
+\end{figure}
 
 \newpage

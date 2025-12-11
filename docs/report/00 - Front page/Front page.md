@@ -8,7 +8,10 @@
 
 \vspace{1.5cm}
 
-\includegraphics[width=0.6\textwidth]{docs/appendices/pictures/car_front.jpg}
+\begin{figure}[H]
+    \includegraphics[width=0.6\textwidth]{docs/appendices/pictures/car_front.png}
+\end{figure}
+
 
 \vspace{0.6cm}
 

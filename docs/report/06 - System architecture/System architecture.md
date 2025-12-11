@@ -13,7 +13,13 @@ The following BDD below contains 11 blocks each describing which parts and ports
 skeleton of the system and captures the structure of the different components and their relationships to each other.
 This diagram was developed in the early phases to give a basic understanding of how the system is modeled and
 structured, it also gives insight into what physical components are present in the system.
-![Block definition diagram](docs/diagrams/out/System Architecture/BDD (3).png)
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics{docs/diagrams/out/System Architecture/BDD (3).png}
+\caption{Block definition diagram}
+\end{center}
+\end{figure}
 
 \newpage
 
@@ -123,7 +129,13 @@ A block description is made to describe each block inside the BDD and its functi
 The IBD is used to dive deeper into the internal hardware of the car, it shows where each signal is going to and coming from for each component in the car.
 These signals include: voltage, PWM, high/low and etc. This tool makes sure that each signal is considered and how further development should follow. 
   
-![Internal block diagram](docs/diagrams/out/System Architecture/IBD (2).png)  
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{docs/diagrams/out/System Architecture/IBD (2).png}
+\caption{Internal block diagram}
+\end{center}
+\end{figure}
 
 
 ### Signal Description
@@ -225,7 +237,13 @@ The content of the domain model below shows:
 **LED** used to indicate errors or if something is a succes. 
   
 **Pathfinding** receives route from Server and uses the route to calculate a path for the Car to drive. 
-![Domain model](docs/diagrams/out/Software architecture/domain/domain_model.png)
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{docs/diagrams/out/Software architecture/domain/domain_model.png}
+\caption{Domain model}
+\end{center}
+\end{figure}
 
 \newpage
 ### System Sequence Diagram
@@ -240,6 +258,12 @@ The combined system sequence diagram was used to show the sequence and how every
 ### System State Machine Diagram
 A STM is used to represent the condition and behavior of the system, this helps indicating what happens when the system is in a state and also what goes on when the system goes from one state to another. There are 4 states in the system: off, idle, driving and pathfinding. This diagram was make in the early phases of the project serving as an overview of how to handle the systems different states. 
 
-![State machine diagram](docs/diagrams/out/Software Architecture/System STM.png)
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{docs/diagrams/out/Software Architecture/System STM.png}
+\caption{State machine diagram}
+\end{center}
+\end{figure}
+
 
 \newpage

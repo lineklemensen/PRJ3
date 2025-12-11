@@ -2,7 +2,12 @@
 
 ## Actor-Context Diagram
 
-![Actor context diagram](docs/diagrams/out/requirements/actDiagram/Actor-Context-Diagram.png){width=500}
+\begin{figure}[H]
+\begin{center}
+\includegraphics{docs/diagrams/out/requirements/actDiagram/Actor-Context-Diagram.png}
+\caption{Actor context diagram}
+\end{center}
+\end{figure}
 
 ## Actor Description
 
@@ -36,7 +41,12 @@
 
 \newpage
 
-![Use case diagram](docs\diagrams\out\requirements\usecase diagram.png){width=440}
+\begin{figure}[H]
+\begin{center}
+\includegraphics{docs/diagrams/out/requirements/usecase diagram.png}
+\caption{Use case diagram}
+\end{center}
+\end{figure}
 
 ### Use Case 1 Start
 Use case 1 is for handling startup of the car, and checking if a connection to the internet has been made. The dispensary nurse positions the car in the chosen point for home base, and presses the power button on the car.
