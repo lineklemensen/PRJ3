@@ -2,15 +2,16 @@
 
 ## Astar
 
+**Calculate route**
 
-### Calculate route
 Firstly we generate the points,rooms, that the car can visit, which include the starting point (0,0), \newline
 const std::vector<Point> waypoints = create_rooms(r); \newline
 const int num_points = waypoints.size(); \newline
 
 here the waypoints stores all the points of interest, and num_points is the total number of points. \newline
 
-### Compute paths
+**Compute paths**
+
 Then we need to find the shortest path between all pairs of waypoints given, so later on solve the TSP efficiently. \newline
 
 ```cpp
@@ -39,7 +40,8 @@ For every pair, (i,j), astar_search finds the shortest path.
 If a path exists, we store it in paths and its length in cost.
 
 \newpage
-### Solve TSP brute-force
+**Solve TSP brute-force**
+
 Next step is to try all the possible orders of visiting the rooms to find the total shortest total route. \newline
 
 ```cpp
@@ -88,7 +90,8 @@ do {
 ```
 
 \newpage
-### Combine paths  
+**Combine paths**
+
 Once we have the best order to visit, the code concatenate the individual paths into a full route:  
 ```cpp
 std::vector<std::vector<Point>> combined_path; 
@@ -104,7 +107,8 @@ return combined_path;
 
 Each segment paths(a)(b), is added to combined_path. The final combined_path is what the car should follow.
 
-### Astar search  
+**Astar search**
+
 The algorithm started its base [@geeksforgeeks-2025] and material learned in the course this semester in "Algoritmer og datastrukturer".
 The astar_search function finds the shortest path between two points.  
 ```cpp
@@ -133,7 +137,7 @@ open_list.emplace(0.0, src);
 open_list is a min-heap based on total cost f = g + h.  
 
 \newpage
-### Main Loop  
+**Main Loop**
 ```cpp
 while(!open_list.empty()) { 
     Point current = open_list.top().point; 
@@ -174,7 +178,8 @@ if(cell_details[n.x][n.y].total_cost > f_new) {
 
 Update the neighbor if we found a better path, and push it to the queue.
 
-### Path compression
+**Path compression**
+
 Lastly, it removes unnecessary points along the straight lines:  
 ```cpp
 for(int it = 0; it + 1 < route.size(); it++) {

@@ -216,7 +216,8 @@ The path found is the optimal, shortest, path for the given configuration. \newl
 \newline
 
 
-#### Basic functionality tests
+**Basic functionality tests**
+
 Firstly, its nice to see that it can calculate the steps given in the four cardinal directions. These act as sanity checks to ensure the algorithm handles the simplest cases correctly.
 
 | Start | Goal  | Expected path length | Actual path length |
@@ -227,7 +228,8 @@ Firstly, its nice to see that it can calculate the steps given in the four cardi
 
 All the tests matched the expected lengths, confirming that the Manhattan-distance heuristic aligned correctly with the grid movement model. \newline
 
-#### Obstacle avoidance tests
+**Obstacle avoidance tests**
+
 The batch of tests is placing static obstacles in the map and check if the astar correctly routed around them. These tests are essential to validate the cost of calculations and neighbor evaluation logic.
 
 | Start | Goal  |      Map description      |          Expected result           |            Actual result             |
@@ -238,7 +240,7 @@ The batch of tests is placing static obstacles in the map and check if the astar
 
 These tests confirmed that the algorithm checks neighbors correctly, avoids illegal tiles, and terminates when no solution exists.
 
-#### Integration testing with route execution
+**Integration testing with route execution**
 
 The last test made was validating that the output path was compatible with the driving logic. The path was fed directly into the distance/rotation (DR) class to verify the following. \newline
 
