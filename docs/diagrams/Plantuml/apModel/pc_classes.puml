@@ -1,6 +1,6 @@
 @startuml PCClasses
 
-mainframe PCClasses
+mainframe **CD** PC
 'hide circle
 
 skinparam {
@@ -176,9 +176,9 @@ sc *-d- "0..*" sb
 sc *-d- "0..*" b
 
 b --> http 
-
-
 http -l-> Route
+
+main -l->  tui
 
 'note right of Color : Used for setting the\ntext color in the terminal;
 'note right of Direction : Used for determining which\ndirection to automatically place an element
