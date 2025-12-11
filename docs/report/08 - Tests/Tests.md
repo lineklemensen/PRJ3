@@ -1,10 +1,12 @@
 # Tests
 ## Hardware
-Testing the hardware, multisim was used to check if the hardware would work in a simulation, and speaking with one of the workers in Elab to hear their advise on what to do, then a multimeter was used to check the regulator was working as intented.   
+Before spending time physically making the hardware multisim was used to check if the hardware would work in a simulation. After simulating it and that not working, one of the workers in Elab was contacted to hear their advise on what to do. A conclusion that the simulation was not working was then reached. Then once it had been soldered a multimeter was used to check the regulator was working as intended.   
 
-There was used a x to test the signals that were used to control the motors. The transistors was tested by using signals sent through the pins on the RPi5, to see if it would open and close the transistors, which would in turn turn on or off the LED's. Then the button was tested by connecting its pin to the RPi5, and checking if we could read the signal from a button press, and if we held the button if that could be read, which both worked. After the full implementation we could test the drive with the full weight of all parts. 
+There was used a Analog Discovery to test the signals for controlling the motors. The transistors was tested by using signals sent through the pins on the RPi5, to see if it would open and close the transistors, which would in turn turn on or off the LED's. Then the button was tested by connecting its pin to the RPi5, and checking if we could read the signal from a button press, and if we held the button if that could be read as high and as low when not, which both worked. After the full implementation we could test the drive with the full weight of all parts. 
 
-## Calculate route
+## Module tests
+
+### Calculate route
 DR is the class used for calculating the length and angle needed to drive from where the car currently is and where it needs to be. Testing this class, I put in every variation of points so that it would have to turn in every 90 degree turn available. This way there was an easy way to keep track of when the turn needed to be negative depending on where the car came from. The unit circle was used in deciding wether the turn was to be negative or positive. 
 
 | Input X | Input Y | Expected output in degrees | Actual result |
@@ -23,7 +25,7 @@ DR is the class used for calculating the length and angle needed to drive from w
 
 The first and last point inputted in the above table, is special cases handled independently in the code, to set the outputted angle to either 0 if the current point is our homebase, or if the angle is zero as it will only be that if we have to turn around.
 
-## PID regulating
+### PID regulating
 
 The Pid class is responsible for controlling motor acceleration and accurately driving the system toward a target position. To validate the controller independently from the hardware, the class was tested using a software-simulated encoder, allowing repeatable and deterministic testing.
 
@@ -91,7 +93,8 @@ for (int i = 0; i < 200; i++)
 ```
 The resulting CSV file was analyzed using a Python script that loads the data via pandas and visualizes the controller response using matplotlib. These plots allowed evaluation of settling time, overshoot, stability, and convergence behavior.
 
-## MotorController & PID Tuning
+\newpage
+### MotorController & PID Tuning
 
 The MotorController class is responsible for driving the car. The class uses a function, drive(), to set the speed and direction for both motors.
 
@@ -124,8 +127,7 @@ if (left_error < 10 && right_error < 10)
 
 This solidified the core functionality of the function, but the motors were very unprecise, as we hadn't performed any tuning of the PID regulation yet. The PID tuning was done by first slowly increasing the KP value, until the motor would start, rather violently, oscilating once it came close enough to its target, trying to zero in on a specific value, but accelerating too fast to hit within our accepted error margin. Once this behaviour was achieved, we cut the KP value in half, and started increasing the KD value, which largely affects the deceleration, as the motor would overshoot in its current state. We kept slowly increasing KD, until the motor would undershoot the target by ~20-30 encoder pulses. At this point, we started increasing the KI value very slowly, to smooth out the last errors, leading to the motor landing within ~5 pulses of the target consistently, which was well within our error range. This process was then repeated for the second motor. Throughout the tuning process, the python script used for testing the PID regulation, was also used, to gain a visual understanding of the behaviour of the system.
 
-![Example of graph from PID tuning](docs/diagrams/img/pidTuningExample.png){ width=60% }
-
+![Example of graph from PID tuning](docs/diagrams/out/Tests/pidTuningExample.png){ width=60% }
 
 During this process, it became apparent that the motors would not drive if they received a PWM signal with a duty cycle < 31, so a clamp was added to drive(), ensuring the motors would always drive when they were supposed to.
 
@@ -157,7 +159,7 @@ if (std::abs(left_pwm) < 20 && std::abs(right_pwm) < 20)
         }
 ```
 
-## Raspberry Pi Setup (rpi1)
+### Raspberry Pi Setup (rpi1)
 
 The Rpi controlling the car required a bit of setup as well. Firstly the PWM chip had to be enabled, as otherwise we wouldn't be able to generate a PWM signal to control the car. This was done by adding the following line to config.txt.
 ```bash
@@ -198,7 +200,7 @@ WantedBy=multi-user.target
 When the time came to have it run the program itself, we encountered issues with the Pi not booting. At first we suspected that the service type was wrong, and that was causing the issue, so we changed it from oneshot to simple, since we thought oneshot type may have gotten 'unhappy' from getting stuck in the program, as it runs indefintely. However, this had no effect, and the Pi would still not boot, so eventually we decided to ditch this functionality, and simply run the program through a remote SSH connection.
 
 
-## Astar
+### Astar
 
 The Astar class is responsible for calculating the optimal path between the points given on the grid-based map, whilst taking into account for obstacles and the car's movement constraints. The routing system is important to ensure the car always receives valid and drivable waypoint sequences, the astar implementation was tested thoroughly using a series of controlled grid layouts.
 \newline
@@ -214,7 +216,8 @@ The path found is the optimal, shortest, path for the given configuration. \newl
 \newline
 
 
-### Basic functionality tests
+**Basic functionality tests**
+
 Firstly, its nice to see that it can calculate the steps given in the four cardinal directions. These act as sanity checks to ensure the algorithm handles the simplest cases correctly.
 
 | Start | Goal  | Expected path length | Actual path length |
@@ -225,7 +228,8 @@ Firstly, its nice to see that it can calculate the steps given in the four cardi
 
 All the tests matched the expected lengths, confirming that the Manhattan-distance heuristic aligned correctly with the grid movement model. \newline
 
-### Obstacle avoidance tests
+**Obstacle avoidance tests**
+
 The batch of tests is placing static obstacles in the map and check if the astar correctly routed around them. These tests are essential to validate the cost of calculations and neighbor evaluation logic.
 
 | Start | Goal  |      Map description      |          Expected result           |            Actual result             |
@@ -236,7 +240,7 @@ The batch of tests is placing static obstacles in the map and check if the astar
 
 These tests confirmed that the algorithm checks neighbors correctly, avoids illegal tiles, and terminates when no solution exists.
 
-### Integration testing with route execution
+**Integration testing with route execution**
 
 The last test made was validating that the output path was compatible with the driving logic. The path was fed directly into the distance/rotation (DR) class to verify the following. \newline
 
@@ -245,6 +249,25 @@ No illegal diagonal or backward steps were generated. \newline
 The angle changes between steps always matched the DR class expectations. \newline
 
 The resulting behavior confirmed that astar outputs clean, grid-aligned paths perfectly suitable for real-world execution. 
+
+### Tui
+
+Most of the testing for developing the TUI was done iteratively during developement, where any visual errors 
+
+\begin{figure}[H]
+\centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{docs/diagrams/out/Tests/Mainscreen.png}
+        \caption{Main screen of tui}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{docs/diagrams/out/Tests/Popupscreen.png}
+        \caption{Pop up in tui}
+    \end{subfigure}
+\caption{Tui screens}
+\end{figure}
 
 ## Integration test
 
@@ -256,14 +279,14 @@ const double adjust_factor = (std::abs(right_error) / (std::abs(left_error) == 0
 
         left_pwm *= 1 - adjust_factor * 4;
         right_pwm *= 1 + adjust_factor * 4;
-        // Clamp values [0, 1] to avoid silly stuff
+        // Clamp values [-100, 100] to avoid silly stuff
         left_pwm = std::max(-100, std::min(100, left_pwm));
         right_pwm = std::max(-100, std::min(100, right_pwm));
 ```
 
 This resulted in the car being able to drive in a straight line again, but turning would continue to be an issue, also in part due to the back wheel getting stuck when we would turn after driving straight, which remains as an issue we have been unable to fix. 
 
-To test the creation of routes and storing of these on the server, we ran the Terminal UI and server on the same local network, and created multiple routes. The server was then accessed using a remote SSH connection, and the file "logger.txt" was opened. The file contained all the created routes, indicating a successful integration. 
+To test the creation of routes and storing of these on the server, we ran the Terminal UI and server on the same network, and created multiple routes. The server was then accessed using a remote SSH connection, and the file "logger.txt" was opened. The file contained all the created routes, indicating a successful integration. 
 
 Lastly, the car itself had to be integrated to work with the server/TUI, which mostly consisted of being able to retrieve routes from the server, and the correct time, and correctly loading the right values into the functions that handle the driving, as well as handling the LEDs and Action button.
 
