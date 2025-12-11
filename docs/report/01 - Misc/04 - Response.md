@@ -28,13 +28,13 @@ Supplementary responsibility: S
 \hline
 \textbf{Software Design} & & & & & & & & \\ 
 \hline
-\quad Server & & & & & P & & & \\ 
+\quad Server & & & S & & P & & & \\ 
 \hline
-\quad TUI & P & & & & & & & \\ 
+\quad TUI & P & & S & & & & & \\ 
 \hline
-\quad Car & & S & & P & & & & S \\ 
+\quad Car & & S & S & P & & & & S \\ 
 \hline
-\textbf{Hardware Design} & & & & P & S & & P & \\ 
+\textbf{Hardware Design} & & & & P & & S & P & \\ 
 \hline
 \textbf{Hardware Implementation} & & & & P & & P & & \\ 
 \hline
@@ -46,7 +46,7 @@ Supplementary responsibility: S
 \hline
 \quad Encoder & & & & P & & & & \\ 
 \hline
-\quad RPi PWM & & P & & S & & & & \\ 
+\quad RPi PWM & & & P & S & & & & \\ 
 \hline
 \quad TUI & P & & & & & & & \\ 
 \hline
