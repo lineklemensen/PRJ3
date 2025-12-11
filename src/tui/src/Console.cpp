@@ -13,7 +13,7 @@ void Console::set_cursor_pos(const short x, const short y)
 
 void Console::set_cursor_pos(const Vec2 pos)
 {
-
+    //https://learn.microsoft.com/en-us/windows/console/setconsolecursorposition
     const COORD coord = {static_cast<short>(pos.x), static_cast<short>(pos.y)};
     SetConsoleCursorPosition(handle_, coord);
 }
@@ -27,7 +27,7 @@ void Console::hide_cursor()
 
 void Console::set_text_color(const Color color)
 {
-    //https://en.wikipedia.org/wiki/ANSI_escape_code
+    //https://learn.microsoft.com/en-us/windows/console/setconsoletextattribute
     switch(color) {
         case WHITE: {
             SetConsoleTextAttribute(handle_, WHITE);
@@ -43,6 +43,8 @@ void Console::set_text_color(const Color color)
 
 void Console::clear_screen()
 {
+    //https://learn.microsoft.com/en-us/windows/console/getconsolescreenbufferinfo
+    //https://learn.microsoft.com/en-us/windows/console/fillconsoleoutputcharacter
     CONSOLE_SCREEN_BUFFER_INFO info;
     GetConsoleScreenBufferInfo(handle_, &info);
     DWORD w;
