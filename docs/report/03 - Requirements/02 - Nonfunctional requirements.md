@@ -32,3 +32,22 @@
 1. Constraints
    1. The car must be operable indoors on flat and dry surfaces.
    2. The system won't handle any outside interference.
+
+
+## Limiting {-}
+MOSCOW is used to limit our nonfuntional requirements.
+
+\begin{table}[H]
+\begin{tabularx}{1\textwidth} { 
+  | >{\raggedright\arraybackslash}X 
+  | >{\raggedright\arraybackslash}X 
+  | >{\raggedright\arraybackslash}X  
+  | >{\raggedright\arraybackslash}X | }
+ \hline
+ \textbf{Must} & \textbf{Should} & \textbf{Could} & \textbf{Won't}\\
+ \hline
+  U1.1, U3.1, U3.2, U3.3, R1.1 & U2.1, R1.2, P1.1, P1.2, +1.1 & U1.2, U2.2 & +1.2\\
+ \hline
+\end{tabularx}
+\caption{MOSCOW}
+\end{table}

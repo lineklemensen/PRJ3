@@ -182,6 +182,7 @@ last_pos.first < next_pos.first && last_pos.second < next_pos.second) {
 } 
 ```
 The code above, is then used three more times to handle the three other directions. It then returns an angle and length, that can be used as parameters for another function that makes driving instructions.
+
 ## MotorController
 The turn() function is responsible for turning the car. The function takes a double, degrees, which is the amount of degrees the car has to turn. A positive value results in a counter-clockwise turn, and vice versa. As the function is called every time the car reaches a new point, and will sometimes have to keep going straight, the function will return immediately, if the value passed is 0. 
 
