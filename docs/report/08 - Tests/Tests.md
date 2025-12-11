@@ -93,6 +93,7 @@ for (int i = 0; i < 200; i++)
 ```
 The resulting CSV file was analyzed using a Python script that loads the data via pandas and visualizes the controller response using matplotlib. These plots allowed evaluation of settling time, overshoot, stability, and convergence behavior.
 
+\newpage
 ### MotorController & PID Tuning
 
 The MotorController class is responsible for driving the car. The class uses a function, drive(), to set the speed and direction for both motors.
@@ -250,6 +251,25 @@ The angle changes between steps always matched the DR class expectations. \newli
 
 The resulting behavior confirmed that astar outputs clean, grid-aligned paths perfectly suitable for real-world execution. 
 
+### Tui
+
+Most of the testing for developing the TUI was done iteratively during developement, where any visual errors 
+
+\begin{figure}[H]
+\centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{docs/diagrams/out/Tests/Mainscreen.png}
+        \caption{Main screen of tui}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{docs/diagrams/out/Tests/Popupscreen.png}
+        \caption{Pop up in tui}
+    \end{subfigure}
+\caption{Tui screens}
+\end{figure}
+
 ## Integration test
 
 To begin integrating our system, we first equipped the motors and wheels to the car, and running a simple test program that, theoretically, had the car drive in a straight line. We had been aware, since PID tuning, that the two motors were not exactly equal, as their tunings had to be different to achieve the same behaviour, but once the wheels came under load from the weight of the car, it quickly became apparent that this had different effect on the two motors, resulting in the car becoming very unprecise, and getting stuck in many situations. We changed the clamp, to now have the minimum duty cycle be 35, which prevented the car from getting stuck, but it was still unable to drive in a straight line, as one motor would turn more than the other, even with exactly the same PWM signal. To combat this, we started adjusting the PWM signal, based on how far away both motors were from their respective target. If a motor sagged behind, the duty cycle for that motor would be increased, and decreased for the other, based on the ratio of the errors.
@@ -267,7 +287,7 @@ const double adjust_factor = (std::abs(right_error) / (std::abs(left_error) == 0
 
 This resulted in the car being able to drive in a straight line again, but turning would continue to be an issue, also in part due to the back wheel getting stuck when we would turn after driving straight, which remains as an issue we have been unable to fix. 
 
-To test the creation of routes and storing of these on the server, we ran the Terminal UI and server on the same local network, and created multiple routes. The server was then accessed using a remote SSH connection, and the file "logger.txt" was opened. The file contained all the created routes, indicating a successful integration. 
+To test the creation of routes and storing of these on the server, we ran the Terminal UI and server on the same network, and created multiple routes. The server was then accessed using a remote SSH connection, and the file "logger.txt" was opened. The file contained all the created routes, indicating a successful integration. 
 
 Lastly, the car itself had to be integrated to work with the server/TUI, which mostly consisted of being able to retrieve routes from the server, and the correct time, and correctly loading the right values into the functions that handle the driving, as well as handling the LEDs and Action button.
 
