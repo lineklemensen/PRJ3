@@ -105,7 +105,7 @@ return combined_path;
 Each segment paths(a)(b), is added to combined_path. The final combined_path is what the car should follow.
 
 ### Astar search  
-The algorithm started its base [@geeksforgeeks-2025]
+The algorithm started its base [@geeksforgeeks-2025] and material learned in the course this semester in "Algoritmer og datastrukturer".
 The astar_search function finds the shortest path between two points.  
 ```cpp
 if(!is_unblocked(src) || !is_unblocked(dest)) return route; 
