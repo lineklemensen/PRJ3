@@ -127,8 +127,7 @@ if (left_error < 10 && right_error < 10)
 
 This solidified the core functionality of the function, but the motors were very unprecise, as we hadn't performed any tuning of the PID regulation yet. The PID tuning was done by first slowly increasing the KP value, until the motor would start, rather violently, oscilating once it came close enough to its target, trying to zero in on a specific value, but accelerating too fast to hit within our accepted error margin. Once this behaviour was achieved, we cut the KP value in half, and started increasing the KD value, which largely affects the deceleration, as the motor would overshoot in its current state. We kept slowly increasing KD, until the motor would undershoot the target by ~20-30 encoder pulses. At this point, we started increasing the KI value very slowly, to smooth out the last errors, leading to the motor landing within ~5 pulses of the target consistently, which was well within our error range. This process was then repeated for the second motor. Throughout the tuning process, the python script used for testing the PID regulation, was also used, to gain a visual understanding of the behaviour of the system.
 
-![Example of graph from PID tuning](docs/diagrams/img/pidTuningExample.png){ width=60% }
-
+![Example of graph from PID tuning](docs/diagrams/out/Tests/pidTuningExample.png){ width=60% }
 
 During this process, it became apparent that the motors would not drive if they received a PWM signal with a duty cycle < 31, so a clamp was added to drive(), ensuring the motors would always drive when they were supposed to.
 
