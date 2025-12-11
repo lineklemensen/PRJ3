@@ -182,6 +182,7 @@ last_pos.first < next_pos.first && last_pos.second < next_pos.second) {
 } 
 ```
 The code above, is then used three more times to handle the three other directions. It then returns an angle and length, that can be used as parameters for another function that makes driving instructions.
+
 ## MotorController
 The turn() function is responsible for turning the car. The function takes a double, degrees, which is the amount of degrees the car has to turn. A positive value results in a counter-clockwise turn, and vice versa. As the function is called every time the car reaches a new point, and will sometimes have to keep going straight, the function will return immediately, if the value passed is 0. 
 
@@ -254,9 +255,9 @@ The function drive_distance(), works in very much the same way, except, of cours
 
 ## PID
 
-The PID class contains a key function called update(), which calculates a control output based on its inputs. The purpose of this function is to generate a control signal that drives the system, in this case a DC motor with encoder toward a desired target position. The function takes the following inputs: the target value the system should reach, the current measured value, a pointer to store the control output, and a threshold that determines when the integral term should be applied.
+The PID class contains a function called update(), which calculates a control output based on its inputs. The purpose of this function is to generate a control signal that drives the system, in this case a DC motor with encoder toward a desired target position. The function takes four inputs, the target value, the current value, a pointer to store the control output, and a threshold that determines when the integral term should be applied.
 
-The first step in the function is to calculate the error, defined as the difference between the target value and the current value. This error represents how far the system is from the desired position and is used as the basis for all subsequent PID calculations. If the error is smaller than the integration threshold, the accumulated error variable is increased. This ensures that the integral term only contributes when the system is close enough to the target, preventing excessive accumulation.
+The first step in the function is to calculate the error, defined as the difference between the target value and the current value. This error represents how far the system is from the desired position and is used as the basis for all other PID calculations. If the error is smaller than the integration threshold, the accumulated error variable is increased. This ensures that the integral term only contributes when the system is close enough to the target, preventing excessive accumulation.
 
 Next, the proportional, integral, and derivative contributions are computed. The proportional term provides a corrective action directly proportional to the current error. When the motor is far from the target, this term generates a strong response to reduce the error quickly. As the motor approaches the target, the proportional term naturally decreases, preventing overshoot and unnecessary speed. The proportional value is equal to the current error.
 
@@ -264,7 +265,7 @@ The integral term addresses small, persistent errors that may remain due to fric
 
 The derivative term predicts the future trend of the error by measuring how quickly it is changing. If the motor is moving too rapidly toward the target, the derivative term applies a damping effect, reducing the control signal and helping to prevent overshoot or oscillations. The derivative value is computed as the difference between the current error and the previous error, divided by the time step.
 
-After calculating the proportional, integral, and derivative contributions, each is multiplied by its respective tuning parameter. This yields a control value, which may be too large or too small for the hardware. To ensure safety and stability, the value is first squashed to stay within predefined minimum and maximum limits. Additionally, the rate of change of the control signal is limited to prevent abrupt increases or decreases. This ramp limiting helps maintain smooth acceleration and deceleration the motor.
+After calculating the proportional, integral, and derivative contributions, each is multiplied by its respective tuning parameter. This yields a control value, which may be too large or too small for the hardware. To ensure safety and stability, the value is first squashed to stay within predefined minimum and maximum limits. Additionally, the rate of change of the control signal is limited to prevent abrupt increases or decreases. This ramp limiting helps maintain smooth acceleration and deceleration of the motor.
 
 Finally, for monitoring and debugging purposes, the function prints relevant information, including the current value, target value, control output, and error, every 50 iterations. This makes it much easier to observe since the time step is typically small.
 
