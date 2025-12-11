@@ -1,7 +1,6 @@
 ---
 title: "SW3 Semester Project"
 subtitle: "Self Driving Medicine Delivering System"
-date: "12/12/2025"
 fontsize: 12pt
 geometry: margin=1.5cm
 ---
@@ -49,6 +48,7 @@ Degree / Program: Software Engineering
 \clearpage
 
 # Index
+\tableofcontents
 
 \newpage
 
@@ -56,15 +56,15 @@ Degree / Program: Software Engineering
 # Method and Process
 In this project, specific tools have been utilized to ensure a clean, systematic and well documented process from idea to prototype. The methods used have been a combination of requirements specifications, technical assesments, analyses and design. All of these choices have been made with the purpose of creating a solid fundation for implementation.
 
-**Brainstorm**  
+## Brainstorm  
 The projects idea phase was initalized with a brainstorm, utilizing the "dont say no" method. Where all ideas are weighted equally. Afterwards all ideas have been critized and looked over untill a final idea emerged that everyone could agree on.
 
   
-**MoSCoW**  
+## MoSCoW   
 For prioritization MoSCoW have been utilized to categories all requirements in to categories such as *Must have*, *Should have*, *Would have* and *Wont have*. Using these categories all requirements got sorted depending on how important they were for the project and if there would be enough time and know how to properly execute them.
 
 
-**SysML**  
+## SysML
 When creating the system architecture, system modeling language(SysML) was used. Here two diagrams created: 
 
 * **Block Definition Diagram(BDD)**  
@@ -88,10 +88,8 @@ The sequence diagrams shows how the different blocks and actors connects and com
 * **Application model**
 Application models, are made up of class diagrams and sequence diagrams with function calls. They show how different hardware blocks and function calls are structured on each CPU in the system.  
   
-**Technical analysis**  
+## Technical analysis 
 For chosing components and programming language, a technical analysis was performed, weighing all the differnt options for hardware and langauge agianst as many possible factors as possible. This ensured that the componets that got chosen were the best suited to complete the project with as few mistakes as possible.
-
-\newpage
 
 # Process
 ## Group creation  
