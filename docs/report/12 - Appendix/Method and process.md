@@ -54,24 +54,24 @@ Degree / Program: Software Engineering
 
 
 # Method and Process
-In this project, specific tools have been utilized to ensure a clean, systematic and well documented process from idea to prototype. The methods used have been a combination of requirements specifications, technical assesments, analyses and design. All of these choices have been made with the purpose of creating a solid fundation for implementation.
+In this project, specific tools have been utilized to ensure a clean, systematic and well documented process from idea to prototype. The methods used have been a combination of requirement specifications, technical assesments, analysis and design. All of these choices have been made with the purpose of creating a solid foundation for implementation.
 
 ## Brainstorm  
 The projects idea phase was initalized with a brainstorm, utilizing the "dont say no" method. Where all ideas are weighted equally. Afterwards all ideas have been critized and looked over untill a final idea emerged that everyone could agree on.
 
   
 ## MoSCoW   
-For prioritization MoSCoW have been utilized to categories all requirements in to categories such as *Must have*, *Should have*, *Would have* and *Wont have*. Using these categories all requirements got sorted depending on how important they were for the project and if there would be enough time and know how to properly execute them.
+For prioritization MoSCoW have been utilized to categorize all requirements in to categories such as *Must have*, *Should have*, *Could have* and *Wont have*. Using these categories all requirements got sorted depending on how important they were for the project and if there would be enough time and know how to properly execute them.
 
 
 ## SysML
-When creating the system architecture, system modeling language(SysML) was used. Here two diagrams created: 
+When creating the system architecture, system modeling language(SysML) was used. Here two diagrams was created: 
 
 * **Block Definition Diagram(BDD)**  
-BDD Shows the entire system, and the relationship between different hardware blocks, and how they connect to each other.  
+BDD shows the entire system, and the relationship between different hardware blocks, and how they connect to each other.  
 
 * **Internal Block Diagram(IBD)**  
-IBD Describes the different internal connections and signals, between the blocks in the system and the rest of the world.  
+IBD describes the different internal connections and signals between the blocks in the system and the rest of the world.  
   
 **UML**  
 For the software architecture, Unified Modeling Language(UML) has been utilized. The following diagrams and models have been used:  
@@ -85,8 +85,8 @@ Domain model is used to identify important, objects and relations in the system.
 * **Sequence Diagram(SD)**  
 The sequence diagrams shows how the different blocks and actors connects and communicate in sequence.  
 
-* **Application model**
-Application models, are made up of class diagrams and sequence diagrams with function calls. They show how different hardware blocks and function calls are structured on each CPU in the system.  
+* **Application model**  
+Application models are made up of class diagrams and sequence diagrams with function calls. They show how different hardware blocks and function calls are structured on each CPU in the system.  
   
 ## Technical analysis 
 For chosing components and programming language, a technical analysis was performed, weighing all the differnt options for hardware and langauge agianst as many possible factors as possible. This ensured that the componets that got chosen were the best suited to complete the project with as few mistakes as possible.
@@ -105,46 +105,46 @@ The group was created based on a mixture of insight profiles, and previous exper
 * **Coordinating supporter(green/blue)**  
 * **Supporting coordinator(green/blue)**
   
-As seen above a lot of the profiles pointed towards a passive approach to the project which it was decided to look for more memember that was more "red-ish" to get a broader group and more well rounded personalities. This helped give the group more people to grab the tasks rather then wait for someone to take charge, meanwhile the rest could focus more energy on making sure the project was propperly structured and running on time.
+As seen above a lot of the profiles pointed towards a passive approach to the project which it was decided to look for more member that was more "red-ish" to get a broader group and more well rounded personalities. This helped give the group more people to grab the tasks rather than wait for someone to take charge, meanwhile the rest could focus more energy on making sure the project was propperly structured and running on time.
 
 ## Collaboration contract  
 In this project a collaboration contract has been used to keep a high standard, as well as having a document to refer back to, whenever disagreements would arise. The collaboration contract is located in the appendix under "collaboration contract".  
 
-The collaboration contract has been a useful tool for us to keep the work going as well as keep a good and orderly work culture. This has been useful in instances where the group have had to take decisions to reprimand group memembers in ways that did not seem to harsh. This intailed creating the cake order, where if a memember would show up late or no call, no showed, they would owe cake and would have to bring some for the next meeting. The only exception to this rule, was if the group was warned before hand or if some extraordinary circumstance prevented the person from showing up, such as a family memember falling ill. This also meant the rule was very flexible, since the group did not like giving "punishments".  
+The collaboration contract has been a useful tool for us to keep the work going as well as keep a good and orderly work culture. This has been useful in instances where the group have had to take decisions to reprimand group members in ways that did not seem to harsh. This intailed creating the cake order, where if a member would show up late or no call, no showed, they would owe cake and would have to bring some for the next meeting. The only exception to this rule, was if the group was warned before hand or if some extraordinary circumstance prevented the person from showing up, such as a family member falling ill. This also meant the rule was very flexible, since the group did not like giving "punishments".  
 
 Luckily just having this system in place really helped make sure everyone showed up as well as made way for creating jokes and keeping people a bit on their toes when it came to show up for meetings, group work etc. Which meant that people would show up smiling and happy to work, with little to no problems.
  
 ## Development timeline  
 In this project the scrum method have been used to structure the work. Scrum is a way of working which intails working in sprints of 1 to 4 weeks where people work closely together on completing their assignments for that sprint. These sprints start with a planing phase and ends with a evaluating phase at the end of the sprint.  
 
-Scrum puts a lot of weight group work, the way that has been done here is with having sprints lasting 2  weeks, where doing the first sprint the scrum master would plan the current sprint and delegate tasks to different memembers of the group. At which point those memembers would start working on that part of the project. On top of that there would be weekly meetings to check progress and see if anyone needed help. This gave space to check up on each other offer help and ask for assistance in specific problems.  
+Scrum puts a lot of weight on group work, the way it has been done here is by having sprints lasting 2 weeks, where doing the first sprint the scrum master would plan the current sprint and delegate tasks to different members of the group. At which point those members would start working on that part of the project. On top of that, there would be weekly meetings to check progress and see if anyone needed help. This gave space to check up on each other offer help and ask for assistance in specific problems.  
 
-Furthermore this project was built using the Aarhus University semesterproject model, which consists of an assortment of development phases. The project started in the problem formulating phase, where the vision for the project was defined, and the scope got focused to make sure the project was also doable. Hereafter the requirement specification phase came where the requirements for the project got defined and functional and none functional requirements got made, along side fully dressed use cases.  
+Furthermore this project was built using the Aarhus University semesterproject model, which consists of an assortment of development phases. The project started in the problem formulating phase, where the vision for the project was defined, and the scope got focused to make sure the project was also doable. Hereafter the requirement specification phase came, where the requirements for the project got defined and functional and none functional requirements got made, along side fully dressed use cases.  
 
-Design and implementation phase were completed parallel to eachother, as doing these at the same time allowed for more room to change different design choices that did not seem feesable to create or implement smarter solutions that might arise while writing code, or creating hardware. Hereafter an intergration test was developed, and completed. At the end the acceptance test was checked and completed which is where we validate the systems functionality based on the requirements.
+Design and implementation phase were completed parallel to eachother, as doing these at the same time allowed for more room to change different design choices that did not seem feesable to create, while writing code and creating hardware. Hereafter an intergration test was developed, and completed. At the end the acceptance test was checked and completed which is where we validate the systems functionality based on the requirements.
 
 ## Project management  
 To better control the flow of work and make sure everything was kept in order, every member of the group was given a specific role that they were in charge of. This helped better divide up sudden tasks aswell making sure there always was a person to ask about specific needs of the group. All of these roles are detailed in the collaboration contract.  
 
-Some of these roles include a scrum master, scrum assistent, contact person, GIT master, meeting leader, note taker, and internal HR. Scrum master and assistent ran the scrum meetings managed the backlog and made sure deadlines were met, the GIT master functioned as a quality controll making sure the git was kept nice and tidy as ell as approving all code. The contact person have been in charge of contacting review groups aswell as the supervisor of the project. Meeting leader and note taker made sure there always was an agenda and a summery of the meetings. Internal HR was a role that was made to make sure that if conflict would appear in the group a impartial party would be able to step in and mediate the conflict and make sure work could continue on schedule.  
+These roles consists of scrum master, scrum assistent, contact person, GIT master, meeting leader, note taker, and internal HR. Scrum master and assistent ran the scrum meetings, managed the backlog and made sure deadlines were met. The GIT master functioned as a quality control making sure the git was kept nice and tidy as well as approving all code. The contact person have been in charge of contacting review groups aswell as the supervisor of the project. Meeting leader and note taker made sure there always was an agenda and a summery of the meetings. Internal HR was a role that was made to make sure that if conflict would appear in the group a impartial party would be able to step in and mediate the conflict and make sure work could continue on schedule.  
 
-This division of roles allowed for everyone to have a area to put some extra focus. The roles have worked well for most of the semester, however towards the end most of roles became very muddied since many of the areas that was worked in started overlapping, especially since meetings with supervisors and review groups became fewer, and fewer.  
+This division of roles allowed for everyone to have a area to put some extra focus. The roles have worked well for most of the semester, however towards the end most of roles became very muddled since many of the areas that was worked in started overlapping, especially since meetings with supervisors and review groups became fewer, and fewer.  
 
 ## Work distrubution  
 Work distrubution have partly been based on what each person had a desire to work with, as well as what played to each persons strengths. This have left room for some memembers to take charge on areas like system architechture where others have been able to take the lead on code, and hardware. This have helped create a culture where everyone have been able to shine and give it 110% when it comes to their passion in the project.  
 
-Furthermore a rule was established in the group that every memeber of the group needed to "touch some code". This meant that every single memember needed to be able write themselves as atleast somewhat responsible for an amount of code.  
+Furthermore a rule was established in the group that every memeber of the group needed to "touch some code". This meant that every single member needed to be able write themselves as atleast somewhat responsible for an amount of code.  
 
 ## Planing  
-At the start of this project a timetable of what needed to be done when was created. This timetable was followed for the first couple of months, untill the group ran into problems with use cases which ended up setting it abit behind. From that point on the timetable sadly ended up on the backburner and was largely forgotten until implementations.
+At the start of this project a timetable of what needed to be done when was created. This timetable was followed for the first couple of months, until the group ran into problems with use cases which ended up setting it abit behind. From that point on the timetable sadly ended up on the backburner and was largely forgotten until implementation.
 
-The timetable is documented in the appendix, which is the one the group made and tried to follow through out this project.  
+The timetable is documented in the appendix, which is the one the group made and tried to follow throughout this project.  
 
 ## Project administration  
-The group have been administrated with clear work distrubution and meetings twice a week, one with the group for scrum purposes and one with the supervisor. Furthermore a timetable was set to keep the project on track, this tool was not utilized or realised to it's fullest potential due to neglect it got. The platform Git was used to keep track of the backlog of assignments that needed to be completed aswell as the timetable and code. External communication to other groups and supervisors was done over AU's internal email. Internal communication happend over Discord.  
+The group have been administrated with clear work distrubution and meetings twice a week, one with the group for scrum purposes and one with the supervisor. Furthermore a timetable was set to keep the project on track, this tool was not utilized or realised to it's fullest potential due to the neglect it got. The platform GitHub was used to keep track of the backlog of assignments that needed to be completed aswell as the timetable and code. External communication to other groups and supervisors was done over AU's internal email. Internal communication happened over Discord.  
 
 ## Meetings  
-Every week there were two meetings planned, first a meeting with the supervisor, and then a internal meeting. Supervisor meetings would take place ever Tuesday in the Hamilton building(AU 5123), and it would last from 10 to 12. Then the following an internal meeting would be done every wensday in the Shannon building(AU 5789), these would be primarily scrum meetings and check in meetings to make sure the project was running on time. Furthermore for every meeting the with the supervisor the agenda and any additional material needed to be send at least 24 hours in advance of the meeting.  
+Every week there were two meetings planned, first a meeting with the supervisor, and then a internal meeting. Supervisor meetings would take place ever Tuesday in the Hamilton building(AU 5123), and it would last from 10 to 12. Then the following an internal meeting would be done every wednesday in the Shannon building(AU 5789), these would be primarily scrum meetings and check in meetings to make sure the project was running on time. Furthermore for every meeting with the supervisor the agenda and any additional material needed to be send at least 24 hours in advance of the meeting.  
 
 Typically the agendas consisted of: 
 
