@@ -157,7 +157,6 @@ This table serves to give a structure over signals and communication between eac
 \hline
 \endfoot
 
-\hline
 \endlastfoot
 
 BPower & Gives power to the buttons & 5.0V & 2 GPIO & 2 GPIO pins is collective for the two buttons\\
@@ -199,7 +198,7 @@ Net & The wifi that is used to connect server, car and computer & & Ethernet & \
 \caption{Signal description}
 \end{longtable}
 
-
+\newpage
 ## Software architecture
 The following sections will include software architecture for the system and the structure for the following sections: Domain model, System sequence diagram and System state machine diagram ending the software architecture section.
 

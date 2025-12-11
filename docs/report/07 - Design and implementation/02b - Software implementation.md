@@ -196,7 +196,7 @@ this reduces the number of points the car needs to follow and will make the driv
 To begin with I keep track of where the car currently is, where the next point is, and where the car last were. Then I can get the three sides for a triangle using the code below, for each side. 
 ```cpp
 std::pair<double, double> last_pos_vector = {
-        current_pos.first - last_pos.first, current_pos.second - last_pos.second
+    current_pos.first - last_pos.first, current_pos.second - last_pos.second
 };
 ```
 
@@ -204,7 +204,7 @@ I'm doing this so that I'm able to use pythagoras theorem to calculate each side
 ```cpp
 if(current_pos.first < next_pos.first &&  
 last_pos.first < next_pos.first && last_pos.second < next_pos.second) {
-        cos_angle = cos_angle * -1;
+    cos_angle = cos_angle * -1;
 } 
 ```
 The code above, is then used three more times to handle the three other directions. It then returns an angle and length, that can be used as parameters for another function that makes driving instructions.
@@ -230,14 +230,14 @@ The current encoder positions are noted, and used to determine the target for bo
 
 ```cpp
 if(degrees > 0) {
-        // turn right in place
-        left_target = left_pos - dist_counts; // backward
-        right_target = right_pos + dist_counts; // forward
-    } else {
-        // turn left in place
-        left_target = left_pos + dist_counts; // forward
-        right_target = right_pos - dist_counts; // backward
-    }
+    // turn right in place
+    left_target = left_pos - dist_counts; // backward
+    right_target = right_pos + dist_counts; // forward
+} else {
+    // turn left in place
+    left_target = left_pos + dist_counts; // forward
+    right_target = right_pos - dist_counts; // backward
+}
 ```
 
 Variables to store the error for each motor, i.e. its distance from target value are initialised, and we are now ready to enter the main loop of the function. 
@@ -245,34 +245,34 @@ Variables to store the error for each motor, i.e. its distance from target value
 \newpage
 In the loop, first the encoder positions are updated, as these are used in the PID regulation, which is updated immediately after.
 ```cpp
-    // Current position
-        left_pos = encoder_left_.get_position();
-        right_pos = encoder_right_.get_position();
+// Current position
+left_pos = encoder_left_.get_position();
+right_pos = encoder_right_.get_position();
 
-    // Update PWM
-        int left_pwm = pid_left_.update(left_target, left_pos, &left_ctrl, INTEGRATION_THRESHOLD);
-        int right_pwm = pid_right_.update(right_target, right_pos, &right_ctrl, INTEGRATION_THRESHOLD);
+// Update PWM
+int left_pwm = pid_left_.update(left_target, left_pos, &left_ctrl, INTEGRATION_THRESHOLD);
+int right_pwm = pid_right_.update(right_target, right_pos, &right_ctrl, INTEGRATION_THRESHOLD);
 ```
 
 The errors are updated, and the PWM values from the PID regulation are passed into the drive() function to start driving. We then encounter the two conditions that will break the loop. First we'll look at 
 ```cpp
 if(std::abs(left_error) < 20 && (std::abs(right_error)) < 20) {
-            std::cout << "Left Error: " << left_error << ", Left PWM: " << left_pwm << std::endl;
-            std::cout << "Right Error: " << right_error << ", Right PWM: " << right_pwm << std::endl;
-            break;
-        }
+    std::cout << "Left Error: " << left_error << ", Left PWM: " << left_pwm << std::endl;
+    std::cout << "Right Error: " << right_error << ", Right PWM: " << right_pwm << std::endl;
+    break;
+}
 ```
 This if-statement simply checks if both engines are wihtin our margin for error, in this case 20 encoder pulses. If this condition is met, the loop will break, and the program will resume. However, the motors had a tendency of getting within a couple of pulses of the error-margin, and then not driving any further, as the duty cycle of the PWM signal is too low to make the motors turn. Therefore a second if-statement was added as a failsafe.
 
 ```cpp
 if(std::abs(left_pwm) < 20 && std::abs(right_pwm) < 20) {
-            ++m;
-            if(m > 100) {
-                std::cout << "Left Error: " << left_error << ", Left PWM: " << left_pwm << std::endl;
-                std::cout << "Right Error: " << right_error << ", Right PWM: " << right_pwm << std::endl;
-                break;
-            }
-        }
+    ++m;
+    if(m > 100) {
+        std::cout << "Left Error: " << left_error << ", Left PWM: " << left_pwm << std::endl;
+        std::cout << "Right Error: " << right_error << ", Right PWM: " << right_pwm << std::endl;
+        break;
+    }
+}
 ```
 
 This loop checks if the duty cycle of the PWM signals is below 20. If this happens for 100 loops, the loop will break. This does result in the car not always being as precise as it perhaps could be, but removes any issues with the car getting stuck trying to drive a very small distance, never being able to overcome the internal resistance of the motors, which we deemed a worse outcome. 
@@ -388,8 +388,10 @@ void Encoder::monitor_events()
                 if (bytes != sizeof(event_data))
                     continue;
 
-                int a = (i == 0) ? (event_data.id == GPIOEVENT_EVENT_RISING_EDGE) : (last_state_ >> 1) & 1;
-                int b = (i == 1) ? (event_data.id == GPIOEVENT_EVENT_RISING_EDGE) : last_state_ & 1;
+                int a = (i == 0) ? (event_data.id == GPIOEVENT_EVENT_RISING_EDGE) 
+                                : (last_state_ >> 1) & 1;
+                int b = (i == 1) ? (event_data.id == GPIOEVENT_EVENT_RISING_EDGE) 
+                                : last_state_ & 1;
 
                 int current_state = (a << 1) | b;
                 int index = (last_state_ << 2) | current_state;
@@ -498,12 +500,12 @@ Additionally since each element have their own keymap it allows for several elem
 
 \begin{figure}[H]
 \centering
-    \begin{subfigure}{.3\textwidth}
+    \begin{subfigure}{.45\textwidth}
         \centering
         \includegraphics[width=0.7\textwidth]{docs/diagrams/out/Software implementation/Tui example.png}
         \caption{Elements in the TUI}
     \end{subfigure}%
-    \begin{subfigure}{.3\textwidth}
+    \begin{subfigure}{.45\textwidth}
         \centering
         \includegraphics[width=0.7\textwidth]{docs/diagrams/out/Software implementation/Keymap example.png}
         \caption{Representation of the elements' keymaps}
@@ -611,7 +613,7 @@ This function is used for taking the first element in route_queue and put it int
     }
 ```
 
-
+\newpage
 ### POST
 The data received from POST request is done with a function called post_route. The function is a void because it should not return anything, what it does is calling route_queue to push back the string received, then if the log_file is open route_queue.back is used to also add the string from the request into log_file with log_file.flush. 
 ```cpp
@@ -641,4 +643,4 @@ Update_route() is simply to take every element in route_queue and put it into lo
 };
 ```
 
-
+\newpage

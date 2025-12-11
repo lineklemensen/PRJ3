@@ -71,3 +71,5 @@ Through out the project different tools have been used to document progress and 
 \vspace{0.5cm}
 
 Throughout this project a few conflicts have acurred, mostly centered around members of the group being too independent. What is meant with this is how some people in the group would get consumed by the work and end up making big chunks of the work, in outside agreed upon working hours which lead to some members feeling left behind. However this was quickly resolved after a talk was had. The only other small conflict that happend was when members of the group went missing for a few weeks, This created abit of a problem since it was doing the time the coding assignments had to be delegated and it was not exactly known when they would be back.
+
+\newpage

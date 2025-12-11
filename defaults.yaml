@@ -4,6 +4,8 @@ link-citations: true
 geometry:
   - margin=0.8in
 numbersections: true
+figure-caption-position: below
+table-caption-position: below
 header-includes:
   - \usepackage{graphicx}
   - \usepackage{tabularx}

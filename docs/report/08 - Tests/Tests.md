@@ -4,8 +4,6 @@ Before spending time physically making the hardware multisim was used to check i
 
 There was used a Analog Discovery to test the signals for controlling the motors. The transistors was tested by using signals sent through the pins on the RPi5, to see if it would open and close the transistors, which would in turn turn on or off the LED's. Then the button was tested by connecting its pin to the RPi5, and checking if we could read the signal from a button press, and if we held the button if that could be read as high and as low when not, which both worked. After the full implementation we could test the drive with the full weight of all parts. 
 
-\newpage
-
 ## Module tests
 
 ### Calculate route
@@ -62,38 +60,39 @@ squash() - clamps the controller output to the configured min_output and max_out
 
 These were validated indirectly by observing changes in the controller behavior during runtime.
 
+\newpage
 \textbf{Update-Loop Testing}  
 The core of the testing focused on the update() function. A closed-loop simulation was created where the PID output controls a virtual motor encoder. Each iteration computes a new PWM command, updates the simulated position, and logs the results:
 
 ```cpp
 for (int i = 0; i < 200; i++)
+{
+    double ctrl;
+    int pwm = pid.update(target, pos, &ctrl, INTEGRATION_THRESHOLD);
+
+    // Update simulated encoder
+    pos = simulate_encoder(pos, pwm);
+
+    double t = i * pid.get_dt();
+
+    // Write to CSV
+    data_file << t << "," << pos << "," << ctrl << "," << pwm << "\n";
+    data_file.flush();
+
+    // Print to console
+    std::cout << "t=" << t
+                << "s  pos=" << pos
+                << "  ctrl=" << ctrl
+                << "  pwm=" << pwm
+                << std::endl;
+
+    // Stop early if close enough
+    if (std::abs(target - pos) < 1.0)
     {
-        double ctrl;
-        int pwm = pid.update(target, pos, &ctrl, INTEGRATION_THRESHOLD);
-
-        // Update simulated encoder
-        pos = simulate_encoder(pos, pwm);
-
-        double t = i * pid.get_dt();
-
-        // Write to CSV
-        data_file << t << "," << pos << "," << ctrl << "," << pwm << "\n";
-        data_file.flush();
-
-        // Print to console
-        std::cout << "t=" << t
-                  << "s  pos=" << pos
-                  << "  ctrl=" << ctrl
-                  << "  pwm=" << pwm
-                  << std::endl;
-
-        // Stop early if close enough
-        if (std::abs(target - pos) < 1.0)
-        {
-            std::cout << "Target reached.\n";
-            break;
-        }
+        std::cout << "Target reached.\n";
+        break;
     }
+}
 ```
 The resulting CSV file was analyzed using a Python script that loads the data via pandas and visualizes the controller response using matplotlib. These plots allowed evaluation of settling time, overshoot, stability, and convergence behavior.
 
@@ -122,11 +121,11 @@ The logic for handling acceleration/deceleration and distance, takes place in dr
 
 ```cpp
 if (left_error < 10 && right_error < 10)
-        {
-            std::cout << "Left Error: " << left_error << ", Left PWM: " << left_pwm << std::endl;
-            std::cout << "Right Error: " << right_error << ", Right PWM: " << right_pwm << std::endl;
-            break;
-        }
+{
+    std::cout << "Left Error: " << left_error << ", Left PWM: " << left_pwm << std::endl;
+    std::cout << "Right Error: " << right_error << ", Right PWM: " << right_pwm << std::endl;
+    break;
+}
 ```
 
 This solidified the core functionality of the function, but the motors were very unprecise, as we hadn't performed any tuning of the PID regulation yet. The PID tuning was done by first slowly increasing the KP value, until the motor would start, rather violently, oscilating once it came close enough to its target, trying to zero in on a specific value, but accelerating too fast to hit within our accepted error margin. Once this behaviour was achieved, we cut the KP value in half, and started increasing the KD value, which largely affects the deceleration, as the motor would overshoot in its current state. We kept slowly increasing KD, until the motor would undershoot the target by ~20-30 encoder pulses. At this point, we started increasing the KI value very slowly, to smooth out the last errors, leading to the motor landing within ~5 pulses of the target consistently, which was well within our error range. This process was then repeated for the second motor. Throughout the tuning process, the python script used for testing the PID regulation, was also used, to gain a visual understanding of the behaviour of the system.
@@ -143,30 +142,30 @@ During this process, it became apparent that the motors would not drive if they 
 
 ```cpp
 // Clamp PWM duty cycle, as motors won't run at at duty cycle < 35
-    if (left_duty < 31 && left_duty != 0 && left_duty > 0)
-    {
-        left_duty = 31;
-    }
+if (left_duty < 31 && left_duty != 0 && left_duty > 0)
+{
+    left_duty = 31;
+}
 
-    if (right_duty < 31 && right_duty != 0 && right_duty > 0)
-    {
-        right_duty = 31;
-    }
+if (right_duty < 31 && right_duty != 0 && right_duty > 0)
+{
+    right_duty = 31;
+}
 ```
 
 However, even with this clamp, we still encounter situations where one of the motors would end slightly outside of our target range, and wouldn't go further, so another break condition was added. If the duty cycle of the PWM signal is < 20, for a sufficient amount of time, the car would be considered to be at its target. This sacrifised some precision, but eliminated the chance of the car getting stuck, trying to drive the last ~5 pulses. 
 
 ```cpp
 if (std::abs(left_pwm) < 20 && std::abs(right_pwm) < 20)
-        {
-            ++m;
-            if (m > 100)
-            {
-                std::cout << "Left Error: " << left_error << ", Left PWM: " << left_pwm << std::endl;
-                std::cout << "Right Error: " << right_error << ", Right PWM: " << right_pwm << std::endl;
-                break;
-            }
-        }
+{
+    ++m;
+    if (m > 100)
+    {
+        std::cout << "Left Error: " << left_error << ", Left PWM: " << left_pwm << std::endl;
+        std::cout << "Right Error: " << right_error << ", Right PWM: " << right_pwm << std::endl;
+        break;
+    }
+}
 ```
 
 \newpage
@@ -219,14 +218,10 @@ The Astar class is responsible for calculating the optimal path between the poin
 \newline
 In order to validate its correctness, a hardcoded 2D map was made with the same dimensions and obstacles used for field test of the car. The tests consisted of a pair of start and end coordiantes, which always was the same, along with an expected path lenght (measured in number of grid steps). The goal during tesint was to confirm the following. \newline
 
-Astar returns a path whenever a valid route exists. \newline
-\newline
-The returned paths always avoid the obstacles. \newline
-\newline
-The algorithm correctly identifies when no valid route exists. \newline
-\newline
-The path found is the optimal, shortest, path for the given configuration. \newline
-\newline
+Astar returns a path whenever a valid route exists.  
+The returned paths always avoid the obstacles.  
+The algorithm correctly identifies when no valid route exists.  
+The path found is the optimal, shortest, path for the given configuration.  
 
 
 **Basic functionality tests**
@@ -253,6 +248,7 @@ The batch of tests is placing static obstacles in the map and check if the astar
 
 These tests confirmed that the algorithm checks neighbors correctly, avoids illegal tiles, and terminates when no solution exists.
 
+\newpage
 **Integration testing with route execution**
 
 The last test made was validating that the output path was compatible with the driving logic. The path was fed directly into the distance/rotation (DR) class to verify the following. \newline
@@ -267,7 +263,6 @@ The resulting behavior confirmed that astar outputs clean, grid-aligned paths pe
 ### Server test
 Firstly after the server is running a goggle chrome fan was opened to test if it was possible to access the the URL that the server is hosted on, this was done by looking at the terminal in the server to see if a connection was established which was successful. 
 Since connection is possible the request handlers needed to be tested to see if request was handled correct, this was tested with Postman used to do GET and POST request, POST test was successful  with the queue getting elements inside it, and log file also updating along side the queue. GET was also a success since the first element in queue was removed and the log file again updating according to what the queue had in it. 
-\newpage
 
 ### Tui
 
@@ -319,11 +314,11 @@ To combat this, we started adjusting the PWM signal, based on how far away both 
 const double adjust_factor = (std::abs(right_error) / (std::abs(left_error) == 0 ? std::abs(right_error) 
                             : std::abs(left_error))) - 1;
 
-        left_pwm *= 1 - adjust_factor * 4;
-        right_pwm *= 1 + adjust_factor * 4;
-        // Clamp values [-100, 100] to avoid silly stuff
-        left_pwm = std::max(-100, std::min(100, left_pwm));
-        right_pwm = std::max(-100, std::min(100, right_pwm));
+left_pwm *= 1 - adjust_factor * 4;
+right_pwm *= 1 + adjust_factor * 4;
+// Clamp values [-100, 100] to avoid silly stuff
+left_pwm = std::max(-100, std::min(100, left_pwm));
+right_pwm = std::max(-100, std::min(100, right_pwm));
 ```
 
 This resulted in the car being able to drive in a straight line again, but turning would continue to be an issue, also in part due to the back wheel getting stuck when we would turn after driving straight, which remains as an issue we have been unable to fix. 
@@ -336,3 +331,5 @@ All 3 main elements were added to a new main program, that initialises the appro
 Keeping in mind the problems with the motors, our main focus was that the car would follow the "pattern" of the route, even if the car over/undershoot while turning. Observing the car, it was clear that the route had been successfully changed into driving commands, as the would follow the correct pattern of the route, for example, driving straight, turning left, driving straight, turning right, driving straight and then stopping, which was verified by comparing the cars behaviour to the map in our code. Unfortunately, the car would often not end up precisely at the designated end point, due to over/underturning, because of reasons explained earlier.
 
 Afterwards, the behaviour of the LEDs were integrated to our specifications and verified through running the program and observing them.
+
+\newpage

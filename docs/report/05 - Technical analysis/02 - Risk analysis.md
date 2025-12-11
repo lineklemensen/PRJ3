@@ -22,9 +22,11 @@ The risk score will be used to prioritize the risk items, and to determine which
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.7\textwidth]{docs/diagrams/out/technical analysis/risk-matrix.png}
-\caption{Risk matrix, showing the risk score based on probability and consequence \cite{haspod-2024}}
+\caption{Risk matrix, showing the risk score based on probability and consequence}
 \end{center}
 \end{figure}
+
+Image source from Haspod.com [@haspod2024].
 
 Generally, the following actions will be taken based on the risk score:   
 

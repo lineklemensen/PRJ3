@@ -47,7 +47,6 @@ With all of the listed points in mind, our primary goal is to at least get a ful
 | Price                     |       5        |       2        |   4   |
 | Upkeep                    |       5        |       2        |   5   |
 | Developer cost/complexity |       4        |       3        |   5   |
-
 : Analysis of methods for tracking the cars position
 
 We have found three different strategies for tracking the cars
@@ -114,6 +113,7 @@ and a camera or ultra violet sensor. This is a significant cost.
 
 GPS would require adding a GPS module which increases the cost.
 
+\newpage
 **Upkeep**
 
 Dead reckoning does not acquire additional upkeep.
@@ -147,6 +147,7 @@ distances.
 | :--------- | :---: | :------------------: |
 | Smoothness |   5   |          2           |
 | Precision  |   4   |          4           |
+: Analysis of motor speed control methods
 
 There are two different kind of motor speed control we have chosen to look into for this project. The ones we have picked to choose from are Proportional-Integral-Derivative controller, PID control for short[@PID-Wikipedia] and Linear interpolation[@LinInt-Wikipedia].
 
@@ -249,8 +250,6 @@ For most of our current study we've worked with C++, and have only had an introd
 **Conclusion**
 
 Due to the comfortability with developing in C++ and our overall knowledge and experience with it, it will be what we write the program
-
-\newpage
 
 ## Battery
 

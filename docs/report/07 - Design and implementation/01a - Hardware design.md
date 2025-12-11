@@ -9,8 +9,6 @@ The project needed to be able to turn the LED's on and off, handle the power to 
 \end{center}
 \end{figure}
 
-\newpage
-
 Using the above diagram, we could then make a veroboard design.   
 
 \begin{figure}[H]

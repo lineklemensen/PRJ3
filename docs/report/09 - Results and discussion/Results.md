@@ -57,3 +57,5 @@ Lastly concerning hardware issues was the third wheel or the back wheel. This wh
 \vspace{0.5cm}
 
 With this project, a lot of expectations and ideas got thrown into it. However, as it later became evident, not all of them were able to be implemented within the time limitation on the project. Because of that, some tests  failed, since other parts of the project got prioritized as being more important than others. Among these are blinking LEDs and a user manual, since that was not deemed crucial enough for the project to be prioritized above other parts. Most of these parts that have been down prioritized have been either exstentions or exceptions to our use cases, which were added to make the project more user friendly and help find potential errors in either hardware or software. The parts that were considered to be more important than these, were the requirements that would form the minimum requirements to make a functional prototype and thereby a proof of concept. 
+
+\newpage

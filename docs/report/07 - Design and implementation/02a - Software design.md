@@ -46,7 +46,7 @@ The general flow of the program waits for user input and then depending on the i
 For any of the up, down, left or right inputs the "selected" cursor moves to the respective ui element. This has not been represented in the SD since it would not help much with understanding.  
 There is a special case for when enter/space is input, since then it will run the associated function stored in the `action_` member of the `Button/StatefulButton`, however since this can be any arbitrary function, even complex lamdas, only the case of the "Confirm" button in the popup is represented in the SD.  
 
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.6\textwidth]{docs/diagrams/out/apModel/SD UC2 - Create Delivery - PC.png}
 \caption{Sequence diagram for the TUI}
