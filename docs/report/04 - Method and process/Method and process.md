@@ -1,5 +1,5 @@
 # Method and Process
-In this project, specific tools have been utilized to ensure a clean, systematic and well documented process from idea to prototype. The methods used have been a combination of requirements specifications, technical assesments, analyses and design. All of these choices have been made with the purpose of creating a solid fundation for implementation.
+In this project, specific tools have been utilized to ensure a clean, systematic and well documented process from idea to prototype. The methods used have been a combination of requirements specifications, technical assesments, analysis and design. All of these choices have been made with the purpose of creating a solid foundation for implementation.
 
 ## Metode
 
@@ -8,7 +8,7 @@ The projects idea phase was initalized with a brainstorm, utilizing the "dont sa
 
   
 ### MoSCoW   
-For prioritization MoSCoW have been utilized to categories all requirements in to categories such as *Must have*, *Should have*, *Would have* and *Wont have*. Using these categories all requirements got sorted depending on how important they were for the project and if there would be enough time and know how to properly execute them.
+For prioritization MoSCoW have been utilized to categories all requirements in to categories such as *Must have*, *Should have*, *Could have* and *Wont have*. Using these categories all requirements got sorted depending on how important they were for the project and if there would be enough time and know how to properly execute them.
 
 
 ### SysML
@@ -41,7 +41,7 @@ For chosing components and programming language, a technical analysis was perfor
 \newpage
 
 ## Process  
-The group was created based on a mixture of insight profiles, and previous experiences working together across different classes. Most people from the group had found out from previous semesters that they worked well together. But due to most of them having the same insight profiles a choice was made to use the insight profils to find a last memember that could fill that spot.
+The group was created based on a mixture of insight profiles, and previous experiences working together across different classes. Most people from the group had found out from previous semesters that they worked well together. But due to most of them having the same insight profiles a choice was made to use the insight profils to find a last member that could fill that spot.
 
 \vspace{0.5cm}
 
@@ -49,20 +49,20 @@ This is very visable in the insight profiles as provided in the appendix, where 
 
 \vspace{0.5cm}
 
-Scrum was used for this project, in with that the first thing that was done on the first group meeting was determine everyones "roles". What is meant with this is that each person got a role that they were in charge of, this helped allot throughout the project since there always once someone to turn to when things started going sideways. Here after it was agreed upon that every week there would be two meetings, one internal which was held every Wednesday and one with the supervisor held every Tuesday. The Wednesday meetings would be split up in two weeks, where the first week would be the sprint start and the second would be the sprint end/check in meeting.
+Scrum was used for this project, in with that the first thing that was done on the first group meeting was determine everyones "roles". What is meant with this is that each person got a role that they were in charge of, this helped allot throughout the project since there always once someone to turn to when things started going sideways. Here after it was agreed upon that every week there would be two meetings, one internal which was held every wednesday and one with the supervisor held every tuesday. The wednesday meetings would be split up in two weeks, where the first week would be the sprint start and the second would be the sprint end/check in meeting.
 
 \vspace{0.5cm}
 
-To keep track of the sprints a backlog was created on Github, where all deadlines and project parts were added with a time to complete expectencies. These items in the backlog was what each sprint assignment was based on, some would end up going over multiple sprints, aswell as some being locked untill other parts of the sprints were completed. On top of the backlog a timetable was created to keep track of where the project were and where it needed to be at any given time. This timetable did end up becoming forgotten for big parts of the project as it did not get updated once the project fell abit behind schedule.
+To keep track of the sprints a backlog was created on GitHub, where all deadlines and project parts were added with a time to complete expectencies. These items in the backlog was what each sprint assignment was based on, some would end up going over multiple sprints, aswell as some being locked untill other parts of the sprints were completed. On top of the backlog a timetable was created to keep track of where the project were and where it needed to be at any given time. This timetable did end up becoming forgotten for big parts of the project as it did not get updated once the project fell abit behind schedule.
 
 \vspace{0.5cm}
 
-Work got mainly distributed based on desire and abilities. This meant that everyone got to work with something they were intersted in or something they were good at. This helped breed a atmosphere of creativity and effeciency. As mentioned above it was important that everyone touched some code, which is why the code was originally split up in to different usecases with each usecase having between 2 and 3 members working on them at all times. These people would be the "leaders" of that code having to quality check and approve all code for those areas. This has insured that there would always be a person to bounce ideas off of, aswell as make room for other members to come and help if they finished there code early.
+Work got mainly distributed based on desire and abilities. This meant that everyone got to work with something they were intersted in or something they were good at. This helped breed a atmosphere of creativity and effeciency. As mentioned above it was important that everyone touched some code, which is why the code was originally split up in to different usecases with each use case having between 2 and 3 members working on them at all times. These people would be the "leaders" of that code having to quality check and approve all code for those areas. This has insured that there would always be a person to bounce ideas off of, aswell as make room for other members to come and help if they finished there code early.
 
 \vspace{0.5cm}
 
-Through out the project different tools have been used to document progress and communicate. As described above Github have been used to manage the backlog, upload the code, and write the report. For communication, all offical communication happend over AU own email, these includes mails to other groups for reviews and mails to the group supervisor. All internal communcation happend over a discord server, This server was also used to set up the weekly meeting reminders so everyone knew exactly when and where the the meetings would be happining. Lastly Onedrives calender was used to put in important dates, deadlines and meetings.
+Through out the project different tools have been used to document progress and communicate. As described above Github have been used to manage the backlog, upload the code, and write the report. For communication, all offical communication happend over AU own email, these includes mails to other groups for reviews and mails to the group supervisor. All internal communcation happend over a discord server, This server was also used to set up the weekly meeting reminders so everyone knew exactly when and where the the meetings would be happining. Lastly Onedrives calender was used to handle important dates, deadlines and meetings.
 
 \vspace{0.5cm}
 
-Throughout this project a few conflicts have acurred, mostly centered around members of the group being too independed. What is meant with this is how some people in the group would get consumed by the work and end up making big chunks of the work while outside agreed upon working hours which lead to some members feeling left behind. However this was quickly resolved, after a talk was had. The only other small conflict that happend was when members of the group went missing for a few weeks, This created abit of a problem since it was doing the time the coding assignments had to be delegated and it was not exactly sudden when they would be back.
+Throughout this project a few conflicts have acurred, mostly centered around members of the group being too independent. What is meant with this is how some people in the group would get consumed by the work and end up making big chunks of the work, in outside agreed upon working hours which lead to some members feeling left behind. However this was quickly resolved after a talk was had. The only other small conflict that happend was when members of the group went missing for a few weeks, This created abit of a problem since it was doing the time the coding assignments had to be delegated and it was not exactly known when they would be back.

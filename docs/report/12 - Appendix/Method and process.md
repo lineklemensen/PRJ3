@@ -155,12 +155,12 @@ Typically the agendas consisted of:
 
 
 ## Conflict handling  
-Through this project the group has not experienced many challenges that would constitute having to handle it as a conflict. The few bumps in the road that have been experience have been swiftly handled with the help of internal HR. The only minor conflicts that have been had, have been absense from memembers for short periods of time or code etiquette, deciding between pillow, snake and camel case.  
+Through this project the group has not experienced many challenges that would constitute having to handle it as a conflict. The few bumps in the road that have been experience have been swiftly handled with the help of internal HR. The only minor conflicts that have been had, have been absense from members for short periods of time or code etiquette, deciding between, snake and camel case.  
 
-However both of these conflicts was handled swiftly with discord being used to communicate with the absent memember and a vote was had for code etiquette, with the stimulation that there were no hard feelings after the vote.
+However both of these conflicts was handled swiftly with discord being used to communicate with the absent member and a vote was held for code etiquette, with the stipulation that there were no hard feelings after the vote.
 
 ## Conclusion  
-This project have been a challenging and teaching experience, we have had free opportunity to choose our own project based on the parameters placed by the project supervisor. This have given space to find a interesting project to dive into. Through this project scrum have been used to keep track of the progess and stay on top of the work through out. Furthermore insights profiles have been used to find the missing memember of the group to make sure the group was more well rounded as we thought that would make more sense and be a good tool to make sure the group was not compeletly one sided.  
+This project have been a challenging and teaching experience, we have had free opportunity to choose our own project based on the parameters placed by the project supervisor. This have given space to find a interesting project to dive into. Throughout this project scrum have been used to keep track of the progess and stay on top of the work through out. Furthermore insights profiles have been used to find the missing member of the group to make sure the group was more well rounded as we thought that would make more sense and be a good tool to make sure the group was not compeletly one sided.  
 
 Below are the individual conclusions from each group memember, refelcting back on the project. Both in terms of how the group work felt, and how the work went but also what could have gone better aswell as reflecting on what to do and not to do next semester.
 
