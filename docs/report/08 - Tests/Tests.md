@@ -4,6 +4,8 @@ Before spending time physically making the hardware multisim was used to check i
 
 There was used a Analog Discovery to test the signals for controlling the motors. The transistors was tested by using signals sent through the pins on the RPi5, to see if it would open and close the transistors, which would in turn turn on or off the LED's. Then the button was tested by connecting its pin to the RPi5, and checking if we could read the signal from a button press, and if we held the button if that could be read as high and as low when not, which both worked. After the full implementation we could test the drive with the full weight of all parts. 
 
+\newpage
+
 ## Module tests
 
 ### Calculate route
@@ -24,6 +26,8 @@ DR is the class used for calculating the length and angle needed to drive from w
 |    2    |    4    |            180             |      180      |
 
 The first and last point inputted in the above table, is special cases handled independently in the code, to set the outputted angle to either 0 if the current point is our homebase, or if the angle is zero as it will only be that if we have to turn around.
+
+\newpage
 
 ### PID regulating
 
@@ -159,6 +163,8 @@ if (std::abs(left_pwm) < 20 && std::abs(right_pwm) < 20)
         }
 ```
 
+\newpage
+
 ### Raspberry Pi Setup (rpi1)
 
 The Rpi controlling the car required a bit of setup as well. Firstly the PWM chip had to be enabled, as otherwise we wouldn't be able to generate a PWM signal to control the car. This was done by adding the following line to config.txt.
@@ -199,6 +205,7 @@ WantedBy=multi-user.target
 
 When the time came to have it run the program itself, we encountered issues with the Pi not booting. At first we suspected that the service type was wrong, and that was causing the issue, so we changed it from oneshot to simple, since we thought oneshot type may have gotten 'unhappy' from getting stuck in the program, as it runs indefintely. However, this had no effect, and the Pi would still not boot, so eventually we decided to ditch this functionality, and simply run the program through a remote SSH connection.
 
+\newpage
 
 ### Astar
 
@@ -250,6 +257,8 @@ The angle changes between steps always matched the DR class expectations. \newli
 
 The resulting behavior confirmed that astar outputs clean, grid-aligned paths perfectly suitable for real-world execution. 
 
+\newpage
+
 ### Tui
 
 Most of the testing for developing the TUI was done iteratively during developement, where any visual errors 
@@ -268,6 +277,8 @@ Most of the testing for developing the TUI was done iteratively during developem
     \end{subfigure}
 \caption{Tui screens}
 \end{figure}
+
+\newpage
 
 ## Integration test
 

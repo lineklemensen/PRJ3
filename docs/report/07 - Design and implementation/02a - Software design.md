@@ -106,6 +106,8 @@ The car has the following classes
 
 ![Empty class diagram for the car](docs/diagrams/out/apModel/car_cd_empty/CarClasses.png){width=500px}
 
+\newpage
+
 ### Sequence diagram
 
 First all of the classes are initialized. This means all the constructors are called, the frequency and channel for pwm are set and threads for handler the encoders are started. The green LED and the action button is also initialized. To initialize the action button first a function for setting up poll is called. Then a thread is started and set to run the function monitor_act_btn(). 
@@ -119,6 +121,8 @@ If the request was a success the paths to reach all the rooms are then calculate
 When the button is pressed the car then repeats this for the next room until it reaches its home base. Here it waits for a button press to once again request what rooms it needs to visit.
 
 ![Sequence diagram for the car](docs/diagrams/out/apModel/car_sd/car_sd.png){width=500px}
+
+\newpage
 
 ### Full class diagram
 

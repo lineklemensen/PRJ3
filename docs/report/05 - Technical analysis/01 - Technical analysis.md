@@ -17,19 +17,19 @@ We have found 3 pathfinding algorithms to compare, Dijkstra's algorithm[@Dijkstr
 The attributes we want to prioritize are speed and processing complexity, as our goal is to be able to find a path quickly but do not want to consume all the resources of the RPi. So a balance between the two are important.
 Developer cost is also an important factor as we want to be able to actually get a finished and working pathfinding implementation, since if developer cost is too high we might not be able to finish it in time.
 
-### Speed
+**Speed**
 
 When we are talking about speed we are mostly concerned with convergence speed, and in that aspect there is a clear winner amongst our choices, A\* with multithreading.
 
-### Processing complexity
+**Processing complexity**
 
 Although A\* with multithreading is the fastest, it is also the most complex to implement, as we need to be careful that a thread does not attempt to search the same space another thread has already cleared. Here Dijkstra and normal A\* have the advantage as everything occurs on the same thread, and each new node is only traversed once.
 
-### Memory impact
+**Memory impact**
 
 The amount of memory each algorithm consumes is largely negligible but does scale primarily with graph/map size, when considering this, Dijkstra is the worst of the three since worst case the amount of nodes it has to check scales quadratically with the distance to the goal. Of course multithreaded A\* versus its single-threaded counterpart does add some memory overhead, however it isn't enough to cost any points.
 
-### Developer cost
+**Developer cost**
 
 Since the algorithms are related it means that we would be able to implement them from the simplest to most complex without needing to incur the full developer cost. As a result of this we have the capability to decide if we have time to attempt the better/faster iterations depending on the amount of ongoing work.
 
@@ -67,7 +67,7 @@ dealt with by not having the car drive too long distances.
 Developer cost/complexity is also very important since we want
 the project to be of a scope that can be finished on time.
 
-### Precision
+**Precision**
 
 Dead reckoning has a very high precision if the correct hardware is
 used. One of the simplest ways to get a high accuracy is by using
@@ -83,7 +83,7 @@ GPS has different levels of precision depending on the specific product.
 Range of errors typically fall within 1-5 meters. In this case even
 an error of 1 meter could make entering a room hard.
 
-### Drift/error accumulation
+**Drift/error accumulation**
 
 Dead reckoning has a slight drift that slowly accumulates until it
 reaches a known position. This could be dealt with by having the
@@ -93,7 +93,7 @@ Line following does not have any drift.
 
 GPS does not have any drift
 
-### Robustness
+**Robustness**
 
 Dead reckoning using encoders would not function if the rotation
 of the wheels does not correspond to the distance traveled, and is therefor largely hardware dependent.
@@ -104,7 +104,7 @@ line gets damaged the system would not work.
 The GPS would only really fail if the satellite connection can not
 be established.
 
-### Price
+**Price**
 
 Dead reckoning only requires the motors have encoders. Encoders
 are pretty cheap so this does not add much to the cost.
@@ -114,7 +114,7 @@ and a camera or ultra violet sensor. This is a significant cost.
 
 GPS would require adding a GPS module which increases the cost.
 
-### Upkeep
+**Upkeep**
 
 Dead reckoning does not acquire additional upkeep.
 
@@ -123,7 +123,7 @@ enough for the camera/ultra violet sensor to recognize it.
 
 GPS does not require additional upkeep.
 
-### Developer cost/complexity
+**Developer cost/complexity**
 
 Dead reckoning only require the addition of an encoder, with the software being rather easy to implement.
 
@@ -150,7 +150,7 @@ distances.
 
 There are two different kind of motor speed control we have chosen to look into for this project. The ones we have picked to choose from are Proportional-Integral-Derivative controller, PID control for short[@PID-Wikipedia] and Linear interpolation[@LinInt-Wikipedia].
 
-### Similarities
+**Similarities**
 
 Since both PID control and interpolation have many similarities, because their purpose aligns with a good degree of control and speed changes, we will start with the likeness of the two.
 
@@ -159,7 +159,7 @@ They both deal with speed transition, where PID tries to bring the actual speed 
 Both have a goal of avoiding sudden jumps in speed, where PID control will naturally dampen if it overshoots and it is well tuned and Linear interpolation prevents step changes by gradually ramping throughout.
 For stability reason and cost reduction, they try to improve the life spans of the motor and mechanical safety by smoothing out motor control and not doing sudden changes in the speed which stresses the gears, belts etc.
 
-### Differences
+**Differences**
 
 Even with lots of similarities they complete the task very differently. PID control is a control method with a closed loop where the motor speed will be adjusted based on the error between the actual speed and target speed using proportional, integral and derivative terms. 
 
@@ -186,7 +186,7 @@ It is an open-loop, which means it does not correct for load changes and resista
 Using linear interpolation makes it so there is no guarantee of the precise speed giving unless the motor is loaded exactly like it is tuned.
 Overall limited adaptability.
 
-### Conclusion
+**Conclusion**
 
 Even though PID control is the harder to implement option, more time consuming and requires fine tuning, for this project it is a better option than linear interpolation, because linear interpolation might provide an easier implementation and ease of use, but the drawbacks with its tuning and adaptability makes it so that PID control is the better option.
 In conclusion we are going to use PID control for motor speed control for this project. 
@@ -203,18 +203,19 @@ In conclusion we are going to use PID control for motor speed control for this p
 | Ordered          |  Yes  |  No   |
 : Analysis of network protocols
 
-### TCP
+**TCP**
 
 TCP stands for Transmission Control Protocol, and is a connection-oriented protocol. It is a slower protocol than UDP, since it establishes a synchronized connection, ensuring ordered delivery of data and no loss of data or packages. TCP is used for browsing the web, sending emails and files, and other such systems that don’t require low latency or cannot afford data loss.
 
 TCP ensures a reliable connection, which is preferable for our project, since data loss could cause unpredictable behavior of our system, and the higher latency doesn’t negatively impact the system in any significant way.
 
-### UDP
+**UDP**
 
 UDP stands for User Datagram protocol, and is a connection-less protocol. This means the connection will be a lot faster, at the cost of reliability, since there is no way to acknowledge successful transfer of data. UDP is commonly used for streaming and online video games, that benefit greatly from the reduced latency, and don’t have big drawbacks as a result the data loss that may occur using UDP. 
 
 
-### Conclusion
+**Conclusion**
+
 For our project, we do not require a low-latency protocol, and data loss could be catastrophic to the routing/functioning of the car. In conclusion, we have decided to use TCP, since the drawbacks of higher latency are relatively small, compared to the potentially huge issues we could encounter using UDP. 
 
 
@@ -233,28 +234,23 @@ For this project we are required to have the combined code be at least 90% C or 
 Since there is not much you can do with the remaining 10% in terms of useful programming, 
 we would want to write the whole core program in one of those two languages.
 
-### Object oriented
+**Object oriented**
 
 Although C isn't intended to be object oriented you can of course write it in an object oriented way. However at that point you might as well simply use C++.
 
-### Library availability
+**Library availability**
 
 The standard library for C++ is considerably larger than C's standard library. Because of this C++ is more appealing to us.
 
-### Developer knowledge
+**Developer knowledge**
 
 For most of our current study we've worked with C++, and have only had an introductory course on C over a couple lessons. With this in mind, C++ will lead to faster development as we're more comfortable with the language and know more of its features and available libraries. Also since C++ is backwards compatible with C we retain the ability to use low-level C in cases it becomes necessary.
 
-### Conclusion
+**Conclusion**
 
 Due to the comfortability with developing in C++ and our overall knowledge and experience with it, it will be what we write the program
 
 \newpage
-
-
-# Physical components
-
-We decided to rate with a score from 1 to 5, where a higher score is better.
 
 ## Battery
 
@@ -268,12 +264,14 @@ We decided to rate with a score from 1 to 5, where a higher score is better.
 | Developer cost    |      5       |      5       |
 : Analysis of battery types for the car
 
-### Evaluation
+**Evaluation**
 Two batteries were considered: **7,2V/3000mAh NiMH battery** and **9,6V/2000mAh NiMH battery**. There are two determining factors when deciding which battery to use. First, **runtime**(Watt-hours): A higher runtime provides the vehicle with longer active time before it needs recharging. Second **overcurrent:** Risk of overcurrent increases when a battery has higher voltage than a component, which can cause overheating.
 
 
-### Conclusion
+**Conclusion**
 The **7,2V/3000mAh NiMH battery** is chosen since it satisfies our requirements the best with regards to runtime and overcurrent.
+
+\newpage
 
 ## H-Bridge / Motor Driver
 
@@ -291,7 +289,7 @@ The **7,2V/3000mAh NiMH battery** is chosen since it satisfies our requirements 
 We compared two motor driver modules for the vehicle: the **L9110 Dual H-Bridge Driver** and the **Monster Moto Shield (VNH2SP30)**.  
 Both are commonly used in robotics, but they differ significantly in power capability, voltage range, and overall robustness.
 
-### Technical Overview
+**Technical Overview**
 
 **L9110**  
 The L9110 is a compact, low-cost H-bridge driver supporting **2.5–12 V** and delivering around **0.8 A continuous** per channel (up to 2 A peak).  
@@ -301,13 +299,13 @@ It is simple to use and ideal for small DC motors or lightweight robots. However
 The Monster Moto Shield, built around two **VNH2SP30 full-bridge drivers**, can supply **14 A continuous** and **30 A peak** current per channel with a voltage range of **5.5–16 V**.  
 It includes thermal shutdown, undervoltage, and current sensing protections, making it well-suited for larger robotic platforms and heavy-duty DC motors.
 
-### Evaluation
+**Evaluation**
 
 The **L9110** is sufficient for small robots, but our selected **Devantech EMG49 motor** can draw up to **13 A** at stall, far exceeding its capacity.  
 In contrast, the **Monster Moto Shield** easily supports that current while offering protection and monitoring features.  
 Its downsides are **higher cost**, **larger size**, and **slightly more complex wiring**, but these trade-offs are acceptable given its performance.
 
-### Conclusion
+**Conclusion**
 
 The **Monster Moto Shield** was chosen for this project because of its **high current handling**, **robust protection features**, and **compatibility** with the EMG49 motor.  
 The **L9110** was rejected due to its low power limit, despite being more affordable and easier to implement.
@@ -316,7 +314,7 @@ The **L9110** was rejected due to its low power limit, despite being more afford
 
 ## Motor
 
-### Technical Specifications
+**Technical Specifications**
 
 | Specification                 | DC 6V     | DC 24V   |
 | :---------------------------- | :-------- | :------- |
@@ -339,7 +337,7 @@ The 24V motor delivers greater torque and higher encoder resolution, making it w
 The 6V DC Geared Motor w/Encoder – 210 RPM 10 Kg·cm DFrobot, FIT0521, was chosen as the final drive motor.
 Although the 24V variant provides superior torque and encoder precision, it is overkill for this application, leading to unnecessary power consumption, thermal load, and cost.
 
-### Single or dual motor
+**Single or dual motor**
 
 Two configurations were considered: **single-motor** and **dual-motor**.  
 A single-motor design would require a mechanical differential to steer, increasing complexity despite lower power use.  
@@ -374,3 +372,5 @@ This setup ensures reliable, responsive, and well-balanced performance, making i
 
 The **FIT0521t** motors combined with the **Monster Moto Shield** form a reliable drive solution.  
 This pairing supports precise closed-loop control with encoder feedback and provides the robustness required for operation. The 3000mAh battery chosen will also be able to power the components for an extended length of time between charges.
+
+\newpage

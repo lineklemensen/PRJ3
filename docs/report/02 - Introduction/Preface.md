@@ -11,3 +11,5 @@ Following chapters describe the system requirements, architectural design, key t
 The implementation section provides an in depth description of the server, the car and the collective communication. This is followed by the evaluation of the system, including testing procedures on their own and together to assess its performance collective and separate.
 The report concludes with a discussion of the system's limitations and potential avenues for future development of the system. 
 Supporting material like diagrams, code, supplementary explanations and technical specifications can be found in the appendices and may be referred to in the main report when relevant.
+
+\newpage

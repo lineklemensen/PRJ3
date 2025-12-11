@@ -209,6 +209,8 @@ last_pos.first < next_pos.first && last_pos.second < next_pos.second) {
 ```
 The code above, is then used three more times to handle the three other directions. It then returns an angle and length, that can be used as parameters for another function that makes driving instructions.
 
+\newpage
+
 ## MotorController
 The turn() function is responsible for turning the car. The function takes a double, degrees, which is the amount of degrees the car has to turn. A positive value results in a counter-clockwise turn, and vice versa. As the function is called every time the car reaches a new point, and will sometimes have to keep going straight, the function will return immediately, if the value passed is 0. 
 
@@ -279,6 +281,7 @@ When the loop breaks, the duty cycles for both motors are set to 0, to reduce th
 
 The function drive_distance(), works in very much the same way, except, of course, the wheels driving in different directions.
 
+\newpage
 
 ## PID
 
@@ -286,7 +289,6 @@ The PID class contains a function called update(), which calculates a control ou
 
 The first step in the function is to calculate the error, defined as the difference between the target value and the current value. This error represents how far the system is from the desired position and is used as the basis for all other PID calculations. If the error is smaller than the integration threshold, the accumulated error variable is increased. This ensures that the integral term only contributes when the system is close enough to the target, preventing excessive accumulation.
 
-\newpage
 Next, the proportional, integral, and derivative contributions are computed. The proportional term provides a corrective action directly proportional to the current error. When the motor is far from the target, this term generates a strong response to reduce the error quickly. As the motor approaches the target, the proportional term naturally decreases, preventing overshoot and unnecessary speed. The proportional value is equal to the current error.
 
 The integral term addresses small, persistent errors that may remain due to friction, mechanical load, or system dead zones. By accumulating the error over time, the integral term ensures that the motor reaches the desired position accurately. It is calculated as the sum of the accumulated error multiplied by the time step.

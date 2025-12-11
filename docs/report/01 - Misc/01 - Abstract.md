@@ -6,3 +6,4 @@ The software implementation functioned reliably and demonstrated that automated 
 However hardware limitations became a big issue, particularly the difference between the two motors picked for the prototype, the general size of prototype and the quality of the support wheel. All this prevented the car from performing consistently in the field test scenario.  
 Despite this, the project successfully provides a proof of concept and highlights the scalability of the system. The results indicate that with improved hardware and dynamic room configuration, the solution could be expanded into clinically applicable autonomous delivery platform.
 
+\newpage

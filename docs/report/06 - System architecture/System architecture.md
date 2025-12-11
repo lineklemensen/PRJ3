@@ -15,6 +15,8 @@ This diagram was developed in the early phases to give a basic understanding of 
 structured, it also gives insight into what physical components are present in the system.
 ![Block definition diagram](docs/diagrams/out/System Architecture/BDD (3).png)
 
+\newpage
+
 ### Block Description
 A block description is made to describe each block inside the BDD and its function. Inside the table each block is a indicated by block name, function description, signals and comments.
   
@@ -228,7 +230,8 @@ The content of the domain model below shows:
 \newpage
 ### System Sequence Diagram
 The combined system sequence diagram was used to show the sequence and how everything interacts with eachother. This gives an overall understanding of our system, and makes it easy for an outside perspective to see everything that goes on within the entire system. 
-\begin{figure} 
+
+\begin{figure}
 \centering
 \includegraphics[width=0.41\textwidth]{docs/diagrams/out/System Architecture/System SD - combined.png}
 \caption{Combined sytem sequence diagram}

@@ -127,6 +127,8 @@ Usually these kinds of challenges are fixed at some point, though it can be a ti
 **Risk Score:** 6   
 **Mitigation Strategy:** Enough time needs to be allocated to integrating submodules. Proper project management is important.  
 
+\newpage
+
 \refstepcounter{risk}\label{risk:hw-fail}
 **Risk ID:** \therisk\
 **Description:** Hardware failures.  
@@ -166,6 +168,8 @@ Designing and assembling the frame of the car is not within the scope of the edu
 **Consequence:** 2  
 If a frame is not properly designed and assembled, the final product will still be a prototype and a proof of concept. Even though it might not meet the teams level of ambition, the project can still be a success.   
 **Risk Score:** 8   
+
+\newpage
 
 ## Team and Resources
 \refstepcounter{risk}\label{risk:internal-conflicts}
@@ -211,6 +215,8 @@ Since the concept of the project was developed in the beginning of the semester,
 If the collective knowledge is insufficient, the quality of the final product can be affected. The timeline can be affected as well, since time will be used to research subjects necessary to gain the knowledge required. However, if there is a skill gap between the team and the ambition level, the goals can be adjusted.  
 **Risk Score:** 6  
 
+\newpage
+
 \refstepcounter{risk}\label{risk:work-ethics}
 **Risk ID:**  \therisk\
 **Description:** Work ethics.  
@@ -221,6 +227,8 @@ A completely uniform level of ambition and work ethics is not likely. However, t
 The consequence depends on the severity of the issue. If the team developes a tendency to push the timeline for the project, or procrastinate important tasks, the quality of the final product can be affected. Furthermore, the timeline can be affected as well.  
 **Risk Score:** 12   
 **Mitigation Strategy:** The team needs to maintain proper communication, and address the issue if it should occur. The collaboration agreement [<!-- Indsæt reference til bilag: Samarbejdskontract -->] addresses the issue, and all team members have signed it. Furthermore, the role of Internal HR is assigned to a team member, who is responsible for handling such issues.   
+
+\newpage
 
 ## Project Management
 \refstepcounter{risk}\label{risk:requirement-changes}
@@ -266,6 +274,8 @@ It is very likely that unnecessary time are being spent on learning the SCRUM mo
 Planning of sprints and task delegation can take up more time than necessary, since members of the team lack experience with the model.  
 **Risk Score:** 6     
 
+\newpage
+
 \refstepcounter{risk}\label{risk:time-management}
 **Risk ID:** \therisk\
 **Description:** Time management.  
@@ -276,6 +286,8 @@ There is a high probability of encountering new or unexpected tasks and challeng
 If the team is unable to effectively manage the available time, it will impact the project, and can affect the quality of the final product, as well as impair the teams ability to meet important deadlines.  
 **Risk Score:** 16   
 **Mitigation Strategy:** The team has a shared calendar for the project, as well as a clear timeline. The timeline is related to the issues on the project, and is found on the GitHub project board. The timeline and current state of the project is therefore clearly visible to all team members. The scrum master is responsible for maintaining the timeline, and allocating time accordingly, as well as delegate tasks to team members with relevant knowledge.   
+
+\newpage
 
 ## External Risks    
 \refstepcounter{risk}\label{risk:academic-deadlines}
@@ -311,6 +323,8 @@ Conflicting schedules and resources are likely to happen, especially if the team
 **Consequence:** 2  
 Even though external conflicts can cause delays and force a change of strategy, the project is relying primarily on the team members involved. Therefore, the consequence is not likely to be severe.  
 **Risk Score:** 8  
+
+\newpage
 
 \refstepcounter{risk}\label{risk:finance}
 **Risk ID:** \therisk\

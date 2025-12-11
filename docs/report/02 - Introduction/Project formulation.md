@@ -22,7 +22,4 @@ Despite the automation, nurses remain integral to the process. They are the once
 
 The proposed system is designed to enhance patient safety by reducing the likelihood of medication errors, optimize workflow and provide relief to overworked hospital personnel. By combining order management, autonomous navigation and supervision by nurses, the system represents a practical step toward modernizing the internal workflow of hospital operations and leveraging technology to address staffing challenges.
 
-
-
-
-
+\newpage
