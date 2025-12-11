@@ -4,7 +4,7 @@
 \large Self Driving Medicine Delivering System\\
 \bigskip
 \large Date: \today \\
-
+\large Characters: ~71700
 \vspace{1.5cm}
 
 \begin{figure}[H]
