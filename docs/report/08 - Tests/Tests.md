@@ -248,6 +248,11 @@ The angle changes between steps always matched the DR class expectations. \newli
 
 The resulting behavior confirmed that astar outputs clean, grid-aligned paths perfectly suitable for real-world execution. 
 
+
+### Server test
+Firstly after the server is running a goggle chrome fan was opened to test if it was possible to access the the URL that the server is hosted on, this was done by looking at the terminal in the server to see if a connection was established which was successful. 
+Since connection is possible the request handlers needed to be tested to see if request was handled correct, this was tested with Postman used to do GET and POST request, POST test was successful  with the queue getting elements inside it, and log file also updating along side the queue. GET was also a success since the first element in queue was removed and the log file again updating according to what the queue had in it. 
+
 ## Integration test
 
 To begin integrating our system, we first equipped the motors and wheels to the car, and running a simple test program that, theoretically, had the car drive in a straight line. We had been aware, since PID tuning, that the two motors were not exactly equal, as their tunings had to be different to achieve the same behaviour, but once the wheels came under load from the weight of the car, it quickly became apparent that this had different effect on the two motors, resulting in the car becoming very unprecise, and getting stuck in many situations. We changed the clamp, to now have the minimum duty cycle be 35, which prevented the car from getting stuck, but it was still unable to drive in a straight line, as one motor would turn more than the other, even with exactly the same PWM signal. To combat this, we started adjusting the PWM signal, based on how far away both motors were from their respective target. If a motor sagged behind, the duty cycle for that motor would be increased, and decreased for the other, based on the ratio of the errors.

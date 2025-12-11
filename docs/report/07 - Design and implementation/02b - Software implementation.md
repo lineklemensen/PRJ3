@@ -504,3 +504,132 @@ Additionally since each element have their own keymap it allows for several elem
 
 
 \newpage
+## Server
+The server was made to handle requests from TUI and Car, if any errors should occur while handling a request the server is to respond with a status code. additionally its responsible for storing all routes that are send to it through POST requests, this is done with a queue that holds each route from POST. When only using a queue one considerable problem would happen if the server shuts down and that is the queue being empty upon server start. The solution created for this was making a log file storing all the routes that the queue also had. With this if the server starts and there was still routes left when it shut down, the log file will put all routes its containing into the queue. 
+  
+### RouteHandler
+This handles the server setup using restinio, its purpose is to host the server and handle any request that is received.
+
+### GET handler
+This handler is used when a GET request in done to the server, if the queue is empty it returns a status code for "no content", else it calls get_route from LogHandler
+and sets the response body of the request to the returned value.
+```cpp
+	auto on_get_route(const restinio::request_handle_t& req, rr::route_params_t) const
+	{
+		auto resp = init_resp(req->create_response());
+
+		if (route_logger.queue_empty()) {
+			resp.header().status_line(restinio::status_no_content());
+			return resp.done();
+		}
+
+		std::string result = route_logger.get_route();
+
+		resp.set_body(result);
+
+
+		return resp.done();
+	}
+```
+
+### POST handler
+This handler is used when the server receives a POST request, if the request body is empty return status code "no content". Else it simply calls the function post_route() from LogHandler.
+
+```cpp
+	auto on_post_route(const restinio::request_handle_t& req, rr::route_params_t) const
+	{
+		auto resp = init_resp(req->create_response());
+
+
+		if (req->body().empty()) {
+			resp.header().status_line(restinio::status_no_content());
+			return resp.done();
+		}
+
+		route_logger.post_route(req->body());
+
+
+		return resp.done();
+
+	}
+```
+
+  
+### LogHandler
+To implement the class LogHandler a queue is made with the library deque, and has basic function for queues. 
+
+
+log_file.open is used to open a file with the given name being logger.txt, ios::app is used here to make sure that if a file does not exist with that name it will then create one. An error is thrown if the condition !logfile.is_open() is met, since that would indicate that something went wrong when opening/creating the log file. After opening the log file std::ifstream is used to operate on the log file, the while loop takes the first line inside log_file and push_back that line into the queue.
+
+```cpp
+    private:
+    std::ofstream log_file;
+    std::deque<std::string> route_queue;
+    std::string file_path;
+
+    public:
+    LogHandler(const std::string& file_path = "logger.txt") : file_path(file_path) {
+        log_file.open(file_path, std::ios::app);
+        if (!log_file.is_open()) {
+            throw std::runtime_error("failed to opn file");
+        }
+
+        if (log_file.is_open()) {
+            std::ifstream log_file_stream(file_path);
+            std::string line;
+            while (std::getline(log_file_stream, line)) {
+                route_queue.push_back(line);
+            }
+        }
+    };
+```
+
+
+### POST
+The data received from POST request is done with a function called post_route. The function is a void because it should not return anything, what it does is calling route_queue to push back the string received, then if the log_file is open route_queue.back is used to also add the string from the request into log_file with log_file.flush. 
+```cpp
+    void post_route(const std::string& log_rooms) {
+        route_queue.push_back(log_rooms);
+        if (log_file.is_open()) {
+            log_file << route_queue.back() << "\n";
+            log_file.flush();
+        }
+    };
+```
+
+
+## GET
+This function is used for taking the first element in route_queue and put it into a string first_route so that pop_front can be done on the queue, it then calls update_route() to update the log_file centent and finally return first_route
+
+```cpp
+    std::string get_route() {
+
+        if (route_queue.empty()) {
+            throw std::runtime_error("no route queue given");
+        }
+
+        std::string first_route = route_queue.front();
+        route_queue.pop_front();
+        update_route();
+        return first_route;
+    }
+```
+
+
+## update 
+Update_route() is simply to take every element in route_queue and put it into log_file.
+```cpp
+    void update_route() {
+        std::ofstream out(file_path);
+        for (auto route_item : route_queue) {
+            out << route_item << "\n";
+        }
+    }
+
+    bool queue_empty() const {
+        return route_queue.empty();
+    }
+};
+```
+
+
