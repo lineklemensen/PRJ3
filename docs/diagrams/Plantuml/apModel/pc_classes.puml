@@ -161,19 +161,19 @@ enum Key
 tui -u-> cs
 tui -u-> in
 
-msc -u-|> sc
-psc -u-|> sc
+sc <|-u- msc
+sc <|-u- psc
 
-tui "1..*" *--  sc
+tui *-l- "1..*" sc
 msc -r-> psc
 
 te --|> e
 sb -r-|> b
 b --|> e
 
-sc "0..*" *-l- te
-sc "0..*" *-l- sb
-sc "0..*" *-l- b
+sc *-d- "0..*" te
+sc *-d- "0..*" sb
+sc *-d- "0..*" b
 
 'b --> http 
 
