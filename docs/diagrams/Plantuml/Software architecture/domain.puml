@@ -16,38 +16,35 @@ rectangle ActionButton
 rectangle PowerButton
 rectangle LED
 rectangle Motor
-rectangle Battery
 actor DispensoryNurse
 actor Nurse
 rectangle HttpHandler
+rectangle HttpHandler_Car
 rectangle H_bridge
-rectangle log_handler
+rectangle LogHandler
 
 '   Relationships
 
-Server --> HttpHandler
-HttpHandler --> TerminalUI : interactsWith
-HttpHandler --> Car : interactsWith
-
-Car --> ActionButton : monitor
-Car --> LED : has
-Car --> H_bridge : instructions
-Car --> Pathfinding : requestsRoute
-
-H_bridge --> Motor : controls
-
-Pathfinding --> Car : providesRoute
-
-ActionButton --> Motor : triggers
-PowerButton --> Motor : triggers
-LED --> Motor : indicates
-
-Battery --> Car : powers
 
 DispensoryNurse --> ActionButton : press
+Car --> ActionButton : monitor
 DispensoryNurse --> PowerButton : press
+PowerButton --> Car : ON/OFF
 Nurse --> ActionButton : press
+DispensoryNurse --> TerminalUI : select rooms
+TerminalUI --> HttpHandler : create route
+HttpHandler --> Server : send route
 
-Server --> log_handler : saves_route
+Server --> LogHandler : saves route
+Car --> HttpHandler_Car : send request
+HttpHandler_Car --> Server : request route
+Server --> Pathfinding :  send route
+Car --> Pathfinding : calculate path  
+
+Car --> LED : has
+Car --> H_bridge : instructions
+H_bridge --> Motor : controls
+
+LED --> Pathfinding : indicates
 
 @enduml
