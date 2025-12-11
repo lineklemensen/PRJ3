@@ -9,3 +9,4 @@
 
 # Pandoc render pdfs
 **/*.pdf
+.DS_Store
