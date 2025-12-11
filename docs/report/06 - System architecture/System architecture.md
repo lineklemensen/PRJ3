@@ -225,11 +225,18 @@ The content of the domain model below shows:
 **Pathfinding** receives route from Server and uses the route to calculate a path for the Car to drive. 
 ![Domain model](docs/diagrams/out/Software architecture/domain/domain_model.png)
 
+\newpage
 ### System Sequence Diagram
+The combined system sequence diagram was used to show the sequence and how everything interacts with eachother. This gives an overall understanding of our system, and makes it easy for an outside perspective to see everything that goes on within the entire system. 
+\begin{figure} 
+\centering
+\includegraphics[width=0.41\textwidth]{docs/diagrams/out/System Architecture/System SD - combined.png}
+\caption{Combined sytem sequence diagram}
+\end{figure}
 
 ### System State Machine Diagram
 A STM is used to represent the condition and behavior of the system, this helps indicating what happens when the system is in a state and also what goes on when the system goes from one state to another. There are 4 states in the system: off, idle, driving and pathfinding. This diagram was make in the early phases of the project serving as an overview of how to handle the systems different states. 
-  
-![State machine diagram](docs/diagrams/out/Software architecture/System STM.png)
+
+![State machine diagram](docs/diagrams/out/Software Architecture/System STM.png)
 
 \newpage
