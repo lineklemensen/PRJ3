@@ -10,163 +10,181 @@ here the waypoints stores all the points of interest, and num_points is the tota
 
 ### Compute paths
 Then we need to find the shortest path between all pairs of waypoints given, so later on solve the TSP efficiently. \newline
-std::vector paths(num_points, std::vector<std::vector<Point>>(num_points)); \newline
-std::vector cost(num_points, std::vector<int>(num_points, 1e9)); \newline
+
+```cpp
+std::vector paths(num_points, std::vector<std::vector<Point>>(num_points));
+std::vector cost(num_points, std::vector<int>(num_points, 1e9));
+```
 
 Paths stores the astar from waypoints i to j, and cost stores the length of that path, this is initialized to a large number for comparison. \newline
 
 to calculate the paths the following is done: \newline
 
-for(int i = 0; i < num_points; i++) {  \newline
-    for(int j = 0; j < num_points; j++) {  \newline
-        std::vector<Point> p = aStar_search(waypoints[i], waypoints[j]); \newline
-        if(p.empty()) continue; \newline
-        \newline
-        const int len = p.size() - 1;  \newline
-        paths[i][j] = p; \newline
-        cost[i][j] = len; \newline
-    } \newline
-} \newline
+```cpp
+for(int i = 0; i < num_points; i++) {  
+    for(int j = 0; j < num_points; j++) {  
+        std::vector<Point> p = aStar_search(waypoints[i], waypoints[j]); 
+        if(p.empty()) continue; 
+        
+        const int len = p.size() - 1;  
+        paths[i][j] = p; 
+        cost[i][j] = len; 
+    } 
+} 
+```
 
 For every pair, (i,j), astar_search finds the shortest path.
 If a path exists, we store it in paths and its length in cost.
 
-
+\newpage
 ### Solve TSP brute-force
 Next step is to try all the possible orders of visiting the rooms to find the total shortest total route. \newline
-std::vector<int> perm; \newline
-for(int i = 1; i < num_points; i++) perm.push_back(i); \newline
-\newline
-We generate all permutations excluding the starting point, which is always 0. \newline
-int best_cost = 1e9; \newline
-std::vector<int> best_order; \newline
-\newline
-best_cost keeps track of the shortest distance found.
-best_order keeps the corresponding visiting order.\newline
 
-For each permutation: \newline
-do { \newline
-    std::vector<int> candidate_order; \newline
-    candidate_order.push_back(0); \newline
-    candidate_order.insert(candidate_order.end(), perm.begin(), perm.end()); \newline
-    candidate_order.push_back(0); // return to start \newline
-    \newline
+```cpp
+std::vector<int> perm; 
+for(int i = 1; i < num_points; i++) 
+    perm.push_back(i); 
 
-Then we create a candidate route that starts and ends at 0. \newline
+//We generate all permutations excluding the starting point, which is always 0. 
+int best_cost = 1e9; 
+std::vector<int> best_order; 
+```
 
-int sum = 0; \newline
-bool valid = true; \newline
-for(size_t i = 1; i < candidate_order.size(); i++) { \newline
-    if(paths[candidate_order[i - 1]][candidate_order[i]].empty()) { \newline
-        valid = false; \newline
-        break; \newline
-    } \newline
-    sum += cost[candidate_order[i - 1]][candidate_order[i]]; \newline
-} \newline
-\newline
+`best_cost` keeps track of the shortest distance found.
+`best_order` keeps the corresponding visiting order.  
 
-We sum the costs of consecutive legs in the route given, if any has no path, we mark the route as invalid. \newline
-if(valid && sum < best_cost) { \newline
-    best_cost = sum; \newline
-    best_order = candidate_order; \newline
-} \newline
-\newline
-If the route is valid and shorter than previous best, we update best_order. \newline
-} while(std::next_permutation(perm.begin(), perm.end())); \newline
-Repeating for all permutations to find the optimal visiting order. \newline
-\newline
+```cpp
+//For each permutation: 
+do { 
+    std::vector<int> candidate_order; 
+    candidate_order.push_back(0); 
+    candidate_order.insert(candidate_order.end(), perm.begin(), perm.end()); 
+    candidate_order.push_back(0); // return to start 
 
-### Combine paths
-Once we have the best order to visit, the code concatenate the individual paths into a full route: \newline
-std::vector<std::vector<Point>> combined_path; \newline
-\newline
-for(size_t i = 1; i < best_order.size(); i++) { \newline
-    int a = best_order[i - 1]; \newline
-    int b = best_order[i]; \newline
-    combined_path.push_back(paths[a][b]); \newline
-} \newline
-\newline
-return combined_path; \newline
-\newline
-Each segment paths(a)(b), is added to combined_path. The final combined_path is what the car should follow. \newline
 
-### Astar search
-The astar_search function finds the shortest path between two points. \newline
-if(!is_unblocked(src) || !is_unblocked(dest)) return route; \newline
-if(src == dest) return {src}; \newline
-\newline
-Exit early if the source or destination is blocked, or if they are the same. \newline
-bool closed_list[ROWS][COLS] = {}; \newline
-cell cell_details[ROWS][COLS]; \newline
-\newline
-closed_list tracks visited nodes, cell details stores the costs and parent points for the paths reconstruction. \newline
-cell_details[src.x][src.y] = { \newline
-    .p = src, \newline
-    .total_cost = 0.0, \newline
-    .start_cost = 0.0, \newline
-    .cost_to_dest = 0.0, \newline
-}; \newline
-\newline
-Initialize the source node with 0 cost. \newline
-std::priority_queue<PriorityPoint, std::vector<PriorityPoint>, std::greater<>> open_list; \newline
-open_list.emplace(0.0, src); \newline
-\newline
-open_list is a min-heap based on total cost f = g + h. \newline
+    //Then we create a candidate route that starts and ends at 0.  
 
-### Main Loop
-while(!open_list.empty()) { \newline
-    Point current = open_list.top().point; \newline
-    open_list.pop(); \newline
-    closed_list[current.x][current.y] = true; \newline
-    \newline
+    int sum = 0; 
+    bool valid = true; 
+    for(size_t i = 1; i < candidate_order.size(); i++) { 
+        if(paths[candidate_order[i - 1]][candidate_order[i]].empty()) { 
+            valid = false; 
+            break; 
+        } 
+        sum += cost[candidate_order[i - 1]][candidate_order[i]]; 
+    } 
 
-this picks the node with the lowest cost, marking as it its visited. \newline
-constexpr Point adj[4] = {{-1,0},{1,0},{0,-1},{0,1}}; \newline
-for(auto d : adj) { \newline
-    Point n{current + d}; \newline
-    if(!Astar::is_valid(n)) continue; \newline
-    \newline
-Explore the 4 neighbors(up, down, left, right), skipping invalid neighbors. \newline
-if(dest == n) { \newline
-    cell_details[n.x][n.y].p = current; \newline
-    Astar::trace_path(cell_details, n, route); \newline
-    found_dest = true; \newline
-    break; \newline
-} \newline
-\newline
-If one of the neighbors is the destination, trace back the path and exit. \newline
-double g_new = cell_details[current.x][current.y].start_cost + 1.0; \newline
-double h_new = Point::distance(n, dest); \newline
-double f_new = g_new + h_new; \newline
-\newline
-g_new = cost from start to neighbor. h_new = heuristic(straight-line distance to destination). f_new = total estimated cost. \newline
 
-if(cell_details[n.x][n.y].total_cost > f_new) { \newline
-    open_list.emplace(f_new, n); \newline
-    cell_details[n.x][n.y] = {current, f_new, g_new, h_new}; \newline
-} \newline
-\newline
+    //We sum the costs of consecutive legs in the route given, if any has no path, we mark the route as invalid.  
+    if(valid && sum < best_cost) {
+        best_cost = sum;
+        best_order = candidate_order;
+    }
+//If the route is valid and shorter than previous best, we update best_order.
+} while(std::next_permutation(perm.begin(), perm.end()));
+// Repeating for all permutations to find the optimal visiting order.
+```
+
+\newpage
+### Combine paths  
+Once we have the best order to visit, the code concatenate the individual paths into a full route:  
+```cpp
+std::vector<std::vector<Point>> combined_path; 
+
+for(size_t i = 1; i < best_order.size(); i++) { 
+    int a = best_order[i - 1]; 
+    int b = best_order[i]; 
+    combined_path.push_back(paths[a][b]); 
+} 
+
+return combined_path; 
+```
+
+Each segment paths(a)(b), is added to combined_path. The final combined_path is what the car should follow.
+
+### Astar search  
+The astar_search function finds the shortest path between two points.  
+```cpp
+if(!is_unblocked(src) || !is_unblocked(dest)) return route; 
+if(src == dest) return {src}; 
+
+// Exit early if the source or destination is blocked, or if they are the same. 
+bool closed_list[ROWS][COLS] = {}; 
+cell cell_details[ROWS][COLS]; 
+
+// closed_list tracks visited nodes, cell details stores the costs and parent points for the paths reconstruction. 
+cell_details[src.x][src.y] = { 
+    .p = src, 
+    .total_cost = 0.0, 
+    .start_cost = 0.0, 
+    .cost_to_dest = 0.0, 
+}; 
+```
+
+Initialize the source node with 0 cost.  
+```cpp
+std::priority_queue<PriorityPoint, std::vector<PriorityPoint>, std::greater<>> open_list; 
+open_list.emplace(0.0, src); 
+```
+
+open_list is a min-heap based on total cost f = g + h.  
+
+\newpage
+### Main Loop  
+```cpp
+while(!open_list.empty()) { 
+    Point current = open_list.top().point; 
+    open_list.pop(); 
+    closed_list[current.x][current.y] = true; 
+    
+
+//this picks the node with the lowest cost, marking as it its visited. 
+constexpr Point adj[4] = {{-1,0},{1,0},{0,-1},{0,1}}; 
+for(auto d : adj) { 
+    Point n{current + d}; 
+    if(!Astar::is_valid(n)) continue; 
+    
+//Explore the 4 neighbors(up, down, left, right), skipping invalid neighbors. 
+if(dest == n) { 
+    cell_details[n.x][n.y].p = current; 
+    Astar::trace_path(cell_details, n, route); 
+    found_dest = true; 
+    break; 
+} 
+
+
+// If one of the neighbors is the destination, trace back the path and exit. 
+double g_new = cell_details[current.x][current.y].start_cost + 1.0; 
+double h_new = Point::distance(n, dest); 
+double f_new = g_new + h_new; 
+
+//g_new = cost from start to neighbor. 
+//h_new = heuristic(straight-line distance to destination). 
+//f_new = total estimated cost. 
+
+if(cell_details[n.x][n.y].total_cost > f_new) { 
+    open_list.emplace(f_new, n); 
+    cell_details[n.x][n.y] = {current, f_new, g_new, h_new}; 
+} 
+
+```
+
 Update the neighbor if we found a better path, and push it to the queue.
 
 ### Path compression
-Lastly, it removes unnecessary points along the straight lines: \newline
-for(int it = 0; it + 1 < route.size(); it++) { \newline
-    if(route[it].x == route[it + 1].x) { ... } \newline
-    else { ... } \newline
-} \newline
-\newline
+Lastly, it removes unnecessary points along the straight lines:  
+```cpp
+for(int it = 0; it + 1 < route.size(); it++) {
+    if(route[it].x == route[it + 1].x) { ... }
+    else { ... }
+}
+```
 
-a given example for this can be [(0,0),(0,1),(0,2)] → [(0,0),(0,2)]. \newline
+a given example for this can be [(0,0),(0,1),(0,2)] → [(0,0),(0,2)].  
 this reduces the number of points the car needs to follow and will make the drive smoother.
 
-
-
-
-
-
-
-
-## calc_route()
+\newpage
+## calc_route()  
 To begin with I keep track of where the car currently is, where the next point is, and where the car last were. Then I can get the three sides for a triangle using the code below, for each side. 
 ```cpp
 std::pair<double, double> last_pos_vector = {
@@ -214,6 +232,7 @@ if(degrees > 0) {
 
 Variables to store the error for each motor, i.e. its distance from target value are initialised, and we are now ready to enter the main loop of the function. 
 
+\newpage
 In the loop, first the encoder positions are updated, as these are used in the PID regulation, which is updated immediately after.
 ```cpp
     // Current position
@@ -259,6 +278,7 @@ The PID class contains a function called update(), which calculates a control ou
 
 The first step in the function is to calculate the error, defined as the difference between the target value and the current value. This error represents how far the system is from the desired position and is used as the basis for all other PID calculations. If the error is smaller than the integration threshold, the accumulated error variable is increased. This ensures that the integral term only contributes when the system is close enough to the target, preventing excessive accumulation.
 
+\newpage
 Next, the proportional, integral, and derivative contributions are computed. The proportional term provides a corrective action directly proportional to the current error. When the motor is far from the target, this term generates a strong response to reduce the error quickly. As the motor approaches the target, the proportional term naturally decreases, preventing overshoot and unnecessary speed. The proportional value is equal to the current error.
 
 The integral term addresses small, persistent errors that may remain due to friction, mechanical load, or system dead zones. By accumulating the error over time, the integral term ensures that the motor reaches the desired position accurately. It is calculated as the sum of the accumulated error multiplied by the time step.
@@ -269,6 +289,7 @@ After calculating the proportional, integral, and derivative contributions, each
 
 Finally, for monitoring and debugging purposes, the function prints relevant information, including the current value, target value, control output, and error, every 50 iterations. This makes it much easier to observe since the time step is typically small.
 
+\newpage
 ```cpp
 int Pid::update(double set_value, double current_value, double *ctrl_value, double integration_threshold)
 {
@@ -311,6 +332,7 @@ int Pid::update(double set_value, double current_value, double *ctrl_value, doub
 }
 ```
 
+\newpage
 ## Encoder
 
 The encoder class uses poll() to handle a rotary encoder using event-based triggering. It monitors two GPIO pins corresponding to the A and B channels of the encoder. By detecting the order in which these pins go high and using a quadrature decoding lookup table, the code can determine whether the encoder is rotating forward or backward.
@@ -323,6 +345,7 @@ When an event occurs on one of the GPIO pins, the function reads a gpioevent_dat
 
 Finally, the new A/B state becomes the stored last_state_, ensuring that the next detected edge will be interpreted correctly. This process repeats for every encoder event until the wake pipe is triggered or running_ is set to false, allowing the thread to shut down cleanly.
 
+\newpage
 ```cpp
 void Encoder::monitor_events()
 {
@@ -460,9 +483,8 @@ clear_button->add_keybind(UP, room3);
 room3->add_keybind(DOWN, finish_button);
 ```
 
+\newpage
 Additionally since each element have their own keymap it allows for several elements to use the same key to refer to an element. This functionality is used when setting up the three elements "Room 3", "Finish" and "Clear". In this case when "Finish" or "Clear" is selected, pressing up should result in the selection arrow moving to the "Room 3" element, but pressing down after should always move to the "Finish" element, this simple "state machine" is also showcased in Figure \ref{tui:keymap}.
-
-
 
 \begin{figure}[H]
 \centering
