@@ -171,7 +171,7 @@ if (std::abs(left_pwm) < 20 && std::abs(right_pwm) < 20)
 
 \newpage
 
-### Raspberry Pi Setup (rpi1)
+### Car RPi setup
 
 The Rpi controlling the car required a bit of setup as well. Firstly the PWM chip had to be enabled, as otherwise we wouldn't be able to generate a PWM signal to control the car. This was done by adding the following line to config.txt.
 ```bash
@@ -271,7 +271,7 @@ Since connection is possible the request handlers needed to be tested to see if 
 
 ### Tui
 
-Most of the testing for developing the TUI was done iteratively during developement, where any visual errors 
+Most of the testing for developing the TUI was done iteratively during developement, where any visual errors could be fixed as they appeared. Additionally in order to test that the HTTP requests got sent and received by the server correctly we would use the logging features of restinio.
 
 \begin{figure}[H]
 \centering
