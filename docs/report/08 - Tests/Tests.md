@@ -178,7 +178,7 @@ The Rpi controlling the car required a bit of setup as well. Firstly the PWM chi
 ```bash
 dtoverlay=pwm-2chan
 ```
-To generate the PWM signal, we used the class RPi_pwm, which is based on public wrapper, found at https://github.com/berndporr/rpi_pwm. The functionality was verified using an oscilloscope, which clearly showed a PWM signal to the specifications of our code.
+To generate the PWM signal, we used the class RPi_pwm, which is based on public a wrapper, found at https://github.com/berndporr/rpi_pwm. The functionality was verified using an oscilloscope, which clearly showed a PWM signal to the specifications of our code.
 
 Another line was also added to config.txt, that enables safe shutdown of the Raspberry Pi, when clicking its dedicated power button. This was achieved as shown below.
 ```bash
