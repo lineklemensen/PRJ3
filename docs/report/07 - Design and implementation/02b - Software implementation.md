@@ -1,6 +1,8 @@
 # Software implementation
 
 ## Astar
+
+
 ### Calculate route
 Firstly we generate the points,rooms, that the car can visit, which include the starting point (0,0), \newline
 const std::vector<Point> waypoints = create_rooms(r); \newline
@@ -103,6 +105,7 @@ return combined_path;
 Each segment paths(a)(b), is added to combined_path. The final combined_path is what the car should follow.
 
 ### Astar search  
+The algorithm started its base [@geeksforgeeks-2025]
 The astar_search function finds the shortest path between two points.  
 ```cpp
 if(!is_unblocked(src) || !is_unblocked(dest)) return route; 
