@@ -5,7 +5,7 @@
 \bigskip
 \large Date: \today \\
 \large Characters: ~71700
-\vspace{1.5cm}
+\vspace{0.5cm}
 
 \begin{figure}[H]
 \begin{center}
