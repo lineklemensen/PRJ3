@@ -1,6 +1,6 @@
 ---
 title: "SW3 Semester Project"
-subtitle: "Self Driving Medicine Delivering System"
+subtitle: "Method and Process"
 fontsize: 12pt
 geometry: margin=1.5cm
 ---
