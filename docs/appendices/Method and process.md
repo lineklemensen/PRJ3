@@ -177,7 +177,7 @@ This semester project came with a couple new challenges, it was a lot more free 
 
 Although towards the later half of the semester we started to slip from our schedule, which didn't immediately seem to cause any issues but towards the final couple of weeks we really started to feel the pressure, and challenges from integrations. Unfortunately this led to us having to prioritise the core functionality over smaller nice-to-have features.
 
-I worked with developing the TUI for the project, and i'm quite satisfied with its outcome, i wanted to design something that would be general enough to also be useful for other personal side projects, and i believe the current iteration satisfies that to a good extent, although like all software, it'll probably be better on the next rewrite.
+I worked with developing the TUI for the project, and i'm quite satisfied with its outcome, i wanted to design something that would be general enough to also be useful for other personal side projects, and i believe the current iteration satisfies that to a good extent, although like most software, it'll probably be better on the next rewrite.
 
 ### Frederik Vagn Lorenzen
 At the start of the project, we underestimated the size of the task we had taken on, maybe because we had some experience with programming a car from our 1st semester, or perhaps we were just too enthusiastic. Regardless of why, we encountered a huge time crunch towards the end, which hindered us from being as iterative with this project as we had liked, since we struggled with even getting our prototype ready in time for our acceptance test, which is obviously not ideal. This semester was also our first time working with Scrum, which we also brought along some confusion and growing pains. 
