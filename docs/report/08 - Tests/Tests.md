@@ -292,7 +292,28 @@ Most of the testing for developing the TUI was done iteratively during developem
 
 ## Integration test
 
-To begin integrating our system, we first equipped the motors and wheels to the car, and running a simple test program that, theoretically, had the car drive in a straight line. We had been aware, since PID tuning, that the two motors were not exactly equal, as their tunings had to be different to achieve the same behaviour, but once the wheels came under load from the weight of the car, it quickly became apparent that this had different effect on the two motors, resulting in the car becoming very unprecise, and getting stuck in many situations. We changed the clamp, to now have the minimum duty cycle be 35, which prevented the car from getting stuck, but it was still unable to drive in a straight line, as one motor would turn more than the other, even with exactly the same PWM signal. To combat this, we started adjusting the PWM signal, based on how far away both motors were from their respective target. If a motor sagged behind, the duty cycle for that motor would be increased, and decreased for the other, based on the ratio of the errors.
+To begin integrating our system, we first equipped the motors and wheels to the car, and running a simple test program that, theoretically, had the car drive in a straight line. We had been aware, since PID tuning, that the two motors were not exactly equal, as their tunings had to be different to achieve the same behaviour, but once the wheels came under load from the weight of the car, it quickly became apparent that this had different effect on the two motors, resulting in the car becoming very unprecise, and getting stuck in many situations. We changed the clamp, to now have the minimum duty cycle be 35, which prevented the car from getting stuck, but it was still unable to drive in a straight line, as one motor would turn more than the other, even with exactly the same PWM signal. 
+
+By printing out the encode pulses every 500ms we were able to verify this discrepancy by plotting the values. As is visible in \ref{enc:left} and \ref{enc:right} the right wheel would consistenty drive about 1500 encoder pulses every 500ms compared to the left wheel's 1460. This causes the drift that turns the car to the left when attempting to drive straight.
+
+\begin{figure}[H]
+\centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{docs/diagrams/out/Tests/left_enc_pulse.png}
+        \caption{Left encoder pulses}
+        \label{enc:left}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{docs/diagrams/out/Tests/right_enc_pulse.png}
+        \caption{Right encodes pulses}
+        \label{enc:right}
+    \end{subfigure}
+\caption{Encoder pulse growth comparison}
+\end{figure}
+
+To combat this, we started adjusting the PWM signal, based on how far away both motors were from their respective target. If a motor sagged behind, the duty cycle for that motor would be increased, and decreased for the other, based on the ratio of the errors.
 
 ```cpp
 const double adjust_factor = (std::abs(right_error) / (std::abs(left_error) == 0 ? std::abs(right_error) 
