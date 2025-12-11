@@ -30,16 +30,7 @@ The "server" is a very basic HTTP server. It supports handling incoming "orders"
 
 ### Empty class diagram
 
-The car has the classes
-
-control : MotorController  
-boundary : Encoder  
-boundary : RPi_pwm  
-boundary : HttpHandler  
-domain : PID  
-domain : Astar  
-domain : DR  
-main
+The car has the following classes
 
 **MotorController** uses the Encoder, Rpi_pwm and PID classes for controlling a motor. It takes input from the Encoder class and feeds it to the PID class, a PWM signal is then generated based on that. This along with some direction signals are then used for controlling the motors.
 

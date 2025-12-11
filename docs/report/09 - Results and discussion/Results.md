@@ -1,6 +1,6 @@
 # Results
 
-Shown below is the results of our acceptance test for the main scenario of Use Case 3. For all results, see Acceptance Test result in appendices.
+Shown below is the results of our acceptance test for the main scenario of Use Case 3. For all results, see Acceptance Test in appendices.
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c |*{3}{X|} c |}

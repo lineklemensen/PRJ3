@@ -1,11 +1,23 @@
 # System architecture
 
+
 ## Hardware architecture
+The following sections will include hardware architecture for the system and the structure for the following sections are: block definition diagram(BDD), block description, internal block diagram(IBD) and signal description ending the hardware architecture section.
+   
+**Diagrams** these give a visual look into the physical components used along with the relationship between them. They also go in more dept about the signals that are present in the system.
+  
+**Tables** giving detailed descriptions of the contents in the different diagrams, these tables makes it possible to describe the overall function of blocks or go deeper and describe the function/usage of signals in/between the components. 
 
 ### Block Definition Diagram
+The following BDD below contains 11 blocks each describing which parts and ports are used. BDD serves as a
+skeleton of the system and captures the structure of the different components and their relationships to each other.
+This diagram was developed in the early phases to give a basic understanding of how the system is modeled and
+structured, it also gives insight into what physical components are present in the system.
+![Block definition diagram](docs/diagrams/out/System Architecture/BDD (3).png)
 
-![Block definition diagram](docs\diagrams\out\System Architecture\bdd.png)
-
+### Block Description
+A block description is made to describe each block inside the BDD and its function. Inside the table each block is a indicated by block name, function description, signals and comments.
+  
 \renewcommand{\arraystretch}{1.3}
 \begin{longtable}[h!]{|p{2.5cm}|p{5cm}|p{2.2cm}|p{4.8cm}|}
 
@@ -106,7 +118,17 @@
 
 \newpage
 ### Internal Block Diagram
+The IBD is used to dive deeper into the internal hardware of the car, it shows where each signal is going to/from for each component in the the car.
+These signals include: voltage, PWM, high/low and etc. This tool makes sure that each signal is considered and how further development should follow. 
+  
+![Internal block diagram](docs/diagrams/out/System Architecture/IBD (2).png)  
 
+
+### Signal Description
+A signal description is done after the development of IBD, it helps to give an overview of all signals in the system.
+The following table describes each signal and each row inside the table has: signal name, function, area, physical ports and comments. 
+This table serves to give a structure over signals and communication between each component. 
+  
 \begin{longtable}[H] {|p{2.5cm}|p{4cm}|p{1.5cm}|p{2.6cm}|p{4cm}| }
 \hline
 \textbf{Signal name} & \textbf{Function} & \textbf{Area} & \textbf{Physical ports} & \textbf{Comments}\\
@@ -159,16 +181,55 @@ GLSignal & GLSignal is the green light that is released into surroundings & & &\
 DataTransfer & The HTTP data that gets transfered from the server to the car through wifi & & &\\
 \hline
 Net & The wifi that is used to connect server, car and computer & & Ethernet & \\
+\hline
+\caption{Signal description}
 \end{longtable}
+
 
 ### Interfaces
 
 ## Software architecture
+The following sections will include software architecture for the system and the structure for the following sections are: Domain model, System sequence diagram and System state machine diagram ending the software architecture section.
 
 ### Domain Model
+A domain model serves to give a complete overview of the system as a whole and serving as a brigde between architecture and design. The domain model is a great way to create a collective understanding of the concepts, rules, limitation, relationship and more in our system.
+  
+The content of the domain model below shows:
+  
+**DispensoryNurse(DN)** The DN intereacts with the system through the TUI, ActionButton and PowerButton. DN intereact with the TUI to select which rooms are to be included in the creation of a route. The DN uses PowerButton to turn power on/off and ActionButton to initate the cars driving seqence.
+  
+**Nurse** The Nurse intereacts with the system through ActionButton to initate the cars driving seqence.
+  
+**TUI** gives the DN a way to create routes.
+  
+**HTTPHANDLER** stands for sending request to the Server from TUI.
+  
+**HTTPHANDLER_Car** stands for sending request to the Server from Car.
+  
+**PowerButton** turning power on or off to the Car.
+  
+**ActionButton** used to read input from button press and Car monitors its state. 
+  
+**Server** saves routes in a logHandler for backup, handles request from HTTPHANDLER and HTTPHANDLER_Car.
+  
+**LogHandler** creates a log file and stores all routes given to it. 
+  
+**H_brigde** controls Motor based on intructions given to it from Car.
+  
+**Car** gives instructions to H_bridge, monitors ActionButton state, tells HTTPHANDLER_Car to request route.
+  
+**Motor** is being controlled by H_bridge, and then drives in the given direction. 
+  
+**LED** used to indicate errors or if something is a succes. 
+  
+**Pathfinding** receives route from Server and uses the route to calculate a path for the Car to drive. 
+![Domain model](docs/diagrams/out/Software architecture/domain/domain_model.png)
 
 ### System Sequence Diagram
 
-### State Machine Diagram
+### System State Machine Diagram
+A STM is used to represent the condition and behavior of the system, this helps indicating what happens when the system is in a state and also what goes on when the system goes from one state to another. There are 4 states in the system: off, idle, driving and pathfinding. This diagram was make in the early phases of the project serving as an overview of how to handle the systems different states. 
+  
+![State machine diagram](docs/diagrams/out/Software architecture/System STM.png)
 
 \newpage

@@ -4,7 +4,9 @@ Testing the hardware, multisim was used to check if the hardware would work in a
 
 There was used a x to test the signals that were used to control the motors. The transistors was tested by using signals sent through the pins on the RPi5, to see if it would open and close the transistors, which would in turn turn on or off the LED's. Then the button was tested by connecting its pin to the RPi5, and checking if we could read the signal from a button press, and if we held the button if that could be read, which both worked. After the full implementation we could test the drive with the full weight of all parts. 
 
-## Calculate route
+## Module tests
+
+### Calculate route
 DR is the class used for calculating the length and angle needed to drive from where the car currently is and where it needs to be. Testing this class, I put in every variation of points so that it would have to turn in every 90 degree turn available. This way there was an easy way to keep track of when the turn needed to be negative depending on where the car came from. The unit circle was used in deciding wether the turn was to be negative or positive. 
 
 | Input X | Input Y | Expected output in degrees | Actual result |
@@ -23,7 +25,7 @@ DR is the class used for calculating the length and angle needed to drive from w
 
 The first and last point inputted in the above table, is special cases handled independently in the code, to set the outputted angle to either 0 if the current point is our homebase, or if the angle is zero as it will only be that if we have to turn around.
 
-## PID regulating
+### PID regulating
 
 The Pid class is responsible for controlling motor acceleration and accurately driving the system toward a target position. To validate the controller independently from the hardware, the class was tested using a software-simulated encoder, allowing repeatable and deterministic testing.
 
@@ -91,7 +93,7 @@ for (int i = 0; i < 200; i++)
 ```
 The resulting CSV file was analyzed using a Python script that loads the data via pandas and visualizes the controller response using matplotlib. These plots allowed evaluation of settling time, overshoot, stability, and convergence behavior.
 
-## MotorController & PID Tuning
+### MotorController & PID Tuning
 
 The MotorController class is responsible for driving the car. The class uses a function, drive(), to set the speed and direction for both motors.
 
@@ -157,7 +159,7 @@ if (std::abs(left_pwm) < 20 && std::abs(right_pwm) < 20)
         }
 ```
 
-## Raspberry Pi Setup (rpi1)
+### Raspberry Pi Setup (rpi1)
 
 The Rpi controlling the car required a bit of setup as well. Firstly the PWM chip had to be enabled, as otherwise we wouldn't be able to generate a PWM signal to control the car. This was done by adding the following line to config.txt.
 ```bash
@@ -198,7 +200,7 @@ WantedBy=multi-user.target
 When the time came to have it run the program itself, we encountered issues with the Pi not booting. At first we suspected that the service type was wrong, and that was causing the issue, so we changed it from oneshot to simple, since we thought oneshot type may have gotten 'unhappy' from getting stuck in the program, as it runs indefintely. However, this had no effect, and the Pi would still not boot, so eventually we decided to ditch this functionality, and simply run the program through a remote SSH connection.
 
 
-## Astar
+### Astar
 
 The Astar class is responsible for calculating the optimal path between the points given on the grid-based map, whilst taking into account for obstacles and the car's movement constraints. The routing system is important to ensure the car always receives valid and drivable waypoint sequences, the astar implementation was tested thoroughly using a series of controlled grid layouts.
 \newline
@@ -214,7 +216,7 @@ The path found is the optimal, shortest, path for the given configuration. \newl
 \newline
 
 
-### Basic functionality tests
+#### Basic functionality tests
 Firstly, its nice to see that it can calculate the steps given in the four cardinal directions. These act as sanity checks to ensure the algorithm handles the simplest cases correctly.
 
 | Start | Goal  | Expected path length | Actual path length |
@@ -225,7 +227,7 @@ Firstly, its nice to see that it can calculate the steps given in the four cardi
 
 All the tests matched the expected lengths, confirming that the Manhattan-distance heuristic aligned correctly with the grid movement model. \newline
 
-### Obstacle avoidance tests
+#### Obstacle avoidance tests
 The batch of tests is placing static obstacles in the map and check if the astar correctly routed around them. These tests are essential to validate the cost of calculations and neighbor evaluation logic.
 
 | Start | Goal  |      Map description      |          Expected result           |            Actual result             |
@@ -236,7 +238,7 @@ The batch of tests is placing static obstacles in the map and check if the astar
 
 These tests confirmed that the algorithm checks neighbors correctly, avoids illegal tiles, and terminates when no solution exists.
 
-### Integration testing with route execution
+#### Integration testing with route execution
 
 The last test made was validating that the output path was compatible with the driving logic. The path was fed directly into the distance/rotation (DR) class to verify the following. \newline
 
@@ -256,7 +258,7 @@ const double adjust_factor = (std::abs(right_error) / (std::abs(left_error) == 0
 
         left_pwm *= 1 - adjust_factor * 4;
         right_pwm *= 1 + adjust_factor * 4;
-        // Clamp values [0, 1] to avoid silly stuff
+        // Clamp values [-100, 100] to avoid silly stuff
         left_pwm = std::max(-100, std::min(100, left_pwm));
         right_pwm = std::max(-100, std::min(100, right_pwm));
 ```
