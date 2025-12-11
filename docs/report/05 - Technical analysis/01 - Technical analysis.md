@@ -163,25 +163,25 @@ For stability reason and cost reduction, they try to improve the life spans of t
 
 Even with lots of similarities they complete the task very differently. PID control is a control method with a closed loop where the motor speed will be adjusted based on the error between the actual speed and target speed using proportional, integral and derivative terms. 
 
-#### PID Pros
+**PID Pros**
 
 PID compensates for the load changes since it is always changing its parameters, which also makes the driving smooth and we can accurately track the speed. 
 PID works with high precision to a degree that it is industrial-grade.
 
-#### PID Cons
+**PID Cons**
 
 One of the big issues with PID control is it that it can be very time consuming with regards to properly tuning and computation time.
 
 Linear interpolation is a feedforward method where the motor speed reference is ramping up or down linearly over time between two set points given, usually from start to a given target, although at the "corners" of the ramp.
 
-#### Linear Interpolation Pros
+**Linear Interpolation Pros**
 Very simple to implement, so wont be as time consuming as PID control.
 
 Linear interpolation avoids mechanical shocks and tear by preventing sudden jumps in speed.
 
 It makes the motion of the vehicle predictable.
 
-#### Linear Interpolation Cons
+**Linear Interpolation Cons**
 It is an open-loop, which means it does not correct for load changes and resistance increases, which may lead to the actual speed may lag behind its target.
 Using linear interpolation makes it so there is no guarantee of the precise speed giving unless the motor is loaded exactly like it is tuned.
 Overall limited adaptability.
@@ -330,11 +330,11 @@ The **L9110** was rejected due to its low power limit, despite being more afford
 | Gear ratio                    | 1:34      | 49:1     |
 
 
-#### Performance
+**Performance**
 
 The 24V motor delivers greater torque and higher encoder resolution, making it well-suited for heavy-duty applications requiring precise positioning and load handling. However, these advantages come at the cost of significantly higher current draw, greater heat generation, and the need for more robust power electronics. In the context of this lightweight robotic platform, this level of performance is unnecessary and excessive - effectively overkill for the intended requirements.
 
-#### Conclusion
+**Conclusion**
 
 The 6V DC Geared Motor w/Encoder – 210 RPM 10 Kg·cm DFrobot, FIT0521, was chosen as the final drive motor.
 Although the 24V variant provides superior torque and encoder precision, it is overkill for this application, leading to unnecessary power consumption, thermal load, and cost.
@@ -355,7 +355,7 @@ The **dual-motor** approach, using one motor per wheel, enables differential ste
 | Cost            |      5       |     3      |
 : Analysis of motor configurations
 
-#### Conclusion
+**Conclusion**
 
 
 The 6V dual-motor configuration offers the optimal combination of control accuracy, maneuverability, and energy efficiency, while maintaining compatibility with the vehicle’s battery and overall power design.
