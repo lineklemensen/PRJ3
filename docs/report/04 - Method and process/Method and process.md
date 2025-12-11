@@ -3,17 +3,17 @@ title: "SW3 Semester Project"
 subtitle: "Self Driving Medicine Delivering System"
 date: "12/12/2025"
 fontsize: 12pt
-geometry: margin=2cm
+geometry: margin=1.5cm
 ---
 
 \begin{center}
 
 
+\includegraphics[width=0.28\textwidth]{docs/appendices/pictures/AU.png}
 
-\vspace{1cm}
 
+\vspace{0.6cm}
 
-\vspace{2cm}
 
 \begin{tabular}{r r r}
 \hline
@@ -30,21 +30,21 @@ Christopher Frank Jørgensen & 202300791 & CJ \\
 \hline
 \end{tabular}
 
-\vspace{1.5cm}
+\vspace{0.8cm}
 
 \textbf{Project Counselor} \\
 “Jenny” Jung Min Kim
 
-\vspace{2cm}
 
 Submission date: \textbf{12-12-2025} \\[6mm]
-
-
 
 University Name: Aarhus University \\
 Degree / Program: Software Engineering
 
 \end{center}
+
+\clearpage
+
 
 \clearpage
 
@@ -105,7 +105,7 @@ The group was created based on a mixture of insight profiles, and previous exper
 * **Coordinating observer(blue/green)**  
 * **Coordinating observer(blue/green)**  
 * **Coordinating supporter(green/blue)**  
-* **Line insert**
+* **Supporting coordinator(green/blue)**
   
 As seen above a lot of the profiles pointed towards a passive approach to the project which it was decided to look for more memember that was more "red-ish" to get a broader group and more well rounded personalities. This helped give the group more people to grab the tasks rather then wait for someone to take charge, meanwhile the rest could focus more energy on making sure the project was propperly structured and running on time.
 
