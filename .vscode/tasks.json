@@ -40,6 +40,20 @@
             "presentation": {
                 "reveal": "silent"
             }
+        },
+        {
+            "label": "Char count",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "$files = Get-childItem -Path \\\"${workspaceFolder}/docs/report/\\\" -Recurse -File -Filter \\\"*.md\\\" | ForEach-Object { $_.FullName }; pandoc @files --lua-filter=${workspaceFolder}/scripts/char-count.lua  --metadata-file=${workspaceFolder}/defaults.YAML --citeproc --bibliography=${workspaceFolder}/docs/report/bibliography.bib --csl=${workspaceFolder}/ieee.csl -o \\\"${workspaceFolder}/PRJ3 - Rapport.pdf\\\"",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/docs/report/"
+            },
+            "problemMatcher": [],
         }
     ]
 }
