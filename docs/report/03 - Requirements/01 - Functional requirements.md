@@ -41,40 +41,18 @@
 ![Use case diagram](docs\diagrams\out\requirements\usecase diagram.png){width=440}
 
 ### Use Case 1 Start
-Pre: Car is turned off
-
-Initializing: The dispensary nurse clicks the Power button on the car.
-
-what to do: car powers on, establish connection to server, sets this current location as home base.
+Use case 1 is for handling startup of the car, and checking if a connection to the internet has been made. The dispensary nurse positions the car in the chosen point for home base, and presses the power button on the car.
 
 ### Use Case 2 Create route
-
-pre: the car is idle
-
-Initializing: The dispensary nurse opens the UI.
-
-What to do: The dispensary nurse creates a route
-
+To create a route the car can drive, the dispensary nurse uses the UI and chooses what rooms is needed. The route gets sent to the server, where the server can save the newly created route in a log file. 
 
 
 ### Use Case 3 Deliver and return
-
-pre: pathfinding is done
-
-Initializing: button is pressed
-
-what to do: Car drives to the next point on the pathfinding route, stops, checks if it is a room or home base, if home base go idle, if room waits for button press and then loops around to pathfinding route. 
+The action button is pressed by the dispensary nurse and the car requests a route from the server, the server responds with the oldest route and then deletes it. Now the car begins its pathfinding calculations and lights a green LED when it is finished. The green LED is now turned on and the dispensary nurse presses the actian button once more, which lets the car know it can now drive and after a 5 second delay it will start driving. After arriving at the first location on its route, it will enter idle mode awaiting another action button press. The nurse in said location will press the action button and the car will drive on to its next location. This routine then happens up to three times, depending of how many rooms have been chosen in the route, when the last location has been visited and the action button has been pressed again, the car will drive back the homebase and enter idle mode.  
 
 
 ### Use Case 4 Shutdown
-
-pre: the car is powered on
-
-Initializing: the power off button is pressed:
-
-what to do: sends shutdown message to server, power off
-
-lots of expections....
+When the power button is pressed while the car is powered on, the car will stop any driving instructions and power off safely.
 
 
 \begin{table}[H]
@@ -183,7 +161,7 @@ lots of expections....
     \hline
     \textbf{Goal:} & The car completes the delivery route  \\
     \hline
-    \textbf{Initialization:} & The "Power" button is pressed. \\
+    \textbf{Initialization:} & The "Action" button is pressed. \\
     \hline
     \textbf{Actors:} & \textbf{Primary:} The dispensary nurse \par
     \textbf{Secondary:} Nurse \\
