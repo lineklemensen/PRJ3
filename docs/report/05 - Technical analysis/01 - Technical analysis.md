@@ -2,11 +2,9 @@
 
 We decided to rate with a score from 1 to 5, where a higher score is better.
 
-\newpage
-
 ## Pathfinding algorithm
 
-|                       | Dijkstra |  A*   | A* /w multithreading |
+|                       | Dijkstra |  A*   | A* w/ multithreading |
 | :-------------------- | :------: | :---: | :------------------: |
 | Speed                 |    1     |   3   |          5           |
 | Processing complexity |    4     |   3   |          1           |
@@ -14,7 +12,7 @@ We decided to rate with a score from 1 to 5, where a higher score is better.
 | Developer cost        |    1     |   2   |          4           |
 : Analysis of pathfinding algorithms
 
-We have found 3 pathfinding algorithms to compare, Dijkstra's algorithm[@Dijkstra-Wikipedia], A\* algorithm[@AStar-Wikipedia], and A\* using multithreading to improve convergence speed. Overall the algorithms are pretty similar in the sense that they each provide improvement on their predecessor, however at the cost of being more complex in both implementation and execution. Dijkstra's algorithm is the simplest conceptually as it simply naively traverses every possible path until it finds its goal. A\* improves on this by adding a heuristic element that helps push/weight it towards its goal so it is less encouraged to search wasted routes, however the value of this heuristic function hinges on its quality, as a bad one can hurt the algorithm over the naive approach of Dijkstra. The last option is to use A\* with multithreading to speed up convergence rate, however this would also add extra overhead to developer time, as with anything multithreading, it can be hard to debug issues.
+We have found 3 pathfinding algorithms to compare, Dijkstra's algorithm[@Dijkstra-Wikipedia], A\* algorithm[@AStar-Wikipedia], and A\* using multithreading to improve convergence speed. Overall the algorithms are pretty similar in the sense that they each provide improvement on their predecessor, however at the cost of being more complex in both implementation and execution. Dijkstra's algorithm is the simplest conceptually as it simply naively traverses every possible path until it finds its goal. A\* improves on this by adding a heuristic element that helps push/weigh it towards its goal so it is less encouraged to search irrelevant routes, however the value of this heuristic function hinges on its quality, as a bad one can hurt the algorithm over the naive approach of Dijkstra. The last option is to use A\* with multithreading to speed up convergence rate, however this would also add extra overhead to developer time, as with anything multithreading, it can be hard to debug issues.
 
 The attributes we want to prioritize are speed and processing complexity, as our goal is to be able to find a path quickly but do not want to consume all the resources of the RPi. So a balance between the two are important.
 Developer cost is also an important factor as we want to be able to actually get a finished and working pathfinding implementation, since if developer cost is too high we might not be able to finish it in time.
@@ -25,7 +23,7 @@ When we are talking about speed we are mostly concerned with convergence speed, 
 
 ### Processing complexity
 
-Although A\*with multithreading is the fastest, it is also the most complex to implement, as we need to be careful that a thread does not attempt to search the same space another thread has already cleared. Here Dijkstra and normal A\* have the advantage as everything occurs on the same thread, and each new node is only traversed once.
+Although A\* with multithreading is the fastest, it is also the most complex to implement, as we need to be careful that a thread does not attempt to search the same space another thread has already cleared. Here Dijkstra and normal A\* have the advantage as everything occurs on the same thread, and each new node is only traversed once.
 
 ### Memory impact
 
@@ -59,7 +57,7 @@ moving object by using a previously determined position and
 incorporating the speed, direction and elapsed time. For line
 following the idea is that the car would follow a line to its
 destination. Two options for seeing the line are, a camera or
-a ultra violet sensor. The last option is to use a GPS to keep
+an ultraviolet sensor. The last option is to use a GPS to keep
 track of the cars position.
 
 For this project precision and drift/error accumulation are the
@@ -78,12 +76,12 @@ signals, which gives a higher precision for the estimated speed used
 for the calculations.
 
 Line following would be able to get toward its destination correctly
-but might struggle with knowing when exactly it has arrived. Due
-to there being a need for a physically stop sign.
+but might struggle with knowing when exactly it has arrived, due
+to there being a need for a physical stop sign.
 
-GPS has different levels of precision depending on specific product.
+GPS has different levels of precision depending on the specific product.
 Range of errors typically fall within 1-5 meters. In this case even
-a error of 1 meter could make entering a room hard.
+an error of 1 meter could make entering a room hard.
 
 ### Drift/error accumulation
 
@@ -98,9 +96,9 @@ GPS does not have any drift
 ### Robustness
 
 Dead reckoning using encoders would not function if the rotation
-of the wheels does not correspond to the distance traveled. For
+of the wheels does not correspond to the distance traveled, and is therefor largely hardware dependent.
 
-If the line following version ends up a way from the line or the
+If the line following version ends up away from the line or the
 line gets damaged the system would not work.
 
 The GPS would only really fail if the satellite connection can not
@@ -127,12 +125,10 @@ GPS does not require additional upkeep.
 
 ### Developer cost/complexity
 
-Dead reckoning only require the addition of an encoder. This makes
-hardware a unlikely failure point. The software is also not to
-complex to implement.
+Dead reckoning only require the addition of an encoder, with the software being rather easy to implement.
 
 Line following requires a hardware component to recognize the line.
-This adds an additional point of failure. Software vise this is
+This adds an additional point of failure. Software wise this is
 more complex, requiring some kind of image processing.
 
 GPS would be the simplest to implement since it involves integrating
@@ -152,48 +148,47 @@ distances.
 | Smoothness |   5   |          2           |
 | Precision  |   4   |          4           |
 
-There are two different kind of motor speed control we have chosen to look into for this project. Those we have picked to are Proportional-integral-derivative controller, PID control for short[@PID-Wikipedia] and Linear interpolation[@LinInt-Wikipedia].
+There are two different kind of motor speed control we have chosen to look into for this project. The ones we have picked to choose from are Proportional-Integral-Derivative controller, PID control for short[@PID-Wikipedia] and Linear interpolation[@LinInt-Wikipedia].
 
 ### Similarities
 
 Since both PID control and interpolation have many similarities, because their purpose aligns with a good degree of control and speed changes, we will start with the likeness of the two.
 
-They both deal with speed transition, where PID tries to bring the actual speed of the object to act as smoothly to the target as possible, by adjusting the input throughout the travel.
-Whereas interpolation on the other hand creates a smooth ramp from one point to another.
+They both deal with speed transition, where PID tries to bring the actual speed of the object to travel as smoothly to the target as possible, by adjusting the input throughout the travel, whereas line interpolation on the other hand creates a smooth ramp from one point to another.
 
 Both have a goal of avoiding sudden jumps in speed, where PID control will naturally dampen if it overshoots and it is well tuned and Linear interpolation prevents step changes by gradually ramping throughout.
 For stability reason and cost reduction, they try to improve the life spans of the motor and mechanical safety by smoothing out motor control and not doing sudden changes in the speed which stresses the gears, belts etc.
 
 ### Differences
 
-Even with lots of similarities they complete the task very differently. PID control is a control method with a closed loop where the motor speed will be adjusted based on the error between the actual speed and target speed using proportional integral and derivative terms. 
+Even with lots of similarities they complete the task very differently. PID control is a control method with a closed loop where the motor speed will be adjusted based on the error between the actual speed and target speed using proportional, integral and derivative terms. 
 
-#### Pros
+#### PID Pros
 
-PID compensates for the load changes since it is always changing its parameters, which also makes the driving smooth and that we can accurately track the speed. 
+PID compensates for the load changes since it is always changing its parameters, which also makes the driving smooth and we can accurately track the speed. 
 PID works with high precision to a degree that it is industrial-grade.
 
-#### Cons
+#### PID Cons
 
 One of the big issues with PID control is it that it can be very time consuming with regards to properly tuning and computation time.
 
-Secondly Linear interpolation. It is a feedforward method where the motor speed reference is ramping up or down linearly over time between two set points given, usually from start to a given target, although at the "corners" of the ramp.
+Linear interpolation is a feedforward method where the motor speed reference is ramping up or down linearly over time between two set points given, usually from start to a given target, although at the "corners" of the ramp.
 
-#### Pros
+#### Linear Interpolation Pros
 Very simple to implement, so wont be as time consuming as PID control.
 
 Linear interpolation avoids mechanical shocks and tear by preventing sudden jumps in speed.
 
 It makes the motion of the vehicle predictable.
 
-#### Cons
+#### Linear Interpolation Cons
 It is an open-loop, which means it does not correct for load changes and resistance increases, which may lead to the actual speed may lag behind its target.
 Using linear interpolation makes it so there is no guarantee of the precise speed giving unless the motor is loaded exactly like it is tuned.
 Overall limited adaptability.
 
 ### Conclusion
 
-Even though that PID control is the harder to implement option, more time consuming and requires fine tuning. For this giving project it is a better option that linear interpolation, because linear interpolation might provide with an easier implementation and ease of use, but the drawbacks with its tuning and adaptability makes it so that PID control is the better option for this project.
+Even though PID control is the harder to implement option, more time consuming and requires fine tuning, for this project it is a better option than linear interpolation, because linear interpolation might provide an easier implementation and ease of use, but the drawbacks with its tuning and adaptability makes it so that PID control is the better option.
 In conclusion we are going to use PID control for motor speed control for this project. 
 
 \newpage
@@ -218,7 +213,9 @@ TCP ensures a reliable connection, which is preferable for our project, since da
 
 UDP stands for User Datagram protocol, and is a connection-less protocol. This means the connection will be a lot faster, at the cost of reliability, since there is no way to acknowledge successful transfer of data. UDP is commonly used for streaming and online video games, that benefit greatly from the reduced latency, and don’t have big drawbacks as a result the data loss that may occur using UDP. 
 
-For our project though, we do not require a low-latency protocol, and data loss could be catastrophic to the routing/functioning of the car. In conclusion, we have decided to use TCP, since the drawbacks of higher latency are relatively small, compared to the potentially huge issues we could encounter using UDP. 
+
+### Conclusion
+For our project, we do not require a low-latency protocol, and data loss could be catastrophic to the routing/functioning of the car. In conclusion, we have decided to use TCP, since the drawbacks of higher latency are relatively small, compared to the potentially huge issues we could encounter using UDP. 
 
 
 \newpage
@@ -242,12 +239,13 @@ Although C isn't intended to be object oriented you can of course write it in an
 
 ### Library availability
 
-The standard library for C++ is considerably larger than C's standard library. Because of this C++ is more appealing for us.
+The standard library for C++ is considerably larger than C's standard library. Because of this C++ is more appealing to us.
 
 ### Developer knowledge
 
 For most of our current study we've worked with C++, and have only had an introductory course on C over a couple lessons. With this in mind, C++ will lead to faster development as we're more comfortable with the language and know more of its features and available libraries. Also since C++ is backwards compatible with C we retain the ability to use low-level C in cases it becomes necessary.
 
+### Conclusion
 
 Due to the comfortability with developing in C++ and our overall knowledge and experience with it, it will be what we write the program
 
@@ -258,32 +256,36 @@ Due to the comfortability with developing in C++ and our overall knowledge and e
 
 We decided to rate with a score from 1 to 5, where a higher score is better.
 
----
-
 ## Battery
 
-|                     | Option A | Option B |
-| :------------------ | :------: | :------: |
-| Capacity (mAh)      |    -     |    -     |
-| Weight              |    -     |    -     |
-| Voltage stability   |    -     |    -     |
-| Recharge time       |    -     |    -     |
-| Price               |    -     |    -     |
-| Developer cost      |    -     |    -     |
+|                   | 7.2V battery | 9.6V battery |
+| :---------------- | :----------: | :----------: |
+| Capacity          |      5       |      3       |
+| Weight            |      3       |      4       |
+| Voltage stability |      5       |      3       |
+| Recharge time     |      4       |      5       |
+| Price             |      5       |      5       |
+| Developer cost    |      5       |      5       |
 : Analysis of battery types for the car
 
+### Evaluation
+Two batteries were considered: **7,2V/3000mAh NiMH battery** and **9,6V/2000mAh NiMH battery**. There are two determining factors when deciding which battery to use. First, **runtime**(Watt-hours): A higher runtime provides the vehicle with longer active time before it needs recharging. Second **overcurrent:** Risk of overcurrent increases when a battery has higher voltage than a component, which can cause overheating.
+
+
+### Conclusion
+The **7,2V/3000mAh NiMH battery** is chosen since it satisfies our requirements the best with regards to runtime and overcurrent.
 
 ## H-Bridge / Motor Driver
 
-| Characteristic | L9110 | Monster Moto Shield (VNH2SP30) |
-| :-------------- | :---: | :----------------------------: |
-| Current capacity / power handling | 2 | 5 |
-| Voltage range | 4 | 5 |
-| Efficiency / voltage drop | 3 | 5 |
-| Reliability / protection | 3 | 5 |
-| Control flexibility | 3 | 5 |
-| Ease of use | 5 | 3 |
-| Cost | 5 | 3 |
+| Characteristic                    | L9110 | Monster Moto Shield (VNH2SP30) |
+| :-------------------------------- | :---: | :----------------------------: |
+| Current capacity / power handling |   2   |               5                |
+| Voltage range                     |   4   |               5                |
+| Efficiency / voltage drop         |   3   |               5                |
+| Reliability / protection          |   3   |               5                |
+| Control flexibility               |   3   |               5                |
+| Ease of use                       |   5   |               3                |
+| Cost                              |   5   |               3                |
 : Analysis of H-Bridge motor drivers
 
 We compared two motor driver modules for the vehicle: the **L9110 Dual H-Bridge Driver** and the **Monster Moto Shield (VNH2SP30)**.  
@@ -312,91 +314,9 @@ The **L9110** was rejected due to its low power limit, despite being more afford
 
 \newpage
 
-## Motor - Devantech EMG49
-
-| Characteristic | Single Motor | Dual Motor |
-| :-------------- | :-----------: | :----------: |
-| Maneuverability | 2 | 5 |
-| Torque output | 3 | 5 |
-| Complexity | 5 | 3 |
-| Power usage | 4 | 3 |
-| Redundancy | 1 | 4 |
-| Cost | 5 | 3 |
-: Analysis of motor configurations
-
-The selected motor is the **Devantech EMG49**, a 24 V DC motor with an integrated **49:1 gearbox** and **dual Hall-effect encoder** providing **980 counts per revolution**.  
-It offers strong torque, precise control, and reliable feedback, making it ideal for accurate robotic motion.
+## Motor
 
 ### Technical Specifications
-
-| Specification | Value |
-| :------------- | :---- |
-| Rated voltage | 24 V |
-| Rated torque | 16 kg·cm |
-| Rated speed | 122 rpm |
-| Rated current | 2.1 A |
-| No-load current | 0.5 A |
-| Stall current | 13 A |
-| Rated output power | 34.7 W |
-| Encoder counts per revolution | 980 |
-| Gear ratio | 49:1 |
-
-### Evaluation
-
-Two configurations were considered: **single-motor** and **dual-motor**.  
-A single-motor design would require a mechanical differential to steer, increasing complexity despite lower power use.  
-The **dual-motor** approach, using one motor per wheel, enables **differential steering**, simplifying control and greatly improving maneuverability and responsiveness.
-
-### Performance
-
-Using two EMG49 motors improves **torque**, **traction**, and **precision** through encoder feedback.  
-It allows for closed-loop control, enabling stable and accurate motion.  
-The trade-offs include higher **power consumption**, **component cost**, and **slightly increased complexity**, but the performance benefits justify these.
-
-### Conclusion
-
-The **dual EMG49 motor setup** was selected for the vehicle.  
-This configuration provides superior control, torque, and precision-key for a responsive and accurate robotic platform.  
-While it increases power demands, the benefits to mobility and control performance make it the optimal choice.
-
-\newpage
-
-## Summary
-
-| Component | Selected Option | Key Advantages | Trade-offs |
-| :--------- | :--------------- | :-------------- | :---------- |
-| **Battery** | ikke valgt endnu | ikke valgt endnu | ikke valgt endnu |
-| **H-Bridge / Motor Driver** | Monster Moto Shield (VNH2SP30) | High current handling, protection, and dual-channel control | Larger size, higher cost |
-| **Motor** | Dual Devantech EMG49 | High torque, encoder feedback, precise control | Higher power consumption, increased cost |
-
-### Final Decision
-
-The **Devantech EMG49** motors combined with the **Monster Moto Shield** form a reliable and scalable drive solution.  
-This pairing supports precise closed-loop control with encoder feedback and provides the robustness required for high-load operation.  
-Once the **battery** is selected, further analysis will ensure sufficient current supply and runtime for the entire system.
-Two batteries were considered: **7,2V/3000mAh NiMH battery** and **9,6V/2000mAh NiMH battery**. There are two determining factors when deciding which battery to use. First, **runtime**(Watt-hours): A higher runtime provides the vehicle with longer active time before it needs recharging. Second **overcurrent:** Risk of overcurrent increases when a battery has higher voltage than a component, which can cause overheating.
-
-|                   | 7.2V battery | 9.6V battery |
-| :---------------- | :----------: | :----------: |
-| Capacity          |      5       |      3       |
-| Weight            |      3       |      4       |
-| Voltage stability |      5       |      3       |
-| Recharge time     |      4       |      5       |
-| Price             |      5       |      5       |
-| Developer cost    |      5       |      5       |
-: Analysis of battery types for the car
-
-
-### Conclusion
-The **7,2V/3000mAh NiMH battery** is chosen since it satisfies our requirements the best with regards to runtime and overcurrent. 
-
-\newpage
-
-## Driving hardware
-
-### Motor
-
-####  Technical Specifications
 
 | Specification                 | DC 6V     | DC 24V   |
 | :---------------------------- | :-------- | :------- |
@@ -414,15 +334,10 @@ The **7,2V/3000mAh NiMH battery** is chosen since it satisfies our requirements 
 
 The 24V motor delivers greater torque and higher encoder resolution, making it well-suited for heavy-duty applications requiring precise positioning and load handling. However, these advantages come at the cost of significantly higher current draw, greater heat generation, and the need for more robust power electronics. In the context of this lightweight robotic platform, this level of performance is unnecessary and excessive - effectively overkill for the intended requirements.
 
-The 6V motor, on the other hand, provides adequate torque, faster rotational speed, and lower power consumption, aligning perfectly with the selected 7.2V NiMH battery. It offers a strong balance between performance and efficiency, allowing for stable closed-loop control through encoder feedback without straining the power system.
-
 #### Conclusion
 
 The 6V DC Geared Motor w/Encoder – 210 RPM 10 Kg·cm DFrobot, FIT0521, was chosen as the final drive motor.
 Although the 24V variant provides superior torque and encoder precision, it is overkill for this application, leading to unnecessary power consumption, thermal load, and cost.
-
-The 6V dual-motor configuration offers the optimal combination of control accuracy, maneuverability, and energy efficiency, while maintaining compatibility with the vehicle’s battery and overall power design.
-This setup ensures reliable, responsive, and well-balanced performance, making it the most practical and efficient solution for the project.
 
 ### Single or dual motor
 
@@ -440,47 +355,11 @@ The **dual-motor** approach, using one motor per wheel, enables differential ste
 | Cost            |      5       |     3      |
 : Analysis of motor configurations
 
-We decided to go with dual motor instead single, since the demands our project requires fits better with the benefits and easy of use. Of note, the dual motor setup also allows for turning on the spot.
-
-The selected motor is the **DC Geared Motor w/Encoder - 6V 210RPM 10Kg.cm DFrobot**, a 6V DC motor with an integrated 1:34 gearbox and dual Hall-effect encoder providing 341.2 counts per revolution.  
-It offers strong torque, precise control, and reliable feedback, making it ideal for accurate motion.
-
-### H-Bridge / Motor Driver
-
-| Characteristic                    | L9110 | Monster Moto Shield (VNH2SP30) |
-| :-------------------------------- | :---: | :----------------------------: |
-| Current capacity / power handling |   2   |               5                |
-| Voltage range                     |   4   |               5                |
-| Efficiency / voltage drop         |   3   |               5                |
-| Reliability / protection          |   3   |               5                |
-| Control flexibility               |   3   |               5                |
-| Ease of use                       |   5   |               3                |
-| Cost                              |   5   |               3                |
-: Analysis of H-Bridge motor drivers
-
-We compared two motor driver modules for the vehicle: the **L9110 Dual H-Bridge Driver** and the **Monster Moto Shield (VNH2SP30)**.  
-Both are commonly used in robotics, but they differ significantly in power capability, voltage range, and overall robustness.
-
-#### Technical Overview
-
-**L9110**  
-The L9110 is a compact, low-cost H-bridge driver supporting 2.5–12 V and delivering around 0.8A continuous per channel, up to a 2A peak.  
-It is simple to use and ideal for small DC motors or lightweight robots. However, it lacks safety features such as overcurrent and thermal protection, making it unsuitable for high-power applications.
-
-**Monster Moto Shield (VNH2SP30)**  
-The Monster Moto Shield, built around two **VNH2SP30 full-bridge drivers**, can supply 14A continuous and 30A peak current per channel with a voltage range of 5.5–16 V.  
-It includes thermal shutdown, undervoltage, and current sensing protections, making it well-suited for larger robotic platforms and heavy-duty DC motors.
-
-#### Evaluation
-
-The **L9110** is sufficient for small robots, but with additional features the **Monster Moto Shield** provides far outweigh the downsides.
-Its downsides are higher cost, larger size, and slightly more complex wiring, but these trade-offs are acceptable given its performance.
-
 #### Conclusion
 
-The **Monster Moto Shield** was chosen for this project because of its high current handling, robust protection features, and compatibility with the FIT0521 motor.  
-The **L9110** was rejected due to its low power limit, despite being more affordable and easier to implement.
 
+The 6V dual-motor configuration offers the optimal combination of control accuracy, maneuverability, and energy efficiency, while maintaining compatibility with the vehicle’s battery and overall power design.
+This setup ensures reliable, responsive, and well-balanced performance, making it the most practical and efficient solution for the project.
 
 \newpage
 
@@ -490,9 +369,8 @@ The **L9110** was rejected due to its low power limit, despite being more afford
 | :-------------------------- | :----------------------------- | :---------------------------------------------------------- | :---------------------------------------- |
 | **Battery**                 | 7,2V/3000mAh NiMH battery      | Larger capacity                                             | Longer charge time due to larger capacity |
 | **H-Bridge / Motor Driver** | Monster Moto Shield (VNH2SP30) | High current handling, protection, and dual-channel control | Larger size, higher cost                  |
-| **Motor**                   | FIT0521                        | High torque, encoder feedback, precise control              | Higher power consumption, increased cost  |
+| **Motor**                   | FIT0521 Dual motors            | High torque, encoder feedback, precise control              | Higher power consumption, increased cost  |
 
 
 The **FIT0521t** motors combined with the **Monster Moto Shield** form a reliable drive solution.  
-This pairing supports precise closed-loop control with encoder feedback and provides the robustness required for operation.  
-The 3000mAh battery chosen will also be able to power the components for an extended length of time between charges.
+This pairing supports precise closed-loop control with encoder feedback and provides the robustness required for operation. The 3000mAh battery chosen will also be able to power the components for an extended length of time between charges.
