@@ -1,0 +1,81 @@
+@startuml
+
+mainframe **SD** Car
+hide footbox
+
+actor "Nurse" as n 
+actor "Dispensary nurse" as dn
+participant "MotorController" as mc <<control>>
+participant "PID" as p <<domain>>
+participant "Astar" as a <<domain>>
+participant "DR" as dr <<domain>>
+participant "RPi_pwm" as rp <<boundary>>
+participant "Encoder" as enc <<boundary>>
+participant "main" as m 
+participant "HttpHandler" as http <<boundary>>
+actor "Server" as s
+
+
+
+/' ' constructors
+m  ->> mc : MotorController()
+mc ->> rpl : RPi_pwm()
+mc ->> rpr : RPi_pwm()
+mc ->> encl : Encoder()
+mc ->> encr : Encoder()
+mc ->> pr : PID()
+mc ->> pl : PID()
+
+' initialisation
+mc ->> rpl : start()
+mc ->> rpr : start()
+mc ->> encl : init_encoder()
+mc ->> encr : init_encoder()
+mc ->> encl : start_thread()
+mc ->> encr : start_thread()
+
+m ->> m : usleep(1000000)
+m ->> dr : DR()
+m ->> m : init_button(int ACTIVITY_BUTTON_PIN)
+m -> m : init_green_led() : gpiod_line* '/
+
+rnote over mc,enc : Initialize all classes and values
+m -> m : gpiod_line_set_value(g_led_line, 0)
+m ->> m : monitor_act_btn()
+
+loop true
+    loop !act_btn_pressed.load()
+        dn ->> m : press activity button
+    end
+    m -> http : get_route(httplib::Result* res)
+    http -> s : GET
+    alt Success (200 OK)
+    http <<-- s : 200 OK
+
+        m -> a : calculate_path(Route) : std::vector<std::vector<Point>>
+        a --> m : paths
+        loop for each path in paths
+            m -> m : gpiod_line_set_value(g_led_line, 1)
+            loop !act_btn_released.load()
+                n ->> m : press activity button
+            end
+            m -> m : gpiod_line_set_value(g_led_line, 0)
+            loop for each point in path
+                m -> dr : calc_route(int, int) : point<double>
+                dr --> m : degrees, distance
+                m -> mc : turn(double degrees)
+                m -> mc : drive_distance(double distance)
+            end
+        end
+    else Failure (!200 OK)
+    http <<-- s : 404 NOT FOUND
+        loop for i in 0..5
+            m -> m : gpiod_line_set_value(g_led_line, 1)
+            m -> m : sleep_for(std::chrono::milliseconds(500))
+            m -> m : gpiod_line_set_value(g_led_line, 0)
+            m -> m : sleep_for(std::chrono::milliseconds(500))
+        end
+    end
+end    
+
+@enduml

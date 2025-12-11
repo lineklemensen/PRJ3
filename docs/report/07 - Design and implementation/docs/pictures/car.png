@@ -1,0 +1,16 @@
+\begin{center}
+    % p{width} defines a column with a fixed width where text will wrap
+    \begin{tabularx}{\textwidth}{@{}l X@{}}
+        \toprule
+        \textbf{Category} & \textbf{Description} \\
+        \midrule
+        \textbf{M}ust-have & Non-negotiable requirements essential for the project's success. Without these, the project fails. \\
+        \midrule
+        \textbf{S}hould-have & Important requirements that add significant value but are not critical for the current release. A workaround might exist. \\
+        \midrule
+        \textbf{C}ould-have & Desirable or "nice-to-have" features that have a smaller impact if left out. Included only if time and resources permit. \\
+        \midrule
+        \textbf{W}on't-have & Requirements agreed upon as being out of scope for the current timeframe or release, but may be reconsidered later. \\
+        \bottomrule
+    \end{tabularx}
+\end{center}

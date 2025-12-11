@@ -1,0 +1,20 @@
+@startuml SD UC1 - Start
+
+mainframe **SD** UC1 - Start
+hide footbox
+
+participant "Power" as p
+participant "Buttons" as b
+participant HTTP
+participant "Network" as net
+participant "LEDs" as led
+participant "Red LED" as rled
+
+b -> p : readButton()
+HTTP -> net : TCP SYN (sport->dport)
+net --> HTTP : TCP SYN/ACK
+HTTP -> net : TCP ACK
+led -> rled : turnOn()
+
+
+@enduml

@@ -1,0 +1,190 @@
+@startuml PCClasses
+
+mainframe PCClasses
+'hide circle
+
+skinparam {
+    packageStyle rectangle
+    'Linetype ortho
+    ClassAttributeIconSize 0
+}
+
+class "TUI" as tui <<control>>
+{
+   - {static} running_ : bool
+   - {static} screen_stack_ : stack<Screen*>
+
+   + Tui()
+   + {static} is_running() : bool
+   + {static} stop() : void
+   + {static} push_screen(screen : Screen*) : void
+   + {static} pop_screen() : void
+   + {static} update() : void
+}
+
+class "Console" as cs <<boundary>>
+{
+
+   -{static}handle_: HANDLE
+   +{static}setup() : void
+   +{static}set_cursor_pos(x: short, y: short) : void
+   +{static}set_cursor_pos(pos: Vec2) : void
+   +{static}hide_cursor() : void
+   +{static}set_text_color(color: Color) : void
+   +{static}clear_screen() : void
+
+}
+
+class "Input" as in <<boundary>>
+{
+   -{static}key_: Key
+   -{static}read_input() : int
+   +{static}get_input() : Key
+   +{static}update_input() : void
+}
+
+class "Button" as b <<boundary>>
+{
+   - {field}action_ : std::function<void()>
+   + Button(text : string, action : function<void()>)
+   + Button(text : string, dir : Direction, action : function<void()>&)
+   + Button(text : string, pos : Vec2 ,action : function<void()>&)
+   + print() : void
+   + {abstract} action() :  void
+}
+
+abstract "Element" as e <<boundary>>
+{
+   + {abstract}~Element()
+   + {abstract}print() : void 
+   + Size() const : size_t
+   + get_next_available_pos(dir : Direction) const : Vec2
+   + connect(element : Element*, dir : Direction) : void
+   + add_keybind(key : Key, element : Element*) : void
+   + get_button(key : Key) : Element*
+
+   # text_ : string
+   # pos_ : Vec2 
+   # keyMap_ : map<Key, Element*>
+
+}
+
+class "TextElement" as te <<boundary>>
+{
+   + TextElement(text : string, dir: Direction)
+   + TextElement(text : string, pos: Vec2)
+   + print() : void
+   + print(pos: Vec2) : void
+}
+
+class "StatefulButton" as sb <<boundary>>
+{
+   + StatefulButton(text : string, action : function<void()>)
+   '+ StatefulButton(text : string, dir : Direction,action : function<void()>)
+   + action() : void
+   + print() : void
+   + set_state(new_state : bool) : void
+   + get_state() : bool
+}
+
+class "HTTPHandler" as http <<boundary>>
+{
+   - {static}URL : string
+   - {static}ROUTE : string
+   - {static}PORT : int
+
+   + static void send_route(Route r, std::promise<httplib::Result>&& res);
+}
+
+class "Screen" as sc <<boundary>>
+{
+   # elements_: vector<Element*>
+   # root_: Element*
+   # selected_ : Element* 
+   # pos_ : Vec2
+
+   + {abstract}~Screen()
+   + add_new_element(element : Element*) : void
+   + update_selection() : void
+   + {abstract}print() : void
+
+}
+
+class "MainScreen" as msc <<boundary>>
+{
+   + MainScreen()
+   + print() : void
+}
+class "PopupScreen" as psc <<boundary>>
+{
+   + PopupScreen(route : const Route& )
+   + print() : void
+}
+
+
+struct Vec2{
+   x : int
+   y : int
+
+   Vec2(x : int, y : int)
+}
+struct Route
+{
+   room1 : bool
+   room2 : bool
+   room3 : bool
+
+   Route(r1 : StatefulButton, r2 : StatefulButton, r3 : StatefulButton)
+   empty() : bool
+}
+
+enum Color {
+   WHITE
+   GRAY
+}
+
+enum Direction{
+   VERTICAL
+   HORIZONTAL
+}
+
+enum Key
+{
+   IGNORED
+   UP
+   DOWN
+   LEFT
+   RIGHT
+   ENTER
+}
+
+tui -u-> cs
+tui -u-> in
+
+sc <|-u- msc
+sc <|-u- psc
+
+tui *-l- "1..*" sc
+msc -r-> psc
+
+te --|> e
+sb -r-|> b
+b --|> e
+
+sc *-d- "0..*" te
+sc *-d- "0..*" sb
+sc *-d- "0..*" b
+
+b --> http 
+
+
+http -l-> Route
+
+'note right of Color : Used for setting the\ntext color in the terminal;
+'note right of Direction : Used for determining which\ndirection to automatically place an element
+'note right of Key : The different input keys
+'note right of Vec2 : Simple storage of a x,y pair of values.\nMostly used as coordinates
+
+
+
+@enduml

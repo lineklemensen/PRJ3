@@ -1,0 +1,32 @@
+@startuml Classes
+
+hide circle
+
+skinparam {
+    packageStyle rectangle
+    Linetype ortho
+    ClassAttributeIconSize 0
+}
+
+
+
+package PC
+{
+    !include pc_classes.puml
+}
+
+package Server
+{
+    !include server_classes.puml
+}
+
+package Car
+{
+    !include car_classes.puml
+}
+
+pc_http --> s_http
+c_http <--> s_http
+
+
+@enduml

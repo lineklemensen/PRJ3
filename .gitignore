@@ -2,6 +2,7 @@
 **/.vs
 **/.idea
 **/cmake-build-debug
+**/build
 
 # Ignore common output file
 *.o
@@ -9,4 +10,7 @@
 
 # Pandoc render pdfs
 **/*.pdf
-.DS_Store
+src/rpi2/cmake-build-debug-mingw
+src/rpi2/cmake-build-debug-visual-studio
+src/rpi1/build
+**/*.DS_Store

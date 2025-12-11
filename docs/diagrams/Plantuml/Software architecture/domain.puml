@@ -1,0 +1,53 @@
+@startuml domain_model
+
+skinparam linetype ortho
+skinparam rectangle {
+    BackgroundColor White
+    BorderColor Black
+}
+
+'   Entities
+
+rectangle Server
+rectangle TerminalUI
+rectangle Car
+rectangle Pathfinding
+rectangle ActionButton
+rectangle PowerButton
+rectangle LED
+rectangle Motor
+rectangle Battery
+actor DispensoryNurse
+actor Nurse
+rectangle HttpHandler
+rectangle H_bridge
+rectangle log_handler
+
+'   Relationships
+
+Server --> HttpHandler
+HttpHandler --> TerminalUI : interactsWith
+HttpHandler --> Car : interactsWith
+
+Car --> ActionButton : monitor
+Car --> LED : has
+Car --> H_bridge : instructions
+Car --> Pathfinding : requestsRoute
+
+H_bridge --> Motor : controls
+
+Pathfinding --> Car : providesRoute
+
+ActionButton --> Motor : triggers
+PowerButton --> Motor : triggers
+LED --> Motor : indicates
+
+Battery --> Car : powers
+
+DispensoryNurse --> ActionButton : press
+DispensoryNurse --> PowerButton : press
+Nurse --> ActionButton : press
+
+Server --> log_handler : saves_route
+
+@enduml

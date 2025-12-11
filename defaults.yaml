@@ -9,7 +9,9 @@ header-includes:
   - \usepackage{tabularx}
   - \usepackage{float}
   - \usepackage{array}
+  - \usepackage{multirow}
   - \usepackage{longtable}
+  - \usepackage{subcaption}
 ---
 
 

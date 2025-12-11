@@ -1,0 +1,13 @@
+@startuml CD UC2 - Create Delivery
+
+!include pc_classes.puml
+
+mainframe **CD** UC2 - Create Delivery
+
+class main
+
+main -l-> tui
+
+remove Car
+
+@enduml
