@@ -2,11 +2,9 @@
 
 ## Actor-Context Diagram
 
+![Actor context diagram](docs/diagrams/out/requirements/actDiagram/Actor-Context-Diagram.png){width=500}
+
 ## Actor Description
-
-
-
-
 
 \begin{tabularx}{0.8\textwidth}[H] { 
   | >{\raggedright\arraybackslash}X 
