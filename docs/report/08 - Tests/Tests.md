@@ -157,21 +157,6 @@ if (std::abs(left_pwm) < 20 && std::abs(right_pwm) < 20)
         }
 ```
 
-This worked completely as intended, until the motors were equipped to the car itself. We were aware, since PID tuning, that the two motors were not exactly equal, as their tunings had to be different to achieve the same behaviour, but once the wheels came under load from the weight of the car, it quickly became apparent that this had different effect on the two motors, resulting in the car becoming very unprecise, and getting stuck in many situations. We changed the clamp, to now have the minimum duty cycle be 35, which prevented the car from getting stuck, but it was still unable to drive in a straight line, as one motor would turn more than the other, with exactly the same PWM signal. To combat this, we started adjusting the PWM signal, based on how far away both motors were from their respective target. If a motor sagged behind, the duty cycle for that motor would be increased, and decreased for the other, based on how big the difference was.
-
-```cpp
-const double adjust_factor = (std::abs(right_error) / (std::abs(left_error) == 0 ? std::abs(right_error) 
-                            : std::abs(left_error))) - 1;
-
-        left_pwm *= 1 - adjust_factor * 4;
-        right_pwm *= 1 + adjust_factor * 4;
-        // Clamp values [0, 1] to avoid silly stuff
-        left_pwm = std::max(-100, std::min(100, left_pwm));
-        right_pwm = std::max(-100, std::min(100, right_pwm));
-```
-
-This resulted in the car being able to drive in a straight line again, but turning would continue to be an issue, mainly due to the back wheel getting stuck when we would turn after driving straight, which remains as an issue we have been unable to fix.
-
 ## Raspberry Pi Setup (rpi1)
 
 The Rpi controlling the car required a bit of setup as well. Firstly the PWM chip had to be enabled, as otherwise we wouldn't be able to generate a PWM signal to control the car. This was done by adding the following line to config.txt.
@@ -197,7 +182,7 @@ Lastly, a service was created to run on startup, which ultimately was supposed t
 
 ```bash
 [Unit]
-Description=Run Script on startup
+Description=Run script on startup
 Wants=network-online.target
 After=network-online.target
 
@@ -232,22 +217,22 @@ The path found is the optimal, shortest, path for the given configuration. \newl
 ### Basic functionality tests
 Firstly, its nice to see that it can calculate the steps given in the four cardinal directions. These act as sanity checks to ensure the algorithm handles the simplest cases correctly.
 
-| Start | Goal | Expected path length | Actual path length |
-| :--:  | :-:  | :------------------: | :--------------:   |
-| (0,0) | (5,0)|         6            |        6           |
-| (2,2) | (2,7)|         6            |        6           |
-| (0,0) | (5,5)|         10           |        10          |
+| Start | Goal  | Expected path length | Actual path length |
+| :---: | :---: | :------------------: | :----------------: |
+| (0,0) | (5,0) |          6           |         6          |
+| (2,2) | (2,7) |          6           |         6          |
+| (0,0) | (5,5) |          10          |         10         |
 
 All the tests matched the expected lengths, confirming that the Manhattan-distance heuristic aligned correctly with the grid movement model. \newline
 
 ### Obstacle avoidance tests
 The batch of tests is placing static obstacles in the map and check if the astar correctly routed around them. These tests are essential to validate the cost of calculations and neighbor evaluation logic.
 
-| Start | Goal | Map description      | Expected result    | Actual result |
-| :--:  | :-:  | :------------------: | :--------------:   | :----------:  |
-| (0,0) | (5,0)|Wall blocking x=2...4 | Valid path bending around obstacle | Path returned, detouring as expected   |
-| (1,1) | (7,1)|Multiple staggered blocks |Shortest valid zig-zag path | Path returned, identical length |
-| (3,0) | (3,5)| Solid vertical wall  |Solid vertical wall  | no valid route | Correctly returned "no path" |
+| Start | Goal  |      Map description      |          Expected result           |            Actual result             |
+| :---: | :---: | :-----------------------: | :--------------------------------: | :----------------------------------: |
+| (0,0) | (5,0) |   Wall blocking x=2...4   | Valid path bending around obstacle | Path returned, detouring as expected |
+| (1,1) | (7,1) | Multiple staggered blocks |    Shortest valid zig-zag path     |   Path returned, identical length    |
+| (3,0) | (3,5) |    Solid vertical wall    |        Solid vertical wall         |            no valid route            | Correctly returned "no path" |
 
 These tests confirmed that the algorithm checks neighbors correctly, avoids illegal tiles, and terminates when no solution exists.
 
@@ -260,3 +245,29 @@ No illegal diagonal or backward steps were generated. \newline
 The angle changes between steps always matched the DR class expectations. \newline
 
 The resulting behavior confirmed that astar outputs clean, grid-aligned paths perfectly suitable for real-world execution. 
+
+## Integration test
+
+To begin integrating our system, we first equipped the motors and wheels to the car, and running a simple test program that, theoretically, had the car drive in a straight line. We had been aware, since PID tuning, that the two motors were not exactly equal, as their tunings had to be different to achieve the same behaviour, but once the wheels came under load from the weight of the car, it quickly became apparent that this had different effect on the two motors, resulting in the car becoming very unprecise, and getting stuck in many situations. We changed the clamp, to now have the minimum duty cycle be 35, which prevented the car from getting stuck, but it was still unable to drive in a straight line, as one motor would turn more than the other, even with exactly the same PWM signal. To combat this, we started adjusting the PWM signal, based on how far away both motors were from their respective target. If a motor sagged behind, the duty cycle for that motor would be increased, and decreased for the other, based on the ratio of the errors.
+
+```cpp
+const double adjust_factor = (std::abs(right_error) / (std::abs(left_error) == 0 ? std::abs(right_error) 
+                            : std::abs(left_error))) - 1;
+
+        left_pwm *= 1 - adjust_factor * 4;
+        right_pwm *= 1 + adjust_factor * 4;
+        // Clamp values [0, 1] to avoid silly stuff
+        left_pwm = std::max(-100, std::min(100, left_pwm));
+        right_pwm = std::max(-100, std::min(100, right_pwm));
+```
+
+This resulted in the car being able to drive in a straight line again, but turning would continue to be an issue, also in part due to the back wheel getting stuck when we would turn after driving straight, which remains as an issue we have been unable to fix. 
+
+To test the creation of routes and storing of these on the server, we ran the Terminal UI and server on the same local network, and created multiple routes. The server was then accessed using a remote SSH connection, and the file "logger.txt" was opened. The file contained all the created routes, indicating a successful integration. 
+
+Lastly, the car itself had to be integrated to work with the server/TUI, which mostly consisted of being able to retrieve routes from the server, and the correct time, and correctly loading the right values into the functions that handle the driving, as well as handling the LEDs and Action button.
+
+All 3 main elements were added to a new main program, that initialises the appropriate objects, and then waits for a press of the Action button, before requesting a route from the server. This was successful, verified through confirmation messages in a terminal with a remote SSH connection to the rpi1. After another press of the Action button, the car starts driving, as specified in our Use Cases. 
+Keeping in mind the problems with the motors, our main focus was that the car would follow the "pattern" of the route, even if the car over/undershoot while turning. Observing the car, it was clear that the route had been successfully changed into driving commands, as the would follow the correct pattern of the route, for example, driving straight, turning left, driving straight, turning right, driving straight and then stopping, which was verified by comparing the cars behaviour to the map in our code. Unfortunately, the car would often not end up precisely at the designated end point, due to over/underturning, because of reasons explained earlier.
+
+Afterwards, the behaviour of the LEDs were integrated to our specifications and verified through running the program and observing them.

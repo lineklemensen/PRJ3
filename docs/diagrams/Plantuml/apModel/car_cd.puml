@@ -8,6 +8,7 @@ skinparam {
     ClassAttributeIconSize 0
 }
 
+mainframe **CD** Car
 
 class "MotorController" as mc <<control>>
 {
