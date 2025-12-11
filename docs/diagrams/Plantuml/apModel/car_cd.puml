@@ -9,7 +9,7 @@ skinparam {
 }
 
 
-class "MotorController" as mc <<boundary>>
+class "MotorController" as mc <<control>>
 {
     -chipname : const char*
     -A1_gpio_ : int
@@ -79,7 +79,7 @@ class "Astar" as a <<boundary>>
     +create_rooms(r : Route) : std::vector<Point>
 }
 
-class "Point"
+struct "Point"
 {
     -x : int
     -y : int
@@ -90,14 +90,14 @@ class "Point"
     +distance(p1 : Point, p2 : Point) : double
 }
 
-class "Route"
+struct "Route"
 {
     +room1 : bool
     +room2 : bool
     +room3 : bool
 }
 
-class "cell"
+struct "cell"
 {
     +p : Point
     +total_cost : double
@@ -105,17 +105,12 @@ class "cell"
     +cost_to_dest : double
 }
 
-class "PriorityPoint"
+struct "PriorityPoint"
 {
     +f_cost : double
     +point : Point
     +operator>=(other : PriorityPoint) : bool
 }
-
-a --> "1..*" Point
-a --> Route
-a --> cell 
-a --> PriorityPoint
 
 class "DR" as dr <<domain>>
 {
@@ -175,7 +170,7 @@ class "Encoder" as enc <<boundary>>
     +get_position() const : int;
 }
 
-class "main" as m <<control>>
+class "main" as m 
 {
     +init_button(pin : int) : void
     +init_green_led() : gpiod_line*
@@ -183,16 +178,21 @@ class "main" as m <<control>>
 }
 
 
-m --> mc
-m --> dr
+m -r-> mc
+m -u-> dr
 m --> a
-m --> http
+m -l-> http
 
-mc o-- enc
-mc o-- pid
-mc o-- rp
+mc *-- "2" enc
+mc *-r- "2" pid
+mc *-u- "2" rp
 
-enc --> mc
+
+a --> Point
+a --> Route
+a --> cell 
+a --> PriorityPoint
+
 
 
 @enduml
