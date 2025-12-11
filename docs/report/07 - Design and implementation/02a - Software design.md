@@ -85,7 +85,7 @@ However since the structs and enums are used across many classes they do not hav
 
 ### Sequence diagram
 
-The "server" is a very basic HTTP server. It supports handling incoming "request" and should store them in a local log file as persistent storage. It has two routes "/new_route" and "get_route" the first handles incoming orders from the pc, while the latter handles sending the order to the car when requested.
+The "server" is a very basic HTTP server. It supports handling incoming "request" and should store them in a local log file as persistent storage. It has two routes "/new_route" and "/get_route" the first handles incoming orders from the pc, while the latter handles sending the order to the car when requested.
 ![Sequence diagram for server](docs/diagrams/out/apModel/server_sd/server_sd.png)
 
 ### Full class diagram
