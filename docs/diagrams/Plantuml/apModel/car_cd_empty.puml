@@ -7,7 +7,7 @@ skinparam {
 }
 
 
-class "MotorController" as mc <<boundary>>
+class "MotorController" as mc <<control>>
 {
 }
 
@@ -35,7 +35,7 @@ class "Encoder" as enc <<boundary>>
 {
 }
 
-class "main" as m <<control>>
+class "main" as m
 {
 }
 

@@ -1,0 +1,3 @@
+/Users/fidde_l/Desktop/3semester/projekt/projekt/src/rpi1/cmake-build-remotedebug-1/CMakeFiles/DeliveryRobot.dir
+/Users/fidde_l/Desktop/3semester/projekt/projekt/src/rpi1/cmake-build-remotedebug-1/CMakeFiles/edit_cache.dir
+/Users/fidde_l/Desktop/3semester/projekt/projekt/src/rpi1/cmake-build-remotedebug-1/CMakeFiles/rebuild_cache.dir
