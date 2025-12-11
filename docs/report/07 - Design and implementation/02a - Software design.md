@@ -6,7 +6,7 @@
 
 ### Sequence diagram
 
-![UC2 SD](docs/diagrams/out/apModel/SD UC2 - Create Delivery - PC.png){width=680px**
+![UC2 SD](docs/diagrams/out/apModel/SD UC2 - Create Delivery - PC.png){width=680px}
 
 In order to aid developement we decided to go for a more general framework for making a TUI, this was done so we wouldn't need to hardcode the same button functionality repeatedly and instead could have a general button class that allows for a general "action" to be bound. 
 
@@ -24,7 +24,7 @@ The "server" is a very basic HTTP server. It supports handling incoming "orders"
 
 ### Full class diagram
 
-![UC2 SD](docs/diagrams/out/apModel/SD UC2 - Create Delivery - PC.png){width=680px**
+![UC2 SD](docs/diagrams/out/apModel/SD UC2 - Create Delivery - PC.png){width=680px}
 
 ## Car 
 
@@ -48,7 +48,7 @@ The car has the following classes
 
 **main** is not a class but instead where all the classes are initialized and where the control loop can be found.
 
-![Empty class diagram for the car](docs/diagrams/out/apModel/car_cd_empty/CarClasses.png){width=500px**}
+![Empty class diagram for the car](docs/diagrams/out/apModel/car_cd_empty/CarClasses.png){width=500px}
 
 ### Sequence diagram
 
@@ -62,12 +62,12 @@ If the request was a success the paths to reach all the rooms are then calculate
 
 When the button is pressed the car then repeats this for the next room until it reaches its home base. Here it waits for a button press to once again request what rooms it needs to visit.
 
-![Sequence diagram for the car](docs/diagrams/out/apModel/car_sd/car_sd.png){width=500px**}
+![Sequence diagram for the car](docs/diagrams/out/apModel/car_sd/car_sd.png){width=500px}
 
 ### Full class diagram
 
 The class diagram shows all the classes from the empty class diagram, and the functions from the sequence diagram. It also shows all the functions that are not on the sequence diagram but classes has. The class diagram also shows the associations between the classes. main is also in the diagram even though its not a class. This is to show what functions are defined in main and its relations to the classes.
 
-![Full class diagram for the car](docs/diagrams/out/apModel/car_cd/CarClasses.png){width=500px**}
+![Full class diagram for the car](docs/diagrams/out/apModel/car_cd/CarClasses.png){width=500px}
 
 \newpage
