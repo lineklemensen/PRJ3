@@ -196,9 +196,9 @@ A domain model serves to give a complete overview of the system as a whole and s
   
 The content of the domain model below shows:
   
-**DispensoryNurse(DN)** The DN intereacts with the system through the TUI, ActionButton and PowerButton. DN intereact with the TUI to select which rooms are to be included in the creation of a route. The DN uses PowerButton to turn power on/off and ActionButton to initate the cars driving seqence.
+**DispensoryNurse(DN)** intereacts with the system through the TUI, ActionButton and PowerButton. DN intereact with the TUI to select which rooms are to be included in the creation of a route. The DN uses PowerButton to turn power on/off and ActionButton to initate the cars driving seqence.
   
-**Nurse** The Nurse intereacts with the system through ActionButton to initate the cars driving seqence.
+**Nurse** intereacts with the system through ActionButton to initate the cars driving seqence.
   
 **TUI** gives the DN a way to create routes.
   
@@ -206,9 +206,9 @@ The content of the domain model below shows:
   
 **HTTPHANDLER_Car** stands for sending request to the Server from Car.
   
-**PowerButton** turning power on or off to the Car.
+**PowerButton** is for turning power on or off to the Car.
   
-**ActionButton** used to read input from button press and Car monitors its state. 
+**ActionButton** is used to read input from button press and Car monitors its state. 
   
 **Server** saves routes in a logHandler for backup, handles request from HTTPHANDLER and HTTPHANDLER_Car.
   
