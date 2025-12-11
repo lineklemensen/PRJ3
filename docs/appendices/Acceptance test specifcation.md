@@ -97,7 +97,7 @@
     \hline
     \textbf{6} & Open the text file "logger.txt" on the server and check the contents & The file contains the list of selected rooms (1, 2 and 3) & The route is contained in "logger.txt" on the server & OK\\
     \hline
-    \textbf{8} & Look at the UI & The Terminal UI displays "The route has been successfully made" & Fail for nu & FAIL for nu \\
+    \textbf{8} & Look at the UI & The Terminal UI displays "The route has been successfully made" & The message is displayed & OK \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Main scenario}
@@ -175,7 +175,7 @@
     \hline
     \textbf{1} & Open the Terminal UI  & A message saying "Choose the rooms for this route" and a list of all rooms appear on the UI. A finish and clear option appear as well & The message is displayed on the TUI & OK \\ 
     \hline
-    \textbf{2} & Press confirm before selecting any rooms & An error message is displayed on the UI. Return to point 2 in the main scenario & Fail for nu & Fail for nu \\
+    \textbf{2} & Press confirm before selecting any rooms & An error message is displayed on the UI. Return to point 2 in the main scenario & The error message is displayed & OK \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 2 - Extension 2 - No rooms were selected}
@@ -228,7 +228,7 @@
     \hline
     \textbf{1} & Monitor the local network using Wireshark & Wireshark is opened and is monitoring the local network & Wireshark is monitoring the network & OK \\ 
     \hline
-    \textbf{2} & Press the Action button & [Wireshark]A request to fetch routes is sent from the car to the server & A post is sent but get is not visible & OK ? \\
+    \textbf{2} & Press the Action button & [Wireshark]A request to fetch routes is sent from the car to the server & The route is requested & OK \\
     \hline
     \textbf{3} & Look at the LEDs & The green LED is on & The green LED is turned on & OK \\
     \hline
@@ -236,15 +236,15 @@
     \hline
     \textbf{5} & Press the Action button and start the timer & The green LED turns off and after a maximum of 5 seconds the car starts driving & The green LED turns off and the car starts driving immediately & OK \\
     \hline
-    \textbf{6} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & The car turns and drives in the pattern of the map, but it sometimes over/underturns & OK ?\\
+    \textbf{6} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & The car turns and drives in the pattern of the map, but it sometimes over/underturns & Partial OK \\
     \hline
     \textbf{8} & Press the Action button and start the timer & The green LED turns off and the car starts driving & The LED turns off and the car starts driving immediately & OK \\
     \hline
-    \textbf{9} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & Again, it drives in a pattern that matches the map, but it is not very precise & OK ?\\
+    \textbf{9} & Wait for the car to arrive at next location & Car has arrived at next location, and green LED is on & Again, it drives in a pattern that matches the map, but it is not very precise & Partial OK\\
     \hline
     \textbf{10} & Press the Action button & The green LED turns off and the car starts driving & The LED is off and the car starts driving & OK \\
     \hline
-    \textbf{11} & Wait for car to arrive at homebase & The car is idle at homebase & Same as point 6 / 9 & OK ? \\
+    \textbf{11} & Wait for car to arrive at homebase & The car is idle at homebase & Again, the car is not very precise compared to our map, but the logic is followed & Partial OK \\
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 3 - Main scenario}
@@ -344,7 +344,7 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Press the Power button & The car terminates all driving instructions and powers off safely & The car turned off after the second click & OK ?? \\ 
+    \textbf{1} & Press the Power button & The car terminates all driving instructions and powers off safely & The car turned off after the second press & Partial OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Use Case 4 - Main scenario}
@@ -364,7 +364,7 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Inspect the car & The car is equipped with one green LED and one red LED & - & -\\ 
+    \textbf{1} & Inspect the car & The car is equipped with one green LED and one red LED & The car is equipped with a green LED and a red LED & OK\\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Nonfunctional Requirements - Usability 1}
@@ -396,11 +396,11 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the Terminal UI & The Terminal UI is running & - & -\\ 
+    \textbf{1} & Open the Terminal UI & The Terminal UI is running & The Terminal UI is running & OK\\ 
     \hline
-    \textbf{2} & Create 5 routes using the Terminal UI & 5 routes have been created & - & -\\ 
+    \textbf{2} & Create 5 routes using the Terminal UI & 5 routes have been created & The routes have been created & OK\\ 
     \hline
-    \textbf{3} & Open the text file "logger.txt" on the server & The 5 routes are stored in the file & - & -\\ 
+    \textbf{3} & Open the text file "logger.txt" on the server & The 5 routes are stored in the file & All 5 routes are stored in the file & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Nonfunctional Requirements - Usability 3}
@@ -416,7 +416,7 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Read the user guide & The user guide explains the functionality of the car, and how to operate it & - & -  \\ 
+    \textbf{1} & Read the user guide & The user guide explains the functionality of the car, and how to operate it & Not Implemented & FAIL  \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Nonfunctional Requirements - Usability 4}
@@ -432,7 +432,7 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Inspect the car & The car is equipped with 2 buttons, for performing actions and power on/off & - & - \\ 
+    \textbf{1} & Inspect the car & The car is equipped with 2 buttons, for performing actions and power on/off & The car is equipped with both buttons & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Nonfunctional Requirements - Usability 5}
@@ -448,7 +448,11 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the Terminal UI & The server can be accessed & - & - \\ 
+    \textbf{1} & Run the server & The server is running & The server is running & OK \\ 
+    \hline
+    \textbf{2} & Create a route in the TUI & The server can be accessed & Route has been created & OK \\ 
+    \hline
+    \textbf{1} & Check the servers terminal output & A message appears stating route has been received & The message appears & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Nonfunctional Requirements - Usability 6}
@@ -464,7 +468,7 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Open the Terminal UI & The text is size > 14, and the color of the text is in stark contrast to the background & - & - \\ 
+    \textbf{1} & Open the Terminal UI & The text is size > 14, and the color of the text is in stark contrast to the background & The text size is dependant on users terminal settings, Text color is white on a black background & Partial OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Nonfunctional Requirements - Usability 7}
@@ -480,11 +484,11 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Start a timer & The user is timing the system & - & - \\ 
+    \textbf{1} & Prepare a timer & The user is timing the system & The timer is ready & OK \\ 
     \hline
-    \textbf{2} & Run the test program ??? & The car is driving at max speed & - & - \\ 
+    \textbf{2} & Compile and run the "Test of Encoder class / Drive full speed" section of main.cpp & The car is driving at max speed & The car is driving at max speed & OK \\ 
     \hline
-    \textbf{3} & Wait 10 minutes & The car is still driving & - & - \\ 
+    \textbf{3} & Wait 10 minutes & The car is still driving & The car is still driving & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Nonfunctional Requirements - Reliability 1}
@@ -500,11 +504,11 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Start a timer & The user is timing the system & - & - \\ 
+    \textbf{1} & Prepare a timer & The user is timing the system & The timer is ready & OK \\ 
     \hline
-    \textbf{2} & Start the server & The server is running & - & - \\ 
+    \textbf{2} & Start the server & The server is running & The server is running & OK \\ 
     \hline
-    \textbf{3} & Wait 1 hour & The server is still running & - & - \\ 
+    \textbf{3} & Wait 1 hour & The server is still running & The server is still running & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Nonfunctional Requirements - Reliability 2}
@@ -522,11 +526,11 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Start a timer & The user is timing the system & - & - \\ 
+    \textbf{1} & Start a timer & The user is timing the system & The timer is ready & OK \\ 
     \hline
-    \textbf{2} & Press the power button & The car begins powering on & - & - \\ 
+    \textbf{2} & Press the power button & The car begins powering on & The car begins powering on & OK \\ 
     \hline
-    \textbf{3} & Wait 1 minute & The remote SSH connection shows "Waiting for button press/ Waiting for req route eller whatever" & - & - \\ 
+    \textbf{3} & Wait 1 minute & The user is able to establish a remote SSH connection to the car & The RPi is still connecting to the network, and thus establishing an SSH connect isn't possible & FAIL \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Nonfunctional Requirements - Performance 1}
@@ -542,15 +546,15 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Mark a line with a length of 10 meters on a drivable surface & The testing track is ready & - & - \\ 
+    \textbf{1} & Mark a line with a length of 5 meters on a drivable surface & The testing track is ready & The testing track has been marked clearly & OK \\ 
     \hline
-    \textbf{2} & Start a time & The user is ready to time the system & - & - \\ 
+    \textbf{2} & Prepare a timer & The user is ready to time the system & The timer is ready & OK \\ 
     \hline
-    \textbf{3} & Start the test program ??? & The car starts driving at max speed & - & - \\ 
+    \textbf{3} & Compile and run the "Test of Encoder class / Drive full speed" section of main.cpp & The car starts driving at max speed & The car starts driving at max speed & OK \\ 
     \hline
-    \textbf{4} & Stop the timer when the car reaches the end of the line & The time for the car to travel 10 meters is noted & - & - \\ 
+    \textbf{4} & Stop the timer when the car reaches the end of the line & The time for the car to travel 10 meters is noted & The car took 16.8 seconds to trvel 5 meters & OK \\ 
     \hline
-    \textbf{5} & Calculate the speed of the car based on the time to travel the line & The average speed of the car is under 5 km/h & - & - \\ 
+    \textbf{5} & Calculate the speed of the car based on the time to travel the line & The average speed of the car is under 5 km/h & The average speed of the car was 1.07 km/h & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Nonfunctional Requirements - Performance 2}
@@ -566,9 +570,9 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Place the car indoors on a dry and flat surface & The car is in position & - & - \\ 
+    \textbf{1} & Place the car indoors on a dry and flat surface & The car is in position on the appropriate surface & The car is in position on the appropriate surface & OK \\ 
     \hline
-    \textbf{2} & Execute a route & The car is able to drive on the surface & - & - \\ 
+    \textbf{2} & Execute a route & The car is able to drive on the surface & The car is able to drive without issues & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Nonfunctional Requirements - + 1}
@@ -584,9 +588,9 @@
     \hline
     \textbf{No.} & \textbf{Action} & \textbf{Expected result} & \textbf{Actual result} & \textbf{(OK/FAIL)}\\
     \hline
-    \textbf{1} & Pick up the car while it is driving and place it outside the designated map & The car has been moved to outside the map & - & - \\ 
+    \textbf{1} & Pick up the car while it is executing a route and place it outside the designated map & The car has been moved to outside the map & The car has been moved & OK \\ 
     \hline
-    \textbf{2} & Continue execution of route & The car is not able to find its way back to the map & - & - \\ 
+    \textbf{2} & Continue execution of route & The car is not able to find its way back to the map & The car continues driving after its instructions, which now take it to a random position & OK \\ 
     \hline
 \end{tabularx}
 \caption{Acceptance test - Nonfunctional Requirements - + 2}
