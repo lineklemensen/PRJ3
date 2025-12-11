@@ -7,5 +7,6 @@ The cars frame, as shown in the below figure, is a solid 6mm plank of fibreboard
 
 While putting bolts on the plank, there was a realization that the nuts on the bolts would hit metal parts on the RPi5, and we were unsure if the RPi5 would short circuit so that plan was scrapped. The plan changed to using plastic legs to hold the RPi5 up into the air, and then hot glueing the plastic legs to the plank. The battery was also to big to just use the same bolts as for the motors, so instead zip ties was used to hold the battery down, but later this was changed to use elastic cord. 
 
-![The "finished" car](docs/pictures/car.png)
+![The "finished" car](docs/appendices/pictures/car.png)
+
 \newpage

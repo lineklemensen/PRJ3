@@ -40,5 +40,20 @@ Shown below is the results of our acceptance test for the main scenario of Use C
 \label{tab:at-usecase3main}
 \end{table}
 
-# Discussion
 \newpage
+
+# Discussion
+
+Most of the test that did not succed can be narrowed down to two major reasons. These boil down to: bad hardware and prioritization under our time limit.
+
+\vspace{0.5cm}
+
+An easy example of the hardware failing comes in the form of one of the two motors that were used, had a lower output then the other. This meant that, when both were sat to operate at 70% duty cycle one of them would output less then the other. This threw off the path finding, resulting in some of the test partially passing, due to difference between where it was contra where it should be. To try and salvage, this a function was implementated in the code to try and make the duty cycle sync up. This did not completly solve the problem but helped lessen the over/under shooting of the destination it was supposed to reach, as well as make the car drive in a straight line more consistently.  
+
+Another such issue appeared when switching to a different H-Bridge, which had a bigger internal resistor which meant the motors got less voltage. This, as well as the added weight of the rest of the car, meant higher duty cycles were required to maintain the same speeds, which threw off our PID tuning.
+
+Lastly concerning hardware issues was the third wheel or the back wheel. This wheel is essentially a shopping cart wheel, which turned out to be a slight problem when the car had to do a hard turn or turn around, because the wheel would not be in the correct position and therefore create added resistance to the car when it tried to turn. If more time had been available, a ball wheel could have been implemented instead to eliminate the problem.
+
+\vspace{0.5cm}
+
+With this project, a lot of expectations and ideas got thrown into it. However, as it later became evident, not all of them were able to be implemented within the time limitation on the project. Because of that, some tests  failed, since other parts of the project got prioritized as being more important than others. Among these are blinking LEDs and a user manual, since that was not deemed crucial enough for the project to be prioritized above other parts. Most of these parts that have been down prioritized have been either exstentions or exceptions to our use cases, which were added to make the project more user friendly and help find potential errors in either hardware or software. The parts that were considered to be more important than these, were the requirements that would form the minimum requirements to make a functional prototype and thereby a proof of concept. 

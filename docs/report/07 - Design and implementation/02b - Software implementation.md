@@ -1,14 +1,17 @@
 # Software implementation
 
 ## Astar
-### Calculate route
+
+**Calculate route**
+
 Firstly we generate the points,rooms, that the car can visit, which include the starting point (0,0), \newline
 const std::vector<Point> waypoints = create_rooms(r); \newline
 const int num_points = waypoints.size(); \newline
 
 here the waypoints stores all the points of interest, and num_points is the total number of points. \newline
 
-### Compute paths
+**Compute paths**
+
 Then we need to find the shortest path between all pairs of waypoints given, so later on solve the TSP efficiently. \newline
 
 ```cpp
@@ -37,7 +40,8 @@ For every pair, (i,j), astar_search finds the shortest path.
 If a path exists, we store it in paths and its length in cost.
 
 \newpage
-### Solve TSP brute-force
+**Solve TSP brute-force**
+
 Next step is to try all the possible orders of visiting the rooms to find the total shortest total route. \newline
 
 ```cpp
@@ -86,7 +90,8 @@ do {
 ```
 
 \newpage
-### Combine paths  
+**Combine paths**
+
 Once we have the best order to visit, the code concatenate the individual paths into a full route:  
 ```cpp
 std::vector<std::vector<Point>> combined_path; 
@@ -102,7 +107,9 @@ return combined_path;
 
 Each segment paths(a)(b), is added to combined_path. The final combined_path is what the car should follow.
 
-### Astar search  
+**Astar search**
+
+The algorithm started its base [@geeksforgeeks-2025] and material learned in the course this semester in "Algoritmer og datastrukturer".
 The astar_search function finds the shortest path between two points.  
 ```cpp
 if(!is_unblocked(src) || !is_unblocked(dest)) return route; 
@@ -130,7 +137,7 @@ open_list.emplace(0.0, src);
 open_list is a min-heap based on total cost f = g + h.  
 
 \newpage
-### Main Loop  
+**Main Loop**
 ```cpp
 while(!open_list.empty()) { 
     Point current = open_list.top().point; 
@@ -171,7 +178,8 @@ if(cell_details[n.x][n.y].total_cost > f_new) {
 
 Update the neighbor if we found a better path, and push it to the queue.
 
-### Path compression
+**Path compression**
+
 Lastly, it removes unnecessary points along the straight lines:  
 ```cpp
 for(int it = 0; it + 1 < route.size(); it++) {
@@ -200,6 +208,8 @@ last_pos.first < next_pos.first && last_pos.second < next_pos.second) {
 } 
 ```
 The code above, is then used three more times to handle the three other directions. It then returns an angle and length, that can be used as parameters for another function that makes driving instructions.
+
+\newpage
 
 ## MotorController
 The turn() function is responsible for turning the car. The function takes a double, degrees, which is the amount of degrees the car has to turn. A positive value results in a counter-clockwise turn, and vice versa. As the function is called every time the car reaches a new point, and will sometimes have to keep going straight, the function will return immediately, if the value passed is 0. 
@@ -271,6 +281,7 @@ When the loop breaks, the duty cycles for both motors are set to 0, to reduce th
 
 The function drive_distance(), works in very much the same way, except, of course, the wheels driving in different directions.
 
+\newpage
 
 ## PID
 
@@ -278,7 +289,6 @@ The PID class contains a function called update(), which calculates a control ou
 
 The first step in the function is to calculate the error, defined as the difference between the target value and the current value. This error represents how far the system is from the desired position and is used as the basis for all other PID calculations. If the error is smaller than the integration threshold, the accumulated error variable is increased. This ensures that the integral term only contributes when the system is close enough to the target, preventing excessive accumulation.
 
-\newpage
 Next, the proportional, integral, and derivative contributions are computed. The proportional term provides a corrective action directly proportional to the current error. When the motor is far from the target, this term generates a strong response to reduce the error quickly. As the motor approaches the target, the proportional term naturally decreases, preventing overshoot and unnecessary speed. The proportional value is equal to the current error.
 
 The integral term addresses small, persistent errors that may remain due to friction, mechanical load, or system dead zones. By accumulating the error over time, the integral term ensures that the motor reaches the desired position accurately. It is calculated as the sum of the accumulated error multiplied by the time step.

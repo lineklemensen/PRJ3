@@ -1,21 +1,18 @@
----
-title: "SW3 Semester Project"
-subtitle: "Self Driving Medicine Delivering System"
-date: "12/12/2025"
-fontsize: 12pt
-geometry: margin=1.5cm
----
-
 \begin{center}
 
+\Huge SW3 Semester Project \\
+\bigskip 
+\large Self Driving Medicine Delivering System\\
+\bigskip
+\large Date: \today \\
 
-\includegraphics[width=0.29\textwidth]{docs/appendices/pictures/car_front.jpg}
+\vspace{1.5cm}
 
+\includegraphics[width=0.6\textwidth]{docs/appendices/pictures/car_front.jpg}
 
 \vspace{0.6cm}
 
-
-\begin{tabular}{r r r}
+\begin{tabular}{l c r}
 \hline
 \textbf{Students} & \textbf{Student number} & \textbf{Initials} \\
 \hline
@@ -36,11 +33,9 @@ Christopher Frank Jørgensen & 202300791 & CJ \\
 “Jenny” Jung Min Kim
 
 
-Submission date: \textbf{12-12-2025} \\[6mm]
-
 University Name: Aarhus University \\
 Degree / Program: Software Engineering
 
 \end{center}
 
-\clearpage
+\newpage

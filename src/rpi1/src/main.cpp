@@ -296,8 +296,8 @@ int main()
         t.join();
 
         if(res->status != httplib::StatusCode::OK_200) {
-            int seconds = 0;
-            while(seconds != 5) {
+            for (size_t i = 0; i < 5; i++)
+             {
                 gpiod_line_set_value(g_led_line, 1);
                 std::this_thread::sleep_for(std::chrono::milliseconds(500));
 

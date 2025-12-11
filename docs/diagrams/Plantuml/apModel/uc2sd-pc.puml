@@ -6,7 +6,7 @@ note {
 }
 </style>
 
-mainframe **SD** UC2 - Create Delivery
+mainframe **SD** PC
 hide footbox
 
 actor "Dispensary Nurse" as dn

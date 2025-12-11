@@ -246,3 +246,5 @@ When the power button is pressed while the car is powered on, the car will stop 
     \caption{Use Case 4}
     \label{tab:usecase4}
 \end{table}
+
+\newpage

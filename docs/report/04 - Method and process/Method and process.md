@@ -3,15 +3,18 @@ In this project, specific tools have been utilized to ensure a clean, systematic
 
 ## Metode
 
-### Brainstorm  
+**Brainstorm**
+
 The projects idea phase was initalized with a brainstorm, utilizing the "dont say no" method. Where all ideas are weighted equally. Afterwards all ideas have been critized and looked over untill a final idea emerged that everyone could agree on.
 
   
-### MoSCoW   
+**MoSCoW**
+
 For prioritization MoSCoW have been utilized to categories all requirements in to categories such as *Must have*, *Should have*, *Could have* and *Wont have*. Using these categories all requirements got sorted depending on how important they were for the project and if there would be enough time and know how to properly execute them.
 
 
-### SysML
+**SysML**
+
 When creating the system architecture, system modeling language(SysML) was used. Here two diagrams created: 
 
 * **Block Definition Diagram(BDD)**  
@@ -20,7 +23,8 @@ BDD Shows the entire system, and the relationship between different hardware blo
 * **Internal Block Diagram(IBD)**  
 IBD Describes the different internal connections and signals, between the blocks in the system and the rest of the world.  
   
-### UML  
+**UML**
+
 For the software architecture, Unified Modeling Language(UML) has been utilized. The following diagrams and models have been used:  
 
 * **State Machine Diagram(STM)**  
@@ -35,7 +39,8 @@ The sequence diagrams shows how the different blocks and actors connects and com
 * **Application model**
 Application models, are made up of class diagrams and sequence diagrams with function calls. They show how different hardware blocks and function calls are structured on each CPU in the system.  
   
-### Technical analysis 
+**Technical analysis**
+
 For chosing components and programming language, a technical analysis was performed, weighing all the differnt options for hardware and langauge agianst as many possible factors as possible. This ensured that the componets that got chosen were the best suited to complete the project with as few mistakes as possible.
 
 \newpage
