@@ -37,110 +37,6 @@ With all of the listed points in mind, our primary goal is to at least get a ful
 
 \newpage
 
-## Car tracking scheme
-
-|                           | Dead reckoning | Line following |  GPS  |
-| :------------------------ | :------------: | :------------: | :---: |
-| Precision                 |       5        |       4        |   1   |
-| Drift/error accumulation  |       3        |       5        |   5   |
-| Robustness                |       4        |       3        |   5   |
-| Price                     |       5        |       2        |   4   |
-| Upkeep                    |       5        |       2        |   5   |
-| Developer cost/complexity |       4        |       3        |   5   |
-: Analysis of methods for tracking the cars position
-
-We have found three different strategies for tracking the cars
-position. These are dead reckoning[@dead-reckoning-wikipedia], line following [@line-following-robot-arduino] and GPS[@GPS-wikipedia].
-Dead reckoning is way to calculate the current position of of a
-moving object by using a previously determined position and
-incorporating the speed, direction and elapsed time. For line
-following the idea is that the car would follow a line to its
-destination. Two options for seeing the line are, a camera or
-an ultraviolet sensor. The last option is to use a GPS to keep
-track of the cars position.
-
-For this project precision and drift/error accumulation are the
-most important things to consider since they are vital for the
-success of the tracking. The drift/error accumulation could be
-dealt with by not having the car drive too long distances.
-Developer cost/complexity is also very important since we want
-the project to be of a scope that can be finished on time.
-
-**Precision**
-
-Dead reckoning has a very high precision if the correct hardware is
-used. One of the simplest ways to get a high accuracy is by using
-encoders. Encoders can break a full rotation of the wheel into many
-signals, which gives a higher precision for the estimated speed used
-for the calculations.
-
-Line following would be able to get toward its destination correctly
-but might struggle with knowing when exactly it has arrived, due
-to there being a need for a physical stop sign.
-
-GPS has different levels of precision depending on the specific product.
-Range of errors typically fall within 1-5 meters. In this case even
-an error of 1 meter could make entering a room hard.
-
-**Drift/error accumulation**
-
-Dead reckoning has a slight drift that slowly accumulates until it
-reaches a known position. This could be dealt with by having the
-position reset when it returns to start.
-
-Line following does not have any drift.
-
-GPS does not have any drift
-
-**Robustness**
-
-Dead reckoning using encoders would not function if the rotation
-of the wheels does not correspond to the distance traveled, and is therefor largely hardware dependent.
-
-If the line following version ends up away from the line or the
-line gets damaged the system would not work.
-
-The GPS would only really fail if the satellite connection can not
-be established.
-
-**Price**
-
-Dead reckoning only requires the motors have encoders. Encoders
-are pretty cheap so this does not add much to the cost.
-
-Line following would require making a line on the floor to follow
-and a camera or ultra violet sensor. This is a significant cost.
-
-GPS would require adding a GPS module which increases the cost.
-
-\newpage
-**Upkeep**
-
-Dead reckoning does not acquire additional upkeep.
-
-Line following requires that the line is constantly kept clear
-enough for the camera/ultra violet sensor to recognize it.
-
-GPS does not require additional upkeep.
-
-**Developer cost/complexity**
-
-Dead reckoning only require the addition of an encoder, with the software being rather easy to implement.
-
-Line following requires a hardware component to recognize the line.
-This adds an additional point of failure. Software wise this is
-more complex, requiring some kind of image processing.
-
-GPS would be the simplest to implement since it involves integrating
-a GPS module and then using the data.
-
-In conclusion we have decided to use dead reckoning since it has
-the highest precision is simple enough to implement and the biggest
-downside can be dealt with by not having the car drive too long
-distances.
-
-\newpage
-
 ## Motor speed control
 
 |            |  PID  | Linear interpolation |
@@ -193,82 +89,6 @@ Even though PID control is the harder to implement option, more time consuming a
 In conclusion we are going to use PID control for motor speed control for this project. 
 
 \newpage
-
-## Network Protocol
-
-| Network Protocol |  TCP  |  UDP  |
-| :--------------- | :---: | :---: |
-| Latency          | High  |  Low  |
-| Reliable         |  Yes  |  No   |
-| Synchronized     |  Yes  |  No   |
-| Ordered          |  Yes  |  No   |
-: Analysis of network protocols
-
-**TCP**
-
-TCP stands for Transmission Control Protocol, and is a connection-oriented protocol. It is a slower protocol than UDP, since it establishes a synchronized connection, ensuring ordered delivery of data and no loss of data or packages. TCP is used for browsing the web, sending emails and files, and other such systems that don’t require low latency or cannot afford data loss.
-
-TCP ensures a reliable connection, which is preferable for our project, since data loss could cause unpredictable behavior of our system, and the higher latency doesn’t negatively impact the system in any significant way.
-
-**UDP**
-
-UDP stands for User Datagram protocol, and is a connection-less protocol. This means the connection will be a lot faster, at the cost of reliability, since there is no way to acknowledge successful transfer of data. UDP is commonly used for streaming and online video games, that benefit greatly from the reduced latency, and don’t have big drawbacks as a result the data loss that may occur using UDP. 
-
-
-**Conclusion**
-
-For our project, we do not require a low-latency protocol, and data loss could be catastrophic to the routing/functioning of the car. In conclusion, we have decided to use TCP, since the drawbacks of higher latency are relatively small, compared to the potentially huge issues we could encounter using UDP. 
-
-
-\newpage
-
-## Programming language
-
-|                      |   C   |  C++  |
-| :------------------- | :---: | :---: |
-| Object oriented      |  No*  |  Yes  |
-| Library availability |   3   |   5   |
-| Developer knowledge  |   1   |   3   |
-: Analysis of programming languages
-
-For this project we are required to have the combined code be at least 90% C or C++.
-Since there is not much you can do with the remaining 10% in terms of useful programming, 
-we would want to write the whole core program in one of those two languages.
-
-**Object oriented**
-
-Although C isn't intended to be object oriented you can of course write it in an object oriented way. However at that point you might as well simply use C++.
-
-**Library availability**
-
-The standard library for C++ is considerably larger than C's standard library. Because of this C++ is more appealing to us.
-
-**Developer knowledge**
-
-For most of our current study we've worked with C++, and have only had an introductory course on C over a couple lessons. With this in mind, C++ will lead to faster development as we're more comfortable with the language and know more of its features and available libraries. Also since C++ is backwards compatible with C we retain the ability to use low-level C in cases it becomes necessary.
-
-**Conclusion**
-
-Due to the comfortability with developing in C++ and our overall knowledge and experience with it, it will be what we write the program
-
-## Battery
-
-|                   | 7.2V battery | 9.6V battery |
-| :---------------- | :----------: | :----------: |
-| Capacity          |      5       |      3       |
-| Weight            |      3       |      4       |
-| Voltage stability |      5       |      3       |
-| Recharge time     |      4       |      5       |
-| Price             |      5       |      5       |
-| Developer cost    |      5       |      5       |
-: Analysis of battery types for the car
-
-**Evaluation**
-Two batteries were considered: **7,2V/3000mAh NiMH battery** and **9,6V/2000mAh NiMH battery**. There are two determining factors when deciding which battery to use. First, **runtime**(Watt-hours): A higher runtime provides the vehicle with longer active time before it needs recharging. Second **overcurrent:** Risk of overcurrent increases when a battery has higher voltage than a component, which can cause overheating.
-
-
-**Conclusion**
-The **7,2V/3000mAh NiMH battery** is chosen since it satisfies our requirements the best with regards to runtime and overcurrent.
 
 \newpage
 
@@ -371,5 +191,7 @@ This setup ensures reliable, responsive, and well-balanced performance, making i
 
 The **FIT0521t** motors combined with the **Monster Moto Shield** form a reliable drive solution.  
 This pairing supports precise closed-loop control with encoder feedback and provides the robustness required for operation. The 3000mAh battery chosen will also be able to power the components for an extended length of time between charges.
+
+The full technical analysis can be found in the appendices.
 
 \newpage
