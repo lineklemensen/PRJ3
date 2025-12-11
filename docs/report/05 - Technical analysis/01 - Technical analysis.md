@@ -312,7 +312,7 @@ The **L9110** was rejected due to its low power limit, despite being more afford
 
 \newpage
 
-## Motor — Devantech EMG49
+## Motor - Devantech EMG49
 
 | Characteristic | Single Motor | Dual Motor |
 | :-------------- | :-----------: | :----------: |
@@ -356,7 +356,7 @@ The trade-offs include higher **power consumption**, **component cost**, and **s
 ### Conclusion
 
 The **dual EMG49 motor setup** was selected for the vehicle.  
-This configuration provides superior control, torque, and precision—key for a responsive and accurate robotic platform.  
+This configuration provides superior control, torque, and precision-key for a responsive and accurate robotic platform.  
 While it increases power demands, the benefits to mobility and control performance make it the optimal choice.
 
 \newpage
@@ -412,7 +412,7 @@ The **7,2V/3000mAh NiMH battery** is chosen since it satisfies our requirements 
 
 #### Performance
 
-The 24V motor delivers greater torque and higher encoder resolution, making it well-suited for heavy-duty applications requiring precise positioning and load handling. However, these advantages come at the cost of significantly higher current draw, greater heat generation, and the need for more robust power electronics. In the context of this lightweight robotic platform, this level of performance is unnecessary and excessive — effectively overkill for the intended requirements.
+The 24V motor delivers greater torque and higher encoder resolution, making it well-suited for heavy-duty applications requiring precise positioning and load handling. However, these advantages come at the cost of significantly higher current draw, greater heat generation, and the need for more robust power electronics. In the context of this lightweight robotic platform, this level of performance is unnecessary and excessive - effectively overkill for the intended requirements.
 
 The 6V motor, on the other hand, provides adequate torque, faster rotational speed, and lower power consumption, aligning perfectly with the selected 7.2V NiMH battery. It offers a strong balance between performance and efficiency, allowing for stable closed-loop control through encoder feedback without straining the power system.
 

@@ -50,9 +50,9 @@ std::cout << "PID parameters set:\n"
 \textbf{Auxiliary Functions}  
 Besides the accessors, the class includes:
 
-reset() — clears all internal state variables used by the update loop (integral term, previous error, etc.).
+reset() - clears all internal state variables used by the update loop (integral term, previous error, etc.).
 
-squash() — clamps the controller output to the configured min_output and max_output values to protect the motor driver.
+squash() - clamps the controller output to the configured min_output and max_output values to protect the motor driver.
 
 These were validated indirectly by observing changes in the controller behavior during runtime.
 
