@@ -10,6 +10,7 @@ header-includes:
   - \usepackage{float}
   - \usepackage{multirow}
   - \usepackage{longtable}
+  - \usepackage{subcaption}
 ---
 
 
