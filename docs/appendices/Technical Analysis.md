@@ -423,3 +423,5 @@ The **FIT0521t** motors combined with the **Monster Moto Shield** form a reliabl
 This pairing supports precise closed-loop control with encoder feedback and provides the robustness required for operation. The 3000mAh battery chosen will also be able to power the components for an extended length of time between charges.
 
 \newpage
+
+# References #

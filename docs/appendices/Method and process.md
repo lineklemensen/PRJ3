@@ -47,9 +47,6 @@ Degree / Program: Software Engineering
 
 \clearpage
 
-# Index
-\tableofcontents
-
 \newpage
 
 
@@ -229,6 +226,4 @@ We used Scrum to structure the work and decide which tasks to prioritize, and fo
 
 Overall, the group functioned well, and I would be happy to work with the same people again in a future project. With slightly better communication, I believe the collaboration could become even stronger.
 
-
-## Sources
 \newpage
