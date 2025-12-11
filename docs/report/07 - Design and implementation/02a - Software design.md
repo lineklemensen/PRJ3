@@ -74,12 +74,21 @@ However since the structs and enums are used across many classes they do not hav
 ## Server
 
 ### Empty class diagram
+![empty class diagram for server](docs/diagrams/out/apModel/server_class_empty/ServerClasses.png)
 
 ### Sequence diagram
 
-The "server" is a very basic HTTP server. It supports handling incoming "orders" and should store them in a local log file as persistent storage. It has two routes "/new_route" and "/get_route" the first handles incoming orders from the pc, while the latter handles sending the order to the car when requested.
+The "server" is a very basic HTTP server. It supports handling incoming "request" and should store them in a local log file as persistent storage. It has two routes "/new_route" and "get_route" the first handles incoming orders from the pc, while the latter handles sending the order to the car when requested.
+![Sequence diagram for server](docs/diagrams/out/apModel/server_sd/server_sd.png)
 
 ### Full class diagram
+**RouteHandler**
+Sees incoming request and decides which handler should take the request.
+
+**LogHandler**
+Does all the functionallity of either GET or POST, by storing data inside a queue and then also taking all the elements inside queue and give it to the log file. 
+  
+![Full class diagram for server](docs/diagrams/out/apModel/server_classes/ServerClasses.png)
 
 \newpage
 ## Car 

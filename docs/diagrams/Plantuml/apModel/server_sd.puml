@@ -1,0 +1,18 @@
+@startuml
+mainframe **SD** Server
+hide footbox
+
+actor "Car" as car
+actor "TUI" as tui
+participant "RouteHandler" as r <<domain>>
+participant "LogHandler" as log <<boundary>>
+
+
+tui --> r : on_post_route()
+r -->  log : post_route()
+car --> r : on_get_route()
+r --> log : get_route()
+r -->> car : 200 OK 
+
+
+@enduml

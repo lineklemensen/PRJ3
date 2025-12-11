@@ -1,4 +1,5 @@
 @startuml ServerClasses
+mainframe **CD** Server
 
 skinparam {
     packageStyle rectangle
@@ -8,19 +9,27 @@ skinparam {
 
 class "RouteHandler" as h <<domain>>
 {
-    RouteHandler(RouteCollection routes)
-    + on_get_route() : request_handling_status_t
-    + on_post_route() : request_handling_status_t
+    RouteHandler(route_collection_t)
+    + on_get_route(req : reqrequest_handling_status_t) : auto
+    + on_post_route(req : reqrequest_handling_status_t) : auto
+    + options(req : reqrequest_handling_status_t) : auto
+    - m_routes : route_collection_t
     -{static}init_resp(resp : RESP) : RESP
     -{static}mark_as_bad_request(auto& resp) : void
+
+
 }
 
-class "LogHandler" as l
+class "LogHandler" as l <<boundary>>
 {
-    + append(log: string) : void
-    + read() : string
-    - fd_ : int
-    - PATH_ : string
+    + LogHandler(string)
+    + post_route(string) : void
+    + get_route() : string
+    + update_route() : void
+    + queue_empty() : bool
+    - log_file : ofstrem
+    - route_queue : deque<string>
+    - file_path : string
 }
 
 
