@@ -9,7 +9,7 @@ geometry: margin=1.5cm
 \begin{center}
 
 
-\includegraphics[width=0.28\textwidth]{docs/appendices/pictures/car_front.jpg}
+\includegraphics[width=0.29\textwidth]{docs/appendices/pictures/car_front.jpg}
 
 
 \vspace{0.6cm}
