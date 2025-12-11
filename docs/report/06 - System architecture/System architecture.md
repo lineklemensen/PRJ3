@@ -2,11 +2,11 @@
 
 
 ## Hardware architecture
-The following sections will include hardware architecture for the system and the structure for the following sections are: block definition diagram(BDD), block description, internal block diagram(IBD) and signal description ending the hardware architecture section.
+The following sections will include hardware architecture for the system and the structure for the following sections: block definition diagram(BDD), block description, internal block diagram(IBD) and signal description ending the hardware architecture section.
    
-**Diagrams** these give a visual look into the physical components used along with the relationship between them. They also go in more dept about the signals that are present in the system.
+**Diagrams** give a visual look into the physical components used along with the relationship between them. They also go in more dept about the signals that are present in the system.
   
-**Tables** giving detailed descriptions of the contents in the different diagrams, these tables makes it possible to describe the overall function of blocks or go deeper and describe the function/usage of signals in/between the components. 
+**Tables** are for giving detailed descriptions of the contents in the different diagrams, these tables makes it possible to describe the overall function of blocks or go deeper and describe the function/usage of signals in/between the components. 
 
 ### Block Definition Diagram
 The following BDD below contains 11 blocks each describing which parts and ports are used. BDD serves as a
@@ -118,7 +118,7 @@ A block description is made to describe each block inside the BDD and its functi
 
 \newpage
 ### Internal Block Diagram
-The IBD is used to dive deeper into the internal hardware of the car, it shows where each signal is going to/from for each component in the the car.
+The IBD is used to dive deeper into the internal hardware of the car, it shows where each signal is going to and coming from for each component in the car.
 These signals include: voltage, PWM, high/low and etc. This tool makes sure that each signal is considered and how further development should follow. 
   
 ![Internal block diagram](docs/diagrams/out/System Architecture/IBD (2).png)  
@@ -189,7 +189,7 @@ Net & The wifi that is used to connect server, car and computer & & Ethernet & \
 ### Interfaces
 
 ## Software architecture
-The following sections will include software architecture for the system and the structure for the following sections are: Domain model, System sequence diagram and System state machine diagram ending the software architecture section.
+The following sections will include software architecture for the system and the structure for the following sections: Domain model, System sequence diagram and System state machine diagram ending the software architecture section.
 
 ### Domain Model
 A domain model serves to give a complete overview of the system as a whole and serving as a brigde between architecture and design. The domain model is a great way to create a collective understanding of the concepts, rules, limitation, relationship and more in our system.
