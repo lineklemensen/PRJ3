@@ -55,9 +55,9 @@ MainScreen::MainScreen()
     // Ordering unfortunately kinda matters here, since this assignment is bidirectional.
     // Since we do cancel after finish hitting down from close it should always jump to cancel
     finish_button->connect(clear_button, HORIZONTAL);
-    room3->add_keybind(DOWN, finish_button);
     finish_button->add_keybind(UP, room3);
     clear_button->add_keybind(UP, room3);
+    room3->add_keybind(DOWN, finish_button);
 }
 
 void MainScreen::print()
