@@ -369,3 +369,116 @@ void Encoder::monitor_events()
 ```
 
 \newpage
+## TUI
+
+The TUI was designed to be very general, which allows for adding new ui elements with ease, instead of having hardcoded functionality for every element. This is done by having a couple base classes, `Screen` and `Element` which can be inherited to allow for their own implementation.  
+
+### Screen stack  
+From a high level view the TUI uses an idea of a "screen stack" where different screens can be pushed and popped, where the top one is always the one that gets interacted with.  
+This can be seen in the constructor for the `Tui` class where all it really does is construct a screen which then gets pushed to the screen stack.
+
+```cpp
+Tui::Tui()
+{
+    screen_stack_.push(new MainScreen());
+    screen_stack_.top()->print();
+}
+```
+
+The elements included in the screen are then implementation defined. It can contain any number of ui elements which the screen itself handles and keeps track of.
+
+### UI elements  
+The other base class `Element` provides some basic functionality to define what a ui element must do. The minimum required to implement is the print function which includes what the element prints to the screen.  
+The most basic element is a `TextElement` which as the name implies only has text. It can't be selected and therefore doesn't have any action when pressed either.  
+The other two elements that we needed to implement was a basic button, `Button`, and a button with a checkbox, `StatefulButton`. The basic button has an arbitrary action associated with it, which can be any function assigned at construction e.g. pushing or popping a screen from the stack, or modifying existing elements. 
+
+This functionality can even expand into more complex lambda functions, such as the "Finish" button on the main screen. Which needs to decide whether to show the popup depending on if the user has selected any rooms or not.
+
+```cpp
+const auto finish_button = new Button("Finish", [=] {
+    const Route r{room1, room2, room3};
+    if(!r.empty())
+        Tui::push_screen(new PopupScreen(r));
+    else {
+        static auto no_room_error = TextElement("Please select at least one room...");
+        no_room_error.print();
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+    }
+});
+```
+
+\newpage
+### Key mapping
+
+Each element has a map/dictionary where the key in the map corresponds to the actual input key that gets read from the user. This is used for moving the selection between elements whenever the user hits any of the up, down, left or right directional keys. Essentially the map corresponds to "given this input key, what is the corresponding ui element to move to", so when the user inputs up, the "selected" cursor should move to the element above the current.
+
+```cpp
+//From include/Elements/Element.h
+class Element {
+public:
+    ...
+    Element* get_button(Key key);
+protected:
+    ...
+    std::map<Key, Element*> keyMap_;
+}
+
+//From src/Screens/Screen.cpp
+void Screen::update_selection()
+{
+    switch(const auto key = Input::get_input()) {
+        case ENTER: {
+            if(const auto e = dynamic_cast<Button*>(selected_))
+                e->action();
+            break;
+        }
+        case UP:
+        case DOWN:
+        case LEFT:
+        case RIGHT: {
+            if(const auto b = selected_->get_button(key)) {
+                selected_->print();
+                std::cout << "  ";
+                selected_ = b;
+                selected_->print();
+                std::cout << "<-";
+            }
+            break;
+        }
+        default: break;
+    }
+}
+```
+
+When adding elements to a screen we need to also "register" which keys correspond to what elements. For example the "Finish" and "Clear" buttons are to the left and right of eachother, so in their respective keymaps "Finish" would have an index in the map where the key is RIGHT and the value is a pointer to the "Clear" button, and vice versa. This is used for navigating between the elements using the arrow keys.  
+
+```cpp
+//In MainScreen ctor
+finish_button->connect(clear_button, HORIZONTAL);
+finish_button->add_keybind(UP, room3);
+clear_button->add_keybind(UP, room3);
+room3->add_keybind(DOWN, finish_button);
+```
+
+Additionally since each element have their own keymap it allows for several elements to use the same key to refer to an element. This functionality is used when setting up the three elements "Room 3", "Finish" and "Clear". In this case when "Finish" or "Clear" is selected, pressing up should result in the selection arrow moving to the "Room 3" element, but pressing down after should always move to the "Finish" element, this simple "state machine" is also showcased in Figure \ref{tui:keymap}.
+
+
+
+\begin{figure}[H]
+\centering
+    \begin{subfigure}{.3\textwidth}
+        \centering
+        \includegraphics[width=0.7\textwidth]{docs/diagrams/out/Software implementation/Tui example.png}
+        \caption{Elements in the TUI}
+    \end{subfigure}%
+    \begin{subfigure}{.3\textwidth}
+        \centering
+        \includegraphics[width=0.7\textwidth]{docs/diagrams/out/Software implementation/Keymap example.png}
+        \caption{Representation of the elements' keymaps}
+        \label{tui:keymap}
+    \end{subfigure}
+\caption{Tui element traversal example}
+\end{figure}
+
+
+\newpage
