@@ -1,7 +1,9 @@
+# Responsibility
+
 Primary responsibility: P  \\
 Supplementary responsibility: S 
 
-\begin{table}[h]
+\begin{table}[H]
 \renewcommand{\arraystretch}{1.4} % Default value: 1
 \begin{tabularx}
 {\textwidth}{|l|X|X|X|X|X|X|X|X|}
@@ -70,3 +72,5 @@ Supplementary responsibility: S
 \caption{Ansvarstabel, der dokumenterer ansvarsområder i projektet.}
 \label{tab:ansvarstabel}
 \end{table}
+
+\newpage

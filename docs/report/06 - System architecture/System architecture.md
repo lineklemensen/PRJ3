@@ -200,8 +200,6 @@ Net & The wifi that is used to connect server, car and computer & & Ethernet & \
 \end{longtable}
 
 
-### Interfaces
-
 ## Software architecture
 The following sections will include software architecture for the system and the structure for the following sections: Domain model, System sequence diagram and System state machine diagram ending the software architecture section.
 

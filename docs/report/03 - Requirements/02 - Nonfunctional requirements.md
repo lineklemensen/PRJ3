@@ -1,6 +1,6 @@
-# Nonfunctional requirements
+## Nonfunctional requirements
 
-## FURPS+
+### FURPS+
 
 **Usability**
 
@@ -36,7 +36,7 @@
    2. The system won't handle any outside interference.
 
 
-## MOSCOW
+### MOSCOW
 MOSCOW is used to prioritize our nonfuntional requirements. This is done by using MOSCOW to place the different requirements in either must, should, could or wont.
 
 \begin{table}[H]

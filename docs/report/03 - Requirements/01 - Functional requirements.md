@@ -1,4 +1,4 @@
-# Functional requirements
+# Requirement specification
 
 ## Actor-Context Diagram
 
@@ -40,6 +40,7 @@
 \end{tabularx}
 
 \newpage
+## Functional requirements
 
 \begin{figure}[H]
 \begin{center}
