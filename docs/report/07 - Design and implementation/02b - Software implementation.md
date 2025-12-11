@@ -594,21 +594,7 @@ log_file.open is used to open a file with the given name being logger.txt, ios::
     };
 ```
 
-
-### POST
-The data received from POST request is done with a function called post_route. The function is a void because it should not return anything, what it does is calling route_queue to push back the string received, then if the log_file is open route_queue.back is used to also add the string from the request into log_file with log_file.flush. 
-```cpp
-    void post_route(const std::string& log_rooms) {
-        route_queue.push_back(log_rooms);
-        if (log_file.is_open()) {
-            log_file << route_queue.back() << "\n";
-            log_file.flush();
-        }
-    };
-```
-
-
-## GET
+### GET
 This function is used for taking the first element in route_queue and put it into a string first_route so that pop_front can be done on the queue, it then calls update_route() to update the log_file centent and finally return first_route
 
 ```cpp
@@ -626,7 +612,20 @@ This function is used for taking the first element in route_queue and put it int
 ```
 
 
-## update 
+### POST
+The data received from POST request is done with a function called post_route. The function is a void because it should not return anything, what it does is calling route_queue to push back the string received, then if the log_file is open route_queue.back is used to also add the string from the request into log_file with log_file.flush. 
+```cpp
+    void post_route(const std::string& log_rooms) {
+        route_queue.push_back(log_rooms);
+        if (log_file.is_open()) {
+            log_file << route_queue.back() << "\n";
+            log_file.flush();
+        }
+    };
+```
+
+
+### update 
 Update_route() is simply to take every element in route_queue and put it into log_file.
 ```cpp
     void update_route() {
