@@ -74,6 +74,7 @@ However since the structs and enums are used across many classes they do not hav
 ## Server
 
 ### Empty class diagram
+This is a very simple class diagram, RouteHandler handles all the incoming request, and LogHandler stores the data. 
 ![empty class diagram for server](docs/diagrams/out/apModel/server_class_empty/ServerClasses.png)
 
 ### Sequence diagram
