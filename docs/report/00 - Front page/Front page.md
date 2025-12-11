@@ -1,5 +1,4 @@
 \begin{center}
-
 \Huge SW3 Semester Project \\
 \bigskip 
 \large Self Driving Medicine Delivering System\\
@@ -9,7 +8,9 @@
 \vspace{1.5cm}
 
 \begin{figure}[H]
+\begin{center}
     \includegraphics[width=0.6\textwidth]{docs/appendices/pictures/car_front.png}
+\end{center}
 \end{figure}
 
 
