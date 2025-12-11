@@ -1,6 +1,8 @@
 # Tests
 ## Hardware
-Testing the hardware, multisim was used to check if the hardware would work in a simulation, and speaking with one of the workers in Elab to hear their advise on what to do, then a multimeter was used to check that connections was good on the veroboard. After the full implementation we could test the drive with the full weight of all parts.
+Testing the hardware, multisim was used to check if the hardware would work in a simulation, and speaking with one of the workers in Elab to hear their advise on what to do, then a multimeter was used to check the regulator was working as intented.   
+
+There was used a x to test the signals that were used to control the motors. The transistors was tested by using signals sent through the pins on the RPi5, to see if it would open and close the transistors, which would in turn turn on or off the LED's. Then the button was tested by connecting its pin to the RPi5, and checking if we could read the signal from a button press, and if we held the button if that could be read, which both worked. After the full implementation we could test the drive with the full weight of all parts. 
 
 ## Calculate route
 DR is the class used for calculating the length and angle needed to drive from where the car currently is and where it needs to be. Testing this class, I put in every variation of points so that it would have to turn in every 90 degree turn available. This way there was an easy way to keep track of when the turn needed to be negative depending on where the car came from. The unit circle was used in deciding wether the turn was to be negative or positive. 
